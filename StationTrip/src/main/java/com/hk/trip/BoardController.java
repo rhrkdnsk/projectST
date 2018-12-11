@@ -31,13 +31,21 @@ public class BoardController {
 	private FboardService fboardService;
 	
 	@RequestMapping(value = "fboardlist.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String getBoard(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		List<FboardDto> list = fboardService.getAllList();
 		model.addAttribute("list",list);
 		
 		return "fboardlist";
+	}
+	
+	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.GET)
+	public String fboardInsert(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		
+		return "fboardinsert";
 	}
 	
 }

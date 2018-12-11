@@ -236,7 +236,7 @@ margin-top: 10px;
 <script>
 function locainsert() {
 	alert("locainsert");
-	location.href = "PgController.do?command=insertform";
+	location.href = "fboardinsert.do";
 	
 }
 
