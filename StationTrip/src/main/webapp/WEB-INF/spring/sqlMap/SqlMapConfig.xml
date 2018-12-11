@@ -7,7 +7,7 @@
   	
 	<typeAliases>
   		<typeAlias type="com.hk.trip.dto.LoginDto" alias="LoginDto" />
-  		<typeAlias type="com.hk.trip.dto.FboardDto" alias="BoardDto"/>
+  		<typeAlias type="com.hk.trip.dto.FboardDto" alias="FboardDto"/>
   	</typeAliases>
   	
   	<mappers>

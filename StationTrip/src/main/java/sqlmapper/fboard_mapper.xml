@@ -4,7 +4,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.hk.trip.board">
-  
-  
+  <mapper namespace="com.hk.trip.fboard">
+ 
+  <select id="getAllContent" resultType="FboardDto">
+  SELECT FREEBOARD_NUM,USER_NICKNAME,FREEBOARD_TITLE,FREEBOARD_TIME,FREEBOARD_CONTENT,FREEBOARD_VIEW,FREEBOARD_LIKE,FREEBOARD_HATE FROM FREEBOARD ORDER BY FREEBOARD_TIME DESC
+ </select> 
+ 
+ 
   </mapper>

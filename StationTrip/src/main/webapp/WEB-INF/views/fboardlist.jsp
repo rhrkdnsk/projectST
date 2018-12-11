@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,8 +155,35 @@ margin-top: 10px;
   
   <p style="text-align:center">------------------------------------------------------------------------------------------------------------------------------------------------</p>
   
+	<c:choose>
+	<c:when test="${empty list}">
+	<dl>	
+		<dd>-------작성된 글이 없습니다.----</dd>
+	</dl>
+  </c:when>
+  <c:otherwise>
+  <c:forEach items="${list}" var="fdto">
+  <dl>
+  	<dd class="num">${fdto.freeboard_num}</dd>
+  	<dd class="sub"><a class="title" href="fboarddetail.do?freenum=${fdto.freeboard_num}">${fdto.freeboard_title}</a></dd>
+  	<dd class="name">${fdto.user_nickname}</dd>
+  	<dd class="data">${fdto.freeboard_time}</dd>
+  	<dd class="count">${fdto.freeboard_view}</dd>
+  	<dd class="count">${fdto.freeboard_like}</dd>
+  	
+  	</dl>
+  	
+  	</c:forEach>
+  	</c:otherwise>
+  	</c:choose>
 	
-  
+   
+   
+   
+   
+   
+   
+   
     <dl>
    <dd class="num">1</dd>
    <dd class="sub"><a href="#">수요일 입니다.</a></dd>
