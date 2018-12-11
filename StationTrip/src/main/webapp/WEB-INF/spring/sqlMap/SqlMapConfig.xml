@@ -5,12 +5,12 @@
   
 <configuration>
   	
-<!-- 	<typeAliases>
-  		<typeAlias type="com.hk.board.dtos.AnsDto" alias="AnsDto" />
+	<typeAliases>
+  		<typeAlias type="com.hk.trip.dto.LoginDto" alias="LoginDto" />
   	</typeAliases>
   	
   	<mappers>
-  		<mapper resource="/sqls/board_mapper.xml" />
-  	</mappers> -->
+  		<mapper resource="/sqlMapper/login_mapper.xml" />
+  	</mappers>
   	
 </configuration>
