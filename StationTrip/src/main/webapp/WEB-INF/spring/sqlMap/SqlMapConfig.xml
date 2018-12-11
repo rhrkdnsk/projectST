@@ -10,7 +10,7 @@
   	</typeAliases>
   	
   	<mappers>
-  		<mapper resource="/sqlMapper/login_mapper.xml" />
+  		<mapper resource="/sqlmapper/login_mapper.xml" />
   	</mappers>
   	
 </configuration>
