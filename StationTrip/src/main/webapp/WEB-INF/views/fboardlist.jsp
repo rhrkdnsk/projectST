@@ -99,6 +99,7 @@ margin-top: 10px;
 
 </head>
 <body>
+<jsp:include page="header.jsp" />
 <%
 
 %>
@@ -231,6 +232,7 @@ margin-top: 10px;
 </select>
 </div>
 </form>
+<jsp:include page="footer.jsp" />
 <script>
 function locainsert() {
 	alert("locainsert");
