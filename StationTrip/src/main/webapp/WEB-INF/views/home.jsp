@@ -6,11 +6,11 @@
 <%@ page session="false" %>
 <html>
 <head>
-<jsp:include page="header.jsp" />
+
 	<title>Home</title>
 </head>
 <body>
-
+<jsp:include page="header.jsp" />
 <h1>
 	Hello world!  
 </h1>
