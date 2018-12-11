@@ -45,7 +45,7 @@
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
-   <a href="#modalLayer" class="modalLink w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">로그인</a>
+   <a href="#modalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right modalLink">로그인</a>
    
    <div id="modalLayer">
 		<div class="modalContent">

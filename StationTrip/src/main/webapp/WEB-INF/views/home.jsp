@@ -6,16 +6,16 @@
 <%@ page session="false" %>
 <html>
 <head>
-
+<jsp:include page="header.jsp" />
 	<title>Home</title>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+
 <h1>
 	Hello world!  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<jsp:include page="footer.jsp" />
+<%-- <jsp:include page="footer.jsp" /> --%>
 </body>
 </html>
