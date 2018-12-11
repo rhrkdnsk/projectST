@@ -7,10 +7,12 @@
   	
 	<typeAliases>
   		<typeAlias type="com.hk.trip.dto.LoginDto" alias="LoginDto" />
+  		<typeAlias type="com.hk.trip.dto.FboardDto" alias="BoardDto"/>
   	</typeAliases>
   	
   	<mappers>
   		<mapper resource="/sqlmapper/login_mapper.xml" />
+  		<mapper resource="/sqlmapper/fboard_mapper.xml" />
   	</mappers>
   	
 </configuration>
