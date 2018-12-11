@@ -16,7 +16,7 @@
  </select>
  
  <insert id="insertBoard" parameterType="FboardDto">
- INSERT INTO FREEBOARD VALUES (#{freeboard_num},1231,#{freeboard_title},SYSDATE,#{freeboard_title},0,0,0,무) 
+ INSERT INTO FREEBOARD VALUES (#{freeboard_num}+1,1231,#{freeboard_title},SYSDATE,#{freeboard_title},0,0,0,무) 
  </insert>
  
    </mapper>
