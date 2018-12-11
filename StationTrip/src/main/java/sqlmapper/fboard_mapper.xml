@@ -10,5 +10,13 @@
   SELECT FREEBOARD_NUM,USER_NICKNAME,FREEBOARD_TITLE,FREEBOARD_TIME,FREEBOARD_CONTENT,FREEBOARD_VIEW,FREEBOARD_LIKE,FREEBOARD_HATE FROM FREEBOARD ORDER BY FREEBOARD_TIME DESC
  </select> 
  
+ <select id="getLastNum" resultType="FboardDto">
+ SELECT FREEBOARD_NUM FROM FREEBOARD WHERE ROWNUM = 1 ORDER BY FREEBOARD_NUM DESC
  
-  </mapper>
+ </select>
+ 
+ <insert id="insertBoard" parameterType="FboardDto">
+ INSERT INTO FREEBOARD VALUES (#{freeboard_num},1231,#{freeboard_title},SYSDATE,#{freeboard_title},0,0,0,무) 
+ </insert>
+ 
+   </mapper>

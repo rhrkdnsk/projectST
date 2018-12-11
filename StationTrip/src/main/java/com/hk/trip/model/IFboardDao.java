@@ -8,4 +8,5 @@ public interface IFboardDao {
 
 	
 	public List<FboardDto> getAllList();
+	public boolean insertBoard(FboardDto fdto);
 }

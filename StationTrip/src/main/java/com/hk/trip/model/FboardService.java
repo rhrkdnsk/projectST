@@ -17,4 +17,10 @@ public class FboardService implements IFboardService {
 	public List<FboardDto> getAllList()	 {
 		return ifboarddao.getAllList();
 	}
+	
+	@Override
+	public boolean insertBoard(FboardDto fdto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.insertBoard(fdto);
+	}
 }

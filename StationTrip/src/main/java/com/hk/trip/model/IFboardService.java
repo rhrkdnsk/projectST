@@ -9,4 +9,5 @@ public interface IFboardService {
 	
 	
 	public List<FboardDto> getAllList();
+	public boolean insertBoard(FboardDto fdto);
 }

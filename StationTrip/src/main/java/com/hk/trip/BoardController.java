@@ -40,12 +40,24 @@ public class BoardController {
 		return "fboardlist";
 	}
 	
-	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.GET)
-	public String fboardInsert(Locale locale, Model model) {
+	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
+	public String fboardInsertForm(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		
 		return "fboardinsert";
 	}
-	
+	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.POST)
+	public String fboardInsert(Locale locale, Model model,FboardDto fdto) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		boolean isS = fboardService.insertBoard(fdto);
+		if(isS) {
+			return "redirect:fboardlist.do";
+		} else {
+			return "index";
+			
+		}
+		
+		
+	}
 }

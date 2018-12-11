@@ -27,7 +27,7 @@ h6 {
 </head>
 <body>
 <h1>게시글 작성</h1>
-<!-- <form action="PgController.do?" method="post"> -->
+ <form action="fboardinsert.do" method="post">
 
 <input type="hidden" name="command" value="boardinsert" />
 

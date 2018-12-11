@@ -20,4 +20,20 @@ public class FboardDao implements IFboardDao {
 	public List<FboardDto> getAllList()	{
 		return sqlSession.selectList(namespace + "getAllContent" );
 	}
+	
+	@Override
+	public boolean insertBoard(FboardDto fdto) {
+		int count = 0;
+		fdto.setFreeboard_num(getLastNum());
+		
+		count = sqlSession.insert(namespace + "insertBoard" , fdto);
+		return count > 0? true:false;
+	}
+	public int getLastNum() {
+		int lastNum=0;
+		sqlSession.selectList(namespace, "getLastNum");
+		
+		return lastNum;
+		
+	}
 }
