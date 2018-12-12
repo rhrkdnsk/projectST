@@ -33,25 +33,54 @@ a {
 	position: relative;
 }
 
-#modalLayer .modalContent {
+#modalLayer .modalContent  {
 	width: 440px;
-	height: 200px;
+	height: 400px;
 	padding: 20px;
 	border: 1px solid #ccc;
 	position: fixed;
 	left: 50%;
-	top: 50%;
+	top: 25%;
+	z-index: 11;
+	background: #fff;
+	color: black;
+}
+#modalLayer2 {
+	display: none;
+	position: relative;
+}
+
+
+#modalLayer2 .modalContent2  {
+	width: 440px;
+	height: 400px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	position: fixed;
+	left: 50%;
+	top: 25%;
 	z-index: 11;
 	background: #fff;
 	color: black;
 }
 
-#modalLayer .modalContent button {
-	position: absolute;
-	right: 0;
-	top: 0;
-	cursor: pointer;
-}
+/* 모달사용시 화면가리기용 */
+#mask {  
+      position:absolute;  
+      z-index:9000;  
+      background-color:#000;  
+      display:none;  
+      left:0;
+      top:0;
+    }
+    .window{
+      display: none;
+      position:absolute;  
+      left:100px;
+      top:100px;
+      z-index:10000;
+    }
+/*---------------*/
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -66,19 +95,75 @@ $(document).ready(function(){
 	    modalLayer.fadeIn("slow");
 	    modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
 	    $(this).blur();
-	    $(".modalContent > a").focus(); 
+	    $(".modalContent > #email").focus(); 
 	    return false;
 	  });
 
-	  $(".modalContent > button").click(function(){
-	    modalLayer.fadeOut("slow");
-	    modalLink.focus();
-	  });		
-	});
+	  var modalLayer2 = $("#modalLayer2");
+	  var modalLink2 = $(".modalLink2");
+	  var modalCont2 = $(".modalContent2");
+// 	  var marginLeft = modalCont.outerWidth()/2;
+// 	  var marginTop = modalCont.outerHeight()/2; 
+
+	  modalLink2.click(function(){
+	    modalLayer2.fadeIn("slow");
+	    modalCont2.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+	    $(this).blur();
+	    $(".modalContent2 > #email").focus(); 
+	    return false;
+	  });
+	  
+      $('.can').click(function (e) {  
+          //링크 기본동작은 작동하지 않도록 한다.
+          e.preventDefault();  
+          modalLayer2.hide();  
+      }); 
+		
+});
+/* 모달사용시 화면가리기 */
+function wrapWindowByMask(){
+        //화면의 높이와 너비를 구한다.
+        var maskHeight = $(document).height();  
+        var maskWidth = $(window).width();  
+
+        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+        $('#mask').css({'width':maskWidth,'height':maskHeight});  
+
+        //애니메이션 효과 - 일단 1초동안 까맣게 됐다가 80% 불투명도로 간다.
+//         $('#mask').fadeIn(1000);      
+        $('#mask').fadeTo("fast",0.8);    
+
+        //윈도우 같은 거 띄운다.
+        $('.window').show();
+    }
+
+    $(document).ready(function(){
+        //검은 막 띄우기
+        $('.openMask').click(function(e){
+            e.preventDefault();
+            wrapWindowByMask();
+        });
+
+        //닫기 버튼을 눌렀을 때
+        $('.window .close').click(function (e) {  
+            //링크 기본동작은 작동하지 않도록 한다.
+            e.preventDefault();  
+            $('#mask, .window').hide();  
+        });       
+
+        //검은 막을 눌렀을 때
+        $('#mask').click(function () {  
+            $(this).hide();  
+            $("#modalLayer2").hide();
+            $('.window').hide();  
+        });      
+    });
+/* ------------ */
 </script>
 <title>header페이지</title>    
 </head>
 <body>
+
  <div class="w3-bar w3-black w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" 
     href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -109,13 +194,75 @@ $(document).ready(function(){
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
-   <a href="#modalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right modalLink">로그인</a>
-   
-   <div id="modalLayer">
-		<div class="modalContent">
-			<a href="#">회원가입</a> 
-		<button type="button">닫기</button>
-		</div>
+   <a href="#modalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right modalLink openMask">로그인</a>
+   <div id="mask"></div>
+	   <div class="window">
+		   <div id="modalLayer">
+				<div class="modalContent">
+					<form action="login.do">
+					<h2>로고 들어갈 자리</h2>
+					<br />
+					<ul>
+						<li>
+							<label>이메일</label>
+							<input type="text" id="email" />
+						</li>
+						<li>
+							<label>비밀번호</label>
+							<input type="password" id="password" />
+						</li>
+						<li>
+							<label>닉네임</label>
+							<input type="text" id="nickname" />
+						</li>
+						<li>
+							<label>이름</label>
+							<input type="text" id="name" />
+						</li>
+						<li>
+							<label>전화번호</label>
+							<input type="text" id="phone" />
+						</li>
+					</ul>
+					<input type="submit" value="로그인" />
+					<a href="#modalLayer2" class="modalLink2" >회원가입</a>
+					</form>
+					<!-- <button type="button" class="close">닫기</button> -->
+				</div>
+			</div>
+			  	<div id="modalLayer2">
+					<div class="modalContent2">
+					<form action="signup.do">
+					<h2>로고 들어갈 자리</h2>
+					<br />
+					<ul>
+						<li>
+							<label>이메일</label>
+							<input type="text" id="email" />
+						</li>
+						<li>
+							<label>비밀번호</label>
+							<input type="password" id="password" />
+						</li>
+						<li>
+							<label>닉네임</label>
+							<input type="text" id="nickname" />
+						</li>
+						<li>
+							<label>이름</label>
+							<input type="text" id="name" />
+						</li>
+						<li>
+							<label>전화번호</label>
+							<input type="text" id="phone" />
+						</li>
+					</ul>
+					<input type="submit" value="가입" />
+					<input type="button" class="can" value="취소" />
+					</form>
+					<!-- <button type="button" class="close">닫기</button> -->
+				</div>
+			</div>
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
