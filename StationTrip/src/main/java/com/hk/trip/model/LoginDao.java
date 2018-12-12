@@ -18,8 +18,8 @@ public class LoginDao implements ILoginDao {
 	public LoginDto login(LoginDto dto) {
 
 		System.out.println("dao");
-		System.out.println(dto.getEmail());
-		System.out.println(dto.getPassword());
+		System.out.println(dto.getUser_email());
+		System.out.println(dto.getUser_password());
 		System.out.println("select = " + sqlSession.selectOne(namespace+"login", dto));
 		return sqlSession.selectOne(namespace+"login", dto);
 	}

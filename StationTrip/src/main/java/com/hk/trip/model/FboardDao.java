@@ -40,7 +40,7 @@ public class FboardDao implements IFboardDao {
 	
 	@Override
 	public FboardDto getDetailView(int freeboard_num) {
-			
+		
 		return sqlSession.selectOne(namespace + "getDetailView", freeboard_num);
 	}
 	

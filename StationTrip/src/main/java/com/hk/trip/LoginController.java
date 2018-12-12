@@ -39,6 +39,7 @@ public class LoginController {
 		System.out.println("password = " + password);
 		HttpSession session = request.getSession();
 		LoginDto dto = new LoginDto(email,password);
+		
 		session.setAttribute("login", loginService.login(dto));
 		System.out.println("session = "+session.getAttribute("login"));
 		if(session.getAttribute("login") != null) {

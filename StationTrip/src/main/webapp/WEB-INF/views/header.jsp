@@ -108,7 +108,7 @@ function ajaxFunc(){
 			$('.window').hide();  
 		},
 		error:function(){
-			alert("로그인 실패") ;
+			alert("로그인 실패ㅜㅜ") ;
 		}
 	}); 
 } 
