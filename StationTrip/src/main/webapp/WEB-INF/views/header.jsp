@@ -33,7 +33,25 @@ a {
 	position: relative;
 }
 
-#modalLayer .modalContent {
+#modalLayer .modalContent  {
+	width: 440px;
+	height: 400px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	z-index: 11;
+	background: #fff;
+	color: black;
+}
+#modalLayer2 {
+	display: none;
+	position: relative;
+}
+
+
+#modalLayer2 .modalContent2  {
 	width: 440px;
 	height: 400px;
 	padding: 20px;
@@ -46,12 +64,6 @@ a {
 	color: black;
 }
 
-#modalLayer .modalContent button {
-	position: absolute;
-	right: 0;
-	top: 0;
-	cursor: pointer;
-}
 /* 모달사용시 화면가리기용 */
 #mask {  
       position:absolute;  
@@ -83,16 +95,31 @@ $(document).ready(function(){
 	    modalLayer.fadeIn("slow");
 	    modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
 	    $(this).blur();
-	    $(".modalContent > a").focus(); 
+	    $(".modalContent > #email").focus(); 
 	    return false;
 	  });
 
-	  $(".modalContent > button").click(function(){
-	    modalLayer.fadeOut("slow");
-	    modalLink.focus();
-	  });		
-	});
-	
+	  var modalLayer2 = $("#modalLayer2");
+	  var modalLink2 = $(".modalLink2");
+	  var modalCont2 = $(".modalContent2");
+// 	  var marginLeft = modalCont.outerWidth()/2;
+// 	  var marginTop = modalCont.outerHeight()/2; 
+
+	  modalLink2.click(function(){
+	    modalLayer2.fadeIn("slow");
+	    modalCont2.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+	    $(this).blur();
+	    $(".modalContent2 > #email").focus(); 
+	    return false;
+	  });
+	  
+      $('.can').click(function (e) {  
+          //링크 기본동작은 작동하지 않도록 한다.
+          e.preventDefault();  
+          modalLayer2.hide();  
+      }); 
+		
+});
 /* 모달사용시 화면가리기 */
 function wrapWindowByMask(){
         //화면의 높이와 너비를 구한다.
@@ -127,6 +154,7 @@ function wrapWindowByMask(){
         //검은 막을 눌렀을 때
         $('#mask').click(function () {  
             $(this).hide();  
+            $("#modalLayer2").hide();
             $('.window').hide();  
         });      
     });
@@ -197,12 +225,42 @@ function wrapWindowByMask(){
 						</li>
 					</ul>
 					<input type="submit" value="로그인" />
-					<a href="#" >회원가입</a>
+					<a href="#modalLayer2" class="modalLink2" >회원가입</a>
 					</form>
-					<!-- 모달창을 띄웠을시 배경 가리기 -->
-					 <!-- 모달사용시 배경가리기위한 div  -->
-<!-- 					<button type="button" class="close">닫기</button> -->
-					<!-- ----------------- -->
+					<!-- <button type="button" class="close">닫기</button> -->
+				</div>
+			</div>
+			  	<div id="modalLayer2">
+					<div class="modalContent2">
+					<form action="signup.do">
+					<h2>로고 들어갈 자리</h2>
+					<br />
+					<ul>
+						<li>
+							<label>이메일</label>
+							<input type="text" id="email" />
+						</li>
+						<li>
+							<label>비밀번호</label>
+							<input type="password" id="password" />
+						</li>
+						<li>
+							<label>닉네임</label>
+							<input type="text" id="nickname" />
+						</li>
+						<li>
+							<label>이름</label>
+							<input type="text" id="name" />
+						</li>
+						<li>
+							<label>전화번호</label>
+							<input type="text" id="phone" />
+						</li>
+					</ul>
+					<input type="submit" value="가입" />
+					<input type="button" class="can" value="취소" />
+					</form>
+					<!-- <button type="button" class="close">닫기</button> -->
 				</div>
 			</div>
 	</div>
