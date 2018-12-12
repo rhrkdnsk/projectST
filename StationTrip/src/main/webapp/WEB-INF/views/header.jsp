@@ -63,6 +63,10 @@ a {
 	background: #fff;
 	color: black;
 }
+.labeltag {
+	float:left;
+	width:80px;
+}
 
 /* 모달사용시 화면가리기용 */
 #mask {  
@@ -204,24 +208,16 @@ function wrapWindowByMask(){
 					<br />
 					<ul>
 						<li>
+							<span class="labeltag">
 							<label>이메일</label>
-							<input type="text" id="email" />
+							</span>
+							<input type="text" name="email" />
 						</li>
 						<li>
+							<span class="labeltag">
 							<label>비밀번호</label>
-							<input type="password" id="password" />
-						</li>
-						<li>
-							<label>닉네임</label>
-							<input type="text" id="nickname" />
-						</li>
-						<li>
-							<label>이름</label>
-							<input type="text" id="name" />
-						</li>
-						<li>
-							<label>전화번호</label>
-							<input type="text" id="phone" />
+							</span>
+							<input type="password" name="password" />
 						</li>
 					</ul>
 					<input type="submit" value="로그인" />
@@ -237,24 +233,34 @@ function wrapWindowByMask(){
 					<br />
 					<ul>
 						<li>
+							<span class="labeltag">
 							<label>이메일</label>
-							<input type="text" id="email" />
+							</span>
+							<input type="text" name="email" />
 						</li>
 						<li>
+							<span class="labeltag">
 							<label>비밀번호</label>
-							<input type="password" id="password" />
+							</span>
+							<input type="password" name="password" />
 						</li>
 						<li>
+							<span class="labeltag">
 							<label>닉네임</label>
-							<input type="text" id="nickname" />
+							</span>
+							<input type="text" name="nickname" />
 						</li>
 						<li>
+							<span class="labeltag">
 							<label>이름</label>
-							<input type="text" id="name" />
+							</span>
+							<input type="text" name="name" />
 						</li>
 						<li>
+							<span class="labeltag">
 							<label>전화번호</label>
-							<input type="text" id="phone" />
+							</span>
+							<input type="text" name="phone" />
 						</li>
 					</ul>
 					<input type="submit" value="가입" />

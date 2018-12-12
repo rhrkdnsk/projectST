@@ -28,6 +28,12 @@ public class LoginDto {
 		this.point = point;
 		this.alarmnum = alarmnum;
 	}
+	
+	public LoginDto(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {

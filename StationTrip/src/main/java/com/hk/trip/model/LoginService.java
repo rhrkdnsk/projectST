@@ -8,4 +8,10 @@ public class LoginService implements ILoginService  {
 
 	@Autowired
 	private ILoginDao loginDao;
+
+	@Override
+	public boolean login(String email, String password) {
+
+		return loginDao.login(email, password);
+	}
 }
