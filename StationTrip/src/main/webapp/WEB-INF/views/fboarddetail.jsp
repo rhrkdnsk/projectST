@@ -60,5 +60,9 @@
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
+    	<a class="title" href="#">이전글 보기</a>
+    	<a class="title" href="#">다음글 보기</a>
+  	
+  
 </body>
 </html>
