@@ -6,4 +6,10 @@
   
 <mapper namespace="com.hk.login">
 
+	<select id="login" parameterType="LoginDto" resultType="LoginDto">
+		SELECT USER_EMAIL,USER_PASSWORD
+		FROM T_USER
+		WHERE USER_EMAIL = #{email}	AND USER_PASSWORD = #{password}
+	</select>
+
 </mapper>	
