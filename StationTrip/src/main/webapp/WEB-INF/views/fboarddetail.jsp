@@ -17,6 +17,8 @@
 %>
 
   <body>  
+  <jsp:include page="header.jsp" />
+  
 <h1>게시판 상세보기</h1> 
  제목 : ${fdto.freeboard_title} 날짜 : ${fdto.freeboard_time} 조회수 : ${fdto.freeboard_view}
  <p>아이디 : ${fdto.user_nickname}
