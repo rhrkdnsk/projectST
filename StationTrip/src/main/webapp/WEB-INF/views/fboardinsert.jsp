@@ -27,9 +27,10 @@ h6 {
 </head>
 <body>
 <h1>게시글 작성</h1>
+<div>
  <form action="fboardinsert.do" method="post">
 
-<input type="hidden" name="command" value="boardinsert" />
+<!-- <input type="hidden" name="command" value="boardinsert" /> -->
 
   분류  <select id="opvalue">
 <option value="분류" id="opvalue"><h6>분류</h6></option>
@@ -40,11 +41,11 @@ h6 {
 <p>
 작성자 <input type="text" value="" id="id">
 <p>
-제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" id="title"/>
+제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title"/>
 <p>
-<h6 style=text-align:center>내용</h6> <textarea name="memo" id="content"></textarea>
+<h6 style=text-align:center>내용</h6> <textarea name="freeboard_content" id="freeboard_content"></textarea>
 <script type="text/javascript">
-  CKEDITOR.replace('memo',
+  CKEDITOR.replace('freeboard_content',
     {
       width : '720px',  // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
       height : '300px',  // 입력창의 높이
@@ -58,5 +59,6 @@ h6 {
 <input type="submit" value="글쓰기" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center/>
 
 </form>
+</div>
 </body>
 </html>

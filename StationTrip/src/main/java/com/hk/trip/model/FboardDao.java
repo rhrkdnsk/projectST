@@ -24,7 +24,6 @@ public class FboardDao implements IFboardDao {
 	@Override
 	public boolean insertBoard(FboardDto fdto) {
 		int count = 0;
-		fdto.setFreeboard_num(getLastNum());
 		
 		count = sqlSession.insert(namespace + "insertBoard" , fdto);
 		return count > 0? true:false;

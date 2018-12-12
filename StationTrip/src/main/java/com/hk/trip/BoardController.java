@@ -42,7 +42,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
 	public String fboardInsertForm(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("글쓰기폼 이동.", locale);
 		
 		
 		return "fboardinsert";
