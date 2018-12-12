@@ -8,7 +8,7 @@
   
   
    <select id="getReply" resultType="CommentDto" parameterType="int">
- 	SELECT * FROM T_COMMENT WHERE = ${freeboard_num} ORDER BY COMMENT_STEP
+ 	SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} ORDER BY COMMENT_STEP
  	</select>
   
   </mapper>

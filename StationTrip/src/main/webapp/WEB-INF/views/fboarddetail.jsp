@@ -34,12 +34,31 @@
 <p>
 
    --------------------------------댓글 보기--------------------------------------------------------------------- 
+<form action="writereply.do" method="post">
+<input type="text" name="comment_content" size="50">
+<input type="submit" value="댓글작성">
+</form>
 
-
-
-
-
-
-
+<c:choose>
+	<c:when test="${empty list}">
+	<dl>	
+		<dd>-------작성된 글이 없습니다.----</dd>
+	</dl>
+  </c:when>
+  <c:otherwise>
+  <c:forEach items="${list}" var="cdto">
+  <dl>
+  	<dd class="num">${cdto.comment_num}</dd>
+  	<dd class="sub">${cdto.freeboard_num}</dd>
+  	<dd class="name">${cdto.user_nickname}</dd>
+<%--   	<dd class="data">${fdto.freeboard_time}</dd> --%>
+<%--   	<dd class="count">${fdto.freeboard_view}</dd> --%>
+<%--   	<dd class="count">${fdto.freeboard_like}</dd> --%>
+  	
+  	</dl>
+  	
+  	</c:forEach>
+  	</c:otherwise>
+  	</c:choose>
 </body>
 </html>
