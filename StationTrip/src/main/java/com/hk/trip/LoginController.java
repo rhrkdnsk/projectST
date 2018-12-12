@@ -39,13 +39,15 @@ public class LoginController {
 		System.out.println("password = " + password);
 		HttpSession session = request.getSession();
 		LoginDto dto = new LoginDto(email,password);
+		if(loginService.login(dto) != null) {
+			session.setAttribute("login_user", loginService.login(dto));
+		}
 		
-		session.setAttribute("login", loginService.login(dto));
-		System.out.println("session = "+session.getAttribute("login"));
-		if(session.getAttribute("login") != null) {
-			out.println("로그인 성공");
+		System.out.println("session = "+session.getAttribute("login_user"));
+		if(session.getAttribute("login_user") != null) {
+			out.println("good");
 		} else {
-			out.println("로그인 실패");
+			out.println("bad");
 		}
 		
 	}

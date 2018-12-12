@@ -7,9 +7,9 @@
 <mapper namespace="com.hk.trip.login">
 
 	<select id="login" parameterType="LoginDto" resultType="LoginDto">
-		SELECT USER_EMAIL,USER_PASSWORD
+		SELECT USER_NICKNAME,TIER,USER_EMAIL,USER_NAME,USER_PASSWORD,USER_PHONE,USER_POINT,USER_ALARMNUM
 		FROM T_USER
-		WHERE USER_EMAIL = #{user_email}	AND USER_PASSWORD = #{user_password}
+		WHERE USER_EMAIL = #{user_email} AND USER_PASSWORD = #{user_password}
 	</select>
 
 </mapper>	
