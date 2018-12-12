@@ -88,6 +88,32 @@ a {
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+function ajaxFunc(){
+	//alert('click');
+	var email = $("#email").val();
+	//alert(email)
+ 	var password = $("#password").val();
+	//alert(password)
+	
+	var data = { "email": email, "password": password };
+     
+	$.ajax({
+		url:"login.do",
+		type:'GET',
+		data: data,
+		success:function(data){
+			alert(data);
+			$("#modalLayer").hide();
+			$('#mask').hide();
+			$('.window').hide();  
+		},
+		error:function(){
+			alert("로그인 실패") ;
+		}
+	}); 
+} 
+
+
 $(document).ready(function(){
 	  var modalLayer = $("#modalLayer");
 	  var modalLink = $(".modalLink");
@@ -203,7 +229,6 @@ function wrapWindowByMask(){
 	   <div class="window">
 		   <div id="modalLayer">
 				<div class="modalContent">
-					<form action="login.do">
 					<h2>로고 들어갈 자리</h2>
 					<br />
 					<ul>
@@ -211,18 +236,17 @@ function wrapWindowByMask(){
 							<span class="labeltag">
 							<label>이메일</label>
 							</span>
-							<input type="text" name="email" />
+							<input type="text" id="email" />
 						</li>
 						<li>
 							<span class="labeltag">
 							<label>비밀번호</label>
 							</span>
-							<input type="password" name="password" />
+							<input type="password" id="password" />
 						</li>
 					</ul>
-					<input type="submit" value="로그인" />
+					<button onclick="ajaxFunc()">로그인</button>
 					<a href="#modalLayer2" class="modalLink2" >회원가입</a>
-					</form>
 					<!-- <button type="button" class="close">닫기</button> -->
 				</div>
 			</div>

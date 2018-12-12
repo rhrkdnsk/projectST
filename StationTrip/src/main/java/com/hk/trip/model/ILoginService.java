@@ -1,6 +1,8 @@
 package com.hk.trip.model;
 
+import com.hk.trip.dto.LoginDto;
+
 public interface ILoginService {
 
-	public boolean login(String email, String password);
+	public LoginDto login(LoginDto dto);
 }

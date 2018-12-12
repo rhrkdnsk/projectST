@@ -3,6 +3,8 @@ package com.hk.trip.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.trip.dto.LoginDto;
+
 @Service
 public class LoginService implements ILoginService  {
 
@@ -10,8 +12,9 @@ public class LoginService implements ILoginService  {
 	private ILoginDao loginDao;
 
 	@Override
-	public boolean login(String email, String password) {
-
-		return loginDao.login(email, password);
+	public LoginDto login(LoginDto dto) {
+		System.out.println("service");
+		// TODO Auto-generated method stub
+		return loginDao.login(dto);
 	}
 }
