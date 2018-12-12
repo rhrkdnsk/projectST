@@ -19,4 +19,13 @@
  INSERT INTO FREEBOARD VALUES ((SELECT NVL(MAX(FREEBOARD_NUM)+1,0)FROM FREEBOARD),'asd',#{freeboard_title},SYSDATE,#{freeboard_content},0,0,0,0) 
  </insert>
  
+ <select id="getDetailView" resultType="FboardDto" parameterType="int" >
+ SELECT FREEBOARD_NUM, USER_NICKNAME, FREEBOARD_TITLE,FREEBOARD_TIME,FREEBOARD_CONTENT,FREEBOARD_VIEW,FREEBOARD_LIKE,FREEBOARD_HATE FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+ </select>
+ 
+ <select id="getReply" resultType="CommentDto">
+ SELECT COMMENT_NUM FROM T_COMMENT
+ </select>
+ 
+ 
    </mapper>

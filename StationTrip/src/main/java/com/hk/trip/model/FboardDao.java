@@ -33,6 +33,13 @@ public class FboardDao implements IFboardDao {
 		sqlSession.selectList(namespace, "getLastNum");
 		
 		return lastNum;
+	}
+	
+	@Override
+	public FboardDto getDetailView(int freeboard_num) {
 		
+		
+		
+		return sqlSession.selectOne(namespace + "getDetailView", freeboard_num);
 	}
 }

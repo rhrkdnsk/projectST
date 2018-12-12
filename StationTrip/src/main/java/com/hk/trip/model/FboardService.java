@@ -20,7 +20,10 @@ public class FboardService implements IFboardService {
 	
 	@Override
 	public boolean insertBoard(FboardDto fdto) {
-		// TODO Auto-generated method stub
 		return ifboarddao.insertBoard(fdto);
+	}
+	@Override
+	public FboardDto getDetailView(int freeboard_num) {
+		return ifboarddao.getDetailView(freeboard_num);
 	}
 }

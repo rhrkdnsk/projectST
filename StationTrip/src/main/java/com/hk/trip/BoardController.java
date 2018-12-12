@@ -58,6 +58,15 @@ public class BoardController {
 			
 		}
 		
+	}		
+		
+		@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
+		public String fboarddetail(Locale locale, Model model, int freeboard_num) {
+			logger.info("Welcome home! The client locale is {}.", locale);
+			
+			FboardDto fdto = fboardService.getDetailView(freeboard_num);
+			model.addAttribute("fdto" , fdto);
+			return "fboarddetail";
 		
 	}
 }
