@@ -51,68 +51,79 @@
 	   <div class="window">
 		   <div id="modalLayer">
 				<div class="modalContent">
-					<h2>로고 들어갈 자리</h2>
-					<br />
-					<ul>
-						<li>
-							<span class="labeltag">
-							<label>이메일</label>
-							</span>
-							<input type="text" id="email" />
-						</li>
-						<li>
-							<span class="labeltag">
-							<label>비밀번호</label>
-							</span>
-							<input type="password" id="password" />
-						</li>
-					</ul>
-					<button onclick="ajaxFunc()">로그인</button>
-					<a href="#modalLayer2" class="modalLink2" >회원가입</a>
-					<!-- <button type="button" class="close">닫기</button> -->
+					<fieldset>
+						<legend>로고 들어갈 자리</legend>
+						<br />
+						<ul>
+							<li>
+								<span class="labeltag">
+								<label>이메일</label>
+								</span>
+								<input type="text" id="email" />
+							</li>
+							<li>
+								<span class="labeltag">
+								<label>비밀번호</label>
+								</span>
+								<input type="password" id="password" />
+							</li>
+							<li>
+								<br />
+							</li>
+							<li>
+								<input type="checkbox">아이디 저장
+								<a href="#" class="aright">비밀번호 찾기</a>
+							</li>
+							<li>
+								<button onclick="ajaxLogin()">로그인</button>
+								<a href="#modalLayer2" class="modalLink2 aright" >회원가입</a>
+							</li>
+						</ul>
+					</fieldset>
 				</div>
 			</div>
 			  	<div id="modalLayer2">
 					<div class="modalContent2">
-					<form action="signup.do">
-					<h2>로고 들어갈 자리</h2>
-					<br />
-					<ul>
-						<li>
-							<span class="labeltag">
-							<label>이메일</label>
-							</span>
-							<input type="text" name="email" />
-						</li>
-						<li>
-							<span class="labeltag">
-							<label>비밀번호</label>
-							</span>
-							<input type="password" name="password" />
-						</li>
-						<li>
-							<span class="labeltag">
-							<label>닉네임</label>
-							</span>
-							<input type="text" name="nickname" />
-						</li>
-						<li>
-							<span class="labeltag">
-							<label>이름</label>
-							</span>
-							<input type="text" name="name" />
-						</li>
-						<li>
-							<span class="labeltag">
-							<label>전화번호</label>
-							</span>
-							<input type="text" name="phone" />
-						</li>
-					</ul>
-					<input type="submit" value="가입" />
-					<input type="button" class="can" value="취소" />
-					</form>
-					<!-- <button type="button" class="close">닫기</button> -->
+					<fieldset>
+						<legend>로고 들어갈 자리</legend>
+						<br />
+						<ul>
+							<li>
+								<span class="labeltag">
+								<label>이메일</label>
+								</span>
+								<input type="text" id="Semail" />
+							</li>
+							<li>
+								<span class="labeltag">
+								<label>비밀번호</label>
+								</span>
+								<input type="password" id="Spassword" />
+							</li>
+							<li>
+								<span class="labeltag">
+								<label>닉네임</label>
+								</span>
+								<input type="text" id="Snickname" />
+							</li>
+							<li>
+								<span class="labeltag">
+								<label>이름</label>
+								</span>
+								<input type="text" id="Sname" />
+							</li>
+							<li>
+								<span class="labeltag">
+								<label>전화번호</label>
+								</span>
+								<input type="text" id="Sphone" />
+							</li>
+							<li>
+								<button onclick="ajaxSign()">회원가입</button>
+								<input type="button" class="can aright" value="취소" />	
+							</li>
+						</ul>
+					</fieldset>
 				</div>
 			</div>
 	</div>

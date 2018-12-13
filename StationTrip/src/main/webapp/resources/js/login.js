@@ -73,7 +73,7 @@ function wrapWindowByMask(){
 /* ------------ */
 
 // -------- 로그인 Ajax ---------- //
-function ajaxFunc(){
+function ajaxLogin(){
 	//alert('click');
 	var email = $("#email").val();
 	//alert(email)
@@ -112,3 +112,40 @@ function sessionCheck(data){
 }
 
 //------------------------------------- //
+
+
+// -------  회원가입  Ajax --------- //
+
+function ajaxSign(){
+	//alert('click');
+	var Semail = $("#Semail").val();
+	//alert("email = "+Semail);
+ 	var Spassword = $("#Spassword").val();
+ 	//alert("password = "+Spassword);
+ 	var Snickname = $("#Snickname").val();
+ 	//alert("nickname = "+Snickname);
+ 	var Sname = $("#Sname").val();
+ 	//alert("name = "+Sname);
+ 	var Sphone = $("#Sphone").val();
+ 	//alert("phone = "+Sphone);
+	
+	var data = { "email": Semail, "password": Spassword, "nickname": Snickname, "name": Sname, "phone": Sphone };
+     
+	$.ajax({
+		url:"signup.do",
+		type:'GET',
+		data: data,
+		success:function(data){
+			alert(data);
+			$("#modalLayer").hide();
+			$('#mask').hide();
+			$('.window').hide(); 
+		},
+		error:function(){
+			alert("가입 실패ㅜㅜ") ;
+		}
+	}); 
+} 
+
+
+// ---------------------------- //
