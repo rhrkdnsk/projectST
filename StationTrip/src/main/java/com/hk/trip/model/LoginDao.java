@@ -23,4 +23,12 @@ public class LoginDao implements ILoginDao {
 		System.out.println("select = " + sqlSession.selectOne(namespace+"login", dto));
 		return sqlSession.selectOne(namespace+"login", dto);
 	}
+
+	@Override
+	public boolean signup(LoginDto dto) {
+		
+		int count = sqlSession.insert(namespace+"signup", dto);
+
+		return count > 0 ? true:false;
+	}
 }
