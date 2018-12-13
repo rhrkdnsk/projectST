@@ -32,7 +32,7 @@ body {
   }
 
 #board {
-  width:830px;
+  width:890px;
   margin:30px auto 10px;
 }
 
@@ -88,12 +88,12 @@ body {
 	margin-top : 10px;
 }
 
-#notice {
-	text-align:center;
-border-bottom:10px 5px solid #ccc;
-margin-top: 10px;
+/* #notice { */
+/* 	text-align:center; */
+/* border-bottom:10px 5px solid #ccc; */
+/* margin-top: 10px; */
 
-}
+/* } */
 
 </style>
 
@@ -167,7 +167,7 @@ margin-top: 10px;
   <dl>
   	<dd class="num">${fdto.freeboard_num}</dd>
   	<%
-  		if(session.getAttribute("login_user") == null){
+  		if(session.getAttribute("login_user") == null) {
   			%>
   			<dd class="sub">${fdto.freeboard_title}</dd>
   			<%
@@ -206,8 +206,13 @@ margin-top: 10px;
    
   </dl>
 </div>
-<button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
-
+<%
+  		if(session.getAttribute("login_user") != null) {
+  			%>
+  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			<%
+  		} 	
+  	%>
 <div class="list-bot">
 <p>
   <a href="#">◀</a>
@@ -243,6 +248,7 @@ margin-top: 10px;
 </select>
 </div>
 </form>
+
 <jsp:include page="footer.jsp" />
 <script>
 function locainsert() {

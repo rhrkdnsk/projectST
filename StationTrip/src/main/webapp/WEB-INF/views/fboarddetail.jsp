@@ -68,9 +68,10 @@
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-    	<a class="title" href="#">이전글 보기</a>
-    	<a class="title" href="#">다음글 보기</a>
   	
+    	<a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num-1}">이전글 보기</a>
+    	<a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num+1}">다음글 보기</a>
+
   <script type="text/javascript">
   function goUpdate() {
 	  location.href="fboardupdate.do?freeboard_num=" + ${fdto.freeboard_num};
@@ -78,7 +79,12 @@
   function goDelete() {
 	  location.href="fboarddelete.do?freeboard_num=" + ${fdto.freeboard_num};
   }
-  
+  function goNext() {
+	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.freeboard_num}+1;
+  }
+  function goBack()	{
+	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.freeboard_num}-1;
+  }
   </script>
   <jsp:include page="footer.jsp" />
   
