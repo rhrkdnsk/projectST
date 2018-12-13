@@ -76,24 +76,11 @@ public class LoginController {
 	public void createCookie(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		logger.info("login {}.", locale);
-		PrintWriter out = response.getWriter();
-		Cookie setCookie = new Cookie("saveId", request.getParameter("email")); // 쿠키 이름을 name으로 생성
+		String email = request.getParameter("email");
+		Cookie setCookie = new Cookie("saveId", email); // 쿠키 이름을 name으로 생성
+		setCookie.setMaxAge(365*24*60*60);
+		setCookie.setPath("/"); 
 		response.addCookie(setCookie);
-		
-//		Cookie[] getCookie = request.getCookies();
-//		if (getCookie != null) {
-//
-//			for (int i = 0; i < getCookie.length; i++) {
-//
-//				Cookie c = getCookie[i];
-//
-//				String name = c.getName(); // 쿠키 이름 가져오기
-//
-//				String value = c.getValue(); // 쿠키 값 가져오기
-//
-//			}
-//
-//		}
 	}
 
 }

@@ -59,7 +59,23 @@
 								<span class="labeltag">
 								<label>이메일</label>
 								</span>
-								<input type="text" id="email" />
+								<input type="text" id="email" <%   
+								Cookie[] cookies = request.getCookies() ;
+								String cName = null;
+							    String cValue = null;
+							    if(cookies != null){
+							    	for(int i=0; i < cookies.length; i++){
+							            Cookie c = cookies[i] ;
+							            cName = c.getName();
+							            cValue = c.getValue() ;
+							        	if(cName.equals("saveId")){
+									%>
+									value="<%=cValue %>"
+									<%
+							    		}
+							    	}
+							    }
+								%>/>
 							</li>
 							<li>
 								<span class="labeltag">
@@ -71,7 +87,20 @@
 								<br />
 							</li>
 							<li>
-								<input type="checkbox" id="idCheck">아이디 저장
+								<input type="checkbox" id="idCheck" <%   							     
+							    if(cookies != null){
+							    	for(int i=0; i < cookies.length; i++){
+							            Cookie c = cookies[i] ;
+							            cName = c.getName();
+							            cValue = c.getValue() ;
+							        	if(cName.equals("saveId")){
+									%>
+										checked
+									<%
+							        	}
+							    	}
+							    }
+								%>>아이디 저장
 								<a href="#" class="aright">비밀번호 찾기</a>
 							</li>
 							<li>
