@@ -17,4 +17,10 @@ public class LoginService implements ILoginService  {
 		// TODO Auto-generated method stub
 		return loginDao.login(dto);
 	}
+
+	@Override
+	public boolean signup(LoginDto dto) {
+		
+		return loginDao.signup(dto);
+	}
 }

@@ -30,21 +30,40 @@ public class LoginController {
 	@RequestMapping(value = "login.do", method = RequestMethod.GET)
 	public void login(Locale locale, Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
 		logger.info("login {}.", locale);
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
-		System.out.println("email = " + email);
+		//System.out.println("email = " + email);
 		String password = request.getParameter("password");
-		System.out.println("password = " + password);
+		//System.out.println("password = " + password);
 		HttpSession session = request.getSession();
 		LoginDto dto = new LoginDto(email,password);
 		if(loginService.login(dto) != null) {
 			session.setAttribute("login_user", loginService.login(dto));
-			System.out.println("session = "+session.getAttribute("login_user"));
+			//System.out.println("session = "+session.getAttribute("login_user"));
 			out.print(session.getAttribute("login_user"));
 		}
+	}
+	
+	@RequestMapping(value = "signup.do", method = RequestMethod.GET)
+	public String signup(Locale locale, Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
+		logger.info("login {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
+		String nickname = request.getParameter("nickname");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		
+		LoginDto dto = new LoginDto(nickname, null, email, name, password, phone, 0, 0);
+		
+		boolean isS = loginService.signup(dto);
+		if(isS) {
+			return "redirect:home.do";
+		} else {
+			return "home";
+		}
 	}
 	
 }
