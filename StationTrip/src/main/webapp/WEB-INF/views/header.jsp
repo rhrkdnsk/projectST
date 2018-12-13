@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/trip/resources/css/login.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
+<script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="/trip/resources/js/login.js"></script>
 <title>header페이지</title>    
 </head>

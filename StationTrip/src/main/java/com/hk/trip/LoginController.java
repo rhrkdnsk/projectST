@@ -2,6 +2,7 @@ package com.hk.trip;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.Locale;
 
 import javax.servlet.http.Cookie;
@@ -75,11 +76,12 @@ public class LoginController {
 	@RequestMapping(value = "createCookie.do", method = RequestMethod.GET)
 	public void createCookie(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		logger.info("login {}.", locale);
+		logger.info("creadeCookie {}.", locale);
 		String email = request.getParameter("email");
-		Cookie setCookie = new Cookie("saveId", email); // 쿠키 이름을 name으로 생성
+		String decodeResult = URLDecoder.decode(email, "UTF-8");
+		System.out.println(email);
+		Cookie setCookie = new Cookie("saveId", decodeResult); // 쿠키 이름을 name으로 생성
 		setCookie.setMaxAge(365*24*60*60);
-		setCookie.setPath("/"); 
 		response.addCookie(setCookie);
 	}
 
