@@ -16,7 +16,7 @@
  </select>
  
  <insert id="insertBoard" parameterType="FboardDto">
- INSERT INTO FREEBOARD VALUES ((SELECT NVL(MAX(FREEBOARD_NUM)+1,0)FROM FREEBOARD),'asd',#{freeboard_title},SYSDATE,#{freeboard_content},0,0,0,0) 
+ INSERT INTO FREEBOARD VALUES ((SELECT NVL(MAX(FREEBOARD_NUM)+1,0)FROM FREEBOARD),#{user_nickname},#{freeboard_title},SYSDATE,#{freeboard_content},0,0,0,0) 
  </insert>
  
  <select id="getDetailView" resultType="FboardDto" parameterType="int" >

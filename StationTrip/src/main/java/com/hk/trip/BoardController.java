@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
-	public String fboardInsertForm(Locale locale, Model model) {
+	public String fboardInsertForm(HttpServletRequest request,Locale locale, Model model) {
 		logger.info("글쓰기폼 이동", locale);
-
+//		HttpSession session = request.getSession();
+//		System.out.println(session);
+//		session.getAttribute("login_user");
+		
 		return "fboardinsert";
 	}
 

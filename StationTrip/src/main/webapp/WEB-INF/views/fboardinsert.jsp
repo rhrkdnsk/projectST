@@ -1,6 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +43,7 @@ h6 {
 <option value="3" id="opvalue">팁</option>
 </select>
 <p>
-작성자 <input type="text" value="" id="id">
+작성자 : <input type="text" id="id" name="user_nickname" value="${login_user.user_nickname}" readonly />
 <p>
 제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title"/>
 <p>

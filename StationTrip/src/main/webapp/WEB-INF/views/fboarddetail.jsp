@@ -15,7 +15,6 @@
 //pgDtos dto = (pgDtos)request.getAttribute("dto");
 //pgrepDtos dto1 = (pgrepDtos)request.getAttribute("dto1");
 //List<pgrepDtos> list /* = (List<pgrepDtos>)request.getAttribute("dto1"); */
-String session2 = session.getAttribute("login_user").toString();
 
 
 %>
@@ -32,9 +31,11 @@ String session2 = session.getAttribute("login_user").toString();
 
 
 <p>
+<c:if test="${fdto.user_nickname == login_user.user_nickname}">
 
 <button value="수정" onclick="goUpdate()">수정</button> <button onclick="goDelete()">삭제</button>
 
+</c:if>
 <p>
 <p>
 
