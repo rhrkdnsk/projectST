@@ -38,5 +38,10 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.updateBoard(fdto);
 	}
+	@Override
+	public boolean deleteBoard(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.deleteBoard(freeboard_num);
+	}
 	
 }

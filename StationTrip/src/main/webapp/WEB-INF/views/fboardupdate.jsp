@@ -10,6 +10,8 @@
 <title></title>
 </head>
 <body>
+<jsp:include page="header.jsp" />
+
 <h1>글 수정하기</h1>
 <form action="fboardup.do" method="post">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}" />
@@ -32,5 +34,7 @@
 
 <input type="submit" value="글수정" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center/>
 </form>
+<jsp:include page="footer.jsp" />
+
 </body>
 </html>

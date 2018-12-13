@@ -13,4 +13,5 @@ public interface IFboardDao {
 	public FboardDto getDetailView(int freeboard_num);
 	public List<CommentDto> getReply(int freeboard_num);
 	public boolean updateBoard(FboardDto fdto);
+	public boolean deleteBoard(int freeboard_num);
 }

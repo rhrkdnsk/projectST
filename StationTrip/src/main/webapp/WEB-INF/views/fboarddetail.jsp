@@ -28,7 +28,7 @@
 
 <p>
 
-<button value="수정" onclick="goUpdate()">수정</button> <button>삭제</button>
+<button value="수정" onclick="goUpdate()">수정</button> <button onclick="goDelete()">삭제</button>
 
 <p>
 <p>
@@ -67,8 +67,12 @@
   function goUpdate() {
 	  location.href="fboardupdate.do?freeboard_num=" + ${fdto.freeboard_num};
   }
-  
+  function goDelete() {
+	  location.href="fboarddelete.do?freeboard_num=" + ${fdto.freeboard_num};
+  }
   
   </script>
+  <jsp:include page="footer.jsp" />
+  
 </body>
 </html>

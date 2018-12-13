@@ -35,7 +35,7 @@ public class BoardController {
 
 	@RequestMapping(value = "fboardlist.do", method = RequestMethod.GET)
 	public String getBoard(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("보드리스트 출력", locale);
 
 		List<FboardDto> list = fboardService.getAllList();
 		model.addAttribute("list", list);
@@ -45,27 +45,27 @@ public class BoardController {
 
 	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
 	public String fboardInsertForm(Locale locale, Model model) {
-		logger.info("글쓰기폼 이동.", locale);
+		logger.info("글쓰기폼 이동", locale);
 
 		return "fboardinsert";
 	}
 
 	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.POST)
 	public String fboardInsert(Locale locale, Model model, FboardDto fdto) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("글쓰기 실행", locale);
 		boolean isS = fboardService.insertBoard(fdto);
 		if (isS) {
 			return "redirect:fboardlist.do";
 		} else {
-			return "index";
-
+			model.addAttribute("msg","글 삭제하기 실패");
+			return "home";
 		}
 
 	}
 
 	@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
 	public String fboarddetail(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("글 상세보기 이동", locale);
 
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
 		List<CommentDto> list = fboardService.getReply(freeboard_num);
@@ -78,7 +78,7 @@ public class BoardController {
 	}
 	@RequestMapping(value = "fboardupdate.do", method = RequestMethod.GET)
 	public String fboardupdate(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("글 수정하기 폼 이동", locale);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
 		model.addAttribute("fdto",fdto);
 		return "fboardupdate";
@@ -87,13 +87,25 @@ public class BoardController {
 	
 	@RequestMapping(value = "fboardup.do", method = RequestMethod.POST)
 	public String fboardup(HttpServletRequest request, Locale locale, Model model, FboardDto fdto) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("글 수정하기", locale);
 		boolean isS = fboardService.upDateBoard(fdto);
 		if(isS) {
-			return "redirect:fboarddetail.do?freenum="+fdto.getFreeboard_num();
+			return "redirect:fboarddetail.do?freeboard_num="+fdto.getFreeboard_num();
 		} else {
-			return "redirect:fboarddetail.do?freenum="+fdto.getFreeboard_num();
-
+			model.addAttribute("msg","글 삭제하기 실패");
+			return "error";
 		}
+	}
+	@RequestMapping(value = "fboarddelete.do", method = RequestMethod.GET)
+	public String fboarddelete(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
+		logger.info("글 삭제하기", locale);
+		boolean isS = fboardService.deleteBoard(freeboard_num);
+		if(isS) {
+			return "redirect:fboardlist.do";
+		} else {
+			model.addAttribute("msg","글 삭제하기 실패");
+			return "error";
+		}
+
 	}
 }

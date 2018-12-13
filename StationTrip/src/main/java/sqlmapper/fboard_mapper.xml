@@ -28,6 +28,10 @@
       SET FREEBOARD_TITLE = #{freeboard_title}, FREEBOARD_CONTENT = #{freeboard_content}, FREEBOARD_TIME = SYSDATE
       WHERE FREEBOARD_NUM = #{freeboard_num}
     </update>
+    
+    <delete id="deleteBoard">
+    DELETE FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+    </delete>
 
 
    </mapper>

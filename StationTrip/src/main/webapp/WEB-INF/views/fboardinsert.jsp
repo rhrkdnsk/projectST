@@ -26,6 +26,8 @@ h6 {
 
 </head>
 <body>
+<jsp:include page="header.jsp" />
+
 <h1>게시글 작성</h1>
 <div>
  <form action="fboardinsert.do" method="post">
@@ -60,5 +62,7 @@ h6 {
 
 </form>
 </div>
+<jsp:include page="footer.jsp" />
+
 </body>
 </html>

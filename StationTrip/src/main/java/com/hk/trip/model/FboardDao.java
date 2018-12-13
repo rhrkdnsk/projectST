@@ -56,4 +56,11 @@ public class FboardDao implements IFboardDao {
 		count = sqlSession.update(namespace + "updateBoard", fdto);
 		return count > 0? true : false;
 	}
+	
+	@Override
+	public boolean deleteBoard(int freeboard_num) {
+		int count=0;
+		count = sqlSession.update(namespace + "deleteBoard", freeboard_num);
+		return count > 0? true : false;
+	}
 }
