@@ -1,5 +1,7 @@
 package com.hk.trip;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -60,16 +62,29 @@ public class BoardController {
 			return "redirect:fboardlist.do";
 		} else {
 			model.addAttribute("msg","글 삭제하기 실패");
-			return "home";
+			return "error";
 		}
 
 	}
 
 	@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
-	public String fboarddetail(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model, int freeboard_num) {
+	public String fboarddetail(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model, int freeboard_num) throws IOException {
 		logger.info("글 상세보기 이동", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 //		HttpSession session = request.getSession();
 //		session.setAttribute("session1", session);
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login_user") == null) {
+			
+			//out.println("<script>alert('회원전용');</script>");
+			//out.flush();
+			model.addAttribute("msg","회원 전용");
+			return "fboardlist.do";
+
+		}
+		
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
 		List<CommentDto> list = fboardService.getReply(freeboard_num);
 

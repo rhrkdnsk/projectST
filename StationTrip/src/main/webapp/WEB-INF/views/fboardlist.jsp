@@ -166,7 +166,18 @@ margin-top: 10px;
   <c:forEach items="${list}" var="fdto">
   <dl>
   	<dd class="num">${fdto.freeboard_num}</dd>
-  	<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title}</a></dd>
+  	<%
+  		if(session.getAttribute("login_user") == null){
+  			%>
+  			<dd class="sub">${fdto.freeboard_title}</dd>
+  			<%
+  		} else {
+  			%>
+  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title}</a></dd>
+  			<%
+  		}
+  	
+  	%>
   	<dd class="name">${fdto.user_nickname}</dd>
   	<dd class="data">${fdto.freeboard_time}</dd>
   	<dd class="count">${fdto.freeboard_view}</dd>
@@ -239,7 +250,6 @@ function locainsert() {
 	location.href = "insertform.do";
 	
 }
-
 
 </script>
 </body>

@@ -17,10 +17,10 @@ public class LoginDao implements ILoginDao {
 	@Override
 	public LoginDto login(LoginDto dto) {
 
-		System.out.println("dao");
-		System.out.println(dto.getUser_email());
-		System.out.println(dto.getUser_password());
-		System.out.println("select = " + sqlSession.selectOne(namespace+"login", dto));
+//		System.out.println("dao");
+//		System.out.println(dto.getUser_email());
+//		System.out.println(dto.getUser_password());
+//		System.out.println("select = " + sqlSession.selectOne(namespace+"login", dto));
 		return sqlSession.selectOne(namespace+"login", dto);
 	}
 
