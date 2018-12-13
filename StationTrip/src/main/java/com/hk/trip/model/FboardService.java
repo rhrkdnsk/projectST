@@ -33,4 +33,10 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.getReply(freeboard_num);
 	}
+	@Override
+	public boolean upDateBoard(FboardDto fdto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.updateBoard(fdto);
+	}
+	
 }

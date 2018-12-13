@@ -13,4 +13,5 @@ public interface IFboardService {
 	public boolean insertBoard(FboardDto fdto);
 	public FboardDto getDetailView(int freeboard_num);
 	public List<CommentDto> getReply(int freeboard_num);
+	public boolean upDateBoard(FboardDto fdto);
 }

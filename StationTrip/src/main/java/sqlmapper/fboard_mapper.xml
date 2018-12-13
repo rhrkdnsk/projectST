@@ -22,5 +22,11 @@
  <select id="getDetailView" resultType="FboardDto" parameterType="int" >
  SELECT FREEBOARD_NUM, USER_NICKNAME, FREEBOARD_TITLE,FREEBOARD_TIME,FREEBOARD_CONTENT,FREEBOARD_VIEW,FREEBOARD_LIKE,FREEBOARD_HATE FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
  </select>
+ 
+  <update id="updateBoard" parameterType="FboardDto">
+      UPDATE FREEBOARD
+      SET FREEBOARD_TITLE = #{freeboard_title}, FREEBOARD_CONTENT = #{freeboard_content}, FREEBOARD_TIME = SYSDATE
+      WHERE FREEBOARD_NUM = #{freeboard_num}
+    </update>
 
    </mapper>

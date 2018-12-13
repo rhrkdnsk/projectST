@@ -76,4 +76,24 @@ public class BoardController {
 		return "fboarddetail";
 
 	}
+	@RequestMapping(value = "fboardupdate.do", method = RequestMethod.GET)
+	public String fboardupdate(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		FboardDto fdto = fboardService.getDetailView(freeboard_num);
+		model.addAttribute("fdto",fdto);
+		return "fboardupdate";
+
+	}
+	
+	@RequestMapping(value = "fboardup.do", method = RequestMethod.POST)
+	public String fboardup(HttpServletRequest request, Locale locale, Model model, FboardDto fdto) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		boolean isS = fboardService.upDateBoard(fdto);
+		if(isS) {
+			return "redirect:fboarddetail.do?freenum="+fdto.getFreeboard_num();
+		} else {
+			return "redirect:fboarddetail.do?freenum="+fdto.getFreeboard_num();
+
+		}
+	}
 }
