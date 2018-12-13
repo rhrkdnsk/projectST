@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="home.do">HOME</a>
+<!-- <a href="home.do">HOME</a> -->
+<script type="text/javascript">
+window.location = "home.do";
+</script>
 </body>
 </html>

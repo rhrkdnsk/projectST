@@ -1,43 +1,3 @@
-// -------- 로그인 Ajax ---------- //
-function ajaxFunc(){
-	//alert('click');
-	var email = $("#email").val();
-	//alert(email)
- 	var password = $("#password").val();
-	//alert(password)
-	
-	var data = { "email": email, "password": password };
-     
-	$.ajax({
-		url:"login.do",
-		type:'GET',
-		data: data,
-		success:function(data){
-			sessionCheck(data);
-		},
-		error:function(){
-			alert("로그인 실패ㅜㅜ") ;
-		}
-	}); 
-} 
-
-function sessionCheck(data){
-	
-	var username= data
-	
-	//alert(username); 
-	if(!username){
-		username = null;
-		alert("로그인 실패"); 
-	} else {
-		username = null;
-		$("#modalLayer").hide();
-		$('#mask').hide();
-		$('.window').hide(); 
-	}
-}
-
-//------------------------------------- //
 
 $(document).ready(function(){
 	  var modalLayer = $("#modalLayer");
@@ -111,3 +71,44 @@ function wrapWindowByMask(){
         });      
     });
 /* ------------ */
+
+// -------- 로그인 Ajax ---------- //
+function ajaxFunc(){
+	//alert('click');
+	var email = $("#email").val();
+	//alert(email)
+ 	var password = $("#password").val();
+	//alert(password)
+	
+	var data = { "email": email, "password": password };
+     
+	$.ajax({
+		url:"login.do",
+		type:'GET',
+		data: data,
+		success:function(data){
+			sessionCheck(data);
+		},
+		error:function(){
+			alert("로그인 실패ㅜㅜ") ;
+		}
+	}); 
+} 
+
+function sessionCheck(data){
+	
+	var username= data
+	
+	//alert(username); 
+	if(!username){
+		username = null;
+		alert("로그인 실패"); 
+	} else {
+		username = null;
+		$("#modalLayer").hide();
+		$('#mask').hide();
+		$('.window').hide(); 
+	}
+}
+
+//------------------------------------- //

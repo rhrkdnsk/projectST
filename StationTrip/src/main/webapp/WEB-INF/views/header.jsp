@@ -9,84 +9,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style type="text/css">
-@charset "UTF-8";
-
-a {
-	color: #000;
-}
-
-.mask {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 10;
-	background: #000;
-	opacity: .5;
-	filter: alpha(opacity = 50);
-}
-
-#modalLayer {
-	display: none;
-	position: relative;
-}
-
-#modalLayer .modalContent  {
-	width: 440px;
-	height: 400px;
-	padding: 20px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
-}
-#modalLayer2 {
-	display: none;
-	position: relative;
-}
-
-
-#modalLayer2 .modalContent2  {
-	width: 440px;
-	height: 400px;
-	padding: 20px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
-}
-.labeltag {
-	float:left;
-	width:80px;
-}
-
-/* 모달사용시 화면가리기용 */
-#mask {  
-      position:absolute;  
-      z-index:9000;  
-      background-color:#000;  
-      display:none;  
-      left:0;
-      top:0;
-    }
-    .window{
-      display: none;
-      position:absolute;  
-      left:100px;
-      top:100px;
-      z-index:10000;
-    }
-/*---------------*/
-</style>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="/trip/resources/css/login.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
+<script type="text/javascript" src="/trip/resources/js/login.js"></script>
 <title>header페이지</title>    
 </head>
 <body>
@@ -193,7 +118,6 @@ a {
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
-  
-<script type="text/javascript" src="login.js"></script>
+
 </body>
 </html>
