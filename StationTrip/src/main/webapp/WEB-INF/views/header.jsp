@@ -102,22 +102,29 @@ function ajaxFunc(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			var user = "<%=session.getAttribute("login_user")%>"
-			//alert(user);
-			if(user == 'null'){
-				alert("로그인 실패"); 
-			} 
-			if(user != 'null') {
-				$("#modalLayer").hide();
-				$('#mask').hide();
-				$('.window').hide(); 
-			}
+			sessionCheck(data);
 		},
 		error:function(){
 			alert("로그인 실패ㅜㅜ") ;
 		}
 	}); 
 } 
+
+function sessionCheck(data){
+	
+	var username= data
+	
+	//alert(username); 
+	if(!username){
+		username = null;
+		alert("로그인 실패"); 
+	} else {
+		username = null;
+		$("#modalLayer").hide();
+		$('#mask').hide();
+		$('.window').hide(); 
+	}
+}
 
 
 $(document).ready(function(){

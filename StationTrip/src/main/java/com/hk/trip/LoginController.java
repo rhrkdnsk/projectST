@@ -41,13 +41,8 @@ public class LoginController {
 		LoginDto dto = new LoginDto(email,password);
 		if(loginService.login(dto) != null) {
 			session.setAttribute("login_user", loginService.login(dto));
-		}
-		
-		System.out.println("session = "+session.getAttribute("login_user"));
-		if(session.getAttribute("login_user") != null) {
-			out.println("good");
-		} else {
-			out.println("bad");
+			System.out.println("session = "+session.getAttribute("login_user"));
+			out.print(session.getAttribute("login_user"));
 		}
 		
 	}
