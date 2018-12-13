@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,9 +66,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
-	public String fboarddetail(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
+	public String fboarddetail(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model, int freeboard_num) {
 		logger.info("글 상세보기 이동", locale);
-
+//		HttpSession session = request.getSession();
+//		session.setAttribute("session1", session);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
 		List<CommentDto> list = fboardService.getReply(freeboard_num);
 
@@ -114,7 +117,7 @@ public class BoardController {
 		
 		boolean isS = fboardService.replyInsert(cdto);
 		if(isS) {
-			return "redirect:fboardlist.do?freeboard_num="+cdto.getFreeboard_num();
+			return "redirect:fboarddetail.do?freeboard_num="+cdto.getFreeboard_num();
 		} else {
 			model.addAttribute("msg","글 삭제하기 실패");
 			return "error";

@@ -1,3 +1,4 @@
+<%@page import="com.hk.trip.dto.LoginDto"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -14,11 +15,15 @@
 //pgDtos dto = (pgDtos)request.getAttribute("dto");
 //pgrepDtos dto1 = (pgrepDtos)request.getAttribute("dto1");
 //List<pgrepDtos> list /* = (List<pgrepDtos>)request.getAttribute("dto1"); */
+String session2 = session.getAttribute("login_user").toString();
+
+
 %>
 
   <body>  
   <jsp:include page="header.jsp" />
-  
+  <h1>${login_user.user_nickname}님 환영합니다</h1>
+
 <h1>게시판 상세보기</h1> 
  제목 : ${fdto.freeboard_title} 날짜 : ${fdto.freeboard_time} 조회수 : ${fdto.freeboard_view}
  <p>아이디 : ${fdto.user_nickname}
@@ -36,7 +41,7 @@
    --------------------------------댓글 보기--------------------------------------------------------------------- 
 <form action="writereply.do" method="post">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${fdto.user_nickname}" readonly>
+<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
 <input type="text" name="comment_content" size="50">
 <input type="submit" value="댓글작성">
 </form>
