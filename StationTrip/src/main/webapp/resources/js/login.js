@@ -79,7 +79,9 @@ function ajaxLogin(){
 	//alert(email)
  	var password = $("#password").val();
 	//alert(password)
- 	
+
+
+	
 	var data = { "email": email, "password": password };
      
 	$.ajax({
@@ -87,22 +89,29 @@ function ajaxLogin(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			
-			var cookiecheck = $("#idCheck").prop("checked");
-			alert(cookiecheck);
-			if(cookiecheck == true){
-				alert("생성");
-				createCookie();
-				alert("생성완료");
-				
-			}
-			
 			sessionCheck(data);
 		},
 		error:function(){
 			alert("로그인 실패ㅜㅜ") ;
 		}
 	}); 
+	
+	var cookiecheck = $("#idCheck").prop("checked");
+	if(cookiecheck == true){
+		var saveId = $.cookie("saveId");
+		//alert(saveId);
+		if(saveId == null || saveId == undefined){
+			createCookie();
+		}
+		if(saveId != email){
+			var demail = decodeURI(email);
+			//alert("demail = "+demail);
+			$.removeCookie("saveId");
+			createCookie();
+		}
+	} else {
+		$.removeCookie("saveId");
+	}
 	
 	window.location.reload()
 } 
@@ -132,7 +141,7 @@ function createCookie(){
 		type:'GET',
 		data: data,
 		success:function(){
-			alert($.cookie("saveId"));
+			//alert("ajax = " + $.cookie("saveId"));
 		},
 		error:function(){
 			alert("쿠키생성 실패ㅜㅜ") ;
