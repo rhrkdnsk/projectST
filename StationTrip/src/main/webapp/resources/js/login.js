@@ -176,7 +176,12 @@ function ajaxSign(){
 		data: data,
 		success:function(data){
 			alert(data);
-			$("#modalLayer").hide();
+			$("#Semail").val("");
+			$("#Spassword").val("");
+			$("#Snickname").val("");
+			$("#Sname").val("");
+			$("#Sphone").val("");
+			$("#modalLayer2").hide();
 			$('#mask').hide();
 			$('.window').hide(); 
 		},
