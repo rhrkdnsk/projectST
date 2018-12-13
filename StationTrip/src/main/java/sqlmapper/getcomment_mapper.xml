@@ -3,12 +3,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.hk.trip.comment">
-  
-  
-   <select id="getReply" resultType="CommentDto" parameterType="int">
- 	SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} ORDER BY COMMENT_STEP
- 	</select>
-  
-  </mapper>
+
+<mapper namespace="com.hk.trip.comment">
+
+
+	<select id="getReply" resultType="CommentDto"
+		parameterType="int">
+		SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM =
+		#{freeboard_num} ORDER BY
+		COMMENT_REFER ASC
+	</select>
+
+	<insert id="writeReply" parameterType="CommentDto">
+		INSERT INTO T_COMMENT
+		VALUES
+		((SELECT NVL(MAX(COMMENT_NUM)+1,0) FROM
+		T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0) FROM
+		T_COMMENT),#{comment_content},0,0)
+	</insert>
+</mapper>

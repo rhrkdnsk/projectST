@@ -108,4 +108,18 @@ public class BoardController {
 		}
 
 	}
-}
+	@RequestMapping(value = "writereply.do", method = RequestMethod.POST)
+	public String fboardwritereply(HttpServletRequest request, Locale locale, Model model, CommentDto cdto) {
+		logger.info("댓글 작성하기", locale);
+		
+		boolean isS = fboardService.replyInsert(cdto);
+		if(isS) {
+			return "redirect:fboardlist.do?freeboard_num="+cdto.getFreeboard_num();
+		} else {
+			model.addAttribute("msg","글 삭제하기 실패");
+			return "error";
+		}
+
+	}
+	
+} //끝

@@ -35,6 +35,8 @@
 
    --------------------------------댓글 보기--------------------------------------------------------------------- 
 <form action="writereply.do" method="post">
+<input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
+<input type="text" name="user_nickname" value="${fdto.user_nickname}" readonly>
 <input type="text" name="comment_content" size="50">
 <input type="submit" value="댓글작성">
 </form>

@@ -30,7 +30,7 @@
     </update>
     
     <delete id="deleteBoard">
-    DELETE FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+    DELETE FREEBOARD WHERE = #{freeboard_num}
     </delete>
 
 
