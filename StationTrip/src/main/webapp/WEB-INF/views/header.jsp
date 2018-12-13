@@ -102,13 +102,19 @@ function ajaxFunc(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			alert(data);
-			$("#modalLayer").hide();
-			$('#mask').hide();
-			$('.window').hide();  
+			var user = "<%=session.getAttribute("login_user")%>"
+			//alert(user);
+			if(user == 'null'){
+				alert("로그인 실패"); 
+			} 
+			if(user != 'null') {
+				$("#modalLayer").hide();
+				$('#mask').hide();
+				$('.window').hide(); 
+			}
 		},
 		error:function(){
-			alert("로그인 실패") ;
+			alert("로그인 실패ㅜㅜ") ;
 		}
 	}); 
 } 

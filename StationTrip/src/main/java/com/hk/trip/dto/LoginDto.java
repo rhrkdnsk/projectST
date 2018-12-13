@@ -2,109 +2,126 @@ package com.hk.trip.dto;
 
 public class LoginDto {
 
-	String nickname;
+	String user_nickname;
 	String tier;
-	String email;
-	String name;
-	String password;
-	String phone;
-	int point;
-	int alarmnum;
+	String user_email;
+	String user_name;
+	String user_password;
+	String user_phone;
+	int user_point;
+	int user_alarmnum;
 	
 	public LoginDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LoginDto(String nickname, String tier, String email, String name, String password, String phone, int point,
-			int alarmnum) {
-		super();
-		this.nickname = nickname;
-		this.tier = tier;
-		this.email = email;
-		this.name = name;
-		this.password = password;
-		this.phone = phone;
-		this.point = point;
-		this.alarmnum = alarmnum;
-	}
 	
-	public LoginDto(String email, String password) {
+	public LoginDto(String user_email, String user_password) {
 		super();
-		this.email = email;
-		this.password = password;
+		this.user_email = user_email;
+		this.user_password = user_password;
 	}
+
+
+	public LoginDto(String user_nickname, String tier, String user_email, String user_name, String user_password,
+			String user_phone, int user_point, int user_alarmnum) {
+		super();
+		this.user_nickname = user_nickname;
+		this.tier = tier;
+		this.user_email = user_email;
+		this.user_name = user_name;
+		this.user_password = user_password;
+		this.user_phone = user_phone;
+		this.user_point = user_point;
+		this.user_alarmnum = user_alarmnum;
+	}
+
 
 	@Override
 	public String toString() {
-		return "LoginDto [nickname=" + nickname + ", tier=" + tier + ", email=" + email + ", name=" + name
-				+ ", password=" + password + ", phone=" + phone + ", point=" + point + ", alarmnum=" + alarmnum + "]";
+		return "LoginDto [user_nickname=" + user_nickname + ", tier=" + tier + ", user_email=" + user_email
+				+ ", user_name=" + user_name + ", user_password=" + user_password + ", user_phone=" + user_phone
+				+ ", user_point=" + user_point + ", user_alarmnum=" + user_alarmnum + "]";
 	}
 
-	public String getNickname() {
-		return nickname;
+
+	public String getUser_nickname() {
+		return user_nickname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
+
 
 	public String getTier() {
 		return tier;
 	}
 
+
 	public void setTier(String tier) {
 		this.tier = tier;
 	}
 
-	public String getEmail() {
-		return email;
+
+	public String getUser_email() {
+		return user_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public String getPassword() {
-		return password;
+
+	public String getUser_password() {
+		return user_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 
-	public String getPhone() {
-		return phone;
+
+	public String getUser_phone() {
+		return user_phone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
 	}
 
-	public int getPoint() {
-		return point;
+
+	public int getUser_point() {
+		return user_point;
 	}
 
-	public void setPoint(int point) {
-		this.point = point;
+
+	public void setUser_point(int user_point) {
+		this.user_point = user_point;
 	}
 
-	public int getAlarmnum() {
-		return alarmnum;
+
+	public int getUser_alarmnum() {
+		return user_alarmnum;
 	}
 
-	public void setAlarmnum(int alarmnum) {
-		this.alarmnum = alarmnum;
+
+	public void setUser_alarmnum(int user_alarmnum) {
+		this.user_alarmnum = user_alarmnum;
 	}
-	
-	
-	
 }

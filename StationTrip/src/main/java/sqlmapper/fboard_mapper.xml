@@ -29,4 +29,5 @@
       WHERE FREEBOARD_NUM = #{freeboard_num}
     </update>
 
+
    </mapper>
