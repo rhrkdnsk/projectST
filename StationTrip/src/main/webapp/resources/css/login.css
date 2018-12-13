@@ -24,7 +24,7 @@ a {
 #modalLayer .modalContent  {
 	width: 440px;
 	height: 400px;
-	padding: 20px;
+	padding: 0px;
 	border: 1px solid #ccc;
 	position: fixed;
 	left: 50%;
@@ -42,7 +42,7 @@ a {
 #modalLayer2 .modalContent2  {
 	width: 440px;
 	height: 400px;
-	padding: 20px;
+	padding: 0px;
 	border: 1px solid #ccc;
 	position: fixed;
 	left: 50%;
@@ -54,6 +54,16 @@ a {
 .labeltag {
 	float:left;
 	width:80px;
+}
+
+fieldset{
+	margin:0;
+	padding:0;
+	width: 438px;
+	height: 400px;
+}
+fieldset > legend{
+	text-align:center;
 }
 
 /* 모달사용시 화면가리기용 */

@@ -45,10 +45,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "signup.do", method = RequestMethod.GET)
-	public String signup(Locale locale, Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
-		logger.info("login {}.", locale);
+	public void signup(Locale locale, Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
+		logger.info("회원가입 {}.", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		String nickname = request.getParameter("nickname");
 		String email = request.getParameter("email");
@@ -57,13 +58,15 @@ public class LoginController {
 		String phone = request.getParameter("phone");
 		
 		LoginDto dto = new LoginDto(nickname, null, email, name, password, phone, 0, 0);
+		System.out.println(dto);
 		
 		boolean isS = loginService.signup(dto);
 		if(isS) {
-			return "redirect:home.do";
+			out.print("회원가입 성공");
 		} else {
-			return "home";
+			out.print("");
 		}
+
 	}
 	
 }
