@@ -46,7 +46,6 @@ public class BoardController {
 		List<FboardDto> list = fboardService.getAllList();
 		model.addAttribute("list", list);
 		request.getSession().removeAttribute("readcount");
-
 		return "fboardlist";
 	}
 
@@ -63,7 +62,9 @@ public class BoardController {
 	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.POST)
 	public String fboardInsert(Locale locale, Model model, FboardDto fdto) {
 		logger.info("글쓰기 실행", locale);
+		
 		boolean isS = fboardService.insertBoard(fdto);
+		System.out.println(isS);
 		if (isS) {
 			return "redirect:fboardlist.do";
 		} else {
@@ -96,8 +97,8 @@ public class BoardController {
 			return "fboardlist.do";
 
 		}
-		request.getSession().setAttribute("readcount", freeboard_num+"");
-
+		
+		request.getSession().setAttribute("readcount" ,"조회하였음");
 		FboardDto bdto = fboardService.goBack(freeboard_num);
 		FboardDto ndto = fboardService.goNext(freeboard_num);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
