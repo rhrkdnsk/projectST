@@ -240,9 +240,9 @@ body {
 <input type="button" value="검색" />
 
 <select>
-<option value="10개씩보기">10개씩보기</option>
-<option value="30개씩보기">30개씩보기</option>
-<option value="50개씩보기">50개씩보기</option>
+<option value="10">10개씩보기</option>
+<option value="30">30개씩보기</option>
+<option value="50">50개씩보기</option>
 
 
 </select>

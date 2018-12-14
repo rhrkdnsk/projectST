@@ -59,9 +59,10 @@
   	<dd class="num">${cdto.comment_num}</dd>
   	<dd class="sub">${cdto.freeboard_num}</dd>
   	<dd class="name">${cdto.user_nickname}</dd>
-<%--   	<dd class="data">${fdto.freeboard_time}</dd> --%>
-<%--   	<dd class="count">${fdto.freeboard_view}</dd> --%>
-<%--   	<dd class="count">${fdto.freeboard_like}</dd> --%>
+   	<dd class="data">${cdto.comment_content}</dd>
+   	<dd class="time">${cdto.comment_time}</dd>
+   	<dd class="count">${cdto.comment_like}</dd> 
+   	<dd class="count">${cdto.comment_hate}</dd> 
   	
   	</dl>
   	

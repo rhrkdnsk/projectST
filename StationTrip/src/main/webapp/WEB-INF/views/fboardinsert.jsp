@@ -36,11 +36,11 @@ h6 {
 
 <!-- <input type="hidden" name="command" value="boardinsert" /> -->
 
-  분류  <select id="opvalue">
+  분류  <select id="opvalue" name="freeboard_category">
 <option value="분류" id="opvalue"><h6>분류</h6></option>
-<option value="1" id="opvalue">정보</option>
-<option value="2" id="opvalue">잡담</option>
-<option value="3" id="opvalue">팁</option>
+<option value="정보" id="opvalue">정보</option>
+<option value="잡담" id="opvalue">잡담</option>
+<option value="팁" id="opvalue">팁</option>
 </select>
 <p>
 작성자 : <input type="text" id="id" name="user_nickname" value="${login_user.user_nickname}" readonly />

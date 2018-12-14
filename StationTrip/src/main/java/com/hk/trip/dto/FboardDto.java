@@ -11,13 +11,14 @@ public class FboardDto {
 	private int freeboard_view;
 	private int freeboard_like;
 	private int freeboard_hate;
+	private String freeboard_category;
 	
 	public FboardDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public FboardDto(int freeboard_num, String user_nickname, String freeboard_title, Date freeboard_time,
-			String freeboard_content, int freeboard_view, int freeboard_like, int freeboard_hate) {
+			String freeboard_content, int freeboard_view, int freeboard_like, int freeboard_hate,String freeboard_category) {
 		super();
 		this.freeboard_num = freeboard_num;
 		this.user_nickname = user_nickname;
@@ -27,14 +28,17 @@ public class FboardDto {
 		this.freeboard_view = freeboard_view;
 		this.freeboard_like = freeboard_like;
 		this.freeboard_hate = freeboard_hate;
+		this.freeboard_category = freeboard_category;
 	}
+	
 	@Override
 	public String toString() {
-		return "BoardDto [freeboard_num=" + freeboard_num + ", user_nickname=" + user_nickname + ", freeboard_title="
+		return "FboardDto [freeboard_num=" + freeboard_num + ", user_nickname=" + user_nickname + ", freeboard_title="
 				+ freeboard_title + ", freeboard_time=" + freeboard_time + ", freeboard_content=" + freeboard_content
 				+ ", freeboard_view=" + freeboard_view + ", freeboard_like=" + freeboard_like + ", freeboard_hate="
-				+ freeboard_hate + "]";
+				+ freeboard_hate + ", freeboard_category=" + freeboard_category + "]";
 	}
+	
 	public int getFreeboard_num() {
 		return freeboard_num;
 	}
@@ -82,6 +86,12 @@ public class FboardDto {
 	}
 	public void setFreeboard_hate(int freeboard_hate) {
 		this.freeboard_hate = freeboard_hate;
+	}
+	public String getFreeboard_category() {
+		return freeboard_category;
+	}
+	public void setFreeboard_category(String freeboard_category) {
+		this.freeboard_category = freeboard_category;
 	}
 	
 	
