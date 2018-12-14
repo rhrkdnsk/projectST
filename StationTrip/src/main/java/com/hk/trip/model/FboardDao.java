@@ -21,7 +21,6 @@ public class FboardDao implements IFboardDao {
 	
 	@Override
 	public List<FboardDto> getAllList()	{
-		System.out.println("리스트 뽑기 : " + sqlSession.selectList(namespace + "getAllContent" ));
 		return sqlSession.selectList(namespace + "getAllContent" );
 	}
 	
@@ -81,5 +80,12 @@ public class FboardDao implements IFboardDao {
 	public FboardDto goBack(int freeboard_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "goBack" , freeboard_num);
+	}
+	@Override
+	public boolean readCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.update(namespace + "readCount", freeboard_num);
+		return count > 0 ? true:false;
 	}
 }

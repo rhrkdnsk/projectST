@@ -40,6 +40,10 @@
 	<select id="goBack" parameterType="int" resultType="FboardDto">
 	<![CDATA[ SELECT FREEBOARD_NUM,FREEBOARD_TITLE FROM FREEBOARD WHERE FREEBOARD_NUM=(SELECT max(FREEBOARD_NUM) FROM FREEBOARD WHERE FREEBOARD_NUM < #{freeboard_num})]]> 
 	</select>
+	
+	<update id="readCount" parameterType="int">
+	 UPDATE FREEBOARD SET FREEBOARD_VIEW = FREEBOARD_VIEW+1 WHERE FREEBOARD_NUM=#{freeboard_num}	
+	</update>
 <!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
 <!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
    </mapper>

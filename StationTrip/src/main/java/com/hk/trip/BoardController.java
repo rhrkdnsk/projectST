@@ -15,6 +15,7 @@ import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,11 +40,12 @@ public class BoardController {
 	private FboardService fboardService;
 
 	@RequestMapping(value = "fboardlist.do", method = RequestMethod.GET)
-	public String getBoard(Locale locale, Model model) {
+	public String getBoard(HttpServletRequest request,Locale locale, Model model) {
 		logger.info("보드리스트 출력", locale);
 
 		List<FboardDto> list = fboardService.getAllList();
 		model.addAttribute("list", list);
+		request.getSession().removeAttribute("readcount");
 
 		return "fboardlist";
 	}
@@ -80,14 +82,22 @@ public class BoardController {
 //		session.setAttribute("session1", session);
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
+		
+		String rnum = (String)request.getSession().getAttribute("readcount");
+		if(rnum == null) {
+			fboardService.readCount(freeboard_num);
+		}
+		
 		if(session.getAttribute("login_user") == null) {
 			
 			//out.println("<script>alert('회원전용');</script>");
 			//out.flush();
-			model.addAttribute("msg","회원 전용");
+			model.addAttribute("msg","회원 전용");			
 			return "fboardlist.do";
 
 		}
+		request.getSession().setAttribute("readcount", freeboard_num+"");
+
 		FboardDto bdto = fboardService.goBack(freeboard_num);
 		FboardDto ndto = fboardService.goNext(freeboard_num);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
@@ -96,7 +106,7 @@ public class BoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("bdto", bdto);
 		model.addAttribute("ndto", ndto);
-		
+
 		return "fboarddetail";
 
 	}
