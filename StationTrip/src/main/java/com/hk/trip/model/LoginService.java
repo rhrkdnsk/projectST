@@ -23,4 +23,16 @@ public class LoginService implements ILoginService  {
 		
 		return loginDao.signup(dto);
 	}
+
+	@Override
+	public LoginDto searchemail(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return loginDao.searchemail(dto);
+	}
+
+	@Override
+	public boolean resetpw(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return loginDao.resetpw(dto);
+	}
 }
