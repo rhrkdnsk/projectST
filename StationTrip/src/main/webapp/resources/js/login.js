@@ -1,8 +1,9 @@
 
 $(document).ready(function(){
-	  var modalLayer = $("#modalLayer");
-	  var modalLink = $(".modalLink");
-	  var modalCont = $(".modalContent");
+	  //로그인 모달
+	  var modalLayer = $("#loginModalLayer");
+	  var modalLink = $(".loginModalLink");
+	  var modalCont = $(".loginModalContent");
 	  var marginLeft = modalCont.outerWidth()/2;
 	  var marginTop = modalCont.outerHeight()/2; 
 
@@ -10,19 +11,61 @@ $(document).ready(function(){
 	    modalLayer.fadeIn("slow");
 	    modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
 	    $(this).blur();
-	    $(".modalContent > #email").focus(); 
+	    $(".loginModalContent > #email").focus(); 
 	    return false;
 	  });
+	  
+	  var modalLink5 = $(".loginModalLink2");
+	  modalLink5.click(function(){
+		  var remail = $("#remail").val();
+		  var remailchk = $("#remailchk").val();
+		  
+		  if(remail != remailchk){
+			  alert("비밀번호가 다릅니다")
+		  } else {
+				//alert(password)
+			  var data = { "email": femail, "password": remail };
+			  $.ajax({
+				  url:"resetpw.do",
+				  type:'GET',
+				  data: data,
+				  success:function(data){
+					  if(data == ""){
+						  alert("비밀번호 변경에 실패하였습니다")
+						  modalLayer.fadeIn("slow");
+						  modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+						  $(this).blur();
+						  $(".loginModalContent > #email").focus(); 
+						  return false;
+					  } else {
+						  alert(data)
+						  $("#resetModalLayer").hide();
+						  $("#searchModalLayer").hide();
+						  $("#signModalLayer").hide();
+						  modalLayer.fadeIn("slow");
+						  modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+						  $(this).blur();
+						  $(".loginModalContent > #email").focus(); 
+						  return false;
+					  }
+				  },
+				  error:function(){
+					  alert("로그인 실패ㅜㅜ") ;
+				  }
+			  }); 
+		  	}
+	  	});
 
-	  var modalLayer2 = $("#modalLayer2");
-	  var modalLink2 = $(".modalLink2");
-	  var modalCont2 = $(".modalContent2");
+	  //회원가입 모달
+	  var modalLayer2 = $("#signModalLayer");
+	  var modalLink2 = $(".signModalLink");
+	  var modalCont2 = $(".signModalContent");
 
 	  modalLink2.click(function(){
 	    modalLayer2.fadeIn("slow");
 	    modalCont2.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
 	    $(this).blur();
-	    $(".modalContent2 > #email").focus(); 
+	    $(".signModalContent > #email").focus(); 
 	    return false;
 	  });
 	  
@@ -30,6 +73,47 @@ $(document).ready(function(){
           e.preventDefault();  
           modalLayer2.hide();  
       }); 
+      
+      
+      //비밀번호찾기 모달
+	  var modalLayer3 = $("#searchModalLayer");
+	  var modalLink3 = $(".searchModalLink");
+	  var modalCont3 = $(".searchModalContent");
+
+	  modalLink3.click(function(){
+	    modalLayer3.fadeIn("slow");
+	    modalCont3.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+	    $(this).blur();
+	    $(".searchModalContent > #email").focus(); 
+	    return false;
+	  });
+	  
+      $('.can').click(function (e) {  
+          e.preventDefault();  
+          modalLayer3.hide();  
+      }); 
+      
+      //비밀번호 재설정 모달
+      
+      var modalLayer4 = $("#resetModalLayer");
+      var modalLink4 = $(".resetModalLink");
+      var modalCont4 = $(".resetModalContent"); 
+      
+      modalLink4.click(function(){
+		  var femailNumber = $("#femailNumber").val();
+		  alert("resetNum = " + resetNum);
+		  alert("femailNumber = " + femailNumber)
+		  if(femailNumber == resetNum) {
+			  modalLayer4.fadeIn("slow");
+			  modalCont4.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+			  $(this).blur();
+			  $(".searchModalContent > #email").focus(); 
+			  return false;
+		  } else {
+			  alert("인증번호가 다릅니다");
+		  }
+		
+     });
 		
 });
 /* 모달사용시 화면가리기 */
@@ -57,16 +141,18 @@ function wrapWindowByMask(){
         });
 
         //닫기 버튼을 눌렀을 때
-        $('.window .close').click(function (e) {  
+        /*$('.window .close').click(function (e) {  
             //링크 기본동작은 작동하지 않도록 한다.
             e.preventDefault();  
             $('#mask, .window').hide();  
-        });       
+        });    */   
 
         //검은 막을 눌렀을 때
         $('#mask').click(function () {  
             $(this).hide();  
-            $("#modalLayer2").hide();
+            $("#signModalLayer").hide();
+            $("#searchModalLayer").hide();
+            $("#resetModalLayer").hide();
             $('.window').hide();  
         });      
     });
@@ -113,7 +199,7 @@ function ajaxLogin(){
 		$.removeCookie("saveId");
 	}
 	
-	window.location.reload()
+	//window.location.reload()
 } 
 
 function sessionCheck(data){
@@ -126,7 +212,7 @@ function sessionCheck(data){
 		alert("로그인 실패"); 
 	} else {
 		//username = null;
-		$("#modalLayer").hide();
+		$("#loginModalLayer").hide();
 		$('#mask').hide();
 		$('.window').hide(); 
 	}
@@ -181,7 +267,7 @@ function ajaxSign(){
 			$("#Snickname").val("");
 			$("#Sname").val("");
 			$("#Sphone").val("");
-			$("#modalLayer2").hide();
+			$("#signModalLayer").hide();
 			$('#mask').hide();
 			$('.window').hide(); 
 		},
@@ -193,3 +279,33 @@ function ajaxSign(){
 
 
 // ---------------------------- //
+
+
+//-------  이메일인증 Ajax --------- //
+var resetNum;
+var femail;
+function ajaxEmail(){
+	//alert('click');
+	femail = $("#femail").val();
+	
+	var data = { "email": femail };
+  
+	$.ajax({
+		url:"mailSender.do",
+		type:'GET',
+		data: data,
+		success:function(data){
+			//alert(data);
+			if(data != ""){
+				alert("인증번호 전송 완료")
+				resetNum = data;
+			} else {
+				alert("정확한 이메일을 입력하세요")
+			}
+		},
+		error:function(){
+			alert("인증 실패ㅜㅜ") ;
+		}
+	}); 
+}
+//---------------------------- //

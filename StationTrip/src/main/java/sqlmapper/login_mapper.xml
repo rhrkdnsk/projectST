@@ -12,9 +12,21 @@
 		WHERE USER_EMAIL = #{user_email} AND USER_PASSWORD = #{user_password}
 	</select>
 	
+	<select id="searchemail" parameterType="LoginDto" resultType="LoginDto">
+		SELECT USER_NICKNAME,TIER,USER_EMAIL,USER_NAME,USER_PASSWORD,USER_PHONE,USER_POINT,USER_ALARMNUM
+		FROM T_USER
+		WHERE USER_EMAIL = #{user_email}
+	</select>
+	
 	<insert id="signup" parameterType="LoginDto">
 		INSERT INTO T_USER(USER_NICKNAME,TIER,USER_EMAIL,USER_NAME,USER_PASSWORD,USER_PHONE,USER_POINT,USER_ALARMNUM)
 		VALUES( #{user_nickname}, 'BRONZE', #{user_email}, #{user_name}, #{user_password}, #{user_phone}, 1, 0 )
 	</insert>
+	
+	<update id="resetpw" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_PASSWORD = #{user_password}
+		WHERE USER_EMAIL = #{user_email}
+	</update>
 
 </mapper>	
