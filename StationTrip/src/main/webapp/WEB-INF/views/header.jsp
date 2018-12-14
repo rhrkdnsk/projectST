@@ -222,7 +222,7 @@
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
-     <script>
+ 	<script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -236,6 +236,12 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+        
+        sessionStorage.setItem("login_user", id_token );
+        
+        var chk = sessionStorage.getItem("login_user");
+        alert(chk);
+
       };
     </script>
 
