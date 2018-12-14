@@ -47,6 +47,7 @@ public class BoardController {
 		model.addAttribute("list", list);
 		request.getSession().removeAttribute("readcount");
 		return "fboardlist";
+		
 	}
 
 	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
