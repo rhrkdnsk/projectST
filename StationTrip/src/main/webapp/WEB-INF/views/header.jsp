@@ -6,6 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 구글 로그인  -->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="280265674654-tkajr3mg8i747ig3dopron35pks6tj8b.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- ------ -->
+
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -57,6 +65,9 @@
 						<legend>로그인</legend>
 						<br />
 						<ul>
+							<li>
+							<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+							</li>
 							<li>
 								<span class="labeltag">
 								<label>이메일</label>
@@ -130,7 +141,7 @@
 								<button onclick="ajaxEmail()">인증번호 전송</button>
 							</li>
 							<li>
-								<a href="#resetModalLayer" class="resetModalLink aright"">비밀번호 찾기</a>
+								<a href="#resetModalLayer" class="resetModalLink aright"">비밀번호 재설정</a>
 							</li>
 							<li>
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
@@ -211,6 +222,22 @@
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
+     <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
 
 </body>
 </html>
