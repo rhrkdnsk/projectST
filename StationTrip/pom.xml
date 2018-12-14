@@ -53,6 +53,16 @@
 	
 	<!-- 끝 -->
 	
+	<!-- mail발송하기위해 추가 -->
+	
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.7</version>
+	</dependency>
+
+	<!-- 끝 -->
+	
 	<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
