@@ -15,6 +15,8 @@ $(document).ready(function(){
 	    return false;
 	  });
 	  
+	  
+	  
 	  var modalLink5 = $(".loginModalLink2");
 	  modalLink5.click(function(){
 		  var remail = $("#remail").val();
@@ -268,8 +270,10 @@ function ajaxSign(){
 			$("#Sname").val("");
 			$("#Sphone").val("");
 			$("#signModalLayer").hide();
-			$('#mask').hide();
-			$('.window').hide(); 
+			$("#loginModalLayer").fadeIn("slow");
+			$(".loginModalContent").css({"margin-top" : -$(".loginModalContent").outerHeight()/2, "margin-left" : -$(".loginModalContent").outerWidth()/2});
+			/*$('#mask').hide();
+			$('.window').hide();*/ 
 		},
 		error:function(){
 			alert("가입 실패ㅜㅜ") ;
@@ -309,3 +313,4 @@ function ajaxEmail(){
 	}); 
 }
 //---------------------------- //
+
