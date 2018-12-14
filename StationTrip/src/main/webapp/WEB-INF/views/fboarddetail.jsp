@@ -50,7 +50,7 @@
 <c:choose>
 	<c:when test="${empty list}">
 	<dl>	
-		<dd>-------작성된 글이 없습니다.----</dd>
+		<dd>-------작성된 댓글이 없습니다.----</dd>
 	</dl>
   </c:when>
   <c:otherwise>
@@ -68,9 +68,11 @@
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-  	
-    	<a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num-1}">이전글 보기</a>
-    	<a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num+1}">다음글 보기</a>
+  	      	
+  	      	
+       	▲ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+  	<p>
+     	▼ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
 
   <script type="text/javascript">
   function goUpdate() {

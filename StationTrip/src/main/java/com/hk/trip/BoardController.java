@@ -88,13 +88,15 @@ public class BoardController {
 			return "fboardlist.do";
 
 		}
-		
+		FboardDto bdto = fboardService.goBack(freeboard_num);
+		FboardDto ndto = fboardService.goNext(freeboard_num);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
 		List<CommentDto> list = fboardService.getReply(freeboard_num);
-
 		model.addAttribute("fdto", fdto);
 		model.addAttribute("list", list);
-		System.out.println(model);
+		model.addAttribute("bdto", bdto);
+		model.addAttribute("ndto", ndto);
+		
 		return "fboarddetail";
 
 	}
@@ -143,5 +145,10 @@ public class BoardController {
 		}
 
 	}
+	
+
+
+	
+	
 	
 } //끝

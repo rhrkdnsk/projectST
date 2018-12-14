@@ -33,5 +33,13 @@
     DELETE FREEBOARD WHERE FREEBOARD_NUM=#{freeboard_num}
     </delete>
 
-
+	<select id="goNext" parameterType="int" resultType="FboardDto">
+	<![CDATA[ SELECT FREEBOARD_NUM,FREEBOARD_TITLE FROM FREEBOARD WHERE FREEBOARD_NUM=(SELECT MIN(FREEBOARD_NUM) FROM FREEBOARD WHERE FREEBOARD_NUM > #{freeboard_num})]]> 
+	</select>
+	
+	<select id="goBack" parameterType="int" resultType="FboardDto">
+	<![CDATA[ SELECT FREEBOARD_NUM,FREEBOARD_TITLE FROM FREEBOARD WHERE FREEBOARD_NUM=(SELECT max(FREEBOARD_NUM) FROM FREEBOARD WHERE FREEBOARD_NUM < #{freeboard_num})]]> 
+	</select>
+<!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
+<!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
    </mapper>

@@ -16,4 +16,7 @@ public interface IFboardService {
 	public boolean upDateBoard(FboardDto fdto);
 	public boolean deleteBoard(int freeboard_num);
 	public boolean replyInsert(CommentDto cdto);
+	public FboardDto goNext(int freeboard_num);
+	public FboardDto goBack(int freeboard_num);
+
 }

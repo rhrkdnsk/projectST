@@ -48,4 +48,14 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.replyInsert(cdto);
 	}
+	@Override
+	public FboardDto goNext(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.goNext(freeboard_num);
+	}
+	@Override
+	public FboardDto goBack(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.goBack(freeboard_num);
+	}
 }

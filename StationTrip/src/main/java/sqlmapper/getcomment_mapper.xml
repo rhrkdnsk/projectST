@@ -21,4 +21,6 @@
 		T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0) FROM
 		T_COMMENT),#{comment_content},0,0)
 	</insert>
+	
+	
 </mapper>

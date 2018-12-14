@@ -47,7 +47,6 @@ public class FboardDao implements IFboardDao {
 	
 	@Override
 	public List<CommentDto> getReply(int freeboard_num) {
-		System.out.println(freeboard_num);
 		return sqlSession.selectList(namespace1 + "getReply", freeboard_num);
 	}
 	@Override
@@ -71,5 +70,16 @@ public class FboardDao implements IFboardDao {
 		
 		
 		return count > 0? true : false;
+	}
+	@Override
+	public FboardDto goNext(int freeboard_num) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne(namespace + "goNext" , freeboard_num);
+	}
+	@Override
+	public FboardDto goBack(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "goBack" , freeboard_num);
 	}
 }
