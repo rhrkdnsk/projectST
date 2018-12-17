@@ -100,4 +100,13 @@ public class FboardDao implements IFboardDao {
 		count = sqlSession.update(namespace + "readCount", freeboard_num);
 		return count > 0 ? true:false;
 	}
+	
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+	 
+		System.out.println("getCount 값 :" + sqlSession.selectOne(namespace + "getCount"));
+		
+		return sqlSession.selectOne(namespace + "getCount");
+	}
 }

@@ -19,5 +19,7 @@ public interface IFboardService {
 	public FboardDto goNext(int freeboard_num);
 	public FboardDto goBack(int freeboard_num);
 	public boolean readCount(int freeboard_num);
+	public int getCount();
+
 
 }

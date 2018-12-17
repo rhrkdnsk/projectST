@@ -48,6 +48,11 @@
 	<select id="boardSearch" parameterType="map" resultType="FboardDto">
 	SELECT * FROM FREEBOARD WHERE ${keyField} LIKE '%${keyWord}%' ORDER BY FREEBOARD_TIME ASC
 	</select>
+	
+	<select id="getCount" resultType="int">
+	SELECT COUNT(*) AS totalCount FROM FREEBOARD
+	</select>
+	
 <!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
 <!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
    </mapper>

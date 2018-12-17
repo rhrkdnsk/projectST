@@ -124,7 +124,7 @@ body {
 </style>
 </head>
 <body>
-
+<h1> 카운트의 값 : ${cdto}</h1>
 <%
 
 %>
@@ -205,7 +205,6 @@ body {
   	<dd class="data">${fdto.freeboard_time}</dd>
   	<dd class="count">${fdto.freeboard_view}</dd>
   	<dd class="count">${fdto.freeboard_like}</dd>
-  	
   	</dl>
   	
   	</c:forEach>
@@ -263,6 +262,7 @@ body {
 
 
 </select>
+
 
 <jsp:include page="footer.jsp" />
 
