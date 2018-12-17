@@ -9,6 +9,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자유게시판 리스트</title>
+<script type="text/javascript">
+function locainsert() {
+	alert("locainsert");
+	location.href = "insertform.do";
+	
+}
+function check() {
+    if (document.search.keyWord.value == "") {
+        alert("검색어를 입력하세요.");
+        document.search.keyWord.focus();
+        return;
+    }
+    document.search.submit();
+}
+
+
+
+</script>
 <style>
 
 * {
@@ -230,7 +248,7 @@ body {
 	<option value="user_nickname">아이디</option>
 	<option value="freeboard_title">제목</option>
 	<option value="제목+내용">제목+내용</option>
-	<option value="분류">분류</option>
+	<option value="freeboard_category">분류</option>
 </select>
 
 <input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
@@ -238,14 +256,15 @@ body {
 <input type="hidden" name="page" value="0" />
 </form>
 
-<jsp:include page="footer.jsp" />
-<script>
-function locainsert() {
-	alert("locainsert");
-	location.href = "insertform.do";
-	
-}
+<select>
+<option value="10">10개씩보기</option>
+<option value="30">30개씩보기</option>
+<option value="50">50개씩보기</option>
 
-</script>
+
+</select>
+
+<jsp:include page="footer.jsp" />
+
 </body>
 </html>
