@@ -15,8 +15,8 @@ public class FboardService implements IFboardService {
 	private IFboardDao ifboarddao;
 	
 	@Override
-	public List<FboardDto> getAllList()	 {
-		return ifboarddao.getAllList();
+	public List<FboardDto> getAllList(String keyWord, String keyField)	 {
+		return ifboarddao.getAllList(keyWord,keyField);
 	}
 	
 	@Override

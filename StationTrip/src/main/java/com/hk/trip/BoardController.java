@@ -39,11 +39,11 @@ public class BoardController {
 	@Autowired
 	private FboardService fboardService;
 
-	@RequestMapping(value = "fboardlist.do", method = RequestMethod.GET)
-	public String getBoard(HttpServletRequest request,Locale locale, Model model) {
+	@RequestMapping(value = "fboardlist.do")
+	public String getBoard(HttpServletRequest request,Locale locale, Model model,String keyWord, String keyField) {
 		logger.info("보드리스트 출력", locale);
 
-		List<FboardDto> list = fboardService.getAllList();
+		List<FboardDto> list = fboardService.getAllList(keyWord,keyField);
 		model.addAttribute("list", list);
 		request.getSession().removeAttribute("readcount");
 		return "fboardlist";

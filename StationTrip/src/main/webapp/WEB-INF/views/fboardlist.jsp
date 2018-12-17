@@ -110,7 +110,6 @@ body {
 <%
 
 %>
-<form action="PgController.do" method="post">
 <div id="board">
 
 <div id="title">
@@ -158,8 +157,7 @@ body {
       <dd class="count">1</dd>
    
   </dl>
-  
-  
+
   
   <p style="text-align:center; color:white;">----------------------------------------------------------------------------------------------------------------------------------</p>
   
@@ -197,22 +195,11 @@ body {
   	</c:choose>
 	
    
+ 
    
    
    
-   
-   
-   
-    <dl>
-   <dd class="num">1</dd>
-   <dd class="sub"><a href="#">수요일 입니다.</a></dd>
-   <dd class="name">김종인</dd>
-   <dd class="data">2000-10-10</dd>
-   <dd class="count">1</dd>
-   <dd class="count">1</dd>
-   
-  </dl>
-</div>
+
 <%
   		if(session.getAttribute("login_user") != null) {
   			%>
@@ -233,27 +220,22 @@ body {
   <a href="#">▶</a>
 </p>
 </div>
-
-<input type="button" value="위로가기"/>
-
-<select>
-<option value="아이디">아이디</option>
-<option value="제목">제목</option>
-<option value="제목+내용">제목+내용</option>
-<option value="분류">분류</option>
-
-</select>
-<input type="text" size="20" placeholder="검색어 입력">
-<input type="button" value="검색" />
-
-<select>
-<option value="10">10개씩보기</option>
-<option value="30">30개씩보기</option>
-<option value="50">50개씩보기</option>
-
-
-</select>
 </div>
+</div>
+
+
+<form action="fboardlist.do" name="search" method="post">
+
+<select name="keyField" size="1">
+	<option value="user_nickname">아이디</option>
+	<option value="freeboard_title">제목</option>
+	<option value="제목+내용">제목+내용</option>
+	<option value="분류">분류</option>
+</select>
+
+<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
+<input type="button" value="검색" onclick="check()" />
+<input type="hidden" name="page" value="0" />
 </form>
 
 <jsp:include page="footer.jsp" />

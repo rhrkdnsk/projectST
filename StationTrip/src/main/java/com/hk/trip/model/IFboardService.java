@@ -9,7 +9,7 @@ public interface IFboardService {
 
 	
 	
-	public List<FboardDto> getAllList();
+	public List<FboardDto> getAllList(String keyWord, String keyField);
 	public boolean insertBoard(FboardDto fdto);
 	public FboardDto getDetailView(int freeboard_num);
 	public List<CommentDto> getReply(int freeboard_num);

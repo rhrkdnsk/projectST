@@ -1,6 +1,10 @@
 package com.hk.trip.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +24,16 @@ public class FboardDao implements IFboardDao {
 
 	
 	@Override
-	public List<FboardDto> getAllList()	{
+	public List<FboardDto> getAllList(String keyWord, String keyField)	{
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("keyField", keyField);
+			map.put("keyWord",keyWord);
+			return sqlSession.selectList(namespace + "boardSearch", map );
+		} else {
+		
 		return sqlSession.selectList(namespace + "getAllContent" );
+	}
 	}
 	
 	@Override
