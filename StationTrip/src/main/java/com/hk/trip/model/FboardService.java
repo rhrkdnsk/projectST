@@ -68,4 +68,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.getCount();
 	}
+	@Override
+	public List<FboardDto> getBoardList(int startNum,int endNum) {
+		// TODO Auto-generated method stub
+		return ifboarddao.getBoardList(startNum,endNum);
+	}
 }

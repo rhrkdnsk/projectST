@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,18 +44,8 @@ public class BoardController {
 	@RequestMapping(value = "fboardlist.do")
 	public String getBoard(HttpServletRequest request,Locale locale, Model model,String keyWord, String keyField) {
 		logger.info("보드리스트 출력", locale);
+		
 		int totalCount = fboardService.getCount();
-		int countList = 10;
-		int totalPage = totalCount / countList;
-		int page = 2;
-		
-		if (totalCount % countList > 0) {
-		    totalPage++;
-		}
-		if (totalPage < page) {
-		    page = totalPage;
-		}
-		
 		
 		List<FboardDto> list = fboardService.getAllList(keyWord,keyField);
 		model.addAttribute("cdto", totalCount);
@@ -172,8 +164,46 @@ public class BoardController {
 	}
 	
 
+	
+	@RequestMapping(value = "fboardPage.do")
+	public String fboardPage(HttpServletRequest request, Locale locale, Model model,int pageNum) {
+		logger.info("댓글 작성하기", locale);
+		int size=15;
+		
+		int totalCount = fboardService.getCount();
+		int countList = 10;
+		int countPage = 5;
+		int totalPage = totalCount / countList;
+		
+		
+		if (totalCount % countList > 0) {
+		    totalPage++;
+		}
+		if (totalPage < pageNum) {
+		    pageNum = totalPage;
+		}
+		
+		int startPage = pageNum / 5 + 1;
+		int endPage = startPage + countPage - 1;
+	
+	
+	if (totalCount % countList > 0) {
+	    totalPage++;
+	}
+	if (totalPage < pageNum) {
+	    pageNum = totalPage;
+	}
+	
+	int startNum = (pageNum - 1) * size;
+	int endNum = pageNum * size - 1;
+	System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
 
+
+	List<FboardDto> list = fboardService.getBoardList(startNum,endNum);
+	System.out.println(list.size()+"hhhhh");
+	model.addAttribute("list", list);
 	
+	return "fboardlist";
 	
-	
+	}
 } //끝
