@@ -53,6 +53,16 @@
 	SELECT COUNT(*) AS totalCount FROM FREEBOARD
 	</select>
 	
+	<select id="getNumlist" resultType="FboardDto">
+	<![CDATA[select X.RNUM, X.USER_NICKNAME, X.FREEBOARD_TITLE, X.FREEBOARD_CONTENT, X.FREEBOARD_TIME FROM (SELECT ROWNUM AS RNUM, A.USER_NICKNAME, A.FREEBOARD_TITLE, A.FREEBOARD_CONTENT, A.FREEBOARD_TIME FROM (
+ SELECT USER_NICKNAME, FREEBOARD_TITLE, FREEBOARD_CONTENT, FREEBOARD_TIME
+        FROM FREEBOARD
+        ORDER BY FREEBOARD_TITLE) A
+    WHERE ROWNUM <= 10) X
+where X.rnum >= 1 ]]>
+	
+	</select>
+	
 <!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
 <!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
    </mapper>

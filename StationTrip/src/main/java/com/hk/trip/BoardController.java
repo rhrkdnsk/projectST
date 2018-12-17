@@ -42,10 +42,21 @@ public class BoardController {
 	@RequestMapping(value = "fboardlist.do")
 	public String getBoard(HttpServletRequest request,Locale locale, Model model,String keyWord, String keyField) {
 		logger.info("보드리스트 출력", locale);
-		int cdto = fboardService.getCount();
-
+		int totalCount = fboardService.getCount();
+		int countList = 10;
+		int totalPage = totalCount / countList;
+		int page = 2;
+		
+		if (totalCount % countList > 0) {
+		    totalPage++;
+		}
+		if (totalPage < page) {
+		    page = totalPage;
+		}
+		
+		
 		List<FboardDto> list = fboardService.getAllList(keyWord,keyField);
-		model.addAttribute("cdto", cdto);
+		model.addAttribute("cdto", totalCount);
 		model.addAttribute("list", list);
 		request.getSession().removeAttribute("readcount");
 		return "fboardlist";

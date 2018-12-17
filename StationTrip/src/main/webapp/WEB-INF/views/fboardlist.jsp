@@ -124,7 +124,7 @@ body {
 </style>
 </head>
 <body>
-<h1> 카운트의 값 : ${cdto}</h1>
+<h1> 카운트의 값 : ${totalCount}</h1>
 
 <div id="board">
 
