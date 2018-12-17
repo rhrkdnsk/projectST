@@ -178,6 +178,7 @@ function ajaxLogin(){
 		data: data,
 		success:function(data){
 			sessionCheck(data);
+			window.location.reload()
 		},
 		error:function(){
 			alert("로그인 실패ㅜㅜ") ;
@@ -201,7 +202,6 @@ function ajaxLogin(){
 		$.removeCookie("saveId");
 	}
 	
-	//window.location.reload()
 } 
 
 function sessionCheck(data){
@@ -336,7 +336,7 @@ function onSignIn(googleUser) {
 //    var chk = sessionStorage.getItem("login_user");
 //    alert(chk);
     
-   // alert(google_name)
+    //alert(google_name)
 	var data = { "google_name": google_name };
   
 	$.ajax({
@@ -344,20 +344,37 @@ function onSignIn(googleUser) {
 		type:'GET',
 		data: data,
 		success:function(data){
-			alert(data);
+			//alert(data);
+			
+		},
+		error:function(){
+			alert("구글로그인 실패ㅜㅜ") ;
+		}
+	}); 
+	window.location.reload()
+};
+  
+//function signOut() {
+//	var auth2 = gapi.auth2.getAuthInstance();
+//	auth2.signOut().then(function () {
+//		console.log('User signed out.');
+//	})
+//
+//}
+
+function googleOut(){
+	
+	$.ajax({
+		url:"signout.do",
+		type:'GET',
+		success:function(){
+			alert("로그아웃");
 		},
 		error:function(){
 			alert("로그인 실패ㅜㅜ") ;
 		}
-	}); 
+	})
 
-};
-  
-function signOut() {
-	var auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut().then(function () {
-		console.log('User signed out.');
-	});
 }
 
 // ----------------------------------- //

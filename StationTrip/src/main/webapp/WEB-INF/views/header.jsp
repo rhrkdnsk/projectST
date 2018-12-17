@@ -55,8 +55,16 @@
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
-   <a href="#" onclick="signOut();" >로그아웃</a>
-   <a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
+   <%if(session.getAttribute("login_user") == null) {
+		%>
+		<a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
+		<%
+	} else {
+		%>
+		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
+		<%
+	}
+	%>
    
    <div id="mask"></div>
 	   <div class="window">
@@ -67,7 +75,13 @@
 						<br />
 						<ul>
 							<li>
-							<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+								<div class="g-signin2" <%if(session.getAttribute("login_user") == null) {
+									%>
+										data-onsuccess="onSignIn" 
+									<%
+								}
+								%>
+								data-theme="dark"></div>
 							</li>
 							<li>
 								<span class="labeltag">
@@ -223,6 +237,14 @@
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
+<script type="text/javascript">
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		console.log('User signed out.');
+	})
 
+}
+</script>
 </body>
 </html>

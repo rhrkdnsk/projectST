@@ -61,6 +61,7 @@ public class LoginController {
 			out.print(session.getAttribute("login_user"));
 		}
 	}
+	
 	@RequestMapping(value = "googlelogin.do", method = RequestMethod.GET)
 	public void googlelogin(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -76,6 +77,16 @@ public class LoginController {
 		} else {
 			out.print("로그인에 실패하였습니다");
 		}
+	}
+	
+	@RequestMapping(value = "signout.do", method = RequestMethod.GET)
+	public void signout(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		logger.info("googlelogin {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
+		session.invalidate();
 	}
 
 	@RequestMapping(value = "signup.do", method = RequestMethod.GET)
