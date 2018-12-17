@@ -55,6 +55,7 @@
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
+   <a href="#" onclick="signOut();" >로그아웃</a>
    <a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
    
    <div id="mask"></div>
@@ -222,29 +223,6 @@
 	</div>
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
- 	<script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-        
-        var google_name = profile.getName();
-        sessionStorage.setItem("login_user", google_name );
-        
-        var chk = sessionStorage.getItem("login_user");
-        alert(chk);
-
-      };
-    </script>
 
 </body>
 </html>
