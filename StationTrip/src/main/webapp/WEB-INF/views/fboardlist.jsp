@@ -54,7 +54,7 @@ body {
    .list .num {width:60px;} 
 .list .sub {width:410px;} 
 .list .name {width:95px;} 
-.list .data {width:85px;} 
+.list .data {width:140px;} 
 .list .count {width:60px;} 
 
 
@@ -88,6 +88,7 @@ body {
 	margin-top : 10px;
 }
 
+
 /* #notice { */
 /* 	text-align:center; */
 /* border-bottom:10px 5px solid #ccc; */
@@ -96,10 +97,16 @@ body {
 /* } */
 
 </style>
+<jsp:include page="header.jsp" />
+<style type="text/css">
+*, *:before, *:after{
+	box-sizing: unset;
+}
 
+</style>
 </head>
 <body>
-<jsp:include page="header.jsp" />
+
 <%
 
 %>
@@ -110,7 +117,7 @@ body {
     <h3>l 게시판</h3>
 </div>
 
-<div class="list"> 
+<div class="list" style="border-bottom: 1px; border-bottom-color: black; border-bottom-style: solid; "> 
 
   <dl>
    <dt class="num">번호</dt>
@@ -121,7 +128,7 @@ body {
    <dt class="count">좋아요</dt>
    
   </dl>
-	<dl id="notice">공지</dl>
+	<dl id="notice" style="text-align:center; font-size:30px; ">공지사항</dl>
   <dl>
    <dd class="num">3</dd>
    <dd class="sub"><a href="#">월요일 입니다.</a></dd>
@@ -154,7 +161,7 @@ body {
   
   
   
-  <p style="text-align:center">------------------------------------------------------------------------------------------------------------------------------------------------</p>
+  <p style="text-align:center; color:white;">----------------------------------------------------------------------------------------------------------------------------------</p>
   
 	<c:choose>
 	<c:when test="${empty list}">

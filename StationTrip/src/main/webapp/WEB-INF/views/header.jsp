@@ -237,7 +237,8 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
         
-        sessionStorage.setItem("login_user", id_token );
+        var google_name = profile.getName();
+        sessionStorage.setItem("login_user", google_name );
         
         var chk = sessionStorage.getItem("login_user");
         alert(chk);
