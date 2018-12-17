@@ -15,8 +15,8 @@ public class FboardService implements IFboardService {
 	private IFboardDao ifboarddao;
 	
 	@Override
-	public List<FboardDto> getAllList()	 {
-		return ifboarddao.getAllList();
+	public List<FboardDto> getAllList(String keyWord, String keyField)	 {
+		return ifboarddao.getAllList(keyWord,keyField);
 	}
 	
 	@Override
@@ -47,5 +47,20 @@ public class FboardService implements IFboardService {
 	public boolean replyInsert(CommentDto cdto) {
 		// TODO Auto-generated method stub
 		return ifboarddao.replyInsert(cdto);
+	}
+	@Override
+	public FboardDto goNext(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.goNext(freeboard_num);
+	}
+	@Override
+	public FboardDto goBack(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.goBack(freeboard_num);
+	}
+	@Override
+	public boolean readCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.readCount(freeboard_num);
 	}
 }

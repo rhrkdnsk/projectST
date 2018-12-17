@@ -1,6 +1,10 @@
 package com.hk.trip.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +24,16 @@ public class FboardDao implements IFboardDao {
 
 	
 	@Override
-	public List<FboardDto> getAllList()	{
-		System.out.println("리스트 뽑기 : " + sqlSession.selectList(namespace + "getAllContent" ));
+	public List<FboardDto> getAllList(String keyWord, String keyField)	{
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("keyField", keyField);
+			map.put("keyWord",keyWord);
+			return sqlSession.selectList(namespace + "boardSearch", map );
+		} else {
+		
 		return sqlSession.selectList(namespace + "getAllContent" );
+	}
 	}
 	
 	@Override
@@ -47,7 +58,6 @@ public class FboardDao implements IFboardDao {
 	
 	@Override
 	public List<CommentDto> getReply(int freeboard_num) {
-		System.out.println(freeboard_num);
 		return sqlSession.selectList(namespace1 + "getReply", freeboard_num);
 	}
 	@Override
@@ -71,5 +81,23 @@ public class FboardDao implements IFboardDao {
 		
 		
 		return count > 0? true : false;
+	}
+	@Override
+	public FboardDto goNext(int freeboard_num) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectOne(namespace + "goNext" , freeboard_num);
+	}
+	@Override
+	public FboardDto goBack(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "goBack" , freeboard_num);
+	}
+	@Override
+	public boolean readCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.update(namespace + "readCount", freeboard_num);
+		return count > 0 ? true:false;
 	}
 }

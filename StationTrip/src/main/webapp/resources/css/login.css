@@ -16,12 +16,12 @@ a {
 	filter: alpha(opacity = 50);
 }
 
-#modalLayer {
+#loginModalLayer {
 	display: none;
 	position: relative;
 }
 
-#modalLayer .modalContent  {
+#loginModalLayer .loginModalContent  {
 	width: 440px;
 	height: 400px;
 	padding: 0px;
@@ -33,13 +33,13 @@ a {
 	background: #fff;
 	color: black;
 }
-#modalLayer2 {
+#signModalLayer {
 	display: none;
 	position: relative;
 }
 
 
-#modalLayer2 .modalContent2  {
+#signModalLayer .signModalContent  {
 	width: 440px;
 	height: 400px;
 	padding: 0px;
@@ -51,6 +51,45 @@ a {
 	background: #fff;
 	color: black;
 }
+
+#searchModalLayer{
+	display: none;
+	position: relative;
+}
+
+
+#searchModalLayer .searchModalContent {
+	width: 440px;
+	height: 400px;
+	padding: 0px;
+	border: 1px solid #ccc;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	z-index: 11;
+	background: #fff;
+	color: black;
+}
+
+#resetModalLayer {
+	display: none;
+	position: relative;
+}
+
+
+#resetModalLayer .resetModalContent  {
+	width: 440px;
+	height: 400px;
+	padding: 0px;
+	border: 1px solid #ccc;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	z-index: 11;
+	background: #fff;
+	color: black;
+}
+
 .labeltag {
 	float:left;
 	width:80px;

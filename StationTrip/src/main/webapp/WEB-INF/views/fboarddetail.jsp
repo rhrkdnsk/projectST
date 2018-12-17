@@ -50,7 +50,7 @@
 <c:choose>
 	<c:when test="${empty list}">
 	<dl>	
-		<dd>-------작성된 글이 없습니다.----</dd>
+		<dd>-------작성된 댓글이 없습니다.----</dd>
 	</dl>
   </c:when>
   <c:otherwise>
@@ -59,18 +59,22 @@
   	<dd class="num">${cdto.comment_num}</dd>
   	<dd class="sub">${cdto.freeboard_num}</dd>
   	<dd class="name">${cdto.user_nickname}</dd>
-<%--   	<dd class="data">${fdto.freeboard_time}</dd> --%>
-<%--   	<dd class="count">${fdto.freeboard_view}</dd> --%>
-<%--   	<dd class="count">${fdto.freeboard_like}</dd> --%>
+   	<dd class="data">${cdto.comment_content}</dd>
+   	<dd class="time">${cdto.comment_time}</dd>
+   	<dd class="count">${cdto.comment_like}</dd> 
+   	<dd class="count">${cdto.comment_hate}</dd> 
   	
   	</dl>
   	
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-    	<a class="title" href="#">이전글 보기</a>
-    	<a class="title" href="#">다음글 보기</a>
-  	
+  	      	
+  	      	
+       	▲ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+  	<p>
+     	▼ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
+
   <script type="text/javascript">
   function goUpdate() {
 	  location.href="fboardupdate.do?freeboard_num=" + ${fdto.freeboard_num};
@@ -78,7 +82,12 @@
   function goDelete() {
 	  location.href="fboarddelete.do?freeboard_num=" + ${fdto.freeboard_num};
   }
-  
+  function goNext() {
+	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.freeboard_num}+1;
+  }
+  function goBack()	{
+	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.freeboard_num}-1;
+  }
   </script>
   <jsp:include page="footer.jsp" />
   

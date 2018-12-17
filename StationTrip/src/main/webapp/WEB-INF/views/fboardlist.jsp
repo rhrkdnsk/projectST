@@ -32,7 +32,7 @@ body {
   }
 
 #board {
-  width:830px;
+  width:890px;
   margin:30px auto 10px;
 }
 
@@ -54,7 +54,7 @@ body {
    .list .num {width:60px;} 
 .list .sub {width:410px;} 
 .list .name {width:95px;} 
-.list .data {width:85px;} 
+.list .data {width:140px;} 
 .list .count {width:60px;} 
 
 
@@ -88,29 +88,35 @@ body {
 	margin-top : 10px;
 }
 
-#notice {
-	text-align:center;
-border-bottom:10px 5px solid #ccc;
-margin-top: 10px;
 
+/* #notice { */
+/* 	text-align:center; */
+/* border-bottom:10px 5px solid #ccc; */
+/* margin-top: 10px; */
+
+/* } */
+
+</style>
+<jsp:include page="header.jsp" />
+<style type="text/css">
+*, *:before, *:after{
+	box-sizing: unset;
 }
 
 </style>
-
 </head>
 <body>
-<jsp:include page="header.jsp" />
+
 <%
 
 %>
-<form action="PgController.do" method="post">
 <div id="board">
 
 <div id="title">
     <h3>l 게시판</h3>
 </div>
 
-<div class="list"> 
+<div class="list" style="border-bottom: 1px; border-bottom-color: black; border-bottom-style: solid; "> 
 
   <dl>
    <dt class="num">번호</dt>
@@ -121,7 +127,7 @@ margin-top: 10px;
    <dt class="count">좋아요</dt>
    
   </dl>
-	<dl id="notice">공지</dl>
+	<dl id="notice" style="text-align:center; font-size:30px; ">공지사항</dl>
   <dl>
    <dd class="num">3</dd>
    <dd class="sub"><a href="#">월요일 입니다.</a></dd>
@@ -151,10 +157,9 @@ margin-top: 10px;
       <dd class="count">1</dd>
    
   </dl>
+
   
-  
-  
-  <p style="text-align:center">------------------------------------------------------------------------------------------------------------------------------------------------</p>
+  <p style="text-align:center; color:white;">----------------------------------------------------------------------------------------------------------------------------------</p>
   
 	<c:choose>
 	<c:when test="${empty list}">
@@ -167,7 +172,7 @@ margin-top: 10px;
   <dl>
   	<dd class="num">${fdto.freeboard_num}</dd>
   	<%
-  		if(session.getAttribute("login_user") == null){
+  		if(session.getAttribute("login_user") == null) {
   			%>
   			<dd class="sub">${fdto.freeboard_title}</dd>
   			<%
@@ -190,24 +195,18 @@ margin-top: 10px;
   	</c:choose>
 	
    
+ 
    
    
    
-   
-   
-   
-    <dl>
-   <dd class="num">1</dd>
-   <dd class="sub"><a href="#">수요일 입니다.</a></dd>
-   <dd class="name">김종인</dd>
-   <dd class="data">2000-10-10</dd>
-   <dd class="count">1</dd>
-   <dd class="count">1</dd>
-   
-  </dl>
-</div>
-<button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
 
+<%
+  		if(session.getAttribute("login_user") != null) {
+  			%>
+  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			<%
+  		} 	
+  	%>
 <div class="list-bot">
 <p>
   <a href="#">◀</a>
@@ -221,28 +220,24 @@ margin-top: 10px;
   <a href="#">▶</a>
 </p>
 </div>
-
-<input type="button" value="위로가기"/>
-
-<select>
-<option value="아이디">아이디</option>
-<option value="제목">제목</option>
-<option value="제목+내용">제목+내용</option>
-<option value="분류">분류</option>
-
-</select>
-<input type="text" size="20" placeholder="검색어 입력">
-<input type="button" value="검색" />
-
-<select>
-<option value="10개씩보기">10개씩보기</option>
-<option value="30개씩보기">30개씩보기</option>
-<option value="50개씩보기">50개씩보기</option>
-
-
-</select>
 </div>
+</div>
+
+
+<form action="fboardlist.do" name="search" method="post">
+
+<select name="keyField" size="1">
+	<option value="user_nickname">아이디</option>
+	<option value="freeboard_title">제목</option>
+	<option value="제목+내용">제목+내용</option>
+	<option value="분류">분류</option>
+</select>
+
+<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
+<input type="button" value="검색" onclick="check()" />
+<input type="hidden" name="page" value="0" />
 </form>
+
 <jsp:include page="footer.jsp" />
 <script>
 function locainsert() {

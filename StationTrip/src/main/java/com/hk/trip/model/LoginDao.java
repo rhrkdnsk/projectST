@@ -31,4 +31,16 @@ public class LoginDao implements ILoginDao {
 
 		return count > 0 ? true:false;
 	}
+
+	@Override
+	public LoginDto searchemail(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"searchemail", dto);
+	}
+
+	@Override
+	public boolean resetpw(LoginDto dto) {
+		int count = sqlSession.update(namespace+"resetpw", dto);
+		return count > 0 ? true:false;
+	}
 }
