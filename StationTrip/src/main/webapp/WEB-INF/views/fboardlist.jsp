@@ -125,9 +125,7 @@ body {
 </head>
 <body>
 <h1> 카운트의 값 : ${cdto}</h1>
-<%
 
-%>
 <div id="board">
 
 <div id="title">
