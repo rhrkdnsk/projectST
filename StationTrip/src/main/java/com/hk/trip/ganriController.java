@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 import com.hk.trip.model.FboardService;
+import com.hk.trip.model.IFboardService;
 
 /**
  * Handles requests for the application home page.
@@ -36,19 +37,19 @@ public class ganriController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@Autowired
-	private FboardService fboardService;
+	private IFboardService fboardService;
 
 	@RequestMapping(value = "glist.do", method = RequestMethod.GET)
-	public String getBoard(Locale locale, Model model) {
+	public String getBoard(HttpServletRequest request,Locale locale, Model model,String keyWord, String keyField) {
 		logger.info("보드리스트 출력", locale);
 
-		List<FboardDto> list = fboardService.getAllList();
+		List<FboardDto> list = fboardService.getAllList(keyWord,keyField);
 		model.addAttribute("list", list);
 
 		return "glist";
 	}
 
-	@RequestMapping(value = "insertform.do", method = RequestMethod.GET)
+	@RequestMapping(value = "ginsertform.do", method = RequestMethod.GET)
 	public String fboardInsertForm(HttpServletRequest request,Locale locale, Model model) {
 		logger.info("글쓰기폼 이동", locale);
 //		HttpSession session = request.getSession();
@@ -58,7 +59,7 @@ public class ganriController {
 		return "fboardinsert";
 	}
 
-	@RequestMapping(value = "fboardinsert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "gboardinsert.do", method = RequestMethod.POST)
 	public String fboardInsert(Locale locale, Model model, FboardDto fdto) {
 		logger.info("글쓰기 실행", locale);
 		boolean isS = fboardService.insertBoard(fdto);
@@ -71,7 +72,7 @@ public class ganriController {
 
 	}
 
-	@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "gboarddetail.do", method = RequestMethod.GET)
 	public String fboarddetail(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model, int freeboard_num) throws IOException {
 		logger.info("글 상세보기 이동", locale);
 		request.setCharacterEncoding("UTF-8");
@@ -98,7 +99,7 @@ public class ganriController {
 		return "fboarddetail";
 
 	}
-	@RequestMapping(value = "fboardupdate.do", method = RequestMethod.GET)
+	@RequestMapping(value = "gboardupdate.do", method = RequestMethod.GET)
 	public String fboardupdate(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
 		logger.info("글 수정하기 폼 이동", locale);
 		FboardDto fdto = fboardService.getDetailView(freeboard_num);
@@ -107,7 +108,7 @@ public class ganriController {
 
 	}
 	
-	@RequestMapping(value = "fboardup.do", method = RequestMethod.POST)
+	@RequestMapping(value = "gboardup.do", method = RequestMethod.POST)
 	public String fboardup(HttpServletRequest request, Locale locale, Model model, FboardDto fdto) {
 		logger.info("글 수정하기", locale);
 		boolean isS = fboardService.upDateBoard(fdto);
@@ -118,7 +119,7 @@ public class ganriController {
 			return "error";
 		}
 	}
-	@RequestMapping(value = "fboarddelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "gboarddelete.do", method = RequestMethod.GET)
 	public String fboarddelete(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
 		logger.info("글 삭제하기", locale);
 		boolean isS = fboardService.deleteBoard(freeboard_num);
@@ -130,7 +131,7 @@ public class ganriController {
 		}
 
 	}
-	@RequestMapping(value = "writereply.do", method = RequestMethod.POST)
+	@RequestMapping(value = "gwritereply.do", method = RequestMethod.POST)
 	public String fboardwritereply(HttpServletRequest request, Locale locale, Model model, CommentDto cdto) {
 		logger.info("댓글 작성하기", locale);
 		

@@ -150,8 +150,8 @@ public class LoginController {
 		// 네이버일 경우 smtp.naver.com 을 입력합니다.
 		// Google일 경우 smtp.gmail.com 을 입력합니다.
 		String host = "smtp.gmail.com";
-		final String username = "hankyung682"; // 구글 아이디를 입력해주세요. @gmail.com은 입력하지 마시구요.
-		final String password = "gksrud682!"; // 구글 이메일 비밀번호를 입력해주세요.
+		final String username = "hankyung777"; // 구글 아이디를 입력해주세요. @gmail.com은 입력하지 마시구요.
+		final String password = "gksrud777!"; // 구글 이메일 비밀번호를 입력해주세요.
 		int port = 465; // 포트번호
 
 		// 메일 내용

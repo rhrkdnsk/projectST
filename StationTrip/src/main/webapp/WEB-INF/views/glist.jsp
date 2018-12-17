@@ -86,6 +86,20 @@
 	</tr>
 </table>
 </form>
+
+<form action="fboardlist.do" name="search" method="post">
+
+<select name="keyField" size="1">
+	<option value="user_nickname">아이디</option>
+	<option value="freeboard_title">제목</option>
+	<option value="제목+내용">제목+내용</option>
+	<option value="분류">분류</option>
+</select>
+
+<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
+<input type="button" value="검색" onclick="check()" />
+<input type="hidden" name="page" value="0" />
+</form>
 </div>
 <script>
 function locainsert() {

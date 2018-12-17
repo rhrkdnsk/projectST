@@ -53,6 +53,7 @@
       <a href="#" class="w3-bar-item w3-button">Q.A</a>
       <a href="#" class="w3-bar-item w3-button">공지 사항</a>
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
+      <a href="glist.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
    <%if(session.getAttribute("login_user") == null) {

@@ -103,8 +103,8 @@ $(document).ready(function(){
       
       modalLink4.click(function(){
 		  var femailNumber = $("#femailNumber").val();
-		  alert("resetNum = " + resetNum);
-		  alert("femailNumber = " + femailNumber)
+		 // alert("resetNum = " + resetNum);
+		  //alert("femailNumber = " + femailNumber)
 		  if(femailNumber == resetNum) {
 			  modalLayer4.fadeIn("slow");
 			  modalCont4.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
