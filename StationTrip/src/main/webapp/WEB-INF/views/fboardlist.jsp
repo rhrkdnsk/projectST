@@ -24,7 +24,11 @@ function check() {
     document.search.submit();
 }
 
+function lookBoard() {
+	alert(document.looksetting.settingnum.value);
+    document.looksetting.submit();
 
+}
 
 </script>
 <style>
@@ -190,8 +194,9 @@ body {
   	<%
   		if(session.getAttribute("login_user") == null) {
   			%>
-  			<dd class="sub">${fdto.freeboard_title}</dd>
-  			<%
+	  			<dd class="sub">${fdto.freeboard_title}</dd>
+	
+	<%
   		} else {
   			%>
   			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title}</a></dd>
@@ -231,11 +236,13 @@ body {
 	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=1; i<=totalPage; i++) {
-			%>
-						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>
+			%>						
+						<a href="fboardPage.do?pageNum=<%=i%>&&settingnum=${settingnum}"><%=i%></a>						
 			<%			
 		}
 %>
+
+
 
  <!--  <a href="#">◀</a>
   <a href="#">◁</a>
@@ -252,7 +259,7 @@ body {
 </div>
 
 
-<form action="fboardlist.do" name="search" method="post">
+<form action="fboardPage.do?pageNum=${page}" name="search" method="post">
 
 <select name="keyField" size="1">
 	<option value="user_nickname">아이디</option>
@@ -266,14 +273,15 @@ body {
 <input type="hidden" name="page" value="0" />
 </form>
 
-<select>
+<form action="fboardPage.do?pageNum=${page}" method = "post" name="looksetting">
+
+<select name="settingnum" onchange="lookBoard()">
+<option value="">게시글 개수 조절</option>
+<option value="5">5개씩보기</option>
 <option value="10">10개씩보기</option>
-<option value="30">30개씩보기</option>
-<option value="50">50개씩보기</option>
-
-
+<option value="15">15개씩보기</option>
 </select>
-
+</form>
 
 <jsp:include page="footer.jsp" />
 

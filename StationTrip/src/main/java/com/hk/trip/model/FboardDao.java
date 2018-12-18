@@ -110,14 +110,15 @@ public class FboardDao implements IFboardDao {
 		return sqlSession.selectOne(namespace + "getCount");
 	}
 	@Override
-	public List<FboardDto> getBoardList(int startNum,int endNum) {
+	public List<FboardDto> getBoardList(int startNum,int endNum,String keyWord, String keyField) {
 		// TODO Auto-generated method stub
 		//System.out.println("보드 갯수 목록 " + sqlSession.selectList(namespace + "getNumlist"));
 		
-		Map<String, String> map = new HashMap<String, String>();
-		 
+		Map<String, String> map = new HashMap<String, String>();		 
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
+		map.put("keyWord", keyWord);
+		map.put("keyField", keyField);
 		return sqlSession.selectList(namespace + "getNumlist", map);
 	}
 }

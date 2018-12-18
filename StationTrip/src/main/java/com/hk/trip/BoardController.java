@@ -166,14 +166,16 @@ public class BoardController {
 
 	
 	@RequestMapping(value = "fboardPage.do")
-	public String fboardPage(HttpServletRequest request, Locale locale, Model model,int pageNum) {
+	public String fboardPage(HttpServletRequest request, Locale locale, Model model,int pageNum,String keyWord,String keyField) {
 logger.info("자유게시판 페이징 처리", locale);
 		
 		
 		int totalCount = fboardService.getCount();
-		int countList = 10;
+		int countList = 10; // 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
 		int countPage = 5;
 		int totalPage = totalCount / countList;
+		
+		
 		
 		
 		if (totalCount % countList > 0) {
@@ -198,15 +200,28 @@ logger.info("자유게시판 페이징 처리", locale);
 	int startNum = (pageNum - 1) * countList;
 	int endNum = pageNum * countList - 1;
 	
+	if (endPage > totalPage) {
+
+	    endPage = totalPage;
+
+	}
+	
+	
+	System.out.println("");
+	startNum++;
+	endNum++;
+	totalPage--;
 	System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
 
 	System.out.println("Controller에서 totalPage의 값 : " + totalPage);
-	List<FboardDto> list = fboardService.getBoardList(startNum,endNum);
+	List<FboardDto> list = fboardService.getBoardList(startNum,endNum,keyWord,keyField);
 	System.out.println(list.size()+"hhhhh");
 	model.addAttribute("list", list);
 	model.addAttribute("totalCount", totalCount);
 	model.addAttribute("totalPage", totalPage);
 	model.addAttribute("endPage" , endPage);
+	model.addAttribute("page",pageNum);
+	//model.addAttribute("settingnum",settingnum);
 	return "fboardlist";
 	
 	}
