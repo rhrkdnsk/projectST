@@ -72,13 +72,14 @@ public class LoginController {
 		String gname = request.getParameter("google_name");
 		HttpSession session = request.getSession();
 		session.setAttribute("login_user", gname);
+		System.out.println("session  ="+session.getAttribute("login_user"));
 		if(session.getAttribute("login_user")!=null) {
 			out.print(gname + "님 환영합니다");
 		} else {
 			out.print("로그인에 실패하였습니다");
 		}
 	}
-	
+
 	@RequestMapping(value = "signout.do", method = RequestMethod.GET)
 	public void signout(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {

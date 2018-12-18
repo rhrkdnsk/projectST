@@ -20,6 +20,8 @@ public interface IFboardService {
 	public FboardDto goBack(int freeboard_num);
 	public boolean readCount(int freeboard_num);
 	public int getCount();
+	public List<FboardDto> getBoardList(int startNum,int endNum);
+
 
 
 }

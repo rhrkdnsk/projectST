@@ -124,8 +124,8 @@ body {
 </style>
 </head>
 <body>
-<h1> 카운트의 값 : ${cdto}</h1>
-
+<h1> 카운트의 값 : ${totalCount}</h1>
+<a href="fboardPage.do">목록</a>
 <div id="board">
 
 <div id="title">
