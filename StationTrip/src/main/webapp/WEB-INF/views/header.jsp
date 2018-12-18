@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> 
+<META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
 
 <!-- 구글 로그인  -->
 <meta name="google-signin-scope" content="profile email">
@@ -21,7 +23,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="/trip/resources/js/login.js"></script>
-<title>header페이지</title>    
+<title>역장수</title>    
 </head>
 <body>
 
@@ -56,6 +58,9 @@
       <a href="glist.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
+  <div>
+ 	
+ 	 </div>
    <%if(session.getAttribute("login_user") == null) {
 		%>
 		<a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
