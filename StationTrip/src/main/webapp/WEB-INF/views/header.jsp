@@ -11,7 +11,7 @@
 
 <!-- 구글 로그인  -->
 <meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id" content="280265674654-tkajr3mg8i747ig3dopron35pks6tj8b.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="280265674654-1dvded6q2daokt54rmif098cno7cc0o6.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- ------ -->
 
