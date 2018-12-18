@@ -7,7 +7,7 @@
 <%@ page session="false" %>
 <html lang="en">
 <head>
-<jsp:include page="header.jsp" />
+<jsp:include page="header2.jsp" />
 </head>
 <body>
 <head>
