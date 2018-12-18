@@ -224,7 +224,20 @@ body {
   	%>
 <div class="list-bot">
 <p>
-  <a href="#">◀</a>
+<%
+// String aaa = (String)request.getAttribute("totalPage");
+// 	System.out.println("list에서 aaa의 값 : " + aaa);
+	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue();
+	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
+//int totalPage = Integer.parseInt(aaa);
+		for(int i=1; i<=totalPage; i++) {
+			%>
+						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>
+			<%			
+		}
+%>
+
+ <!--  <a href="#">◀</a>
   <a href="#">◁</a>
   <a href="#">1</a>
   <a href="#">2</a>
@@ -232,7 +245,7 @@ body {
   <a href="#">4</a>
   <a href="#">5</a> 
   <a href="#">▷</a>
-  <a href="#">▶</a>
+  <a href="#">▶</a> -->
 </p>
 </div>
 </div>

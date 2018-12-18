@@ -167,8 +167,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "fboardPage.do")
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model,int pageNum) {
-		logger.info("댓글 작성하기", locale);
-		int size=15;
+logger.info("자유게시판 페이징 처리", locale);
+		
 		
 		int totalCount = fboardService.getCount();
 		int countList = 10;
@@ -194,15 +194,19 @@ public class BoardController {
 	    pageNum = totalPage;
 	}
 	
-	int startNum = (pageNum - 1) * size;
-	int endNum = pageNum * size - 1;
+	 
+	int startNum = (pageNum - 1) * countList;
+	int endNum = pageNum * countList - 1;
+	
 	System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
 
-
+	System.out.println("Controller에서 totalPage의 값 : " + totalPage);
 	List<FboardDto> list = fboardService.getBoardList(startNum,endNum);
 	System.out.println(list.size()+"hhhhh");
 	model.addAttribute("list", list);
-	
+	model.addAttribute("totalCount", totalCount);
+	model.addAttribute("totalPage", totalPage);
+	model.addAttribute("endPage" , endPage);
 	return "fboardlist";
 	
 	}
