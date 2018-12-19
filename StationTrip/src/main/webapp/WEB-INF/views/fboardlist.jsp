@@ -128,6 +128,7 @@ body {
 </style>
 </head>
 <body>
+<h1>현재 페이지 번호${page}</h1>
 <h1> 카운트의 값 : ${totalCount}</h1>
 <a href="fboardPage.do">목록</a>
 <div id="board">
@@ -229,15 +230,24 @@ body {
   	%>
 <div class="list-bot">
 <p>
+<c:if test="${page-1 != 0 }">
+						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
+
+</c:if>
+
 <%
 // String aaa = (String)request.getAttribute("totalPage");
 // 	System.out.println("list에서 aaa의 값 : " + aaa);
 	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue();
+	int startNum = ((Integer)request.getAttribute("page")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+
 	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
 //int totalPage = Integer.parseInt(aaa);
-		for(int i=1; i<=totalPage; i++) {
-			%>						
-						<a href="fboardPage.do?pageNum=<%=i%>&&settingnum=${settingnum}"><%=i%></a>						
+		for(int i=startPage; i<=endPage; i++) {
+			%>			
+						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>						
 			<%			
 		}
 %>
@@ -253,6 +263,9 @@ body {
   <a href="#">5</a> 
   <a href="#">▷</a>
   <a href="#">▶</a> -->
+  <c:if test="${page+1 <= totalPage}">
+  <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
+  </c:if>
 </p>
 </div>
 </div>

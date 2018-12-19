@@ -102,23 +102,41 @@ public class FboardDao implements IFboardDao {
 	}
 	
 	@Override
-	public int getCount() {
+	public int getCount(String keyWord, String keyField,int startNum,int endNum) {
 		// TODO Auto-generated method stub
-	 
-		System.out.println("getCount 값 :" + sqlSession.selectOne(namespace + "getCount"));
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("keyField", keyField);
+			map.put("keyWord", keyWord);
+			map.put("startNum", startNum+"");
+			map.put("endNum", endNum+"");
+			return sqlSession.selectOne(namespace + "getSearchCount", map); 
+		} else {
+			return sqlSession.selectOne(namespace + "getCount");
+
+		}
+		//System.out.println("getCount 값 :" + sqlSession.selectOne(namespace + "getCount"));
 		
-		return sqlSession.selectOne(namespace + "getCount");
 	}
 	@Override
 	public List<FboardDto> getBoardList(int startNum,int endNum,String keyWord, String keyField) {
 		// TODO Auto-generated method stub
 		//System.out.println("보드 갯수 목록 " + sqlSession.selectList(namespace + "getNumlist"));
 		
-		Map<String, String> map = new HashMap<String, String>();		 
+		Map<String, String> map = new HashMap<String, String>();	
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
+			System.out.println("startnum" + startNum + "endNum" + endNum + "keyWord" + keyWord + "keyField" + keyField);
+			map.put("startNum", startNum+"");
+			map.put("endNum", endNum+"");
+			map.put("keyWord", keyWord);
+			map.put("keyField", keyField);
+			return sqlSession.selectList(namespace + "getSearch", map);
+		} else {
+		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
-		map.put("keyWord", keyWord);
-		map.put("keyField", keyField);
 		return sqlSession.selectList(namespace + "getNumlist", map);
+		}
 	}
+		
 }
