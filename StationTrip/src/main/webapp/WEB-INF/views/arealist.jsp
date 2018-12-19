@@ -22,12 +22,12 @@
 		<h1>지역정보</h1>
 		<div>
 			<select id="case1">
-			<!-- 시 단위 options -->
+				<!-- 시 단위 options -->
 			</select> <select id="case2">
-			<!-- 구,군 단위 options -->
+				<!-- 구,군 단위 options -->
 			</select>
 		</div>
-		
+
 		<h1>관광목적</h1>
 		<div>
 			<select id="case3">
