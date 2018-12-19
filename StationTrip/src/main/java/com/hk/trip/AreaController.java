@@ -29,11 +29,11 @@ public class AreaController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private AreaDto AreaDto;
-	
+
 	@RequestMapping(value = "areaboard.do", method = RequestMethod.GET)
 	public String areaboard(Locale locale, Model model) {
 		logger.info("지역 검색 이동.", locale);
-		
+
 		return "arealist";
 	}
 
@@ -42,17 +42,20 @@ public class AreaController {
 		logger.info("지역 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
-		
+
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String param = "areaCode?"; 	//지역조회
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "&numOfRows=25";		//row수
+		param += "&numOfRows=100";		//row수
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&areaCode=" + code;	//지역코드
-		
+		if(code!=null) {
+			param += "&areaCode=" + code;	//지역코드
+		}
+
+
 		String url = URL + param;
-		
+
 		org.jsoup.nodes.Document doc = null;
 		try {
 			doc = Jsoup.connect(url).get();
@@ -64,13 +67,13 @@ public class AreaController {
 		pw.println(doc);
 
 	}
-	
+
 	@RequestMapping(value = "category.do")
 	public void category(String sigunguCode, String category, String areaCode, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("지역별 카테고리 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
-		
+
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String param = "areaBasedList?";	//컨텐츠조회
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
@@ -81,9 +84,8 @@ public class AreaController {
 		param += "&contentTypeId=" + category;	//카테고리 코드
 		param += "&areaCode=" + areaCode;		// 시 코드
 		param += "&sigunguCode=" + sigunguCode;	// 군구코드
-		
 		String url = URL + param;
-		
+
 		org.jsoup.nodes.Document doc = null;
 		try {
 			doc = Jsoup.connect(url).get();
