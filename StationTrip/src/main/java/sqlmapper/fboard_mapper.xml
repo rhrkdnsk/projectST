@@ -60,6 +60,7 @@ select FREEBOARD_NUM, USER_NICKNAME, FREEBOARD_TITLE, FREEBOARD_TIME,FREEBOARD_C
         order by FREEBOARD_NUM DESC) A
     where ROWNUM <= #{endNum}) X
 where X.rnum >= #{startNum}  ]]>
+
 <!-- <if="keyField!=null">
     AND ${keyField} LIKE '%${keyWord}%'
 </if>
@@ -73,8 +74,8 @@ where X.rnum >= #{startNum}  ]]>
 select FREEBOARD_NUM, USER_NICKNAME, FREEBOARD_TITLE, FREEBOARD_TIME,FREEBOARD_CONTENT,FREEBOARD_VIEW,FREEBOARD_LIKE,FREEBOARD_HATE,FREEBOARD_CATEGORY
         from FREEBOARD
         order by FREEBOARD_NUM DESC) A
-    where ROWNUM <= #{endNum}) X
-where X.rnum >= #{startNum} AND ${keyField} LIKE '%${keyWord}%'  ]]>
+    where ROWNUM <= #{endNum} AND ${keyField} LIKE '%${keyWord}%') X
+   where X.rnum >= #{startNum} ]]>
 	</select>
 
     <select id="getSearchCount" resultType="int" parameterType="Map">

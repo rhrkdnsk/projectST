@@ -173,11 +173,15 @@ public class BoardController {
 		logger.info("자유게시판 페이징 처리", locale);
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		int countList = 10;
-		
+		 if(pageNum == 1) {
+			 request.getSession().removeAttribute("skeyField");
+			 request.getSession().removeAttribute("skeyWord");
+
+		 }
 		 HttpSession session = request.getSession();		
 		String skeyField = (String) session.getAttribute("skeyField");
 		String skeyWord = (String) session.getAttribute("skeyWord");
-			 
+			
 		if(skeyField != null && skeyWord != null && skeyField != "" && skeyWord != "" ) {
 		keyField = skeyField;
 		keyWord = skeyWord;
