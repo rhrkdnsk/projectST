@@ -31,15 +31,6 @@ public class TrainController {
 	
     public static String PHARM_URL;
     public final static String KEY = "U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
- 
-	
-    @RequestMapping(value = "/citylist.do", method = RequestMethod.GET)
-	public String citylist(Locale locale, Model model) throws Exception {
-		logger.info("cityinfo {}.", locale);
-
-        return "citylist";
-	}
-    
     
 	@RequestMapping(value = "/cityinfo.do", method = RequestMethod.GET)
 	public String cityinfo(Locale locale, Model model) throws Exception {
@@ -130,7 +121,7 @@ public class TrainController {
         System.out.println(train);
         model.addAttribute("traincode", train);
 
-        return "citylist";
+        return "traininfo";
 	}
 //	http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList
 	@RequestMapping(value = "/towninfo.do", method = RequestMethod.GET)
@@ -189,53 +180,6 @@ public class TrainController {
         System.out.println(town);
         pw.print(town);
 	}
-	@RequestMapping(value = "/traininfo.do", method = RequestMethod.GET)
-	public String traininfo(Locale locale, Model model,String[] citycode, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        URL urld = new URL("http://openapi.tago.go.kr/openapi/service/TrainInfoService/getVhcleKndList?serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D");
-
-		XmlPullParserFactory factorys = XmlPullParserFactory.newInstance();
-        factorys.setNamespaceAware(true);
-        XmlPullParser xpps = factorys.newPullParser();
-        BufferedInputStream biss = new BufferedInputStream(urld.openStream());
-        xpps.setInput(biss, "utf-8");
-        
-        String tags = null;
-        int event_types = xpps.getEventType();
-        
-        ArrayList<String> traincode = new ArrayList<String>();
-        
-        String trainName = null;
-        String trainId = null;
-        while (event_types != XmlPullParser.END_DOCUMENT) {
-            if (event_types == XmlPullParser.START_TAG) {
-                tags = xpps.getName();
-            } else if (event_types == XmlPullParser.TEXT) {
-                /* 도시명만 가져옴 */
-                if(tags.equals("vehiclekndnm")){
-                	trainName = xpps.getText();
-                }
-                if(tags.equals("vehiclekndid")){
-                	trainId = xpps.getText();
-                }
-            } else if (event_types == XmlPullParser.END_TAG) {
-                tags = xpps.getName();
-                if (tags.equals("item")) {
-                	traincode.add(trainId + "." + trainName);
-                }
-            }
- 
-            event_types = xpps.next();
-        }
-        String train = traincode.toString();
-        train = train.replaceAll("[\\[\\]]", "");
-        train = train.replaceAll(" ", "");
-        model.addAttribute("traincode", train);
-        
-        return "trainlist";
-	}
-
-	
 	
     private String getURLParam(String search){
         String url = PHARM_URL+"?ServiceKey="+KEY;

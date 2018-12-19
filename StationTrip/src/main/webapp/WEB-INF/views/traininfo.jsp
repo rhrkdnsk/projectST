@@ -18,10 +18,25 @@
 <body>
 	<h1>도시리스트</h1>
 		<table border="1">
+			<colgroup>
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+				<col width="20%">
+			</colgroup>
 			<tr>
-				<td>
+				<th colspan="2">
 					<p>출발역</p>
-				</td>
+				</th>
+				<th colspan="2">
+					<p>도착역</p>
+				</th>
+				<th>
+					<p>열차 선택</p>
+				</th>
+			</tr>
+			<tr>
 				<td>
 					<select id="startcitycode" >
 							<c:choose>
@@ -42,11 +57,6 @@
 					 <select id="starttowncode">
 						<option value="starttowncode">역 선택</option>
 					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p>도착역</p>
 				</td>
 				<td>
 					<select id="endcitycode" >
@@ -69,8 +79,6 @@
 						<option value="endtowncode">역 선택</option>
 					</select>
 				</td>
-			</tr>
-			<tr>
 				<td>
 					<select id="traincode" >
 							<c:choose>

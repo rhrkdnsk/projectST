@@ -16,6 +16,8 @@ $(function() {
 						},
 						success : function(doc) {
 							$("#starttowncode").empty();
+							$("#starttowncode").append(
+							"<option value='starttowncode'>역 선택</option>");
 							doc.replace(/\[/g, '');
 							var strArray = doc.split(",");
 							for (var i = 0; i < strArray.length; i++) {
@@ -51,6 +53,8 @@ $(function() {
 						},
 						success : function(doc) {
 							$("#endtowncode").empty();
+							$("#endtowncode").append(
+							"<option value='endtowncode'>역 선택</option>");
 							doc.replace(/\[/g, '');
 							var strArray = doc.split(",");
 							for (var i = 0; i < strArray.length; i++) {
