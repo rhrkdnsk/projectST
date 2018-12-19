@@ -72,12 +72,16 @@ public class LoginController {
 		PrintWriter out = response.getWriter();
 		String gname = request.getParameter("google_name");
 		HttpSession session = request.getSession();
-		session.setAttribute("login_userId", gname);
-		System.out.println("session  ="+session.getAttribute("login_userId"));
-		if(session.getAttribute("login_userId")!=null) {
-			out.print(gname + "님 환영합니다");
+		if(session.getAttribute("login_userId") == null) {
+			session.setAttribute("login_userId", gname);
+			System.out.println("session  ="+session.getAttribute("login_userId"));
+			if(session.getAttribute("login_userId")!=null) {
+				out.print(gname + "님 환영합니다");
+			} else {
+				out.print("로그인에 실패하였습니다");
+			}
 		} else {
-			out.print("로그인에 실패하였습니다");
+			out.print("");
 		}
 	}
 	
