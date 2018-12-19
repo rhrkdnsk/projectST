@@ -1,21 +1,14 @@
 package com.hk.trip.dto;
 
 public class AreaDto {
-
+	
+	private String URL;
 	private String ServiceKey;
 	private int numOfRows;
 	private int pageNo;
 	private String MobileOS;
 	private String MobileApp;
 	private int areaCode;
-	/*areaCode?
-	 * ServiceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D
-	 * &numOfRows=10
-	 * &pageNo=1
-	 * &MobileOS=ETC
-	 * &MobileApp=TestApp
-	 * &_type=json
-	 */
 	
 	public AreaDto() {
 		super();
@@ -29,6 +22,13 @@ public class AreaDto {
 		MobileOS = mobileOS;
 		MobileApp = mobileApp;
 		this.areaCode = areaCode;
+	}
+	
+	public String getUrl() {
+		return URL;
+	}
+	public void setURL(String uRL) {
+		URL = uRL;
 	}
 	public String getServiceKey() {
 		return ServiceKey;

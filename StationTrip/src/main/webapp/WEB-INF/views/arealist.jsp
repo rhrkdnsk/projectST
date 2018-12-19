@@ -44,8 +44,26 @@
 				<option value="">구 선택</option>
 			</select>
 		</div>
-		
+		<h1>관광목적</h1>
+		<div>
 		<!-- 	지역 별 컨텐츠 목록 조회	 -->
+			<select id="case3">
+				<option value="">관광타입</option>
+				<option value="12">관광지</option>
+				<option value="14">문화시설</option>
+				<option value="15">행사/공연</option>
+				<option value="25">여행코스</option>
+				<option value="28">레포츠</option>
+				<option value="32">숙박</option>
+				<option value="38">쇼핑</option>
+				<option value="39">음식점</option>
+			</select>
+			<select id="titles">
+				<option value="">관광지</option>
+			</select>
+		
+		</div>
+		
 		
 		<!-- 	컨텐츠 선택 시 해당 리스트 조회	 -->
 	
