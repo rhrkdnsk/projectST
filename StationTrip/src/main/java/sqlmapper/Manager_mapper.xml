@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+	<mapper namespace="com.hk.trip.manager">
+	
+	<select id="getAllList" resultType="LoginDto"> 
+	SELECT USER_NICKNAME,USER_NAME,USER_EMAIL,USER_PHONE,USER_POINT,TIER
+	FROM T_USER
+	</select>
+	 <select id="getBoard" resultType="LoginDto">
+     SELECT USER_NICKNAME,USER_NAME,USER_EMAIL,USER_PHONE,USER_POINT,TIER
+	FROM T_USER
+	WHERE USER_NICKNAME = #{user_nickname}
+    </select>
+    <update id="delBoard">
+      DELETE T_USER  USER_NICKNAME = #{user_nickname}
+    </update>
+	</mapper>
