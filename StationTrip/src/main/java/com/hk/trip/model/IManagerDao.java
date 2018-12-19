@@ -7,7 +7,7 @@ import com.hk.trip.dto.LoginDto;
 
 
 public interface IManagerDao {
-	public List<LoginDto>getAllList();
+	public List<LoginDto>sgetAllList();
 	public LoginDto getBoard(LoginDto dto);
 	public boolean insertBoard(LoginDto dto);
 	public boolean updateBoard(LoginDto dto);

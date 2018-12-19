@@ -40,7 +40,7 @@ public class ManagerController {
 	@RequestMapping(value = "/glist.do", method = RequestMethod.GET)
 	public String getAllList(Locale locale, Model model) {
 		logger.info("글목록조회", locale);
-		List<LoginDto> list = managerService.getAllList();
+		List<LoginDto> list = managerService.sgetAllList();
 		model.addAttribute("list", list);
 		return "glist";//페이지의 이름만 적어준다.-->나머지는 viewResolver가 찾아줌
 	}

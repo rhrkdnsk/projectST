@@ -99,15 +99,13 @@
 <body>
 <div id="container">
 <h1>유저 목록</h1>
-
-<form action="ManagerController.do" method="post">
+<!-- <form action="muldel.do" method="post" onsubmit="return confirmChk()"> -->
 <table class="table table-hover">
 	<col width="50px">
 	<col width="50px">
 	<col width="100px">
 	<col width="100px">
 	<col width="100px">
-	<col width="50px">
 	<col width="50px">
 	<tr>
 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
@@ -117,7 +115,6 @@
 		<th>전화번호</th>
 		<th>포인트</th>
 		<th>등급</th>
-		<th>삭제</th>
 	</tr>
 	<c:choose>
 		<c:when test="${empty list}">
@@ -148,7 +145,7 @@
 		</td>
 	</tr>
 </table>
-</form>
+<!-- </form> -->
 
 <form action="fboardlist.do" name="search" method="post">
 

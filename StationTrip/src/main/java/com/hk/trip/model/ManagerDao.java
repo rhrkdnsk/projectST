@@ -15,8 +15,8 @@ public class ManagerDao implements IManagerDao{
 	private String namespace="com.hk.trip.manager.";
 	
 	@Override
-	public List<LoginDto> getAllList() {
-		return sqlSession.selectList(namespace+"getAllList");
+	public List<LoginDto> sgetAllList() {
+		return sqlSession.selectList(namespace+"sgetAllList");
 	}
 
 	@Override

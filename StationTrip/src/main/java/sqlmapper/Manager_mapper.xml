@@ -6,7 +6,7 @@
 
 	<mapper namespace="com.hk.trip.manager">
 	
-	<select id="getAllList" resultType="LoginDto"> 
+	<select id="sgetAllList" resultType="LoginDto"> 
 	SELECT USER_NICKNAME,USER_NAME,USER_EMAIL,USER_PHONE,USER_POINT,TIER
 	FROM T_USER
 	</select>

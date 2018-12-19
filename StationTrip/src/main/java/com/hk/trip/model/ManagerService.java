@@ -11,9 +11,9 @@ public class ManagerService implements IManagerService{
 	@Autowired
 	IManagerDao managerDao;
 	@Override
-	public List<LoginDto> getAllList() {
+	public List<LoginDto> sgetAllList() {
 		// TODO Auto-generated method stub
-		return managerDao.getAllList();
+		return managerDao.sgetAllList();
 	}
 
 	@Override
