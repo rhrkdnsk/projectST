@@ -104,13 +104,19 @@ public class FboardDao implements IFboardDao {
 	@Override
 	public int getCount(String keyWord, String keyField,int startNum,int endNum) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Dao에서 startnum : " + startNum  + "endNum : " +  endNum + "keyWord : " + keyWord  + "keyField : " + keyField);
+
 		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("keyField", keyField);
-			map.put("keyWord", keyWord);
 			map.put("startNum", startNum+"");
 			map.put("endNum", endNum+"");
-			return sqlSession.selectOne(namespace + "getSearchCount", map); 
+			map.put("keyField", keyField);
+			map.put("keyWord", keyWord);
+			
+			int asd =  sqlSession.selectOne(namespace + "getSearchCount", map);
+			System.out.println(asd);
+			return asd;
 		} else {
 			return sqlSession.selectOne(namespace + "getCount");
 
@@ -125,11 +131,10 @@ public class FboardDao implements IFboardDao {
 		
 		Map<String, String> map = new HashMap<String, String>();	
 		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
-			System.out.println("startnum" + startNum + "endNum" + endNum + "keyWord" + keyWord + "keyField" + keyField);
 			map.put("startNum", startNum+"");
 			map.put("endNum", endNum+"");
-			map.put("keyWord", keyWord);
 			map.put("keyField", keyField);
+			map.put("keyWord", keyWord);
 			return sqlSession.selectList(namespace + "getSearch", map);
 		} else {
 		

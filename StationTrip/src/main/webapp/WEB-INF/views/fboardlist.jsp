@@ -287,7 +287,6 @@ body {
 </form>
 
 <form action="fboardPage.do?pageNum=${page}" method = "post" name="looksetting">
-
 <select name="settingnum" onchange="lookBoard()">
 <option value="">게시글 개수 조절</option>
 <option value="5">5개씩보기</option>

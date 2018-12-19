@@ -171,10 +171,23 @@ public class BoardController {
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
 			String keyField) {
 		logger.info("자유게시판 페이징 처리", locale);
-		System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
+		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		int countList = 10;
 		
+		 HttpSession session = request.getSession();		
+		String skeyField = (String) session.getAttribute("skeyField");
+		String skeyWord = (String) session.getAttribute("skeyWord");
+			 
+		if(skeyField != null && skeyWord != null && skeyField != "" && skeyWord != "" ) {
+		keyField = skeyField;
+		keyWord = skeyWord;
+		}
+		
+		//System.out.println("skeyField 값 : " + skeyField + "skeyWord값 : " + skeyWord );
+		//+ "skeyWord값 : " + skeyWord
 		String settingnum = request.getParameter("settingnum");
+		
+		
 		if(settingnum != null && settingnum != "") {
 			int sum = Integer.parseInt(settingnum);
 			if(sum != 10) {
@@ -186,8 +199,8 @@ public class BoardController {
 		int endNum = pageNum * countList - 1;
 		startNum++;
 		endNum++;
-		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
-		int totalCount = fboardService.getCount(keyField,keyWord,startNum,endNum); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
+//		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
+		int totalCount = fboardService.getCount(keyWord,keyField,startNum,endNum); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
 		
 		
 		
@@ -221,14 +234,23 @@ public class BoardController {
 			endPage = totalPage;
 
 		}
-
+		
+		if(pageNum == 0) {
+			pageNum++;
+		}
 		System.out.println("startPage :" + startPage + " endPage : " + endPage);
 		
 		System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
 
 		System.out.println("Controller에서 totalPage의 값 : " + totalPage);
 		List<FboardDto> list = fboardService.getBoardList(startNum, endNum, keyWord, keyField);
-		System.out.println(list.size() + "hhhhh");
+		
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
+			 
+			 session.setAttribute("skeyField", keyField);
+			 session.setAttribute("skeyWord", keyWord);
+
+			 }
 		model.addAttribute("list", list);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
