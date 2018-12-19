@@ -60,7 +60,6 @@ public class AreaController {
 			e.printStackTrace();
 		}
 		System.out.println(doc);
-		
 		PrintWriter pw=res.getWriter();
 		pw.println(doc);
 
@@ -92,7 +91,6 @@ public class AreaController {
 			e.printStackTrace();
 		}
 		System.out.println(doc);
-		System.out.println(url);
 		PrintWriter pw=res.getWriter();
 		pw.println(doc);
 

@@ -22,7 +22,6 @@
 	<form>
 		<div>
 			<select id="case1">
-				<option value="">시 선택</option>
 				<option value="1">서울</option>
 				<option value="2">인천</option>
 				<option value="3">대전</option>
@@ -41,7 +40,7 @@
 				<option value="38">전라남도</option>
 				<option value="39">제주도</option>
 			</select> <select id="case2">
-				<option value="">구 선택</option>
+				<option value="">강남구</option>
 			</select>
 		</div>
 		<h1>관광목적</h1>
