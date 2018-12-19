@@ -7,94 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script type="text/javascript">
-function checkLoginStatus(){
-	var loginBtn = document.querySelector('#loginBtn');
-	if(gauth.isSignedIn.get()){
-		console.log('logined');
-		loginBtn.value = 'Logout';
-	} else {
-		console.log('logouted');
-		loginBtn.value = 'Login';
-	}
-}
-
-
-function init() {
-	console.log('init');
-	gapi.load('auth2', function() {
-		console.log('auth2');
-	
-		window.gauth = gapi.auth2.init({
-			client_id:'280265674654-1dvded6q2daokt54rmif098cno7cc0o6.apps.googleusercontent.com'
-			})
-			
-		console.log('client_id')
-		
-		gauth.then(function(){
-			console.log('googleAuth success');
-			checkLoginStatus();
-		}, function(){
-			console.log('googleAuth fail');
-		});
-	});
-}
-
-var checkFacebookStatus = function(response){
-	alert("2");
-	console.log(response);
-	console.log('Successful login for: ' + response.name);
-	//statusChangeCallback(response);
-	if(response.status === 'connected'){
-		document.querySelector('#authBtn').value = "Logout";
-	} else {
-		document.querySelector('#authBtn').value = "Login";
-	}
-}
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2249209242030240',
-      cookie     : true,  // enable cookies to allow the server to access 
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v3.2' // use graph api version 2.8
-    });
-
-    // Now that we've initialized the JavaScript SDK, we call 
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
-
-    FB.getLoginStatus(checkFacebookStatus);
-
-  };
-
-// Load the SDK asynchronously
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      /* document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!'; */
-    });
-  }
-
-</script> 
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -139,13 +51,98 @@ function testAPI() {
     </div>
   </div>
 
+<script type="text/javascript">
+
+
+var checkFacebookStatus = function(response){
+	alert("3");
+	console.log(response);
+	console.log('Successful login for: ' + response.name);
+
+	if(response.status === 'connected'){
+		 FB.api('/me', function(response) {
+	          console.log('Successful login for: ' + response.name);
+	    		var data = { "fb_name": response.name };
+	    		
+	    		$.ajax({
+	    			url:"fblogin.do",
+	    			type:'GET',
+	    			data: data,
+	    			success:function(data){
+	    				var adata = data;
+	    				if(adata != ""){
+	    					 alert(adata);
+	    					 window.location.reload()
+	    				}
+	    			},
+	    			error:function(){
+	    				alert("페북로그인 실패ㅜㅜ") ;
+	    			}
+	    		}); 
+
+	        });
+		
+	} else {
+		document.querySelector('#authBtn').value = "Login";
+	}
+}
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2249209242030240',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.2' // use graph api version 2.8
+    });
+
+    FB.getLoginStatus(checkFacebookStatus);
+
+  };
+
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+function logincheck(){
+	FB.login(function(response){
+			console.log('login =>', response);
+			
+			checkFacebookStatus(response);
+		});
+}
+
+function signout(){
+	FB.logout(function(response){
+		console.log('logout =>', response);
+		
+		checkFacebookStatus(response);
+		});
+}
+</script> 
+
+
+
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+
    <%if(session.getAttribute("login_user") == null) {
 		%>
 		<a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
 		<%
 	} else {
 		%>
-		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
+		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signout()" >로그아웃</a>
 		<%
 	}
 	%>
@@ -154,45 +151,34 @@ function testAPI() {
 	   <div class="window">
 		   <div id="loginModalLayer">
 				<div class="loginModalContent">
+					
 					<fieldset>
 						<legend>로그인</legend>
 						<br />
 						<ul>
-						<li>
-						 
-  <input type="button" id="authBtn" value="checking..." onclick="
-  	if(this.value === 'Login'){
-  		//now logout
-  		FB.login(function(response){
-  			console.log('login =>', response);
-  			
-  			checkFacebookStatus(response);
-  		});
-  	} else {
-  		//now login
-		FB.logout(function(response){
-			console.log('logout =>', response);
-			
-			checkFacebookStatus(response);
-  		});
-  	}
-  ">
- 	<input type="button" id="loginBtn" value="checking..." onclick="
- 		if(this.value == 'Login'){
- 			gauth.signIn().then(function(){
- 				console.log('gauth.signIn');
- 				checkLoginStatus();
- 			});
- 		} else {
- 			gauth.signOut().then(function(){
- 				console.log('gauth.signOut');
- 				checkLoginStatus();
- 			});
- 		}"
- 	/>
-						
-						</li>
-
+							<li>
+							<input type="button" id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
+							  	if(this.value === 'Login'){
+							  		//now logout
+							  		FB.login(function(response){
+							  			console.log('login =>', response);
+							  			
+							  			checkFacebookStatus(response);
+							  		});
+							  	} else {
+							  		//now login
+									FB.logout(function(response){
+										console.log('logout =>', response);
+										
+										checkFacebookStatus(response);
+							  		});
+							  	}
+							  ">
+							
+<!-- 							<fb:login-button scope="public_profile,email" onlogin="checkFacebookStatus();" > -->
+<!-- 							</fb:login-button> -->
+								
+							</li>
 							<li>
 								<span class="labeltag">
 								<label>이메일</label>

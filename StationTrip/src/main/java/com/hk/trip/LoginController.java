@@ -57,8 +57,9 @@ public class LoginController {
 		LoginDto dto = new LoginDto(email, password);
 		if (loginService.login(dto) != null) {
 			session.setAttribute("login_user", loginService.login(dto));
+			session.setAttribute("login_userId", loginService.login(dto).getUser_nickname());
 			System.out.println("session = " + session.getAttribute("login_user"));
-			out.print(session.getAttribute("login_user"));
+			out.print(session.getAttribute("login_userId"));
 		}
 	}
 	
@@ -71,12 +72,34 @@ public class LoginController {
 		PrintWriter out = response.getWriter();
 		String gname = request.getParameter("google_name");
 		HttpSession session = request.getSession();
-		session.setAttribute("login_user", gname);
-		System.out.println("session  ="+session.getAttribute("login_user"));
-		if(session.getAttribute("login_user")!=null) {
+		session.setAttribute("login_userId", gname);
+		System.out.println("session  ="+session.getAttribute("login_userId"));
+		if(session.getAttribute("login_userId")!=null) {
 			out.print(gname + "님 환영합니다");
 		} else {
 			out.print("로그인에 실패하였습니다");
+		}
+	}
+	
+	@RequestMapping(value = "fblogin.do", method = RequestMethod.GET)
+	public void fblogin(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		logger.info("googlelogin {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String fbname = request.getParameter("fb_name");
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login_userId") == null) {
+			session.setAttribute("login_userId", fbname);
+			System.out.println("session  ="+session.getAttribute("login_userId"));
+			if(session.getAttribute("login_userId")!=null) {
+				out.print(fbname + "님 환영합니다");
+			} else {
+				out.print("로그인에 실패하였습니다");
+			}
+		} else {
+			out.print("");
 		}
 	}
 
