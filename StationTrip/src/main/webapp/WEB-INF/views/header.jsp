@@ -15,7 +15,6 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- ------ -->
 
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,6 +22,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="/trip/resources/js/login.js"></script>
+
+
 <title>역장수</title>    
 </head>
 <body>
@@ -58,9 +59,75 @@
       <a href="glist.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>
-  <div>
- 	
- 	 </div>
+
+<script type="text/javascript">
+
+
+var checkFacebookStatus = function(response){
+	console.log(response);
+	console.log('Successful login for: ' + response.name);
+
+	if(response.status === 'connected'){
+		 FB.api('/me', function(response) {
+	          console.log('Successful login for: ' + response.name);
+	    		var data = { "fb_name": response.name };
+	    		
+	    		$.ajax({
+	    			url:"fblogin.do",
+	    			type:'GET',
+	    			data: data,
+	    			success:function(data){
+	    				var adata = data;
+	    				if(adata != ""){
+	    					 alert(adata);
+	    					 window.location.reload()
+	    				}
+	    			},
+	    			error:function(){
+	    				alert("페북로그인 실패ㅜㅜ") ;
+	    			}
+	    		}); 
+
+	        });
+		
+	} else {
+		document.querySelector('#authBtn').value = "Login";
+	}
+}
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2249209242030240',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.2' // use graph api version 2.8
+    });
+
+    FB.getLoginStatus(checkFacebookStatus);
+
+  };
+
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
+function logincheck(){
+	FB.login(function(response){
+			console.log('login =>', response);
+			
+			checkFacebookStatus(response);
+		});
+}
+
+</script> 
+
+
    <%if(session.getAttribute("login_user") == null) {
 		%>
 		<a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
@@ -80,6 +147,22 @@
 						<legend>로그인</legend>
 						<br />
 						<ul>
+							<li>
+							<input type="button" id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
+							  	if(this.value === 'Login'){
+							  		//now logout
+							  		FB.login(function(response){
+							  			console.log('login =>', response);
+							  			
+							  			checkFacebookStatus(response);
+							  		});
+							  	}
+							  ">
+							
+<!-- 							<fb:login-button scope="public_profile,email" onlogin="checkFacebookStatus();" > -->
+<!-- 							</fb:login-button> -->
+								
+							</li>
 							<li>
 								<div class="g-signin2" <%if(session.getAttribute("login_user") == null) {
 									%>
@@ -249,6 +332,12 @@ function signOut() {
 	auth2.signOut().then(function () {
 		console.log('User signed out.');
 	})
+	
+	FB.logout(function(response){
+		console.log('logout =>', response);
+		
+		checkFacebookStatus(response);
+		});
 
 }
 function onSignIn(googleUser) {
@@ -268,7 +357,7 @@ function onSignIn(googleUser) {
     
     var google_name = profile.getName();
 
-     alert(id_token);
+    //alert(id_token);
 	var data = { "google_name": google_name };
   
 	$.ajax({
@@ -276,7 +365,7 @@ function onSignIn(googleUser) {
 		type:'GET',
 		data: data,
 		success:function(data){
-			 alert(data);
+			 alert("google"+data);
 			
 		},
 		error:function(){

@@ -79,6 +79,28 @@ public class LoginController {
 			out.print("로그인에 실패하였습니다");
 		}
 	}
+	
+	@RequestMapping(value = "fblogin.do", method = RequestMethod.GET)
+	public void fblogin(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		logger.info("googlelogin {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String fbname = request.getParameter("fb_name");
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login_user") == null) {
+			session.setAttribute("login_user", fbname);
+			System.out.println("session  ="+session.getAttribute("login_user"));
+			if(session.getAttribute("login_user")!=null) {
+				out.print(fbname + "님 환영합니다");
+			} else {
+				out.print("로그인에 실패하였습니다");
+			}
+		} else {
+			out.print("");
+		}
+	}
 
 	@RequestMapping(value = "signout.do", method = RequestMethod.GET)
 	public void signout(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)

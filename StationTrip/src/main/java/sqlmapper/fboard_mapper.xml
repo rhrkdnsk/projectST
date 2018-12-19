@@ -59,9 +59,15 @@ select FREEBOARD_NUM, USER_NICKNAME, FREEBOARD_TITLE, FREEBOARD_TIME,FREEBOARD_C
         from FREEBOARD
         order by FREEBOARD_NUM DESC) A
     where ROWNUM <= #{endNum}) X
-where X.rnum >= #{startNum} ]]>
-	
+where X.rnum >= #{startNum}  ]]>
+<!-- <if="keyField!=null">
+    AND ${keyField} LIKE '%${keyWord}%'
+</if>
+	<if="id!=null">
+    AND ${keyField} LIKE '%${keyWord}%'
+</if> -->
 	</select>
+    
 <!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
 <!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
    </mapper>
