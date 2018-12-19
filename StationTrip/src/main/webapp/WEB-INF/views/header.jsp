@@ -15,6 +15,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- ------ -->
 
+<link rel="stylesheet" href="/trip/resources/css/google&fb.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -60,74 +61,7 @@
     </div>
   </div>
 
-<script type="text/javascript">
-
-
-var checkFacebookStatus = function(response){
-	//alert("1");
-	console.log(response);
-	console.log('Successful login for: ' + response.name);
-
-	if(response.status === 'connected'){
-		 FB.api('/me', function(response) {
-	          console.log('Successful login for: ' + response.name);
-	    		var data = { "fb_name": response.name };
-	    		
-	    		$.ajax({
-	    			url:"fblogin.do",
-	    			type:'GET',
-	    			data: data,
-	    			success:function(data){
-	    				var adata = data;
-	    				if(adata != ""){
-	    					 //alert(adata);
-	    					 window.location.reload()
-	    				}
-	    			},
-	    			error:function(){
-	    				alert("페북로그인 실패ㅜㅜ") ;
-	    			}
-	    		}); 
-
-	        });
-		 document.querySelector('#authBtn').value = "Logout";
-	} else {
-		console.log(response);
-		document.querySelector('#authBtn').value = "Login";
-	}
-}
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2249209242030240',
-      cookie     : true,  // enable cookies to allow the server to access 
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v3.2' // use graph api version 2.8
-    });
-
-    FB.getLoginStatus(checkFacebookStatus);
-
-  };
-
-// Load the SDK asynchronously
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "https://connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-
-function logincheck(){
-	FB.login(function(response){
-			console.log('login =>', response);
-			
-			checkFacebookStatus(response);
-		});
-}
-
-</script> 
+<script type="text/javascript" src="/trip/resources/js/google&fb.js"></script> 
 
 
    <%if(session.getAttribute("login_userId") == null) {
@@ -151,7 +85,7 @@ function logincheck(){
 						<br />
 						<ul>
 							<li>
-							<input type="button" id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
+							<button class="loginBtn loginBtn--facebook"  id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
 							  	if(this.value === 'Login'){
 							  		//now logout
 							  		FB.login(function(response){
@@ -161,19 +95,43 @@ function logincheck(){
 							  		});
 							  	}
 							  ">
+							  Login with Facebook
+							</button>
+							
+<!-- 							<button class="uibutton" id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick=" -->
+<!-- 							  	if(this.value === 'Login'){ -->
+<!-- 							  		//now logout -->
+<!-- 							  		FB.login(function(response){ -->
+<!-- 							  			console.log('login =>', response); -->
+							  			
+<!-- 							  			checkFacebookStatus(response); -->
+<!-- 							  		}); -->
+<!-- 							  	} -->
+<!-- 							  ">Button</button> -->
 							
 <!-- 							<fb:login-button scope="public_profile,email" onlogin="checkFacebookStatus();" > -->
 <!-- 							</fb:login-button> -->
 								
 							</li>
 							<li>
-								<div class="g-signin2" <%if(session.getAttribute("login_userId") == null) {
+								<button class="loginBtn loginBtn--google" id="loginBtn" value="checking..." onclick="
+							 		if(this.value == 'Login'){
+							 			gauth.signIn().then(function(){
+							 				console.log('gauth.signIn');
+							 				checkLoginStatus();
+							 			});
+							 		}">
+								  Login with Google
+								</button>
+								
+								
+								<%-- <div class="g-signin2" <%if(session.getAttribute("login_userId") == null) {
 									%>
 										data-onsuccess="onSignIn" 
 									<%
 								}
 								%>
-								data-theme="dark"></div>
+								data-theme="dark"></div> --%>
 							</li>
 							<li>
 								<span class="labeltag">
@@ -330,53 +288,8 @@ function logincheck(){
 <!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
 <script type="text/javascript">
-function signOut() {
-	var auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut().then(function () {
-		console.log('User signed out.');
-	})
-	
-	FB.logout(function(response){
-		console.log('logout =>', response);
-		
-		checkFacebookStatus(response);
-		});
 
-}
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your
-											// server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-    
-    var google_name = profile.getName();
-
-    //alert(id_token);
-	var data = { "google_name": google_name };
-  
-	$.ajax({
-		url:"googlelogin.do",
-		type:'GET',
-		data: data,
-		success:function(data){
-			// alert("google"+data);
-			
-		},
-		error:function(){
-			alert("구글로그인 실패ㅜㅜ") ;
-		}
-	}); 
-	window.location.reload()
-};
 </script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>
 </html>

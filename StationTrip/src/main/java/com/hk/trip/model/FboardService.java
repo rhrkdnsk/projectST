@@ -64,9 +64,9 @@ public class FboardService implements IFboardService {
 		return ifboarddao.readCount(freeboard_num);
 	}
 	@Override
-	public int getCount() {
+	public int getCount(String keyWord, String keyField,int startNum,int endNum) {
 		// TODO Auto-generated method stub
-		return ifboarddao.getCount();
+		return ifboarddao.getCount(keyWord,keyField,startNum,endNum);
 	}
 	@Override
 	public List<FboardDto> getBoardList(int startNum,int endNum,String keyWord, String keyField) {
