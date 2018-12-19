@@ -64,6 +64,7 @@
 
 
 var checkFacebookStatus = function(response){
+	//alert("1");
 	console.log(response);
 	console.log('Successful login for: ' + response.name);
 
@@ -79,7 +80,7 @@ var checkFacebookStatus = function(response){
 	    			success:function(data){
 	    				var adata = data;
 	    				if(adata != ""){
-	    					 alert(adata);
+	    					 //alert(adata);
 	    					 window.location.reload()
 	    				}
 	    			},
@@ -89,8 +90,9 @@ var checkFacebookStatus = function(response){
 	    		}); 
 
 	        });
-		
+		 document.querySelector('#authBtn').value = "Logout";
 	} else {
+		console.log(response);
 		document.querySelector('#authBtn').value = "Login";
 	}
 }
@@ -128,13 +130,14 @@ function logincheck(){
 </script> 
 
 
-   <%if(session.getAttribute("login_user") == null) {
+   <%if(session.getAttribute("login_userId") == null) {
 		%>
 		<a href="#loginModalLayer" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right loginModalLink openMask">로그인</a>
 		<%
 	} else {
 		%>
 		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
+		<span class="w3-bar-item  w3-hide-small w3-padding-large w3-right"><%=session.getAttribute("login_userId") %></span>
 		<%
 	}
 	%>
@@ -164,7 +167,7 @@ function logincheck(){
 								
 							</li>
 							<li>
-								<div class="g-signin2" <%if(session.getAttribute("login_user") == null) {
+								<div class="g-signin2" <%if(session.getAttribute("login_userId") == null) {
 									%>
 										data-onsuccess="onSignIn" 
 									<%
@@ -365,7 +368,7 @@ function onSignIn(googleUser) {
 		type:'GET',
 		data: data,
 		success:function(data){
-			 alert("google"+data);
+			// alert("google"+data);
 			
 		},
 		error:function(){

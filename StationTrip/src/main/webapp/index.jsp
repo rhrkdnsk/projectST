@@ -11,6 +11,7 @@
 <!-- <a href="home.do">HOME</a> -->
 <%session.invalidate(); %>
 <script type="text/javascript">
+//alert("index")
 window.location = "home.do";
 </script>
 </body>
