@@ -40,6 +40,59 @@ function init() {
 	});
 }
 
+var checkFacebookStatus = function(response){
+	console.log(response);
+	console.log('Successful login for: ' + response.name);
+	//statusChangeCallback(response);
+	if(response.status === 'connected'){
+		document.querySelector('#authBtn').value = "Logout";
+	} else {
+		document.querySelector('#authBtn').value = "Login";
+	}
+}
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2249209242030240',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.2' // use graph api version 2.8
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(checkFacebookStatus);
+
+  };
+
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      /* document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!'; */
+    });
+  }
+
 </script> 
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -83,6 +136,26 @@ function init() {
       <a href="#" class="w3-bar-item w3-button">1:1문의</a>
       <a href="glist.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
+  </div>
+  <div>
+  
+  <input type="button" id="authBtn" value="checking..." onclick="
+  	if(this.value === 'Login'){
+  		//now logout
+  		FB.login(function(response){
+  			console.log('login =>', response);
+  			
+  			checkFacebookStatus(response);
+  		});
+  	} else {
+  		//now login
+		FB.logout(function(response){
+			console.log('logout =>', response);
+			
+			checkFacebookStatus(response);
+  		});
+  	}
+  ">
   </div>
   <div>
  	<input type="button" id="loginBtn" value="checking..." onclick="
