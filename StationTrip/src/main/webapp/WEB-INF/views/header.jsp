@@ -134,6 +134,11 @@
 								data-theme="dark"></div> --%>
 							</li>
 							<li>
+							</li>
+						</ul>
+						<form>
+						<ul>
+							<li>
 								<span class="labeltag">
 								<label>이메일</label>
 								</span>
@@ -162,9 +167,6 @@
 								<input type="password" id="password" />
 							</li>
 							<li>
-								<br />
-							</li>
-							<li>
 								<input type="checkbox" id="idCheck" <%   							     
 							    if(cookies != null){
 							    	for(int i=0; i < cookies.length; i++){
@@ -186,6 +188,7 @@
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
 							</li>
 						</ul>
+						</form>
 					</fieldset>
 				</div>
 			</div>

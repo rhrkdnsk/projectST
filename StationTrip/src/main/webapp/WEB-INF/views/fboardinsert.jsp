@@ -25,7 +25,12 @@ h6 {
 
 }
 </style>
+<script type="text/javascript">
+function getlist() {
+	location.href="fboardPage.do?pageNum=${nowPage}"
+}
 
+</script>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -60,7 +65,7 @@ h6 {
 이미지 업로드 <input type="file" />
 <p />
 
-<input type="submit" value="글쓰기" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center/>
+<input type="submit" value="글쓰기" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center onclick="getlist()"/>
 
 </form>
 </div>

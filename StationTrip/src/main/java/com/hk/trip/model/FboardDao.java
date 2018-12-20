@@ -143,5 +143,12 @@ public class FboardDao implements IFboardDao {
 		return sqlSession.selectList(namespace + "getNumlist", map);
 		}
 	}
+	@Override
+	public boolean delComment(CommentDto cdto) {
+		// TODO Auto-generated method stub
+		int count =0;
+		count=sqlSession.delete(namespace1 + "delComment", cdto); 
 		
+		return count > 0 ? true:false;
+	}
 }

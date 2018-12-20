@@ -72,7 +72,7 @@ public class BoardController {
 		boolean isS = fboardService.insertBoard(fdto);
 		System.out.println(isS);
 		if (isS) {
-			return "redirect:fboardlist.do";
+			return "redirect:fsessiondel.do";
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
 			return "error";
@@ -144,8 +144,11 @@ public class BoardController {
 	public String fboarddelete(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
 		logger.info("글 삭제하기", locale);
 		boolean isS = fboardService.deleteBoard(freeboard_num);
+		int setNum = (Integer) request.getSession().getAttribute("nowPage");
+		
+		
 		if (isS) {
-			return "redirect:fboardlist.do";
+			return "redirect:fboardPage.do?pageNum="+setNum;
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
 			return "error";
@@ -175,25 +178,21 @@ public class BoardController {
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		
 		String settingnum = request.getParameter("settingnum");
+		int countList = 2;
+
 		if(settingnum != null && settingnum != "") {
 			int sum = Integer.parseInt(settingnum);
 			session.setAttribute("setnum", sum);
+			
+			countList = sum;
 			}
-		int countList = 2;
 		
+		System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
+
 		if(request.getSession().getAttribute("setnum") != null) {
 			int setNum = (Integer) request.getSession().getAttribute("setnum");
 			countList = setNum;
-		}
-		
-		
-		
-		 if(pageNum == 1) {
-			 request.getSession().removeAttribute("skeyField");
-			 request.getSession().removeAttribute("skeyWord");
-
-		 }
-		 	
+		}		 	
 		String skeyField = (String) session.getAttribute("skeyField");
 		String skeyWord = (String) session.getAttribute("skeyWord");
 			
@@ -203,16 +202,15 @@ public class BoardController {
 		}
 		
 		//System.out.println("skeyField 값 : " + skeyField + "skeyWord값 : " + skeyWord );
-		//+ "skeyWord값 : " + skeyWord
-		
-//String settingnum = request.getParameter("settingnum");
-//		if(settingnum != null && settingnum != "") {
-//			int sum = Integer.parseInt(settingnum);
-//			if(sum != 10) {
-//				countList = sum;
-//			}
-//			
-//		}
+		//+ "skeyWord값 : " + skeyWord	
+		//String settingnum = request.getParameter("settingnum");
+		//		if(settingnum != null && settingnum != "") {
+		//			int sum = Integer.parseInt(settingnum);
+		//			if(sum != 10) {
+		//				countList = sum;
+		//			}
+		//			
+		//		}
 		
 		int startNum = (pageNum - 1) * countList;
 		int endNum = pageNum * countList - 1;
@@ -220,16 +218,9 @@ public class BoardController {
 		endNum++;
 //		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
 		int totalCount = fboardService.getCount(keyWord,keyField,startNum,endNum); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
-		
-		
-		
-		
 		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
 		int countPage = 5;
 		int totalPage = totalCount / countList;
-
-	
-
 		if (totalCount % countList > 0) {totalPage++;}
 		if (totalPage < pageNum) {pageNum = totalPage;}
 		int startPage = ((pageNum - 1) / countPage) * countPage + 1; // 여기서 5는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
@@ -246,7 +237,7 @@ public class BoardController {
 			 session.setAttribute("skeyField", keyField);
 			 session.setAttribute("skeyWord", keyWord);
 			 }
-		
+		session.setAttribute("nowPage", pageNum);
 		//System.out.println("totalPage의 값 : " + totalPage);
 		model.addAttribute("list", list);
 		model.addAttribute("totalCount", totalCount);
@@ -267,6 +258,22 @@ public class BoardController {
 
 		
 		return "redirect:fboardPage.do?pageNum=1";
+
+	
+	}
+	
+	@RequestMapping(value = "fdelcomment.do")
+	public String fboarddelcomment(HttpServletRequest request, Locale locale, Model model,CommentDto cdto) {
+		logger.info("자유게시판 페이징 처리", locale);
+		
+		boolean isS = fboardService.delComment(cdto);
+		if(isS) {
+			return "redirect:fboarddetail.do?freeboard_num="+cdto.getFreeboard_num();
+
+		} else {
+			return "error";
+		}
+			
 
 	
 	}

@@ -63,7 +63,13 @@
    	<dd class="time">${cdto.comment_time}</dd>
    	<dd class="count">${cdto.comment_like}</dd> 
    	<dd class="count">${cdto.comment_hate}</dd> 
-  	
+   	
+  	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
+
+<button value="수정" onclick="goUpdate()">수정</button>
+ <button onclick="goCdelete()">삭제</button> <!-- cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
+
+</c:if>
   	</dl>
   	
   	</c:forEach>
@@ -88,6 +94,10 @@
   function goBack()	{
 	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.freeboard_num}-1;
   }
+  function goCdelete() {
+	  location.href="fdelcomment.do?freeboard_num="+${cdto.freeboard_num}+"&comment_num="+${cdto.comment_num};
+  }
+  
   </script>
   <jsp:include page="footer.jsp" />
   
