@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.BufferedInputStream;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -118,7 +121,7 @@ public class TrainController {
         String train = traincode.toString();
         train = train.replaceAll("[\\[\\]]", "");
         train = train.replaceAll(" ", "");
-        System.out.println(train);
+       // System.out.println(train);
         model.addAttribute("traincode", train);
 
         return "traininfo";
@@ -126,7 +129,7 @@ public class TrainController {
 //	http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList
 	@RequestMapping(value = "/towninfo.do", method = RequestMethod.GET)
 	public void towninfo(Locale locale, Model model,String[] citycode, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("역정보 {}.", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
@@ -177,9 +180,89 @@ public class TrainController {
         String town = townlist.toString();
         town = town.replaceAll("[\\[\\]]", "");
         town = town	.replaceAll(" ", "");
-        System.out.println(town);
+        //System.out.println(town);
         pw.print(town);
 	}
+	
+	@RequestMapping(value = "/trainlist.do", method = RequestMethod.GET)
+	public void trainlist(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("기차리스트 {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		String startcode = request.getParameter("startcode");
+		String endcode = request.getParameter("endcode");
+		String traintime = request.getParameter("traintime");
+		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
+		
+        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime);
+
+		System.out.println("startcode = "+startcode);
+		System.out.println("endcode = "+endcode);
+		System.out.println("traintime = "+traintime);
+		
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        XmlPullParser xpp = factory.newPullParser();
+        BufferedInputStream bis = new BufferedInputStream(url.openStream());
+        xpp.setInput(bis, "utf-8");
+        
+        String tag = null;
+        int event_type = xpp.getEventType();
+        
+        ArrayList<String> traininfo = new ArrayList<String>();
+        String traingradename = null;
+        String depplandtime = null;
+        String arrplandtime = null;
+        String depplacename = null;
+        String arrplacename = null;
+        String adultcharge = null;
+        while (event_type != XmlPullParser.END_DOCUMENT) {
+            if (event_type == XmlPullParser.START_TAG) {
+                tag = xpp.getName();
+            } else if (event_type == XmlPullParser.TEXT) {
+                /* 차량명  */
+                if(tag.equals("traingradename")){
+                	traingradename = xpp.getText();
+                }
+                /* 출발시간 */
+                if(tag.equals("depplandtime")){
+                	depplandtime = xpp.getText();
+                }
+                /* 도착시간 */
+                if(tag.equals("arrplandtime")){
+                	arrplandtime = xpp.getText();
+                }
+                /* 출발지 */
+                if(tag.equals("depplacename")){
+                	depplacename = xpp.getText();
+                }
+                /* 도착지 */
+                if(tag.equals("arrplacename")){
+                	arrplacename = xpp.getText();
+                }
+                /* 운임 */
+                if(tag.equals("adultcharge")){
+                	adultcharge = xpp.getText();
+                }
+            } else if (event_type == XmlPullParser.END_TAG) {
+                tag = xpp.getName();
+                if (tag.equals("item")) {
+                	traininfo.add(traingradename + "." + depplandtime + "." + arrplandtime + "."  + depplacename+ "." + arrplacename+ "." + adultcharge);
+                }
+            }
+ 
+            event_type = xpp.next();
+        }
+//        printList(list);
+       // model.addAttribute("townlist", townlist);
+        String trainlist = traininfo.toString();
+        trainlist = trainlist.replaceAll("[\\[\\]]", "");
+        trainlist = trainlist	.replaceAll(" ", "");
+        System.out.println("trainlist= "+trainlist);
+        pw.print(trainlist);
+	}
+	
 	
     private String getURLParam(String search){
         String url = PHARM_URL+"?ServiceKey="+KEY;

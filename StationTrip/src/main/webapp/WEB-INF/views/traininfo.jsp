@@ -128,8 +128,12 @@ $(function() {
 					<input type="text" id="Datepicker" class="traindate" autocomplete=off> 
 				</td>
 				<td>
+					<select id="highnoon">
+						<option class="traintime" value="오전">오전</option>
+						<option class="traintime" value="오후">오후</option>
+					</select>
 					<select id="traintime">
-						<%for(int i=1; i<=24; i++){
+						<%for(int i=1; i<=12; i++){
 							%>
 							<option class="traintime" value="<%=i %>"><%=i %>시</option>
 							<%
@@ -137,7 +141,21 @@ $(function() {
 						%>
 					</select>
 				</td>
+				<td>
+				<button onclick="traingo()" >선택</button>
+				</td>
 			</tr>
+		</table>
+		<table id="traininfo" style="display:none;">
+			<tr>
+				<th>차량 종류</th>
+				<th>출발시간</th>
+				<th>도착시간</th>
+				<th>출발지</th>
+				<th>도착지</th>
+				<th>운임</th>
+			</tr>
+			
 		</table>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
