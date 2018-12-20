@@ -41,10 +41,18 @@
 
    --------------------------------댓글 보기--------------------------------------------------------------------- 
 <form action="writereply.do" method="post">
+<div style="width:800px; border:1px solid black; height:357px;">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
-<input type="text" name="comment_content" size="50">
-<input type="submit" value="댓글작성">
+<p>${login_user.user_nickname}</p>
+<textarea rows="10" cols="85" name="comment_content"></textarea>
+<hr>
+<input type="submit" value="댓글작성" style="float:right">
+
+</div>
+<%-- <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> --%>
+<%-- <input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly> --%>
+<!-- <input type="text" name="comment_content" size="50"> -->
+<!-- <input type="submit" value="댓글작성"> -->
 </form>
 <!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 <c:choose>
@@ -59,7 +67,7 @@
   	<dd class="num">${cdto.comment_num}</dd>
   	<dd class="sub">${cdto.freeboard_num}</dd>
   	<dd class="name">${cdto.user_nickname}</dd>
-   	<dd class="data">${cdto.comment_content}</dd>
+   	<dd class="data"><input type="text" value="${cdto.comment_content}" style="border:none" readonly></dd>
    	<dd class="time">${cdto.comment_time}</dd>
    	<dd class="count">${cdto.comment_like}</dd> 
    	<dd class="count">${cdto.comment_hate}</dd> 
@@ -67,7 +75,9 @@
   	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
 
 <button value="수정" onclick="goUpdate()">수정</button>
- <button>삭제</button> <!-- cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
+
+<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
+<!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
 
 </c:if>
   	</dl>
