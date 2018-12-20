@@ -136,7 +136,6 @@
 							<li>
 							</li>
 						</ul>
-						<form>
 						<ul>
 							<li>
 								<span class="labeltag">
@@ -188,7 +187,6 @@
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
 							</li>
 						</ul>
-						</form>
 					</fieldset>
 				</div>
 			</div>

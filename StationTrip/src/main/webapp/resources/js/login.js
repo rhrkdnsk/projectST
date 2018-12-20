@@ -162,7 +162,8 @@ function wrapWindowByMask(){
 // -------- 로그인 Ajax ---------- //
 function ajaxLogin(){
 	// alert('click');
-	var email = $("#email").val();
+	var email = decodeURIComponent($("#email").val());
+	console.log(email)
 	// alert(email)
  	var password = $("#password").val();
 	// alert(password)
@@ -176,7 +177,16 @@ function ajaxLogin(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			sessionCheck(data);
+			console.log(data)
+			if(data != "fail"){
+				// username = null;
+				$("#loginModalLayer").hide();
+				$('#mask').hide();
+				$('.window').hide(); 
+				window.location.reload()
+			} else {
+				alert("로그인 실패"); 
+			}
 		},
 		error:function(){
 			alert("로그인 실패ㅜㅜ") ;
@@ -204,18 +214,19 @@ function ajaxLogin(){
 
 function sessionCheck(data){
 	
-	var username= data
-	
+	var username = data
+	alert(username)
 	// alert(username);
-	if(!username){
-		username = null;
-		alert("로그인 실패"); 
-	} else {
+	if(username != "fail"){
 		// username = null;
 		$("#loginModalLayer").hide();
 		$('#mask').hide();
 		$('.window').hide(); 
-		window.location.reload()
+		//window.location.reload()
+		
+	} else {
+		username = null;
+		alert("로그인 실패"); 
 	}
 }
 

@@ -95,19 +95,19 @@ function traingo(){
 			$("#traininfo").css("display","block")
 			var strArray = data.split(",");
 			console.log(strArray.length)
+			$("#traininfo").find('tbody').empty();
 			for (var i = 0; i < strArray.length; i++) {
 				trainlist = strArray[i].split(".")
 				//console.log(trainlist)
 				var shour = trainlist[1].substr(8, 2);
 			    var sminute = trainlist[1].substr(10, 2);
 			    var ssecond = trainlist[1].substr(12, 2);
-			    var sdate = new Date(hour,minute,second);
+			    var sdate = shour+"시"+sminute+"분"
 			    
 			    var ehour = trainlist[2].substr(8, 2);
 			    var eminute = trainlist[2].substr(10, 2);
 			    var esecond = trainlist[2].substr(12, 2);
-			    var edate = new Date(hour,minute,second);
-
+			    var edate = ehour+"시"+eminute+"분"
 				$("#traininfo").find('tbody')
 					.append($('<tr>')
 						.append($('<td>')
@@ -136,7 +136,7 @@ function traingo(){
 							)
 						)
 						.append($('<td>')
-							.append(trainlist[5])
+							.append(trainlist[5]+"원")
 							.append($('</td>')
 							)
 						)
