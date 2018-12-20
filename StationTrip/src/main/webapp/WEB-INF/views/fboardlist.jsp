@@ -27,7 +27,10 @@ function check() {
 function lookBoard() {
 	alert(document.looksetting.settingnum.value);
     document.looksetting.submit();
+}
 
+function setnull() {
+	location.href="fsessiondel.do";
 }
 
 </script>
@@ -130,6 +133,7 @@ body {
 <body>
 <h1>현재 페이지 번호${page}</h1>
 <h1> 카운트의 값 : ${totalCount}</h1>
+<h1>totalPage의 값 : ${totalPage }</h1>
 <a href="fboardPage.do">목록</a>
 <div id="board">
 
@@ -272,7 +276,7 @@ body {
 </div>
 
 
-<form action="fboardPage.do?pageNum=${page}" name="search" method="post">
+<form action="fboardPage.do?pageNum=1" name="search" method="post">
 
 <select name="keyField" size="1">
 	<option value="user_nickname">아이디</option>
@@ -286,14 +290,16 @@ body {
 <input type="hidden" name="page" value="0" />
 </form>
 
-<form action="fboardPage.do?pageNum=${page}" method = "post" name="looksetting">
+<form action="fboardPage.do?pageNum=1" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()">
-<option value="">게시글 개수 조절</option>
-<option value="5">5개씩보기</option>
-<option value="10">10개씩보기</option>
-<option value="15">15개씩보기</option>
+<option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
+<option value="5" onclick="lookBoard()">5개씩보기</option>
+<option value="10" onclick="lookBoard()">10개씩보기</option>
+<option value="15" onclick="lookBoard()">15개씩보기</option>
 </select>
 </form>
+
+<button onclick="setnull()">목록으로</button>
 
 <jsp:include page="footer.jsp" />
 
