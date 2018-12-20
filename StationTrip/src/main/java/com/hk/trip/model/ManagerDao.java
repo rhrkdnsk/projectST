@@ -20,26 +20,28 @@ public class ManagerDao implements IManagerDao{
 	}
 
 	@Override
-	public LoginDto getBoard(LoginDto dto) {
-		return sqlSession.selectOne(namespace+"getBoard", dto);
+	public LoginDto sgetBoard(LoginDto dto) {
+		return sqlSession.selectOne(namespace+"sgetBoard", dto);
 	}
 
 	@Override
-	public boolean insertBoard(LoginDto dto) {
+	public boolean sinsertBoard(LoginDto dto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateBoard(LoginDto dto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delBoard(LoginDto dto) {
+	public boolean supdateBoard(LoginDto dto) {
 		int count=0;
-		count=sqlSession.update(namespace+"delBoard", dto);
+		System.out.println(dto);
+		count=sqlSession.update(namespace+"supdateBoard", dto);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean sdelBoard(LoginDto dto) {
+		int count=0;
+		count=sqlSession.update(namespace+"sdelBoard", dto);
 		return count>0?true:false;
 	}
 

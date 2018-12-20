@@ -8,9 +8,9 @@ import com.hk.trip.dto.LoginDto;
 
 public interface IManagerDao {
 	public List<LoginDto>sgetAllList();
-	public LoginDto getBoard(LoginDto dto);
-	public boolean insertBoard(LoginDto dto);
-	public boolean updateBoard(LoginDto dto);
-	public boolean delBoard(LoginDto dto);
+	public LoginDto sgetBoard(LoginDto dto);
+	public boolean sinsertBoard(LoginDto dto);
+	public boolean supdateBoard(LoginDto dto);
+	public boolean sdelBoard(LoginDto dto);
 	public LoginDto getDetailAjax(LoginDto dto);
 }

@@ -140,12 +140,11 @@
 	
 	<tr>
 		<td colspan="10">
-			<a class="btn btn-primary" href="insertform.do">글쓰기</a>
 			<input class="btn btn-primary" type="submit" value="삭제"/>
 		</td>
 	</tr>
 </table>
-<!-- </form> -->
+
 
 <form action="fboardlist.do" name="search" method="post">
 
@@ -162,11 +161,10 @@
 </form>
 </div>
 <script>
-function locainsert() {
-	alert("locainsert");
-	location.href = "insertform.do";
-	
-}
+ function locainsert() {
+ 	alert("locainsert");
+ 	location.href = "insertform.do";
+	 }
 
 </script>
 <%@include file="footer.jsp" %>

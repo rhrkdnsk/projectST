@@ -17,27 +17,26 @@ public class ManagerService implements IManagerService{
 	}
 
 	@Override
-	public LoginDto getBoard(LoginDto dto) {
+	public LoginDto sgetBoard(LoginDto dto) {
 		// TODO Auto-generated method stub
-		return managerDao.getBoard(dto);
+		return managerDao.sgetBoard(dto);
 	}
 
 	@Override
-	public boolean insertBoard(LoginDto dto) {
+	public boolean sinsertBoard(LoginDto dto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateBoard(LoginDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean supdateBoard(LoginDto dto) {
+		return managerDao.supdateBoard(dto);
 	}
 
 	@Override
-	public boolean delBoard(LoginDto dto) {
+	public boolean sdelBoard(LoginDto dto) {
 		// TODO Auto-generated method stub
-		return managerDao.delBoard(dto);
+		return managerDao.sdelBoard(dto);
 	}
 
 	@Override
