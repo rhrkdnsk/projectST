@@ -72,7 +72,7 @@ public class BoardController {
 		boolean isS = fboardService.insertBoard(fdto);
 		System.out.println(isS);
 		if (isS) {
-			return "redirect:fboardlist.do";
+			return "redirect:fsessiondel.do";
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
 			return "error";
@@ -144,8 +144,11 @@ public class BoardController {
 	public String fboarddelete(HttpServletRequest request, Locale locale, Model model, int freeboard_num) {
 		logger.info("글 삭제하기", locale);
 		boolean isS = fboardService.deleteBoard(freeboard_num);
+		int setNum = (Integer) request.getSession().getAttribute("nowPage");
+		
+		
 		if (isS) {
-			return "redirect:fboardlist.do";
+			return "redirect:fboardPage.do?pageNum="+setNum;
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
 			return "error";
@@ -234,7 +237,7 @@ public class BoardController {
 			 session.setAttribute("skeyField", keyField);
 			 session.setAttribute("skeyWord", keyWord);
 			 }
-		
+		session.setAttribute("nowPage", pageNum);
 		//System.out.println("totalPage의 값 : " + totalPage);
 		model.addAttribute("list", list);
 		model.addAttribute("totalCount", totalCount);
@@ -255,6 +258,22 @@ public class BoardController {
 
 		
 		return "redirect:fboardPage.do?pageNum=1";
+
+	
+	}
+	
+	@RequestMapping(value = "fdelcomment.do")
+	public String fboarddelcomment(HttpServletRequest request, Locale locale, Model model,CommentDto cdto) {
+		logger.info("자유게시판 페이징 처리", locale);
+		
+		boolean isS = fboardService.delComment(cdto);
+		if(isS) {
+			return "redirect:fboarddetail.do?freeboard_num="+cdto.getFreeboard_num();
+
+		} else {
+			return "error";
+		}
+			
 
 	
 	}

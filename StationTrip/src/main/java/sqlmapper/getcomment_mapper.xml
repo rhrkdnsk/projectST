@@ -22,5 +22,9 @@
 		T_COMMENT),#{comment_content},0,0)
 	</insert>
 	
+    <delete id="delComment" parameterType="CommentDto">
+    DELETE FROM T_COMMENT WHERE COMMENT_NUM = #{comment_num} AND FREEBOARD_NUM = #{freeboard_num}
+
+    </delete>
 	
 </mapper>
