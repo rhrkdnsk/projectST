@@ -43,7 +43,7 @@
 <form action="writereply.do" method="post">
 <div style="width:800px; border:1px solid black; height:357px;">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
-<p>${login_user.user_nickname}</p>
+<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
 <textarea rows="10" cols="85" name="comment_content"></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
@@ -63,24 +63,32 @@
   </c:when>
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
-  <dl>
-  	<dd class="num">${cdto.comment_num}</dd>
-  	<dd class="sub">${cdto.freeboard_num}</dd>
-  	<dd class="name">${cdto.user_nickname}</dd>
-   	<dd class="data"><input type="text" value="${cdto.comment_content}" style="border:none" readonly></dd>
-   	<dd class="time">${cdto.comment_time}</dd>
-   	<dd class="count">${cdto.comment_like}</dd> 
-   	<dd class="count">${cdto.comment_hate}</dd> 
+  
+  	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
+   	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
+   	시간 : ${cdto.comment_time}
+   	좋아요 : ${cdto.comment_like} 
+   	싫어요 : ${cdto.comment_hate} 
    	
-  	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
+<!--    	<form action="fboardrepre.do" method="post"> -->
 
+<%-- <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}"> --%>
+<%-- <input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly> --%>
+<%-- <input type="hidden" name="comment_refer" value="${cdto.comment_refer}"> --%>
+<!-- <textarea rows="10" cols="15" name="comment_content"></textarea> -->
+<!-- <hr> -->
+<!-- <input type="submit" value="댓글작성" style="float:right"> -->
+
+<!--    	</form> -->
+
+  	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-
+<br />
 </c:if>
-  	</dl>
+  	
   	
   	</c:forEach>
   	</c:otherwise>

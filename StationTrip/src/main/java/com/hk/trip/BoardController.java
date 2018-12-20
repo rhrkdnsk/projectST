@@ -279,7 +279,16 @@ public class BoardController {
 			return "error";
 		}
 			
-
+	}
+		@RequestMapping(value = "fboardrepre.do")
+		public String fboardcomment2(HttpServletRequest request, Locale locale, Model model,CommentDto dto) {
+			logger.info("자유게시판 페이징 처리", locale);
+			boolean isS = fboardService.Commentreply(dto);
+			if(isS) {
+				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
+			} else {
+				return "error";
+			}
 	
 	}
 } // 끝

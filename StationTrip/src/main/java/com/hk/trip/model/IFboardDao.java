@@ -21,4 +21,5 @@ public interface IFboardDao {
 	public int getCount(String keyWord, String keyField,int startNum,int endNum);
 	public List<FboardDto> getBoardList(int startNum,int endNum,String keyWord, String keyField);
 	public boolean delComment(CommentDto cdto);
+	public boolean Commentreply(CommentDto dto);
 }

@@ -151,4 +151,13 @@ public class FboardDao implements IFboardDao {
 		
 		return count > 0 ? true:false;
 	}
+	
+	@Override
+	public boolean Commentreply(CommentDto dto) {
+		// TODO Auto-generated method stub
+		int count=0;
+		count = sqlSession.insert(namespace1 + "insComment", dto);
+		return count > 0? true:false;
+	}
+	
 }

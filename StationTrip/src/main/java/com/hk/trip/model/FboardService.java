@@ -78,4 +78,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.delComment(cdto);
 	}
+	@Override
+	public boolean Commentreply(CommentDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.Commentreply(dto);
+	}
 }
