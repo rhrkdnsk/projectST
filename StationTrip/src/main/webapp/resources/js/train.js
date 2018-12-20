@@ -144,6 +144,7 @@ function traingo(){
 							)
 					)                                                                                                                                      
 			}
+			var count = $("#traininfo tr").length/10+1
 		},
 		error:function(){
 			alert("기차리스트 받기 실패ㅜㅜ") ;
