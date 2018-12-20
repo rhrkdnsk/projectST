@@ -173,6 +173,11 @@ public class BoardController {
 	@RequestMapping(value = "fboardPage.do")
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
 			String keyField) {
+		
+		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
+			pageNum = 1;
+		}
+		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
