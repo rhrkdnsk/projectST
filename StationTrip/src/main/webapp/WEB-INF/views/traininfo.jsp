@@ -13,6 +13,26 @@
 <jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <script type="text/javascript" src="/trip/resources/js/train.js"></script>
+<!-- jQuery UI CSS파일 --> 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+<!-- jQuery 기본 js파일 -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<!-- jQuery UI 라이브러리 js파일 -->
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+<script type="text/javascript">
+$(function() {
+    $( "#Datepicker" ).datepicker({
+    	changeMonth: true, 
+        changeYear: true,
+        nextText: '다음 달',
+        prevText: '이전 달',
+        dateFormat: "yymmdd",
+        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
+    });
+});
+</script> 
 <title></title>
 </head>
 <body>
@@ -37,6 +57,7 @@
 				</th>
 			</tr>
 			<tr>
+				<!-- 출발역 지정 시작지점 -->
 				<td>
 					<select id="startcitycode" >
 							<c:choose>
@@ -58,6 +79,9 @@
 						<option value="starttowncode">역 선택</option>
 					</select>
 				</td>
+				
+				
+				<!-- 도착역 지정 시작지점 -->
 				<td>
 					<select id="endcitycode" >
 							<c:choose>
@@ -79,6 +103,8 @@
 						<option value="endtowncode">역 선택</option>
 					</select>
 				</td>
+				
+				<!-- 열차종류 선택 -->
 				<td>
 					<select id="traincode" >
 							<c:choose>
@@ -93,6 +119,22 @@
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
+					</select>
+				</td>
+				</tr>
+				<tr>
+				<!-- 날짜 선택 -->
+				<td>
+					<input type="text" id="Datepicker" class="traindate" autocomplete=off> 
+				</td>
+				<td>
+					<select id="traintime">
+						<%for(int i=1; i<=24; i++){
+							%>
+							<option class="traintime" value="<%=i %>"><%=i %>시</option>
+							<%
+						}
+						%>
 					</select>
 				</td>
 			</tr>

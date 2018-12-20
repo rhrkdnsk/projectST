@@ -1,4 +1,5 @@
 $(function() {
+	/* 출발역 */
 	$("#startcitycode").change(
 			function() {
 				var citycode = $("#startcitycode").val();
@@ -36,6 +37,8 @@ $(function() {
 
 			});
 
+					
+	/* 도착역 */
 	$("#endcitycode").change(
 			function() {
 				var citycode = $("#endcitycode").val();
