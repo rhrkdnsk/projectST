@@ -217,19 +217,19 @@ public class BoardController {
 		//			
 		//		}
 		
-		int startNum = (pageNum - 1) * countList;
-		int endNum = pageNum * countList - 1;
+		int startNum = (pageNum - 1) * countList; //Sql문 돌릴곳에서 Row 값을 설정해준다
+		int endNum = pageNum * countList - 1; //Sql문 돌릴곳에서 Row값을 설정해준다 (startNum = ~(번호)에서부터 endNum = ~번호까지)
 		startNum++;
 		endNum++;
 //		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
 		int totalCount = fboardService.getCount(keyWord,keyField,startNum,endNum); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
 		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
-		int countPage = 5;
-		int totalPage = totalCount / countList;
-		if (totalCount % countList > 0) {totalPage++;}
-		if (totalPage < pageNum) {pageNum = totalPage;}
-		int startPage = ((pageNum - 1) / countPage) * countPage + 1; // 여기서 5는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
-		int endPage = startPage + countPage - 1;
+		int countPage = 5;	 //하단에 출력해줄 페이지의 개수
+		int totalPage = totalCount / countList; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
+		if (totalCount % countList > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
+		if (totalPage < pageNum) {pageNum = totalPage;}	// 
+		int startPage = ((pageNum - 1) / countPage) * countPage + 1; // 여기서 countPage는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
+		int endPage = startPage + countPage - 1; 	//start,endPage를 설정해줘야 
 		if (endPage > totalPage) {endPage = totalPage;}
 		if(pageNum == 0) {pageNum++;}
 		
