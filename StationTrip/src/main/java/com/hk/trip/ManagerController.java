@@ -97,7 +97,7 @@ public class ManagerController {
 		logger.info("글여러개삭제하기 {}.", locale);
 		boolean fdto=managerService.smulDelBoard(chk);
 		if(fdto) {
-			return "redirect:boardlist.do";
+			return "redirect:glist.do";
 		}else {
 			model.addAttribute("msg", "글여러개삭제하기실패");
 			return "error";
