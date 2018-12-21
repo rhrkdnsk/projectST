@@ -8,6 +8,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+#lookreply {
+	display:none;
+	
+}
+
+</style>
+
+<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js">
+
+function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'block')
+       e.style.display = 'none';
+    else
+       e.style.display = 'block';
+ }
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
@@ -72,17 +90,22 @@
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
    	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리 -->
+   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
    	
+<c:if test="${cdto.comment_step == 0}">
+
+<div id="lookreply" >
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
+<input type="text" name="user_nickname" value="${login_user.user_nickname}"  readonly>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
-<textarea rows="10" cols="15" name="comment_content"></textarea>
+<textarea rows="10" cols="15" name="comment_content" ></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
 </form>
+</div>
+</c:if>
 
 
   	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
@@ -90,7 +113,7 @@
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-<button value="답글">답글</button>
+<button value="답글" id="lookbt" onclick="toggle_visibility('#lookreply')">답글</button>
 </c:if>
 <br />
   	
