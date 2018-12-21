@@ -69,25 +69,27 @@
    	시간 : ${cdto.comment_time}
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
+   	리퍼 : ${cdto.comment_refer}
+   	스텝 : ${cdto.comment_step}
    	
-<!--    	<form action="fboardrepre.do" method="post"> -->
+   	<form action="fboardrepre.do" method="post">
+<input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
+<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
+<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
+<textarea rows="10" cols="15" name="comment_content"></textarea>
+<hr>
+<input type="submit" value="댓글작성" style="float:right">
 
-<%-- <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}"> --%>
-<%-- <input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly> --%>
-<%-- <input type="hidden" name="comment_refer" value="${cdto.comment_refer}"> --%>
-<!-- <textarea rows="10" cols="15" name="comment_content"></textarea> -->
-<!-- <hr> -->
-<!-- <input type="submit" value="댓글작성" style="float:right"> -->
-
-<!--    	</form> -->
+</form>
 
   	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-<br />
+
 </c:if>
+<br />
   	
   	
   	</c:forEach>
