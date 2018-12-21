@@ -64,13 +64,16 @@
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
   
-  	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
+  
+ 	<div>
+   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
    	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step}
+   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리 -->
+   	</div>
    	
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
@@ -79,15 +82,15 @@
 <textarea rows="10" cols="15" name="comment_content"></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
-
 </form>
+
 
   	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-
+<button value="답글">답글</button>
 </c:if>
 <br />
   	

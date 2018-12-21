@@ -161,4 +161,13 @@ public class FboardDao implements IFboardDao {
 		return count > 0? true:false;
 	}
 	
+	@Override
+	public boolean bcDelete(int freeboard_num) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.delete(namespace1 + "bcDelete", freeboard_num);
+		
+		return count > 0 ? true:false;
+	}
+	
 }
