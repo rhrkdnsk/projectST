@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -37,36 +40,83 @@ public class AreaController {
 		return "arealist";
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "area.do")
-	public void area(String code, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	public Map<String, String> area(String case1, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("지역 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
+		Map<String,String>map=new HashMap<String, String>();
 
+
+		String urlCase1 = null;
+		String urlCase2 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
-		String param = "areaCode?"; 	//지역조회
+		String param = "areaCode?"; //지역조회
+		String param2 = "areaBasedList?";	//지역기반 컨텐츠 목록
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&numOfRows=100";		//row수
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		if(code!=null) {
-			param += "&areaCode=" + code;	//지역코드
+		urlCase1 = URL + param; // 시군구 값을 저장
+		if(case1!=null) {
+			param += "&areaCode=" + case1;	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
+			urlCase2 = URL + param; // 군구 값 저장
 		}
-
-
-		String url = URL + param;
-
-		org.jsoup.nodes.Document doc = null;
+//		param += "&areaCode=1";	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
+		urlCase2 = URL + param + "&areaCode=1"; // 군구 값 저장
+		System.out.println("*******************************************************");
+		System.out.println(urlCase1);
+		System.out.println(urlCase2);
+		System.out.println("*******************************************************");
+		Document areaCase1 = null;
+		Document areaCase2 = null;
 		try {
-			doc = Jsoup.connect(url).get();
+			areaCase1 = Jsoup.connect(urlCase1).get();
+			areaCase2 = Jsoup.connect(urlCase2).get();
+			map.put("areaCase1", areaCase1.toString());
+			map.put("areaCase2", areaCase2.toString());
+			//			System.out.println(map.get("areaCase1"));
+			//			System.out.println(map.get("areaCase2"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(doc);
-		PrintWriter pw=res.getWriter();
-		pw.println(doc);
-
+		//		System.out.println(map.text());
+		//		PrintWriter pw=res.getWriter();
+		//		pw.println(areaCase1);
+		return map;
 	}
+
+	//	@RequestMapping(value = "area.do")
+	//	public void area(String code, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	//		logger.info("지역 목록 출력.", locale);
+	//		res.setCharacterEncoding("UTF-8");
+	//		res.setContentType("text/html; charset=UTF-8");
+	//
+	//		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
+	//		String param = "areaCode?"; 	//지역조회
+	//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+	//		param += "&numOfRows=100";		//row수
+	//		param += "&MobileOS=ETC";		
+	//		param += "&MobileApp=Test";
+	//		if(code!=null) {
+	//			param += "&areaCode=" + code;	//지역코드
+	//		}
+	//
+	//
+	//		String url = URL + param;
+	//
+	//		org.jsoup.nodes.Document doc = null;
+	//		try {
+	//			doc = Jsoup.connect(url).get();
+	//		} catch (IOException e) {
+	//			e.printStackTrace();
+	//		}
+	//		System.out.println(doc);
+	//		PrintWriter pw=res.getWriter();
+	//		pw.println(doc);
+	//
+	//	}
 
 	@RequestMapping(value = "category.do")
 	public void category(String sigunguCode, String category, String areaCode, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
