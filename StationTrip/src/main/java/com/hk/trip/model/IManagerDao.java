@@ -12,5 +12,6 @@ public interface IManagerDao {
 	public boolean sinsertBoard(LoginDto dto);
 	public boolean supdateBoard(LoginDto dto);
 	public boolean sdelBoard(LoginDto dto);
+	public boolean smulDelBoard(String[] dto);
 	public LoginDto getDetailAjax(LoginDto dto);
 }

@@ -11,4 +11,5 @@ public interface IManagerService {
 	public boolean supdateBoard(LoginDto dto);
 	public boolean sdelBoard(LoginDto dto);
 	public LoginDto getDetailAjax(LoginDto dto);
+	public boolean smulDelBoard(String[] dto);
 }

@@ -148,6 +148,8 @@ public class BoardController {
 		
 		
 		if (isS) {
+			fboardService.bcDelete(freeboard_num);
+			System.out.println("글삭제시 댓글도 같이 삭제 됩니다.");
 			return "redirect:fboardPage.do?pageNum="+setNum;
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
@@ -287,6 +289,7 @@ public class BoardController {
 			if(isS) {
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
 			} else {
+				System.out.println("커밋오류처리");
 				return "error";
 			}
 	

@@ -83,4 +83,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.Commentreply(dto);
 	}
+	@Override
+	public boolean bcDelete(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.bcDelete(freeboard_num);
+	}
 }

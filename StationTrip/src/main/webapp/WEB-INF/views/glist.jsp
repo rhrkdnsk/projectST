@@ -10,7 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-
 <script type="text/javascript">
 	//전체 선택 체크박스 구현
 	function allSel(bool){
@@ -60,7 +59,7 @@
 			var seq=$(this).parent("td").prev().prev().text();
 			$.ajax({
 				url:"detailajax.do",
-				data:{"user_nickname":user_nickname},// "seq="+seq
+				data:{"seq":seq},// "seq="+seq
 				datatype:"json",
 				method:"post",
 				success:function(obj){ //컨트롤에서 전달받은 객체(map)--> obj
@@ -99,7 +98,7 @@
 <body>
 <div id="container">
 <h1>유저 목록</h1>
-<!-- <form action="muldel.do" method="post" onsubmit="return confirmChk()"> -->
+<form action="smuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
 	<col width="50px">
 	<col width="50px">
@@ -125,7 +124,7 @@
 				<tr>
 
 					<td>
-						<input type="checkbox" name="chk" value=""/>
+						<input type="checkbox" name="chk" value="${dto.user_nickname}"/>
 					</td>
 					<td><a href="managerdetail.do?user_nickname=${dto.user_nickname}">${dto.user_nickname}</a></td>
 					<td>${dto.user_name}</td>
@@ -144,7 +143,7 @@
 		</td>
 	</tr>
 </table>
-
+</form>
 
 <form action="fboardlist.do" name="search" method="post">
 

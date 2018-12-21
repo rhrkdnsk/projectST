@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -90,18 +92,17 @@ public class ManagerController {
 	
 		
 	
-//	@RequestMapping(value = "managerdetail.do", method = RequestMethod.GET)
-//	public String fboarddelete(HttpServletRequest request, Locale locale, Model model, LoginDto dto) {
-//		logger.info("글 삭제하기", locale);
-//		boolean isS = managerService.delBoard(dto);
-//		if(isS) {
-//			return "redirect:glist.do";
-//		} else {
-//			model.addAttribute("msg","글 삭제하기 실패");
-//			return "error";
-//		}
-//
-//	}
+	@RequestMapping(value="/smuldel.do" , method=RequestMethod.POST)
+	public String smulDel(Locale locale,Model model,String[] chk) {
+		logger.info("글여러개삭제하기 {}.", locale);
+		boolean fdto=managerService.smulDelBoard(chk);
+		if(fdto) {
+			return "redirect:boardlist.do";
+		}else {
+			model.addAttribute("msg", "글여러개삭제하기실패");
+			return "error";
+		}
+	}
 
 	
 } //끝
