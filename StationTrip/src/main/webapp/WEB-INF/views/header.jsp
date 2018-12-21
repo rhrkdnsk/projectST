@@ -163,7 +163,8 @@
 								<span class="labeltag">
 								<label>비밀번호</label>
 								</span>
-								<input type="password" id="password" />
+								<input type="password" id="password" onkeydown = "if (event.keyCode == 13)
+                       				document.getElementById('loginbtn').click()"/>
 							</li>
 							<li>
 								<input type="checkbox" id="idCheck" <%   							     
@@ -183,7 +184,7 @@
 								<a href="#searchModalLayer" class="searchModalLink aright" >비밀번호 찾기</a>
 							</li>
 							<li>
-								<button onclick="ajaxLogin()">로그인</button>
+								<button onclick="ajaxLogin()" id="loginbtn">로그인</button>
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
 							</li>
 						</ul>
