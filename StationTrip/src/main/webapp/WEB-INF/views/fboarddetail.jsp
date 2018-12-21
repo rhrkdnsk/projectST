@@ -8,6 +8,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+ 
+$(document).ready(function(){
+
+    $('#lookbt').click(function () {  
+    	alert("클릭")
+        if($("#lookreply").css("display") == "none"){   
+            jQuery('#lookreply').css("display", "block");   
+        } else {  
+            jQuery('#lookreply').css("display", "none");   
+        }  
+    });   
+   
+});
+
+
+	
+	
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
@@ -64,30 +86,42 @@
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
   
-  	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
+  
+ 	<div>
+   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
+   	리퍼 : ${cdto.comment_refer}
+   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+   	</div>
    	
-<!--    	<form action="fboardrepre.do" method="post"> -->
+<c:if test="${cdto.comment_step == 0}">
 
-<%-- <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}"> --%>
-<%-- <input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly> --%>
-<%-- <input type="hidden" name="comment_refer" value="${cdto.comment_refer}"> --%>
-<!-- <textarea rows="10" cols="15" name="comment_content"></textarea> -->
-<!-- <hr> -->
-<!-- <input type="submit" value="댓글작성" style="float:right"> -->
+<div id="lookreply" style="display:none">
+   	<form action="fboardrepre.do" method="post">
+<input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
+<input type="text" name="user_nickname" value="${login_user.user_nickname}"  readonly>
+<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
+<textarea rows="10" cols="15" name="comment_content" ></textarea>
+<hr>
+<input type="submit" value="댓글작성" style="float:right">
+</form>
+</div>
+</c:if>
 
-<!--    	</form> -->
 
   	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-<br />
+<c:if test="${cdto.comment_step == 0}">
+<button id="lookbt">답글</button>
 </c:if>
+</c:if>
+<br />
   	
   	
   	</c:forEach>
@@ -95,9 +129,9 @@
   	</c:choose>
   	      	
   	      	
-       	▲ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+     	▲ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
   	<p>
-     	▼ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
+  		▼ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
 
   <script type="text/javascript">
   function goUpdate() {

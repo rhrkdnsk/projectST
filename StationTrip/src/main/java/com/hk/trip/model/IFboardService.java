@@ -23,6 +23,7 @@ public interface IFboardService {
 	public List<FboardDto> getBoardList(int startNum,int endNum,String keyWord, String keyField);
 	public boolean delComment(CommentDto cdto);
 	public boolean Commentreply(CommentDto dto);
+	public boolean bcDelete(int freeboard_num);
 
 
 

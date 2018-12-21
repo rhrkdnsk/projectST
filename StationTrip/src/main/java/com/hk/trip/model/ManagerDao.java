@@ -1,6 +1,8 @@
 package com.hk.trip.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,15 @@ public class ManagerDao implements IManagerDao{
 	public LoginDto getDetailAjax(LoginDto dto) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean smulDelBoard(String[] dto) {
+		Map<String, String[]>map=new HashMap<String, String[]>();
+		map.put("user_nicknames", dto);
+		int count=0;
+		count=sqlSession.update(namespace+"smulDelBoard", map);
+		return count>0?true:false;
 	}
 
 }

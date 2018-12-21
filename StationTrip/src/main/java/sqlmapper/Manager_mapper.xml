@@ -22,5 +22,12 @@
       update T_USER
       SET USER_POINT = #{user_point}, TIER = #{tier}
       WHERE USER_NICKNAME = #{user_nickname}
+    </update> 
+    <update id="smulDelBoard" parameterType="Map">
+      DELETE T_USER where user_nickname in
+      <foreach collection="user_nicknames" item="user_nickname" open="(" close=")" separator=",">
+              #{user_nickname}
+      </foreach> 
     </update>
+    
 	</mapper>

@@ -26,7 +26,11 @@
    </delete>
 
    <insert id="insComment" parameterType="CommentDto">
-    INSERT INTO T_COMMENT VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),18,NULL,#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0) FROM T_COMMENT),#{comment_refer},#{comment_content},0,0)
-   </insert>
-	
+INSERT INTO T_COMMENT  
+	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}),0,#{comment_content},0,0 ) 
+        </insert>
+        
+	<delete id="bcDelete" parameterType="int">
+    DELETE FROM T_COMMENT WHERE FREEBOARD_NUM=#{freeboard_num}
+    </delete>
 </mapper>

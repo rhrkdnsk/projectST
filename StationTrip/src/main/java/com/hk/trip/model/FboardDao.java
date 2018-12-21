@@ -156,8 +156,18 @@ public class FboardDao implements IFboardDao {
 	public boolean Commentreply(CommentDto dto) {
 		// TODO Auto-generated method stub
 		int count=0;
+		System.out.println("대댓글 들어가는 값 : " + dto);
 		count = sqlSession.insert(namespace1 + "insComment", dto);
 		return count > 0? true:false;
+	}
+	
+	@Override
+	public boolean bcDelete(int freeboard_num) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.delete(namespace1 + "bcDelete", freeboard_num);
+		
+		return count > 0 ? true:false;
 	}
 	
 }

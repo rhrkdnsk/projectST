@@ -12,11 +12,11 @@
 <head>
 <jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<script type="text/javascript" src="/trip/resources/js/train.js"></script>
+<script type="text/javascript" src="/trip/resources/js/train_test.js"></script>
 <!-- jQuery UI CSS파일 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <!-- jQuery 기본 js파일 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 <script type="text/javascript">
@@ -32,6 +32,7 @@ $(function() {
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
     });
 });
+
 </script> 
 <title></title>
 </head>
@@ -39,11 +40,11 @@ $(function() {
 	<h1>도시리스트</h1>
 		<table border="1">
 			<colgroup>
-				<col width="20%">
-				<col width="20%">
-				<col width="20%">
-				<col width="20%">
-				<col width="20%">
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+				<col width="25%">
+			<%-- 	<col width="20%"> --%>
 			</colgroup>
 			<tr>
 				<th colspan="2">
@@ -52,9 +53,9 @@ $(function() {
 				<th colspan="2">
 					<p>도착역</p>
 				</th>
-				<th>
+<!-- 				<th>
 					<p>열차 선택</p>
-				</th>
+				</th> -->
 			</tr>
 			<tr>
 				<!-- 출발역 지정 시작지점 -->
@@ -104,7 +105,7 @@ $(function() {
 					</select>
 				</td>
 				
-				<!-- 열차종류 선택 -->
+<%-- 				<!-- 열차종류 선택 -->
 				<td>
 					<select id="traincode" >
 							<c:choose>
@@ -120,7 +121,7 @@ $(function() {
 								</c:otherwise>
 							</c:choose>
 					</select>
-				</td>
+				</td> --%>
 				</tr>
 				<tr>
 				<!-- 날짜 선택 -->
@@ -142,21 +143,13 @@ $(function() {
 					</select>
 				</td>
 				<td>
-				<button onclick="traingo()" >선택</button>
+				<a href="traincheck.do?pageNo=1" onclick="traingo(1)" ><button>선택</button></a>
 				</td>
 			</tr>
 		</table>
-		<table id="traininfo" style="display:none;">
-			<tr>
-				<th>차량 종류</th>
-				<th>출발시간</th>
-				<th>도착시간</th>
-				<th>출발지</th>
-				<th>도착지</th>
-				<th>운임</th>
-			</tr>
-			
-		</table>
+		<iframe id="trlist" src="trainmove.do" style="height:850px;width:850px;display:none;"></iframe>
+
+		
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
