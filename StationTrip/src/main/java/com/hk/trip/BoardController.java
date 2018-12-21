@@ -287,6 +287,7 @@ public class BoardController {
 			if(isS) {
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
 			} else {
+				System.out.println("커밋오류처리");
 				return "error";
 			}
 	
