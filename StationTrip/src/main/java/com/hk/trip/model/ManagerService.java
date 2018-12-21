@@ -45,4 +45,9 @@ public class ManagerService implements IManagerService{
 		return null;
 	}
 
+	@Override
+	public boolean smulDelBoard(String[] dto) {
+		return managerDao.smulDelBoard(dto);
+	}
+
 }
