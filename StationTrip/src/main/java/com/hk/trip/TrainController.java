@@ -262,7 +262,13 @@ public class TrainController {
         System.out.println("trainlist= "+trainlist);
         pw.print(trainlist);
 	}
-	
+	@RequestMapping(value = "/trainmove.do", method = RequestMethod.GET)
+	public String trainmove(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("trainmove {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		return "trainlist";
+	}
 	
     private String getURLParam(String search){
         String url = PHARM_URL+"?ServiceKey="+KEY;

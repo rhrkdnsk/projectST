@@ -92,65 +92,20 @@ function traingo(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			$("#trainlist").css("display","block")
-			var strArray = data.split(",");
-			console.log(strArray.length)
-			$("#traininfo").find('tbody').empty();
-			for (var i = 0; i < strArray.length; i++) {
-				trainlist = strArray[i].split(".")
-				console.log(trainlist)
-				var shour = trainlist[1].substr(8, 2);
-			    var sminute = trainlist[1].substr(10, 2);
-			    var ssecond = trainlist[1].substr(12, 2);
-			    var sdate = shour+"시"+sminute+"분"
-			    
-			    var ehour = trainlist[2].substr(8, 2);
-			    var eminute = trainlist[2].substr(10, 2);
-			    var esecond = trainlist[2].substr(12, 2);
-			    var edate = ehour+"시"+eminute+"분"
-				$("#traininfo").find('tbody')
-					.append($('<tr>')
-						.append($('<td>')
-							.append(trainlist[0])
-							.append($('</td>')
-							)
-						)
-						.append($('<td>')
-							.append(sdate)
-							.append($('</td>')
-							)
-						)
-						.append($('<td>')
-							.append(edate)
-							.append($('</td>')
-							)
-						)
-						.append($('<td>')
-							.append(trainlist[3])
-							.append($('</td>')
-							)
-						)
-						.append($('<td>')
-							.append(trainlist[4])
-							.append($('</td>')
-							)
-						)
-						.append($('<td>')
-							.append(trainlist[5]+"원")
-							.append($('</td>')
-							)
-						)
-						.append($('</tr>')
-							)
-					)                                                                                                                                      
-			}
-			var count = $("#traininfo tr").length/10+1
+			tframe(data)
 		},
 		error:function(){
 			alert("기차리스트 받기 실패ㅜㅜ") ;
 		}
 	}); 
 }
+
+function tframe(data){
+	$("#trlist").css("display","block")
+	$('#trlist').get(0).contentWindow.test(data);
+	
+}
+
 
 //날짜 형식 변환
 function parse(str) {
