@@ -8,23 +8,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-#lookreply {
-	display:none;
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+ 
+$(document).ready(function(){
+
+    $('#lookbt').click(function () {  
+    	alert("클릭")
+        if($("#lookreply").css("display") == "none"){   
+            jQuery('#lookreply').css("display", "block");   
+        } else {  
+            jQuery('#lookreply').css("display", "none");   
+        }  
+    });   
+   
+});
+
+
 	
-}
-
-</style>
-
-<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js">
-
-function toggle_visibility(id) {
-    var e = document.getElementById(id);
-    if(e.style.display == 'block')
-       e.style.display = 'none';
-    else
-       e.style.display = 'block';
- }
+	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -95,7 +99,7 @@ function toggle_visibility(id) {
    	
 <c:if test="${cdto.comment_step == 0}">
 
-<div id="lookreply" >
+<div id="lookreply" style="display:none">
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
 <input type="text" name="user_nickname" value="${login_user.user_nickname}"  readonly>
@@ -113,7 +117,9 @@ function toggle_visibility(id) {
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-<button value="답글" id="lookbt" onclick="toggle_visibility('#lookreply')">답글</button>
+<c:if test="${cdto.comment_step == 0}">
+<button id="lookbt">답글</button>
+</c:if>
 </c:if>
 <br />
   	
@@ -123,9 +129,9 @@ function toggle_visibility(id) {
   	</c:choose>
   	      	
   	      	
-       	▲ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+     	▲ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
   	<p>
-     	▼ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
+  		▼ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
 
   <script type="text/javascript">
   function goUpdate() {
