@@ -195,7 +195,7 @@ public class TrainController {
 		String traintime = request.getParameter("traintime");
 		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
 		
-        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime);
+        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=1000");
 
 		System.out.println("startcode = "+startcode);
 		System.out.println("endcode = "+endcode);

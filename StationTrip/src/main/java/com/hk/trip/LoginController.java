@@ -3,6 +3,8 @@ package com.hk.trip;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Random;
@@ -48,18 +50,27 @@ public class LoginController {
 	public void login(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		logger.info("login {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String email = request.getParameter("email");
+		String demail = request.getParameter("email");
 		// System.out.println("email = " + email);
 		String password = request.getParameter("password");
 		// System.out.println("password = " + password);
+		String email = URLDecoder.decode(demail, "UTF_8");
+		
+		System.out.println(demail);
+
 		HttpSession session = request.getSession();
 		LoginDto dto = new LoginDto(email, password);
+		System.out.println(loginService.login(dto));
 		if (loginService.login(dto) != null) {
 			session.setAttribute("login_user", loginService.login(dto));
 			session.setAttribute("login_userId", loginService.login(dto).getUser_nickname());
 			System.out.println("session = " + session.getAttribute("login_user"));
 			out.print(session.getAttribute("login_userId"));
+		} else {
+			out.print("fail");
 		}
 	}
 	

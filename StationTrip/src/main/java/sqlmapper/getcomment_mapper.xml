@@ -10,8 +10,7 @@
 	<select id="getReply" resultType="CommentDto"
 		parameterType="int">
 		SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM =
-		#{freeboard_num} ORDER BY
-		COMMENT_REFER ASC
+		#{freeboard_num} ORDER BY COMMENT_REFER,COMMENT_STEP ASC
 	</select>
 
 	<insert id="writeReply" parameterType="CommentDto">
@@ -24,7 +23,14 @@
 	
     <delete id="delComment" parameterType="CommentDto">
     DELETE FROM T_COMMENT WHERE COMMENT_NUM = #{comment_num} AND FREEBOARD_NUM = #{freeboard_num}
+   </delete>
 
+   <insert id="insComment" parameterType="CommentDto">
+INSERT INTO T_COMMENT  
+	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}),0,#{comment_content},0,0 ) 
+        </insert>
+        
+	<delete id="bcDelete" parameterType="int">
+    DELETE FROM T_COMMENT WHERE FREEBOARD_NUM=#{freeboard_num}
     </delete>
-	
 </mapper>
