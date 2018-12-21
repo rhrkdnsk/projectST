@@ -101,6 +101,7 @@ function traingo(){
 }
 
 function tframe(data){
+	$("#trlist").toggle().css()
 	$("#trlist").css("display","block")
 	$('#trlist').get(0).contentWindow.test(data);
 	
