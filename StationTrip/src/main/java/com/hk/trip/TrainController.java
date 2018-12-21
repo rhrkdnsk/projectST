@@ -269,11 +269,15 @@ public class TrainController {
 	}
 	
 	@RequestMapping(value = "/traincheck.do", method = RequestMethod.GET)
-	public void traincheck(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String traincheck(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int pageNo) throws Exception {
 		logger.info("기차리스트 {}.", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 	
+
+		if(request.getParameter("pageNo") == null || request.getParameter("pageNo") == "") {
+			pageNo = 1;
+		}
 		
 		PrintWriter pw = response.getWriter();
 		String startcode = request.getParameter("startcode");
@@ -308,8 +312,8 @@ public class TrainController {
             event_type = xpp.next();
         }
         int size = traininfo.size();
-        System.out.println("trainlist= "+size);
-        pw.print(size);
+        
+		return "traindlist";
 	}
 	
 	@RequestMapping(value = "/trainmove.do", method = RequestMethod.GET)

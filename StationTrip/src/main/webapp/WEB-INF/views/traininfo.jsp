@@ -143,7 +143,7 @@ $(function() {
 					</select>
 				</td>
 				<td>
-				<button onclick="traingo(1)" >선택</button>
+				<a href="traincheck.do?pageNo=1" onclick="traingo(1)" ><button>선택</button></a>
 				</td>
 			</tr>
 		</table>
