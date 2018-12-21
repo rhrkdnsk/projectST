@@ -16,7 +16,7 @@
 <!-- jQuery UI CSS파일 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <!-- jQuery 기본 js파일 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 <script type="text/javascript">
@@ -32,19 +32,6 @@ $(function() {
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
     });
 });
-$(document).ready(function(){
-
-    $('#fxk').click(function () {  
-    	alert("클릭")
-        if($("#fuck").css("display") == "none"){   
-            jQuery('#fuck').css("display", "block");   
-        } else {  
-            jQuery('#fuck').css("display", "none");   
-        }  
-    });   
-   
-});
-
 
 </script> 
 <title></title>
@@ -161,10 +148,7 @@ $(document).ready(function(){
 			</tr>
 		</table>
 		<iframe id="trlist" src="trainmove.do" style="height:850px;width:850px;display:none;"></iframe>
-		<button id="fxk">체크</button>
-		<div id="fuck" style="display:none;">
-			<p>하잉 테ㅡ트</p>
-		</div>
+
 		
 <jsp:include page="footer.jsp"></jsp:include>
 </body>

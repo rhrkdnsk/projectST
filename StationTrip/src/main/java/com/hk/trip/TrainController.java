@@ -185,17 +185,22 @@ public class TrainController {
 	}
 	
 	@RequestMapping(value = "/trainlist.do", method = RequestMethod.GET)
-	public void trainlist(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void trainlist(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int pageNo) throws Exception {
 		logger.info("기차리스트 {}.", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		if(request.getParameter("pageNo") == null || request.getParameter("pageNo") == "") {
+			pageNo = 1;
+		}
+		
+		
 		PrintWriter pw = response.getWriter();
 		String startcode = request.getParameter("startcode");
 		String endcode = request.getParameter("endcode");
 		String traintime = request.getParameter("traintime");
 		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
-		
-        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=1000");
+        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=10&pageNo="+pageNo);
 
 		System.out.println("startcode = "+startcode);
 		System.out.println("endcode = "+endcode);

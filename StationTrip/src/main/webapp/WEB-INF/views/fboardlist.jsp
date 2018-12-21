@@ -242,8 +242,7 @@ body {
 <%
 // String aaa = (String)request.getAttribute("totalPage");
 // 	System.out.println("list에서 aaa의 값 : " + aaa);
-	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue();
-	int startNum = ((Integer)request.getAttribute("page")).intValue();
+	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
 	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 

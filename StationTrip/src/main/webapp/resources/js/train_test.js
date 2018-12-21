@@ -85,7 +85,7 @@ function traingo(){
 	var traintime = $("#Datepicker").val();
 	console.log(traintime)
 	
-	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime };
+	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : 1 };
     var trainlist = null;
 	$.ajax({
 		url:"trainlist.do",
@@ -101,7 +101,6 @@ function traingo(){
 }
 
 function tframe(data){
-	$("#trlist").toggle().css()
 	$("#trlist").css("display","block")
 	$('#trlist').get(0).contentWindow.test(data);
 	

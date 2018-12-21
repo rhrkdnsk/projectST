@@ -15,6 +15,7 @@ function test(data){
 	//alert("data = "+data)
 	var strArray = data.split(",");
 	console.log(strArray.length)
+	$("#tpage").append("토탈페이지 : "+Math.ceil(strArray.length/10));
 	$("#traininfo").find('tbody').empty();
 		for (var i = 0; i < strArray.length; i++) {
 			trainlist = strArray[i].split(".")
@@ -86,6 +87,7 @@ function splitArray(arr, size) {
 <title>Insert title here</title>
 </head>
 <body>
+<p id="tpage"></p>
 <table>
 	<colgroup>
 		<col width="141px">
