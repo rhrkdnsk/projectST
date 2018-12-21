@@ -59,15 +59,19 @@ public class AreaController {
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		urlCase1 = URL + param; // 시군구 값을 저장
-		if(case1!=null) {
+		if(case1!="") {
 			param += "&areaCode=" + case1;	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
 			urlCase2 = URL + param; // 군구 값 저장
+		} else {
+			urlCase2 = URL + param + "&areaCode=1"; // 군구 값 저장
 		}
+		
 //		param += "&areaCode=1";	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
-		urlCase2 = URL + param + "&areaCode=1"; // 군구 값 저장
+
 		System.out.println("*******************************************************");
 		System.out.println(urlCase1);
 		System.out.println(urlCase2);
+		System.out.println(case1);
 		System.out.println("*******************************************************");
 		Document areaCase1 = null;
 		Document areaCase2 = null;
