@@ -77,7 +77,7 @@ $(function() {
 					
 });
 	
-function traingo(){
+function traingo(no){
 	var startcode = $("#starttowncode").val();
 	console.log(startcode)
 	var endcode = $("#endtowncode").val();
@@ -85,7 +85,7 @@ function traingo(){
 	var traintime = $("#Datepicker").val();
 	console.log(traintime)
 	
-	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : 1 };
+	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
     var trainlist = null;
 	$.ajax({
 		url:"trainlist.do",

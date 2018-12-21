@@ -267,6 +267,51 @@ public class TrainController {
         System.out.println("trainlist= "+trainlist);
         pw.print(trainlist);
 	}
+	
+	@RequestMapping(value = "/traincheck.do", method = RequestMethod.GET)
+	public void traincheck(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("기차리스트 {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+	
+		
+		PrintWriter pw = response.getWriter();
+		String startcode = request.getParameter("startcode");
+		String endcode = request.getParameter("endcode");
+		String traintime = request.getParameter("traintime");
+		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
+        URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=1000");
+
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        XmlPullParser xpp = factory.newPullParser();
+        BufferedInputStream bis = new BufferedInputStream(url.openStream());
+        xpp.setInput(bis, "utf-8");
+        
+        String tag = null;
+        int event_type = xpp.getEventType();
+        
+        ArrayList<String> traininfo = new ArrayList<String>();
+        String traingradename = null;
+
+        while (event_type != XmlPullParser.END_DOCUMENT) {
+            if (event_type == XmlPullParser.START_TAG) {
+                tag = xpp.getName();
+            } else if (event_type == XmlPullParser.TEXT) {
+                /* 차량명  */
+                if(tag.equals("traingradename")){
+                	traingradename = xpp.getText();
+                	traininfo.add(traingradename);
+                }
+            }
+ 
+            event_type = xpp.next();
+        }
+        int size = traininfo.size();
+        System.out.println("trainlist= "+size);
+        pw.print(size);
+	}
+	
 	@RequestMapping(value = "/trainmove.do", method = RequestMethod.GET)
 	public String trainmove(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("trainmove {}.", locale);
