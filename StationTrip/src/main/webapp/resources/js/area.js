@@ -12,7 +12,6 @@ $(function(){
 			data : {"case1":case1_Code,"case2":case2_Code,"case3":case3_Code},
 			async:false,
 			success : function(obj){
-				
 //				var areaCase2=obj["areaCase2"];
 //				alert(areaCase1.find("name").eq(i).text());
 //				alert(areaCase2);
