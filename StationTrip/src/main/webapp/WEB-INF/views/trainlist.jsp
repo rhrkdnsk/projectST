@@ -11,14 +11,15 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/trip/resources/js/train_test.js"></script> 
 <script type="text/javascript">
+var trpage;
 function test(data){
 	//alert("data = "+data)
 	var strArray = data.split(",");
-	console.log(strArray.length)
-	$("#tpage").append("토탈페이지 : "+Math.ceil(strArray.length/10));
+	//console.log(strArray.length)
 	$("#traininfo").find('tbody').empty();
 		for (var i = 0; i < strArray.length; i++) {
 			trainlist = strArray[i].split(".")
+			trpage = trainlist[6]
 			//console.log(trainlist)
 			var shour = trainlist[1].substr(8, 2);
 			var sminute = trainlist[1].substr(10, 2);
@@ -72,7 +73,7 @@ function test(data){
 		tralist.push(splitArray(strArray, 10)[i]);
 		
 	}
-	console.log(tralist.length)
+	//console.log(tralist.length)
 }
 
 function splitArray(arr, size) {
@@ -87,7 +88,6 @@ function splitArray(arr, size) {
 <title>Insert title here</title>
 </head>
 <body>
-<p id="tpage"></p>
 <table>
 	<colgroup>
 		<col width="141px">
@@ -124,33 +124,33 @@ function splitArray(arr, size) {
 		<th>운임</th>
 	</tr>
 </table>
-<%-- <div class="list-bot">
+<div class="list-bot">
 <p>
-<c:if test="${page-1 != 0 }">
-						<a href="trainlist.do?pageNum=${page-1}">이전</a>						
-
-</c:if>
-
 <%
-// String aaa = (String)request.getAttribute("totalPage");
-// 	System.out.println("list에서 aaa의 값 : " + aaa);
-	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue();
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+int tpage = ((Integer)session.getAttribute("page")).intValue();
+int totalPage = ((Integer)session.getAttribute("totalPage1")).intValue();
+int startPage = ((Integer)session.getAttribute("startPage1")).intValue();
+int endPage = ((Integer)session.getAttribute("endPage1")).intValue();
+if(tpage-1 != 0){
+	%>
+		<button onclick="straingo(${tpage-1})">이전</button>
+	<%
+}
 
 	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
-//int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
-						<a href="trainlist.do?pageNum=<%=i%>"><%=i%></a>						
+						<button onclick="straingo(<%=i%>)"><%=i%></button>						
 			<%			
 		}
-%>
+		if(tpage+1 <= totalPage){
+	%>
+  <button onclick="straingo(${tpage+1})">다음</button>
+<%
+		}
 
-  <c:if test="${page+1 <= totalPage}">
-  <a href="trainlist.do?pageNum=${page+1}">다음</a>						
-  </c:if>
+%>
 </p>
-</div> --%>
+</div>
 </body>
 </html>

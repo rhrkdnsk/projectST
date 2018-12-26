@@ -76,21 +76,47 @@ $(function() {
 			});
 					
 });
+
+function traingoti(no){
+	startcode = $("#starttowncode").val();
+	console.log(startcode)
+	endcode = $("#endtowncode").val();
+	console.log(endcode)
+	traintime = $("#Datepicker").val();
+	console.log(traintime)
+		
+	var trdata = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
+	$.ajax({
+		url:"traincheck.do",
+		type:'GET',
+		data: trdata,
+		success:function(no){
+			console.log("성공")
+			
+		},
+		error:function(){
+			alert("기차리스트 받기 실패ㅜㅜ") ;
+		}
+	}); 
+	traingo(no)
+}
+
 	
 function traingo(no){
-	var startcode = $("#starttowncode").val();
+	//traingoti(no)
+	/*var startcode = $("#starttowncode").val();
 	console.log(startcode)
 	var endcode = $("#endtowncode").val();
 	console.log(endcode)
 	var traintime = $("#Datepicker").val();
 	console.log(traintime)
 	
-	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
-    var trainlist = null;
+	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };*/
+	console.log("ㅎㅎ")
 	$.ajax({
 		url:"trainlist.do",
 		type:'GET',
-		data: data,
+		data: {"pageNo" : no},
 		success:function(data){
 			tframe(data)
 		},
@@ -102,8 +128,24 @@ function traingo(no){
 
 function tframe(data){
 	$("#trlist").css("display","block")
-	$('#trlist').get(0).contentWindow.test(data);
+	test(data);
 	
+}
+function straingo(no){
+
+	var data = { "pageNo" : no };
+	$.ajax({
+		url:"trainlist.do",
+		type:'GET',
+		data: data,
+		success:function(data){
+			test(data)
+		},
+		error:function(){
+			alert("기차리스트 받기 실패ㅜㅜ") ;
+		}
+	}); 
+	window.location.reload()
 }
 
 
@@ -115,3 +157,80 @@ function parse(str) {
     return new Date(hour,minute,second);
 }
 var date = parse('20160418');
+
+
+
+//테스트
+var trpage;
+function test(data){
+	//alert("data = "+data)
+	var strArray = data.split(",");
+	//console.log(strArray.length)
+	$("#traininfo").find('tbody').empty();
+		for (var i = 0; i < strArray.length; i++) {
+			trainlist = strArray[i].split(".")
+			trpage = trainlist[6]
+			//console.log(trainlist)
+			var shour = trainlist[1].substr(8, 2);
+			var sminute = trainlist[1].substr(10, 2);
+			var ssecond = trainlist[1].substr(12, 2);
+			var sdate = shour+"시"+sminute+"분"
+			    
+			var ehour = trainlist[2].substr(8, 2);
+			var eminute = trainlist[2].substr(10, 2);
+			var esecond = trainlist[2].substr(12, 2);
+			var edate = ehour+"시"+eminute+"분"
+			$("#traininfo").find('tbody')
+				.append($('<tr>')
+					.append($('<td>')
+						.append(trainlist[0])
+						.append($('</td>')
+						)
+					)
+					.append($('<td>')
+						.append(sdate)
+						.append($('</td>')
+						)
+					)
+					.append($('<td>')
+						.append(edate)
+						.append($('</td>')
+						)
+					)
+					.append($('<td>')
+						.append(trainlist[3])
+						.append($('</td>')
+						)
+					)
+					.append($('<td>')
+						.append(trainlist[4])
+						.append($('</td>')
+						)
+					)
+					.append($('<td>')
+						.append(trainlist[5]+"원")
+						.append($('</td>')
+						)
+					)
+					.append($('</tr>')
+						)
+				)                                                                                                                                      
+			}
+			
+	
+	tralist = []
+	for(var i=0; i<splitArray(strArray, 10).length; i++){
+		tralist.push(splitArray(strArray, 10)[i]);
+		
+	}
+	//console.log(tralist.length)
+}
+
+function splitArray(arr, size) {
+	var arr2 = arr.slice(0),
+	arrays = [];
+	while (arr2.length > 0) {
+		arrays.push(arr2.splice(0, size));
+	}
+	return arrays;
+}
