@@ -15,10 +15,20 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/area.js"></script>
 <style type="text/css">
-ul, li {
+ul{
  list-style:none;
- }
+ display:inline-block; *display:inline; zoom:1;
 
+ }
+li {
+list-style:none;
+text-align:center;
+float:left;
+margin : 5px;
+padding : 2px;
+background-color : skyblue;
+border-radius: 20%;
+}
 </style>
 
 </head>
@@ -50,7 +60,7 @@ ul, li {
 			</ul> 
 			<hr />
 			<ul id="titles">
-				<li>관광지</li>
+				<!-- 컨텐츠 별 검색 내용 -->
 			</ul>
 
 		</div>

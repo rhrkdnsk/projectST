@@ -42,85 +42,66 @@ public class AreaController {
 
 	@ResponseBody
 	@RequestMapping(value = "area.do")
-	public Map<String, String> area(String case1, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	public Map<String, String> area(String case1, String case2, String case3, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("지역 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
 
+		if(case1 == "") {
+			case1 = "1";
+		} if(case2 == "") {
+			case2 = "1";
+		} if(case3 == "") {
+			case3 = "12";
+		}
 
 		String urlCase1 = null;
 		String urlCase2 = null;
+		String urlCase3 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
-		String param = "areaCode?"; //지역조회
-		String param2 = "areaBasedList?";	//지역기반 컨텐츠 목록
+		String serviceName = "areaCode";
+		String param = "?"; 		//지역조회
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "&numOfRows=100";		//row수
+		param += "&numOfRows=100";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		urlCase1 = URL + param; // 시군구 값을 저장
-		if(case1!="") {
-			param += "&areaCode=" + case1;	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
-			urlCase2 = URL + param; // 군구 값 저장
-		} else {
-			urlCase2 = URL + param + "&areaCode=1"; // 군구 값 저장
-		}
-		
-//		param += "&areaCode=1";	//지역코드가 null이면 '시코드'를 받고 아니면 '군구코드'를 받음
+		/* 시 값을 받을 url */
+		urlCase1 = URL + serviceName + param;
+
+		/* 구,군 값을 받을 url */
+		param += "&areaCode=" + case1;
+		urlCase2 = URL + serviceName + param;
+
+		/* 컨텐츠 조회 */
+		serviceName = "areaBasedList";	
+		param += "&sigunguCode=" + case2;
+		param += "&contentTypeId=" + case3;
+		param += "&arrange=P";
+		urlCase3 = URL + serviceName + param;
 
 		System.out.println("*******************************************************");
 		System.out.println(urlCase1);
 		System.out.println(urlCase2);
+		System.out.println(urlCase3);
 		System.out.println(case1);
 		System.out.println("*******************************************************");
 		Document areaCase1 = null;
 		Document areaCase2 = null;
+		Document areaCase3 = null;
 		try {
 			areaCase1 = Jsoup.connect(urlCase1).get();
 			areaCase2 = Jsoup.connect(urlCase2).get();
+			areaCase3 = Jsoup.connect(urlCase3).get();
 			map.put("areaCase1", areaCase1.toString());
 			map.put("areaCase2", areaCase2.toString());
-			//			System.out.println(map.get("areaCase1"));
-			//			System.out.println(map.get("areaCase2"));
+			map.put("areaCase3", areaCase3.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//		System.out.println(map.text());
-		//		PrintWriter pw=res.getWriter();
-		//		pw.println(areaCase1);
 		return map;
-	}
 
-	//	@RequestMapping(value = "area.do")
-	//	public void area(String code, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
-	//		logger.info("지역 목록 출력.", locale);
-	//		res.setCharacterEncoding("UTF-8");
-	//		res.setContentType("text/html; charset=UTF-8");
-	//
-	//		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
-	//		String param = "areaCode?"; 	//지역조회
-	//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-	//		param += "&numOfRows=100";		//row수
-	//		param += "&MobileOS=ETC";		
-	//		param += "&MobileApp=Test";
-	//		if(code!=null) {
-	//			param += "&areaCode=" + code;	//지역코드
-	//		}
-	//
-	//
-	//		String url = URL + param;
-	//
-	//		org.jsoup.nodes.Document doc = null;
-	//		try {
-	//			doc = Jsoup.connect(url).get();
-	//		} catch (IOException e) {
-	//			e.printStackTrace();
-	//		}
-	//		System.out.println(doc);
-	//		PrintWriter pw=res.getWriter();
-	//		pw.println(doc);
-	//
-	//	}
+	}
 
 	@RequestMapping(value = "category.do")
 	public void category(String sigunguCode, String category, String areaCode, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
@@ -151,4 +132,40 @@ public class AreaController {
 		pw.println(doc);
 
 	}
+
+	/* 안 쓰지만 언젠간 쓸 거 같은 느낌 */
+	
+	
+	//	@RequestMapping(value = "area.do")
+	//	public void area(String code, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	//		logger.info("지역 목록 출력.", locale);
+	//		res.setCharacterEncoding("UTF-8");
+	//		res.setContentType("text/html; charset=UTF-8");
+	//
+	//		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
+	//		String param = "areaCode?"; 	//지역조회
+	//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+	//		param += "&numOfRows=100";		//row수
+	//		param += "&MobileOS=ETC";		
+	//		param += "&MobileApp=Test";
+	//		if(code!=null) {
+	//			param += "&areaCode=" + code;	//지역코드
+	//		}
+	//
+	//
+	//		String url = URL + param;
+	//
+	//		org.jsoup.nodes.Document doc = null;
+	//		try {
+	//			doc = Jsoup.connect(url).get();
+	//		} catch (IOException e) {
+	//			e.printStackTrace();
+	//		}
+	//		System.out.println(doc);
+	//		PrintWriter pw=res.getWriter();
+	//		pw.println(doc);
+	//
+	//	}
 }
+
+

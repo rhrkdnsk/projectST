@@ -5,16 +5,12 @@ $(function(){
 	start();
 	
 	function start(){
-		alert("start 들어옴");
 		$.ajax({
 			url : "area.do",
 			mothod : "POST",
 			data : {"case1":case1_Code,"case2":case2_Code,"case3":case3_Code},
 			async:false,
 			success : function(obj){
-//				var areaCase2=obj["areaCase2"];
-//				alert(areaCase1.find("name").eq(i).text());
-//				alert(areaCase2);
 				var areaCase1=$(obj["areaCase1"]).find("name");
 				var areaCode1=$(obj["areaCase1"]).find("code");
 				$("#case1").empty();
@@ -27,6 +23,12 @@ $(function(){
 				for (var i = 0; i < areaCase2.length; i++) {
 					$("#case2").append("<li value='"+ areaCode2.eq(i).text() +"'>" + areaCase2.eq(i).text() + "</li>");
 				}
+				var areaCase3=$(obj["areaCase3"]).find("title");
+				//이미지 넣을까?
+				$("#titles").empty();
+				for (var i = 0; i < areaCase3.length; i++) {
+					$("#titles").append("<li>" + areaCase3.eq(i).text() + "</li>");
+				}
 			},
 			error:function(){
 				alert("에러");
@@ -36,17 +38,23 @@ $(function(){
 	
 	$("#case1").on("click", "li", function(){
 		case1_Code = $(this).attr('value');
-		alert(case1_Code);
 		start();
 	});
 	
 	$("#case2").on("click", "li", function(){
 		case2_Code = $(this).attr('value');
-		alert(case2_Code);
+		start();
+	});
+	
+	$("#case3").on("click", "li", function(){
+		case3_Code = $(this).attr('value');
 		start();
 	});
 
+});
 
+
+/* 안 쓰지만 언젠간 쓸 거 같은 느낌 */
 
 
 //	$("#case1").on("click", "li", function(){
@@ -98,4 +106,4 @@ $(function(){
 //	}
 //	});
 //	});
-});
+
