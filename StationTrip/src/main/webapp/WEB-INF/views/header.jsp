@@ -34,7 +34,7 @@
     href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="home.do" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     
-    <a href="cityinfo.do" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">열차 조회</a>
+    <a href="cityinfo.do?pageNo=1" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">열차 조회</a>
     <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-hide-small w3-padding-large w3-hover-white" title="Notifications">여행정보 <i class="fa fa-caret-down"></i></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
