@@ -145,71 +145,7 @@ $(function() {
 			</td>
 		</tr>
 	</table>
-	<div id="trlist" style="display: none;">
-		<table>
-			<colgroup>
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-			</colgroup>
-			<tr>
-				<th>차량 종류</th>
-				<th>출발시간</th>
-				<th>도착시간</th>
-				<th>출발지</th>
-				<th>도착지</th>
-				<th>운임</th>
-			</tr>
-		</table>
-		<table id="traininfo">
-			<colgroup>
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-				<col width="141px">
-			</colgroup>
-			<tr>
-				<th>차량 종류</th>
-				<th>출발시간</th>
-				<th>도착시간</th>
-				<th>출발지</th>
-				<th>도착지</th>
-				<th>운임</th>
-			</tr>
-		</table>
-		<div class="list-bot">
-			<p>
-				<%
-					int tpage = ((Integer) session.getAttribute("page")).intValue();
-					int totalPage = ((Integer) session.getAttribute("totalPage1")).intValue();
-					int startPage = ((Integer) session.getAttribute("startPage1")).intValue();
-					int endPage = ((Integer) session.getAttribute("endPage1")).intValue();
-					if (tpage - 1 != 0) {
-				%>
-				<button onclick="straingo(${tpage-1})">이전</button>
-				<%
-					}
-
-					System.out.println("jsp list의 totalPage의 값 : " + totalPage);
-					for (int i = startPage; i <= endPage; i++) {
-				%>
-				<button onclick="straingo(<%=i%>)"><%=i%></button>
-				<%
-					}
-					if (tpage + 1 <= totalPage) {
-				%>
-				<button onclick="straingo(${tpage+1})">다음</button>
-				<%
-					}
-				%>
-			</p>
-		</div>
-	</div>
+	<iframe id="trainframe" style="width:850px;height:400px;display:none" src="trainmove.do"></iframe>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
