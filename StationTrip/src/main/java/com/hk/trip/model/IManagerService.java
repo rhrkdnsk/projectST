@@ -12,4 +12,7 @@ public interface IManagerService {
 	public boolean sdelBoard(LoginDto dto);
 	public LoginDto getDetailAjax(LoginDto dto);
 	public boolean smulDelBoard(String[] dto);
+	
+	public int sgetCount(int startNum,int endNum);
+	public List<LoginDto> sgetBoardList(int startNum,int endNum);
 }

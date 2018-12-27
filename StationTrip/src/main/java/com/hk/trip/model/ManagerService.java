@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.hk.trip.dto.LoginDto;
 @Service
 public class ManagerService implements IManagerService{
@@ -49,5 +50,15 @@ public class ManagerService implements IManagerService{
 	public boolean smulDelBoard(String[] dto) {
 		return managerDao.smulDelBoard(dto);
 	}
-
+	
+	@Override
+	public int sgetCount(int startNum,int endNum) {
+		// TODO Auto-generated method stub
+		return managerDao.sgetCount(startNum,endNum);
+	}
+	@Override
+	public List<LoginDto> sgetBoardList(int startNum,int endNum) {
+		// TODO Auto-generated method stub
+		return managerDao.sgetBoardList(startNum,endNum);
+	}
 }
