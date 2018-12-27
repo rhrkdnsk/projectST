@@ -1,5 +1,6 @@
 $(function() {
 	/* 출발역 */
+	
 	$("#startcitycode").change(
 			
 			function() {

@@ -46,29 +46,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h2><i class="w3-margin-right"></i>열차 찾기</h2>
     </div>
     <div class="w3-container w3-blue w3-padding-16">
-      <form action="/action_page.php" target="_blank">
-        <div class="w3-row-padding" style="margin:0 -16px;">
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-calendar-o"></i> 가는날</label>
-            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
-          </div>
-          <div class="w3-half">
-            <label><i class="fa fa-calendar-o"></i> 오는날</label>
-            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
-          </div>
-        </div>
-        <div class="w3-row-padding" style="margin:8px -16px;">
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-male"></i> 성인</label>
-            <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">
-          </div>
-          <div class="w3-half">
-            <label><i class="fa fa-child"></i> 유아</label>
-          <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
-          </div>
-        </div>
-        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
-      </form>
+    
+    
+    
+    
+    
+	<form action="/action_page.php target="_blank"">
+	
+	
+	
+	</form>
+      
+      
+      
+      
+      
+      
     </div>
       </div>
        <div class="w3-row-padding" style="margin:0 -16px">
