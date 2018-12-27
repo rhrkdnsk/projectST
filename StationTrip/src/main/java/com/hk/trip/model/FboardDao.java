@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 
@@ -21,7 +22,7 @@ public class FboardDao implements IFboardDao {
 	
 	private String namespace = "com.hk.trip.fboard.";
 	private String namespace1 = "com.hk.trip.comment.";
-
+	private String namespace2 = "com.hk.trip.checklike";
 	
 	@Override
 	public List<FboardDto> getAllList(String keyWord, String keyField)	{
@@ -169,5 +170,17 @@ public class FboardDao implements IFboardDao {
 		
 		return count > 0 ? true:false;
 	}
+	
+	
+	@Override
+	public boolean checkLike(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		
+		count = sqlSession.selectOne(namespace2 + "getLike", dto);
+		
+		return count > 0? true:false;
+	}
+	
 	
 }

@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 import com.hk.trip.model.FboardService;
@@ -288,6 +289,19 @@ public class BoardController {
 			boolean isS = fboardService.Commentreply(dto);
 			if(isS) {
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
+			} else {
+				System.out.println("커밋오류처리");
+				return "error";
+			}
+	
+	}
+		
+		@RequestMapping(value = "fboardLike.do")
+		public String fboardLike(HttpServletRequest request, Locale locale, Model model,CheckLikeDto dto) {
+			logger.info("좋아요 기능 구현", locale);
+			boolean isS = fboardService.checkLike(dto);
+			if(isS) {
+				return "redirect:fboarddetail.do?freeboard_num=";
 			} else {
 				System.out.println("커밋오류처리");
 				return "error";

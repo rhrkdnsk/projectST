@@ -5,7 +5,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.hk.trip.checklike">
-
+   
+    <select id="getLike" parameterType="Map" resultType="CheckDto">
+    SELECT * FROM CHECKLIKEHATE WHERE BOARDCODE = '자유게시판' AND USER_NICKNAME = #{boardcode} AND BOARD_NUM = #{freeboard_num} 
+    </select>
 
 
   </mapper>
