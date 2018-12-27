@@ -87,7 +87,7 @@ $(document).ready(function(){
   <c:forEach items="${list}" var="cdto">
   
   
- 	<div>
+ 	<div id="step1p">
    	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
@@ -96,7 +96,8 @@ $(document).ready(function(){
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
-   	
+
+
 <c:if test="${cdto.comment_step == 0}">
 
 <div id="lookreply" style="display:none">

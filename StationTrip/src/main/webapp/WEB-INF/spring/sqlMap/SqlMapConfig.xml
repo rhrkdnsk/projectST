@@ -9,6 +9,7 @@
   		<typeAlias type="com.hk.trip.dto.LoginDto" alias="LoginDto" />
   		<typeAlias type="com.hk.trip.dto.FboardDto" alias="FboardDto"/>
   		<typeAlias type="com.hk.trip.dto.CommentDto" alias="CommentDto"/> 
+        <typeAlias type="com.hk.trip.dto.CheckLikeDto" alias="CheckDto" />
   	</typeAliases>
   	
   	<mappers>
@@ -17,6 +18,7 @@
   		<mapper resource="/sqlmapper/fboard_mapper.xml" />
   		<mapper resource="/sqlmapper/getcomment_mapper.xml" />
   		<mapper resource="/sqlmapper/membership_mapper.xml" />
-  	</mappers>
+        <mapper resource="/sqlmapper/checklike.xml" />
+      </mappers>
   	
 </configuration>
