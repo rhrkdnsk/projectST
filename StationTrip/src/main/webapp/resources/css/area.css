@@ -19,10 +19,12 @@
 .area-content {
 	list-style: none;
 	padding: 0;
+	text-align: center;
 }
 
 .area-content>li {
 	border-bottom: 1px solid #e0e0e0;
+	text-align: left;
 }
 
 #areaBoard>div {
@@ -52,4 +54,12 @@ h1 {
 #addr {
 	font-size: 14px;
 	float: right;
+}
+
+.pageNum {
+	width: 20px;
+	margin: 0 auto;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px;
 }
