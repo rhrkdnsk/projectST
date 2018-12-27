@@ -1,6 +1,8 @@
 $(function() {
 	/* 출발역 */
+	
 	$("#startcitycode").change(
+			
 			function() {
 				var citycode = $("#startcitycode").val();
 				if (citycode == 'scity') {
@@ -34,7 +36,8 @@ $(function() {
 						}
 					});
 				}
-
+//				document.getElementById('trainframe').contentWindow.location.reload(true)
+				
 			});
 
 					
@@ -73,51 +76,58 @@ $(function() {
 						}
 					});
 				}
+//				document.getElementById('trainframe').contentWindow.location.reload(true)
+				
 			});
 					
 });
 
 function traingoti(no){
+	
 	startcode = $("#starttowncode").val();
-	console.log(startcode)
+	console.log("goti stcode = "+startcode)
 	endcode = $("#endtowncode").val();
 	console.log(endcode)
 	traintime = $("#Datepicker").val();
 	console.log(traintime)
-		
+	
 	var trdata = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
 	$.ajax({
 		url:"traincheck.do",
 		type:'GET',
 		data: trdata,
-		success:function(no){
-			console.log("성공")
-			
+		success:function(data){
+			//alert("성공")
+			framenum(data)
 		},
 		error:function(){
 			alert("기차리스트 받기 실패ㅜㅜ") ;
 		}
 	}); 
-	traingo(no)
+	console.log("pno2 = "+no)
+	
+	traingo(no)	
 }
 
 	
 function traingo(no){
 	//traingoti(no)
-	/*var startcode = $("#starttowncode").val();
+	var startcode = $("#starttowncode").val();
 	console.log(startcode)
 	var endcode = $("#endtowncode").val();
 	console.log(endcode)
 	var traintime = $("#Datepicker").val();
 	console.log(traintime)
 	
-	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };*/
-	console.log("ㅎㅎ")
+	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
+	console.log("no = "+no)
+	
 	$.ajax({
 		url:"trainlist.do",
 		type:'GET',
-		data: {"pageNo" : no},
+		data: data,
 		success:function(data){
+			console.log("tgo data = "+data)
 			tframe(data)
 		},
 		error:function(){
@@ -126,11 +136,6 @@ function traingo(no){
 	}); 
 }
 
-function tframe(data){
-	$("#trlist").css("display","block")
-	test(data);
-	
-}
 function straingo(no){
 
 	var data = { "pageNo" : no };
@@ -139,15 +144,31 @@ function straingo(no){
 		type:'GET',
 		data: data,
 		success:function(data){
-			test(data)
+			tlist(data)
 		},
 		error:function(){
 			alert("기차리스트 받기 실패ㅜㅜ") ;
 		}
 	}); 
-	window.location.reload()
+	
+}
+function frameReload(){
+	document.getElementById('trainframe').contentWindow.location.reload(true)
+	console.log("리로드")
+	
+}
+function framenum(data){
+	$('#trainframe').get(0).contentWindow.tnum(data);
+	console.log("넘버함수실행")
 }
 
+function tframe(data){
+	$("#trainframe").css("display","block")
+	console.log("블락")
+	$('#trainframe').get(0).contentWindow.tlist(data);
+	console.log("함수실행")
+	
+}
 
 //날짜 형식 변환
 function parse(str) {
@@ -158,79 +179,3 @@ function parse(str) {
 }
 var date = parse('20160418');
 
-
-
-//테스트
-var trpage;
-function test(data){
-	//alert("data = "+data)
-	var strArray = data.split(",");
-	//console.log(strArray.length)
-	$("#traininfo").find('tbody').empty();
-		for (var i = 0; i < strArray.length; i++) {
-			trainlist = strArray[i].split(".")
-			trpage = trainlist[6]
-			//console.log(trainlist)
-			var shour = trainlist[1].substr(8, 2);
-			var sminute = trainlist[1].substr(10, 2);
-			var ssecond = trainlist[1].substr(12, 2);
-			var sdate = shour+"시"+sminute+"분"
-			    
-			var ehour = trainlist[2].substr(8, 2);
-			var eminute = trainlist[2].substr(10, 2);
-			var esecond = trainlist[2].substr(12, 2);
-			var edate = ehour+"시"+eminute+"분"
-			$("#traininfo").find('tbody')
-				.append($('<tr>')
-					.append($('<td>')
-						.append(trainlist[0])
-						.append($('</td>')
-						)
-					)
-					.append($('<td>')
-						.append(sdate)
-						.append($('</td>')
-						)
-					)
-					.append($('<td>')
-						.append(edate)
-						.append($('</td>')
-						)
-					)
-					.append($('<td>')
-						.append(trainlist[3])
-						.append($('</td>')
-						)
-					)
-					.append($('<td>')
-						.append(trainlist[4])
-						.append($('</td>')
-						)
-					)
-					.append($('<td>')
-						.append(trainlist[5]+"원")
-						.append($('</td>')
-						)
-					)
-					.append($('</tr>')
-						)
-				)                                                                                                                                      
-			}
-			
-	
-	tralist = []
-	for(var i=0; i<splitArray(strArray, 10).length; i++){
-		tralist.push(splitArray(strArray, 10)[i]);
-		
-	}
-	//console.log(tralist.length)
-}
-
-function splitArray(arr, size) {
-	var arr2 = arr.slice(0),
-	arrays = [];
-	while (arr2.length > 0) {
-		arrays.push(arr2.splice(0, size));
-	}
-	return arrays;
-}

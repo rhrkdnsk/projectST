@@ -2,6 +2,7 @@ package com.hk.trip.model;
 
 import java.util.List;
 
+
 import com.hk.trip.dto.LoginDto;
 
 
@@ -14,4 +15,7 @@ public interface IManagerDao {
 	public boolean sdelBoard(LoginDto dto);
 	public boolean smulDelBoard(String[] dto);
 	public LoginDto getDetailAjax(LoginDto dto);
+	
+	public int sgetCount(int startNum,int endNum);
+	public List<LoginDto> sgetBoardList(int startNum,int endNum);
 }

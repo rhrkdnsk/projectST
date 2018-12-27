@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hk.trip.membership">
+
+	<select id="myinfo" parameterType="Map" resultType="LoginDto">
+		SELECT USER_NICKNAME,TIER,USER_EMAIL,USER_NAME,USER_PASSWORD,USER_PHONE,USER_POINT,USER_ALARMNUM
+		FROM T_USER
+		WHERE USER_NICKNAME = #{user_nickname}
+	</select>
+	
+	<update id="pwchange" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_PASSWORD = #{user_password}
+		WHERE USER_NICKNAME = #{user_nickname}
+	</update>
+	
+	<delete id="withdrawal" parameterType="LoginDto">
+		DELETE T_USER
+		WHERE USER_NICKNAME = #{user_nickname} AND USER_PASSWORD = #{user_password}
+	</delete>
+
+</mapper>	

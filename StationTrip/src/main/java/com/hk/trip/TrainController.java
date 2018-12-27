@@ -40,7 +40,8 @@ public class TrainController {
 	@RequestMapping(value = "/cityinfo.do", method = RequestMethod.GET)
 	public String cityinfo(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("cityinfo {}.", locale);
-
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PHARM_URL = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyCodeList";
 		
         URL url = new URL(getURLParam(null));
@@ -84,7 +85,7 @@ public class TrainController {
         city = city	.replaceAll(" ", "");
         model.addAttribute("citylist", city);
     
-        
+   /*     
         //기차 표시
         URL urld = new URL("http://openapi.tago.go.kr/openapi/service/TrainInfoService/getVhcleKndList?serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D");
 
@@ -105,7 +106,7 @@ public class TrainController {
             if (event_types == XmlPullParser.START_TAG) {
                 tags = xpps.getName();
             } else if (event_types == XmlPullParser.TEXT) {
-                /* 도시명만 가져옴 */
+                 도시명만 가져옴 
                 if(tags.equals("vehiclekndnm")){
                 	trainName = xpps.getText();
                 }
@@ -126,7 +127,8 @@ public class TrainController {
         train = train.replaceAll(" ", "");
        // System.out.println(train);
         model.addAttribute("traincode", train);
-        
+
+        */
         return "traininfo";
 	}
 //	http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList
@@ -193,24 +195,28 @@ public class TrainController {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession();
-		session.removeAttribute("page");
-		session.setAttribute("page", pageNo);
-		Object pageNum = session.getAttribute("page");
-		if(pageNum == null || pageNum == "") {
-			session.setAttribute("page", 1);
+		if(request.getParameter("pageNo") == null || request.getParameter("pageNo") == "") {
+			pageNo = 1;
 		}
-		System.out.println("sessionPage = " + pageNum);
 		PrintWriter pw = response.getWriter();
-		String startcode = (String) session.getAttribute("startcode");
-		String endcode = (String) session.getAttribute("endcode");
-		String traintime = (String) session.getAttribute("traintime");
+		String startcode = null;
+		String endcode = null;
+		String traintime = null;
+		
+		if((String) session.getAttribute("startcode") != null) {
+			startcode = (String) session.getAttribute("startcode");
+			System.out.println("세션코드 = "+startcode);
+			endcode = (String) session.getAttribute("endcode");
+			traintime = (String) session.getAttribute("traintime");
+		} else {
+			startcode = request.getParameter("startcode");
+			System.out.println("파라미터코드 = "+startcode);
+			endcode = request.getParameter("endcode");
+			traintime = request.getParameter("traintime");
+		}
 		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
         URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=10&pageNo="+pageNo);
 
-		System.out.println("startcode = "+startcode);
-		System.out.println("endcode = "+endcode);
-		System.out.println("traintime = "+traintime);
-		
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -269,35 +275,37 @@ public class TrainController {
         String trainlist = traininfo.toString();
         trainlist = trainlist.replaceAll("[\\[\\]]", "");
         trainlist = trainlist	.replaceAll(" ", "");
-        System.out.println("trainlist= "+trainlist);
         pw.print(trainlist);
 	}
 	
 	
 	@RequestMapping(value = "/traincheck.do", method = RequestMethod.GET)
-	public void traincheck(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int pageNo) throws Exception {
+	public void traincheck(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("기차리스트 {}.", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession();
-
+		
+		session.removeAttribute("totalPage1");
+		session.removeAttribute("startPage1");
+		session.removeAttribute("startcode");
+		session.removeAttribute("endcode");
+		session.removeAttribute("traintime");
+		int pageNo;
 		if(request.getParameter("pageNo") == null || request.getParameter("pageNo") == "") {
 			pageNo = 1;
+		} else {
+			pageNo = Integer.parseInt(request.getParameter("pageNo"));
 		}
+		
 		PrintWriter pw = response.getWriter();
 		String startcode = request.getParameter("startcode");
-		System.out.println("스타트 = "+startcode);
 		String endcode = request.getParameter("endcode");
-		System.out.println("엔드 = "+endcode);
 		String traintime = request.getParameter("traintime");
-		System.out.println("시간 = "+traintime);
 
 		session.setAttribute("startcode", startcode);
-		System.out.println("세션스타트="+session.getAttribute("startcode"));
 		session.setAttribute("endcode", endcode);
-		System.out.println("세션엔드="+session.getAttribute("endcode"));
 		session.setAttribute("traintime", traintime);
-		System.out.println("세션시간="+session.getAttribute("traintime"));
 		PHARM_URL ="http://openapi.tago.go.kr/openapi/service/TrainInfoService/getStrtpntAlocFndTrainInfo";
         URL url = new URL(getURLParam(null) + "&depPlaceId="+startcode + "&arrPlaceId="+endcode + "&depPlandTime="+traintime + "&numOfRows=1000");
 
@@ -327,31 +335,18 @@ public class TrainController {
             event_type = xpp.next();
         }
 		
-        int size = traininfo.size();
-        
-        
+        int size =traininfo.size();
+       
 //		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
-		int totalCount = size; //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
+		int totalCount =   (size + 9) / 10 * 10; //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
 		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
-		int countPage = 5;	 //하단에 출력해줄 페이지의 개수
 		int totalPage = totalCount / 10; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
 		if (totalCount % 10 > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
 		if (totalPage < pageNo) {pageNo = totalPage;}	// 
-		int startPage = ((pageNo - 1) / countPage) * countPage + 1; // 여기서 countPage는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
-		int endPage = startPage + countPage - 1; 	//start,endPage를 설정해줘야 
-		if (endPage > totalPage) {endPage = totalPage;}
-		if(pageNo == 0) {pageNo++;}
-        
-		System.out.println(startPage);
-		System.out.println(endPage);
-		System.out.println(totalPage);
-		
-		session.setAttribute("page", pageNo);
-		session.setAttribute("totalPage1", totalPage);
-		session.setAttribute("startPage1", startPage);
-		session.setAttribute("endPage1", endPage);
-		System.out.println(pageNo);
-		pw.print(pageNo);
+
+		System.out.println("totalCount = "+totalCount);
+
+		pw.print(totalPage);
 	}
 	
 	@RequestMapping(value = "/trainmove.do", method = RequestMethod.GET)

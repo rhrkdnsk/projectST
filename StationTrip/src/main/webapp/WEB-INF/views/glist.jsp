@@ -74,6 +74,8 @@
 			$("textarea[name=testAjax]").val("");
 		});
 	});
+	
+	
 </script>
 <style type="text/css">
 	/* 	링크에 밑줄 제거 */
@@ -96,7 +98,7 @@
 </style>
 </head>
 <body>
-<div id="container">
+<div id="container" class="list">
 <h1>유저 목록</h1>
 <form action="smuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
@@ -132,11 +134,41 @@
 					<td>${dto.user_phone}</td>
 					<td>${dto.user_point}</td>
 					<td>${dto.tier}</td>
+					
 				</tr>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-	
+	<div class="list-bot">
+<p>
+<c:if test="${page-1 != 0 }">
+						<a href="sboardPage.do?pageNum=${page-1}">이전</a>						
+
+</c:if>
+
+<%
+// String aaa = (String)request.getAttribute("totalPage");
+// 	System.out.println("list에서 aaa의 값 : " + aaa);
+	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+
+	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
+//int totalPage = Integer.parseInt(aaa);
+		for(int i=startPage; i<=endPage; i++) {
+			%>			
+						<a href="sboardPage.do?pageNum=<%=i%>"><%=i%></a>						
+			<%			
+		}
+%>
+
+
+
+  <c:if test="${page+1 <= totalPage}">
+  <a href="sboardPage.do?pageNum=${page+1}">다음</a>						
+  </c:if>
+</p>
+</div>
 	<tr>
 		<td colspan="10">
 			<input class="btn btn-primary" type="submit" value="삭제"/>
@@ -144,21 +176,8 @@
 	</tr>
 </table>
 </form>
-
-<form action="fboardlist.do" name="search" method="post">
-
-<select name="keyField" size="1">
-	<option value="user_nickname">아이디</option>
-	<option value="freeboard_title">제목</option>
-	<option value="제목+내용">제목+내용</option>
-	<option value="분류">분류</option>
-</select>
-
-<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="" />
-<input type="button" value="검색" onclick="check()" />
-<input type="hidden" name="page" value="0" />
-</form>
 </div>
+
 <script>
  function locainsert() {
  	alert("locainsert");
