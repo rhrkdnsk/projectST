@@ -12,7 +12,7 @@
 <head>
 <jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="/trip/resources/js/train_test.js"></script>
+<script type="text/javascript" src="/trip/resources/js/train_info.js"></script>
 <!-- jQuery UI CSS파일 -->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
