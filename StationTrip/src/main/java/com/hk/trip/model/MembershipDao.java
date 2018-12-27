@@ -20,7 +20,7 @@ public class MembershipDao implements IMembershipDao {
 	@Override
 	public LoginDto myInfo(Map<String, String> map) {
 		// TODO Auto-generated method stub
-		System.out.println("dao nickname = "+map.get("user_nickname"));
+		//System.out.println("dao nickname = "+map.get("user_nickname"));
 		return sqlSession.selectOne(namespace+"myinfo", map);
 	}
 

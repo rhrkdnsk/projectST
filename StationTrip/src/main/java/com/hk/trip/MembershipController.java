@@ -43,9 +43,9 @@ public class MembershipController {
 		String nickname = (String) session.getAttribute("login_userId");
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("user_nickname", nickname);
-		System.out.println("ctrl nickname = "+map.get("user_nickname"));
+		//System.out.println("ctrl nickname = "+map.get("user_nickname"));
 		LoginDto dto = mService.myInfo(map);
-		System.out.println("dto = "+dto);
+		//System.out.println("dto = "+dto);
  		model.addAttribute("dto", dto);
 		
 		return "mypage";
