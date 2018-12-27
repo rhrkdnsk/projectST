@@ -14,40 +14,23 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/area.js"></script>
-<style type="text/css">
-ul{
- list-style:none;
- display:inline-block; *display:inline; zoom:1;
+<link rel="stylesheet" href="/trip/resources/css/area.css">
 
- }
-li {
-list-style:none;
-text-align:center;
-float:left;
-margin : 5px;
-padding : 2px;
-background-color : skyblue;
-border-radius: 20%;
-}
-</style>
 
 </head>
 <body>
-	<form>
+	<form id="areaBoard">
 		<h1>지역정보</h1>
 		<div>
-			<ul id="case1">
+			<ul id="case1" class="area-options">
 				<!-- 시 단위 options -->
 			</ul>
 			<hr />
-			<ul id="case2">
+			<ul id="case2" class="area-options">
 				<!-- 구,군 단위 options -->
 			</ul>
-		</div>
-
-		<h1>관광목적</h1>
-		<div>
-			<ul id="case3">
+			<hr />
+			<ul id="case3" class="area-options">
 				<!-- 지역 별 컨텐츠 목록 조회  -->
 				<li value="12">관광지</li>
 				<li value="14">문화시설</li>
@@ -57,15 +40,16 @@ border-radius: 20%;
 				<li value="32">숙박</li>
 				<li value="38">쇼핑</li>
 				<li value="39">음식점</li>
-			</ul> 
+			</ul>
 			<hr />
-			<ul id="titles">
+		</div>
+
+		<div>
+			<ul id="titles" class="area-content">
 				<!-- 컨텐츠 별 검색 내용 -->
 			</ul>
 
 		</div>
-
-
 		<!-- 	컨텐츠 선택 시 해당 리스트 조회	 -->
 
 	</form>

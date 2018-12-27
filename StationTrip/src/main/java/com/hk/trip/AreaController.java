@@ -41,8 +41,9 @@ public class AreaController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "area.do")
-	public Map<String, String> area(String case1, String case2, String case3, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	@RequestMapping(value = "areaList.do")
+	public Map<String, String> areaList(String case1, String case2, String case3,
+			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("지역 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
@@ -63,9 +64,9 @@ public class AreaController {
 		String serviceName = "areaCode";
 		String param = "?"; 		//지역조회
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "&numOfRows=100";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
+		param += "&numOfRows=25";
 		/* 시 값을 받을 url */
 		urlCase1 = URL + serviceName + param;
 
@@ -74,98 +75,87 @@ public class AreaController {
 		urlCase2 = URL + serviceName + param;
 
 		/* 컨텐츠 조회 */
-		serviceName = "areaBasedList";	
-		param += "&sigunguCode=" + case2;
-		param += "&contentTypeId=" + case3;
-		param += "&arrange=P";
-		urlCase3 = URL + serviceName + param;
+//		serviceName = "areaBasedList";
+//		param += "&sigunguCode=" + case2;
+//		param += "&contentTypeId=" + case3;
+//		param += "&arrange=P";
+//		param += "&pageNo=1";
+//		param += "&startPage=1";
+//		param += "&totalCount";
+//		urlCase3 = URL + serviceName + param;
 
 		System.out.println("*******************************************************");
 		System.out.println(urlCase1);
 		System.out.println(urlCase2);
-		System.out.println(urlCase3);
-		System.out.println(case1);
+//		System.out.println(urlCase3);
 		System.out.println("*******************************************************");
 		Document areaCase1 = null;
 		Document areaCase2 = null;
-		Document areaCase3 = null;
+//		Document areaContent = null;
 		try {
 			areaCase1 = Jsoup.connect(urlCase1).get();
 			areaCase2 = Jsoup.connect(urlCase2).get();
-			areaCase3 = Jsoup.connect(urlCase3).get();
+//			areaContent = Jsoup.connect(urlCase3).get();
 			map.put("areaCase1", areaCase1.toString());
 			map.put("areaCase2", areaCase2.toString());
-			map.put("areaCase3", areaCase3.toString());
+//			map.put("areaContent", areaContent.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return map;
 
 	}
-
-	@RequestMapping(value = "category.do")
-	public void category(String sigunguCode, String category, String areaCode, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
-		logger.info("지역별 카테고리 출력.", locale);
+	
+	@ResponseBody
+	@RequestMapping(value = "contentList.do")
+	public Map<String, String> contentList(String case1, String case2, String case3, String pageNo,
+			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+		logger.info("지역 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
+		Map<String,String>map=new HashMap<String, String>();
 
+		if(case1 == "") {
+			case1 = "1";
+		} if(case2 == "") {
+			case2 = "1";
+		} if(case3 == "") {
+			case3 = "12";
+		} if(pageNo == "") {
+			pageNo = "1";
+		}
+
+		String urlCase3 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
-		String param = "areaBasedList?";	//컨텐츠조회
+		String serviceName = "areaBasedList";
+		String param = "?"; 		//지역조회
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "&numOfRows=10";		
-		param += "&MobileOS=ETC";
+		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&arrange=A";		// 조회순서 (A=제목순, B=조회순, C=수정일순, D=생성일순) 대표이미지가 반드시 있는 정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)
-		param += "&contentTypeId=" + category;	//카테고리 코드
-		param += "&areaCode=" + areaCode;		// 시 코드
-		param += "&sigunguCode=" + sigunguCode;	// 군구코드
-		String url = URL + param;
-
-		org.jsoup.nodes.Document doc = null;
+		param += "&numOfRows=10";
+		param += "&areaCode=" + case1;
+		param += "&sigunguCode=" + case2;
+		param += "&contentTypeId=" + case3;
+		param += "&arrange=P";
+		param += "&pageNo=" + pageNo;
+		param += "&startPage=1";
+		param += "&totalCount";
+		/* 컨텐츠 조회 */
+		urlCase3 = URL + serviceName + param;
+		
+		System.out.println("*******************************************************");
+		System.out.println(urlCase3);
+		System.out.println("*******************************************************");
+		Document areaContent = null;
 		try {
-			doc = Jsoup.connect(url).get();
+			areaContent = Jsoup.connect(urlCase3).get();
+			map.put("areaContent", areaContent.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(doc);
-		PrintWriter pw=res.getWriter();
-		pw.println(doc);
+		return map;
 
 	}
-
-	/* 안 쓰지만 언젠간 쓸 거 같은 느낌 */
-	
-	
-	//	@RequestMapping(value = "area.do")
-	//	public void area(String code, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
-	//		logger.info("지역 목록 출력.", locale);
-	//		res.setCharacterEncoding("UTF-8");
-	//		res.setContentType("text/html; charset=UTF-8");
-	//
-	//		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
-	//		String param = "areaCode?"; 	//지역조회
-	//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-	//		param += "&numOfRows=100";		//row수
-	//		param += "&MobileOS=ETC";		
-	//		param += "&MobileApp=Test";
-	//		if(code!=null) {
-	//			param += "&areaCode=" + code;	//지역코드
-	//		}
-	//
-	//
-	//		String url = URL + param;
-	//
-	//		org.jsoup.nodes.Document doc = null;
-	//		try {
-	//			doc = Jsoup.connect(url).get();
-	//		} catch (IOException e) {
-	//			e.printStackTrace();
-	//		}
-	//		System.out.println(doc);
-	//		PrintWriter pw=res.getWriter();
-	//		pw.println(doc);
-	//
-	//	}
 }
 
 
