@@ -30,8 +30,20 @@
 		<hr>
 	</div>
 	<div>
-		<p><label class="labeltag">닉네임</label>   <input type="text" id="nickput" value="${dto.user_nickname }" style="border:none;" readonly="readonly"/><span><button id="btnnick" style="margin-left:15px;background-color: white;" >수정</button></span></p>
-		<p><label class="labeltag">연락처</label>   <input type="text" id="phoneput" value="${dto.user_phone }" style="border:none;" readonly="readonly"/><span><button id="btnph" style="margin-left:15px;background-color: white;" >수정</button></span></p>
+		<p>
+			<label class="labeltag">닉네임</label>   
+			<input type="text" id="nickput" value="${dto.user_nickname }" style="border:none;" readonly="readonly"/>
+			<span>
+				<button id="btnnick" style="margin-left:15px;background-color: white;" >수정</button>
+			</span>
+		</p>
+		<p>
+			<label class="labeltag">연락처</label>   
+			<input type="text" id="phoneput" value="${dto.user_phone }" style="border:none;" readonly="readonly"/>
+			<span>
+				<button id="btnph" style="margin-left:15px;background-color: white;" >수정</button>
+			</span>
+		</p>
 		<hr>
 	</div>
 	<div>
@@ -44,11 +56,11 @@
 $("#btnnick").click(function(){
 	$("#nickput").css("border","1px solid gray");
 	$("#nickput").removeAttr("readonly");
-})
+});
 $("#btnph").click(function(){
 	$("#phoneput").css("border","1px solid gray");
 	$("#phoneput").removeAttr("readonly");
-})
+});
 </script>
 
 
