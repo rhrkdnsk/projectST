@@ -71,7 +71,7 @@
 	} else {
 		%>
 		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
-		<span class="w3-bar-item  w3-hide-small w3-padding-large w3-right"><%=session.getAttribute("login_userId") %></span>
+		<span class="w3-bar-item  w3-hide-small w3-padding-large w3-right"><a href="mypage.do"><%=session.getAttribute("login_userId") %></a></span>
 		<%
 	}
 	%>

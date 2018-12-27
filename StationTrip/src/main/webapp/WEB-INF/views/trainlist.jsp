@@ -15,7 +15,7 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/trip/resources/js/train_test.js"></script>
+<script type="text/javascript" src="/trip/resources/js/train_info.js"></script>
 <script type="text/javascript">
 
 var trpage;
@@ -29,7 +29,7 @@ function tlist(data){
 			trpage = trainlist[6]
 			//console.log(trainlist)
 			var shour = trainlist[1].substr(8, 2);
-			console.log(shour)
+			console.log("shour="+shour)
 			var sminute = trainlist[1].substr(10, 2);
 			var ssecond = trainlist[1].substr(12, 2);
 			var sdate = shour+"시"+sminute+"분"
@@ -77,10 +77,14 @@ function tlist(data){
 			
 }
 function tnum(data){
-	$("#list-bot").find('p').empty();
-	for(var i=0; i<= data; i++){
-		$("#list-bot").find('p').append("<button onclick='straingo(" + i + ")'>" + i + "</button>")
+	$(".list-bot").empty();
+	console.log("empty실행")
+	console.log("tnum data = "+data)
+	for(var i=1; i<= data; i++){
+		console.log("for문 실행")
+		$(".list-bot").append("<button onclick='straingo(" + i + ")'>" + i + "</button>")
 	}
+	
 }
 </script>
 <title>Insert title here</title>

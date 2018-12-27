@@ -12,7 +12,7 @@
 <head>
 <jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="/trip/resources/js/train_test.js"></script>
+<script type="text/javascript" src="/trip/resources/js/train_info.js"></script>
 <!-- jQuery UI CSS파일 -->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
@@ -21,9 +21,10 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!-- jQuery UI 라이브러리 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.m	in.js"></script>
 <script type="text/javascript">
 $(function() {
+
     $( "#Datepicker" ).datepicker({
     	changeMonth: true, 
         changeYear: true,

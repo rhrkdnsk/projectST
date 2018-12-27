@@ -1,5 +1,6 @@
 $(function() {
 	/* 출발역 */
+	
 	$("#startcitycode").change(
 			
 			function() {
@@ -96,14 +97,14 @@ function traingoti(no){
 		type:'GET',
 		data: trdata,
 		success:function(data){
-			alert("성공")
+			//alert("성공")
 			framenum(data)
 		},
 		error:function(){
 			alert("기차리스트 받기 실패ㅜㅜ") ;
 		}
 	}); 
-	console.log("pno2 = "+pno)
+	console.log("pno2 = "+no)
 	
 	traingo(no)	
 }
@@ -157,7 +158,7 @@ function frameReload(){
 	
 }
 function framenum(data){
-	$('#trainframe').get(1).contentWindow.tnum(data);
+	$('#trainframe').get(0).contentWindow.tnum(data);
 	console.log("넘버함수실행")
 }
 
