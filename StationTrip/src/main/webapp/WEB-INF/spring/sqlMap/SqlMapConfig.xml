@@ -16,6 +16,7 @@
   		<mapper resource="/sqlmapper/login_mapper.xml" />
   		<mapper resource="/sqlmapper/fboard_mapper.xml" />
   		<mapper resource="/sqlmapper/getcomment_mapper.xml" />
+  		<mapper resource="/sqlmapper/membership_mapper.xml" />
   	</mappers>
   	
 </configuration>

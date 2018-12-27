@@ -67,7 +67,7 @@ public class LoginController {
 		if (loginService.login(dto) != null) {
 			session.setAttribute("login_user", loginService.login(dto));
 			session.setAttribute("login_userId", loginService.login(dto).getUser_nickname());
-			System.out.println("session = " + session.getAttribute("login_user"));
+			//System.out.println("session = " + session.getAttribute("login_user"));
 			out.print(session.getAttribute("login_userId"));
 		} else {
 			out.print("fail");
