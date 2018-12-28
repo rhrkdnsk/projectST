@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.Gson;
 import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
@@ -84,14 +86,23 @@ public class BoardController {
 	@RequestMapping(value = "fboarddetail.do", method = RequestMethod.GET)
 	public String fboarddetail(HttpServletRequest request, HttpServletResponse response, Locale locale, Model model,
 			int freeboard_num) throws IOException {
-		logger.info("글 상세보기 이동", locale);
+		logger.info("글 상세보기 이동1112", locale);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		// HttpSession session = request.getSession();
 		// session.setAttribute("session1", session);
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-
+		CheckLikeDto dto = new CheckLikeDto();
+		dto.setBoard_num(freeboard_num);
+		String asd = (String) request.getSession().getAttribute("login_userId");
+		dto.setUser_nickname(asd);
+		
+		System.out.println(asd);
+		boolean isLiked = fboardService.checkLike(dto);
+		//DB에 값이 없으면 Null 오류 나옴
+		model.addAttribute("isLiked", isLiked);
+		System.out.println("DB에 좋아요 값이 있을까 : " + isLiked);
 		String rnum = (String) request.getSession().getAttribute("readcount");
 		if (rnum == null) {
 			fboardService.readCount(freeboard_num);
@@ -195,7 +206,7 @@ public class BoardController {
 			countList = sum;
 			}
 		
-		System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
+		//System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
 
 		if(request.getSession().getAttribute("setnum") != null) {
 			int setNum = (Integer) request.getSession().getAttribute("setnum");
@@ -236,9 +247,9 @@ public class BoardController {
 		if (endPage > totalPage) {endPage = totalPage;}
 		if(pageNum == 0) {pageNum++;}
 		
-		System.out.println("startPage :" + startPage + " endPage : " + endPage);
-		System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
-		System.out.println("Controller에서 totalPage의 값 : " + totalPage);
+		//System.out.println("startPage :" + startPage + " endPage : " + endPage);
+		//System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
+		//System.out.println("Controller에서 totalPage의 값 : " + totalPage);
 		List<FboardDto> list = fboardService.getBoardList(startNum, endNum, keyWord, keyField);
 		
 		if(keyField != null && keyWord != null && keyField != "" && keyWord != "" ) {
@@ -259,7 +270,7 @@ public class BoardController {
 	}
 	@RequestMapping(value = "fsessiondel.do")
 	public String fboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
-		logger.info("자유게시판 페이징 처리", locale);
+		//logger.info("자유게시판 페이징 처리", locale);
 		request.getSession().removeAttribute("skeyWord");
 		request.getSession().removeAttribute("skeyField");
 		request.getSession().removeAttribute("setnum");
@@ -297,15 +308,34 @@ public class BoardController {
 	}
 		
 		@RequestMapping(value = "fboardLike.do")
-		public String fboardLike(HttpServletRequest request, Locale locale, Model model,CheckLikeDto dto) {
+		public void fboardLike(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model,CheckLikeDto dto) throws IOException {
 			logger.info("좋아요 기능 구현", locale);
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			int like_count = 0;
+			int freeboard_num = dto.getBoard_num();
 			boolean isS = fboardService.checkLike(dto);
+			HashMap status = new HashMap();
+			
 			if(isS) {
-				return "redirect:fboarddetail.do?freeboard_num=";
+				fboardService.deleteCheck(dto);
+				fboardService.downLike(freeboard_num);
+				status.put("status", 404);
 			} else {
-				System.out.println("커밋오류처리");
-				return "error";
+				fboardService.insertCheck(dto);
+				fboardService.upLike(freeboard_num);
+				status.put("status", 200);
 			}
-	
+	like_count = fboardService.likeCount(freeboard_num);
+		
+			status.put("like_count", like_count);
+			String json = new Gson().toJson(status);
+			 response.getWriter().write(json);
+
+
+			System.out.println("Ajax 컨트롤러 요청 : " + json);
+			
 	}
 } // 끝

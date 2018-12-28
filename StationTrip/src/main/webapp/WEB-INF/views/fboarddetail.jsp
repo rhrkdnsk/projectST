@@ -26,8 +26,28 @@ $(document).ready(function(){
    
 });
 
+$(document).ready(function(){
+$('#btnLike').click(function ()  {
+    $.ajax({
+        url:"fboardLike.do",
+        data: {user_nickname: '${login_user.user_nickname}', board_num: '${fdto.freeboard_num}' },
+        type:"post",
+        success : function (data) {
+            
+            var result = JSON.parse(data);
+            
 
-	
+            if(result.status == 404){
+                $('img#like_img').attr('src', '/trip/resources/images/empty heart.jpg');
+            } else {
+                $('img#like_img').attr('src', '/trip/resources/images/heart.png');
+            }
+            $('span#like_count').html(result.like_count);
+        }
+    })
+});
+
+});	
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +69,27 @@ $(document).ready(function(){
  제목 : ${fdto.freeboard_title} 날짜 : ${fdto.freeboard_time} 조회수 : ${fdto.freeboard_view}
  <p>아이디 : ${fdto.user_nickname}
 
- <p> ${fdto.freeboard_content}  좋아요 : ${fdto.freeboard_like} 싫어요 : ${fdto.freeboard_hate} 
+ <p> ${fdto.freeboard_content}  
+ 
+<div class="col-md-4" id="likeArea">
+    <button type="button" id="btnLike">
+        <img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" 
+id="like_img" height="50px" width="50px">
+    </button>
+    <span id="like_count"> asd</span>    
+   
+</div>
 
-
+ 좋아요 : ${fdto.freeboard_like} 싫어요 : ${fdto.freeboard_hate} 
+ <c:if test="${ isLiked == true}">
+     눌린상태
+  </c:if>
+  
+  
+  <c:if test="${isLiked == false }">
+  안눌린 상태
+  </c:if>
+  
 <p>
 <c:if test="${fdto.user_nickname == login_user.user_nickname}">
 
