@@ -76,7 +76,7 @@ $('#btnLike').click(function ()  {
         <img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" 
 id="like_img" height="50px" width="50px">
     </button>
-    <span id="like_count"> asd</span>    
+    <span id="like_count">${fdto.freeboard_like }</span>    
    
 </div>
 
