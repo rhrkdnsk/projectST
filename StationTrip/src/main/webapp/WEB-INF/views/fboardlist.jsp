@@ -298,7 +298,7 @@ body {
 </select>
 </form>
 
-<button onclick="setnull()">목록으로</button>
+
 
 <jsp:include page="footer.jsp" />
 
