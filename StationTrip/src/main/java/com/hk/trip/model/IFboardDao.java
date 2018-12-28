@@ -25,4 +25,9 @@ public interface IFboardDao {
 	public boolean Commentreply(CommentDto dto);
 	public boolean bcDelete(int freeboard_num);
 	public boolean checkLike(CheckLikeDto dto);
+	public boolean insertCheck(CheckLikeDto dto);
+	public boolean deleteCheck(CheckLikeDto dto);
+	public int likeCount(int freeboard_num);
+	public void downLike(int freeboard_num);
+	public void upLike(int freeboard_num);
 }

@@ -94,4 +94,29 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.checkLike(dto);
 	}
+	@Override
+	public boolean deleteCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.deleteCheck(dto);
+	}
+	@Override
+	public boolean insertCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.insertCheck(dto);
+	}
+	@Override
+	public int likeCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.likeCount(freeboard_num);
+	}
+	@Override
+	public void downLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.downLike(freeboard_num);
+	}
+	@Override
+	public void upLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.upLike(freeboard_num);
+	}
 }
