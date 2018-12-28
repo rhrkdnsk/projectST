@@ -75,7 +75,9 @@
 		});
 	});
 	
-	
+	function setnull() {
+		location.href="gsessiondel.do";
+	}
 </script>
 <style type="text/css">
 	/* 	링크에 밑줄 제거 */
@@ -100,6 +102,7 @@
 <body>
 <div id="container" class="list">
 <h1>유저 목록</h1>
+<a href="glist.do"></a>
 <form action="smuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
 	<col width="50px">
@@ -139,10 +142,15 @@
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
+	<tr>
+		<td colspan="10">
+			<input class="btn btn-primary" type="submit" value="삭제"/>
+		</td>
+	</tr>
 	<div class="list-bot">
 <p>
 <c:if test="${page-1 != 0 }">
-						<a href="sboardPage.do?pageNum=${page-1}">이전</a>						
+						<a href="glist.do?pageNum=${page-1}">이전</a>						
 
 </c:if>
 
@@ -157,7 +165,7 @@
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
-						<a href="sboardPage.do?pageNum=<%=i%>"><%=i%></a>						
+						<a href="glist.do?pageNum=<%=i%>"><%=i%></a>						
 			<%			
 		}
 %>
@@ -165,15 +173,10 @@
 
 
   <c:if test="${page+1 <= totalPage}">
-  <a href="sboardPage.do?pageNum=${page+1}">다음</a>						
+  <a href="glist.do?pageNum=${page+1}">다음</a>						
   </c:if>
 </p>
 </div>
-	<tr>
-		<td colspan="10">
-			<input class="btn btn-primary" type="submit" value="삭제"/>
-		</td>
-	</tr>
 </table>
 </form>
 </div>

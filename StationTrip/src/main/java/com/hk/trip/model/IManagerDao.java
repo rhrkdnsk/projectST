@@ -16,6 +16,6 @@ public interface IManagerDao {
 	public boolean smulDelBoard(String[] dto);
 	public LoginDto getDetailAjax(LoginDto dto);
 	
-	public int sgetCount(int startNum,int endNum);
+	public int sgetCount();
 	public List<LoginDto> sgetBoardList(int startNum,int endNum);
 }
