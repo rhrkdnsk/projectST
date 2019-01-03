@@ -124,4 +124,14 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		ifboarddao.deleteLike(freeboard_num);
 	}
+	@Override
+	public void upComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.upComment(freeboard_num);
+	}
+	@Override
+	public void downComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.downComment(freeboard_num);
+	}
 }

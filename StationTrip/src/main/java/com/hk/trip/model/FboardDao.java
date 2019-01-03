@@ -140,6 +140,8 @@ public class FboardDao implements IFboardDao {
 		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
+		System.out.println (sqlSession.selectList(namespace + "getNumlist", map));
+
 		return sqlSession.selectList(namespace + "getNumlist", map);
 		}
 	}
@@ -219,5 +221,16 @@ public class FboardDao implements IFboardDao {
 	public void deleteLike(int freeboard_num) {
 		// TODO Auto-generated method stub
 		sqlSession.delete(namespace2 + "deleteLike" , freeboard_num); 
+	}
+	@Override
+	public void upComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "upComment", freeboard_num);
+	}
+	@Override
+	public void downComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "downComment", freeboard_num);
+
 	}
 }

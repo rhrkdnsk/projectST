@@ -33,4 +33,12 @@ INSERT INTO T_COMMENT
 	<delete id="bcDelete" parameterType="int">
     DELETE FROM T_COMMENT WHERE FREEBOARD_NUM=#{freeboard_num}
     </delete>
+
+   <update id="upComment" parameterType="int">
+     UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT +1 WHERE FREEBOARD_NUM = #{freeboard_num}
+   </update>
+
+   <update id="downComment" parameterType="int">
+     UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT -1 WHERE FREEBOARD_NUM = #{freeboard_num}
+   </update>
 </mapper>

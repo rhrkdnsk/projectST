@@ -176,7 +176,11 @@ public class BoardController {
 		logger.info("댓글 작성하기", locale);
 
 		boolean isS = fboardService.replyInsert(cdto);
+		int freeboard_num = cdto.getFreeboard_num();
+		
+		
 		if (isS) {
+			fboardService.upComment(freeboard_num);
 			return "redirect:fboarddetail.do?freeboard_num=" + cdto.getFreeboard_num();
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
@@ -288,7 +292,11 @@ public class BoardController {
 		logger.info("자유게시판 페이징 처리", locale);
 		
 		boolean isS = fboardService.delComment(cdto);
+		int freeboard_num = cdto.getFreeboard_num();
+		
 		if(isS) {
+			fboardService.downComment(freeboard_num);
+
 			return "redirect:fboarddetail.do?freeboard_num="+cdto.getFreeboard_num();
 
 		} else {
@@ -300,7 +308,10 @@ public class BoardController {
 		public String fboardcomment2(HttpServletRequest request, Locale locale, Model model,CommentDto dto) {
 			logger.info("자유게시판 페이징 처리", locale);
 			boolean isS = fboardService.Commentreply(dto);
+			int freeboard_num = dto.getFreeboard_num();
 			if(isS) {
+				fboardService.upComment(freeboard_num);
+
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
 			} else {
 				System.out.println("커밋오류처리");
@@ -340,4 +351,6 @@ public class BoardController {
 			System.out.println("Ajax 컨트롤러 요청 : " + json);
 			
 	}
+		
+		
 } // 끝
