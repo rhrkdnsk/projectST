@@ -16,7 +16,7 @@ public class MembershipService implements IMembershipService {
 	@Override
 	public LoginDto myInfo(Map<String, String> map) {
 		// TODO Auto-generated method stub
-		System.out.println("Service nickname = "+map.get("user_nickname"));
+		//System.out.println("Service nickname = "+map.get("user_nickname"));
 		return mDao.myInfo(map);
 	}
 
@@ -30,5 +30,17 @@ public class MembershipService implements IMembershipService {
 	public boolean withdrawal(LoginDto dto) {
 		// TODO Auto-generated method stub
 		return mDao.withdrawal(dto);
+	}
+
+	@Override
+	public boolean nickChange(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return mDao.nickChange(dto);
+	}
+
+	@Override
+	public boolean phoneChange(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return mDao.phoneChange(dto);
 	}
 }

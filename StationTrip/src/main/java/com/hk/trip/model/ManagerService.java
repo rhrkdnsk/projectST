@@ -52,9 +52,9 @@ public class ManagerService implements IManagerService{
 	}
 	
 	@Override
-	public int sgetCount(int startNum,int endNum) {
+	public int sgetCount() {
 		// TODO Auto-generated method stub
-		return managerDao.sgetCount(startNum,endNum);
+		return managerDao.sgetCount();
 	}
 	@Override
 	public List<LoginDto> sgetBoardList(int startNum,int endNum) {

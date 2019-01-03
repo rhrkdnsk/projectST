@@ -63,27 +63,13 @@ public class ManagerDao implements IManagerDao{
 	}
 
 	@Override
-	public int sgetCount(int startNum,int endNum) {
-		// TODO Auto-generated method stub
-		
-		System.out.println("Dao에서 startnum : " + startNum  + "endNum : " +  endNum);
-
-		
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("startNum", startNum+"");
-			map.put("endNum", endNum+"");
-			int asd =  sqlSession.selectOne(namespace + "sgetSearchCount", map);
-			System.out.println(asd);
-			return asd;
-		
-//			return sqlSession.selectOne(namespace + "sgetCount");
-
+	public int sgetCount() {
+			return  sqlSession.selectOne(namespace + "sgetCount");	
 		}
 		
 	
 	@Override
-	public List<LoginDto> sgetBoardList(int startNum,int endNum) {
-		
+	public List<LoginDto> sgetBoardList(int startNum,int endNum) {	
 		Map<String, String> map = new HashMap<String, String>();	
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");

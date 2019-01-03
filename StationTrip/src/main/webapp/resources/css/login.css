@@ -95,6 +95,11 @@ a {
 	width:80px;
 }
 
+.labeltagpw {
+	float:left;
+	width:130px;
+}
+
 fieldset{
 	margin:0;
 	padding:0;

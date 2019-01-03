@@ -5,9 +5,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.hk.trip.checklike">
+   
+    <select id="getLike" parameterType="CheckDto" resultType="int">
+    SELECT * FROM CHECKLIKEHATE WHERE BOARDCODE = 1 AND USER_NICKNAME = '${user_nickname}' AND BOARD_NUM = ${board_num} 
+    </select>
 
+    <insert id="insLike" parameterType="CheckDto">
+    INSERT INTO CHECKLIKEHATE VALUES 
+    ( (SELECT NVL(MAX(SEQ_NUMBER)+1,0)FROM CHECKLIKEHATE),1,'${user_nickname}',${board_num})
+    </insert>
 
+    <delete id="delLike" parameterType="CheckDto">
+    DELETE FROM CHECKLIKEHATE WHERE BOARD_NUM = #{board_num} AND USER_NICKNAME = #{user_nickname} AND BOARDCODE = 1
+    </delete>
 
+    <select id="likeCount" parameterType="int" resultType="int">
+    SELECT FREEBOARD_LIKE FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+    </select>
+
+    <update id="upLike" parameterType="int">
+  UPDATE FREEBOARD SET FREEBOARD_LIKE = FREEBOARD_LIKE +1 WHERE FREEBOARD_NUM = #{freeboard_num}
+    </update>
+
+    <update id="downLike" parameterType="int">
+  UPDATE FREEBOARD SET FREEBOARD_LIKE = FREEBOARD_LIKE -1 WHERE FREEBOARD_NUM = #{freeboard_num}
+    </update>
+
+    <delete id="deleteLike" parameterType="int">
+ DELETE FROM CHECKLIKEHATE WHERE BOARDCODE = 1 AND BOARD_NUM = #{freeboard_num}
+
+    </delete>
   </mapper>
+
 
 

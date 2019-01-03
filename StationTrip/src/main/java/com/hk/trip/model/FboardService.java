@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 
@@ -87,5 +88,50 @@ public class FboardService implements IFboardService {
 	public boolean bcDelete(int freeboard_num) {
 		// TODO Auto-generated method stub
 		return ifboarddao.bcDelete(freeboard_num);
+	}
+	@Override
+	public boolean checkLike(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.checkLike(dto);
+	}
+	@Override
+	public boolean deleteCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.deleteCheck(dto);
+	}
+	@Override
+	public boolean insertCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		return ifboarddao.insertCheck(dto);
+	}
+	@Override
+	public int likeCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return ifboarddao.likeCount(freeboard_num);
+	}
+	@Override
+	public void downLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.downLike(freeboard_num);
+	}
+	@Override
+	public void upLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.upLike(freeboard_num);
+	}
+	@Override
+	public void deleteLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.deleteLike(freeboard_num);
+	}
+	@Override
+	public void upComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.upComment(freeboard_num);
+	}
+	@Override
+	public void downComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.downComment(freeboard_num);
 	}
 }

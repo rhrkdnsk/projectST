@@ -35,19 +35,10 @@ public class ManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name. 
-	 */
+
 	@Autowired
 	private IManagerService managerService;
 	
-	@RequestMapping(value = "/glist.do", method = RequestMethod.GET)
-	public String sgetAllList(Locale locale, Model model) {
-		logger.info("글목록조회", locale);
-		List<LoginDto> list = managerService.sgetAllList();
-		model.addAttribute("list", list);
-		return "glist";//페이지의 이름만 적어준다.-->나머지는 viewResolver가 찾아줌
-	}
 
 
 	
@@ -105,9 +96,8 @@ public class ManagerController {
 		}
 	}
 	
-	@RequestMapping(value = "sboardPage.do")
-	public String sboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
-			String keyField) {
+	@RequestMapping(value = "glist.do")
+	public String sboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum) {
 		
 		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
 			pageNum = 1;
@@ -115,30 +105,16 @@ public class ManagerController {
 		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
-		
-		String settingnum = request.getParameter("settingnum");
-		int countList = 2;
-
-		if(settingnum != null && settingnum != "") {
-			int sum = Integer.parseInt(settingnum);
-			session.setAttribute("setnum", sum);
-			
-			countList = sum;
-			}
-		
+		int countList = 10;
 		System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
 
-		if(request.getSession().getAttribute("setnum") != null) {
-			int setNum = (Integer) request.getSession().getAttribute("setnum");
-			countList = setNum;
-		}		 	
-		
+
 
 		int startNum = (pageNum - 1) * countList; //Sql문 돌릴곳에서 Row 값을 설정해준다
 		int endNum = pageNum * countList - 1; //Sql문 돌릴곳에서 Row값을 설정해준다 (startNum = ~(번호)에서부터 endNum = ~번호까지)
 		startNum++;
 		endNum++;
-		int totalCount = managerService.sgetCount(startNum,endNum); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
+		int totalCount = managerService.sgetCount(); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
 		int countPage = 5;	 //하단에 출력해줄 페이지의 개수
 		int totalPage = totalCount / countList; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
 		if (totalCount % countList > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
@@ -163,13 +139,13 @@ public class ManagerController {
 		model.addAttribute("page", pageNum);
 		return "glist";
 	}
-	@RequestMapping(value = "ssessiondel.do")
+	@RequestMapping(value = "gsessiondel.do")
 	public String sboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("자유게시판 페이징 처리", locale);
 		request.getSession().removeAttribute("setnum");
 
 		
-		return "redirect:sboardPage.do?pageNum=1";
+		return "redirect:glist.do?pageNum=1";
 
 	
 	}

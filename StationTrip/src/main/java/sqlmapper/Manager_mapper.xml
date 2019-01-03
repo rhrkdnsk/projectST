@@ -32,37 +32,21 @@
     
     <select id="sgetCount" resultType="int">
 	SELECT COUNT(*) AS totalCount FROM T_USER
+	
 	</select>
 	
 <select id="sgetNumlist" resultType="LoginDto" parameterType="Map">
 	<![CDATA[select X.RNUM,X.USER_NICKNAME, X.USER_NAME, X.USER_EMAIL, X.USER_PHONE,X.USER_POINT,X.TIER
-		from (select rownum as rnum, A.USER_NICKNAME, A.USER_NAME, A.USER_PHONE, A.USER_POINT,A.TIER FROM (
-select USER_NICKNAME, USER_NAME, USER_EMAIL, USER_PHONE,TIER
+		from (select rownum as rnum, A.USER_NICKNAME, A.USER_NAME, A.USER_EMAIL, A.USER_PHONE, A.USER_POINT,A.TIER FROM (
+select USER_NICKNAME, USER_NAME, USER_EMAIL, USER_PHONE,USER_POINT,TIER
         from T_USER
         order by USER_NICKNAME DESC) A
     where ROWNUM <= #{endNum}) X
 where X.rnum >= #{startNum}  ]]>
 	</select>
 	
-	<select id="sgetSearch" resultType="LoginDto" parameterType="Map">
-	<![CDATA[select X.RNUM,X.USER_NICKNAME, X.USER_NAME, X.USER_EMAIL, X.USER_PHONE,X.USER_POINT,X.TIER
-		from (select rownum as rnum, A.USER_NICKNAME, A.USER_NAME, A.USER_PHONE, A.USER_POINT,A.TIER FROM (
-select USER_NICKNAME, USER_NAME, USER_EMAIL, USER_PHONE,TIER
-        from T_USER
-        order by USER_NICKNAME DESC) A
-    where ROWNUM <= #{endNum} AND ${keyField} LIKE '%${keyWord}%') X
-   where X.rnum >= #{startNum} ]]>
-	</select>
 
-    <select id="sgetSearchCount" resultType="int" parameterType="Map">
-	<![CDATA[SELECT COUNT(USER_NICKNAME)
-from (select rownum as rnum, A.FREEBOARD_NUM, A.USER_NICKNAME, A.FREEBOARD_TITLE, A.FREEBOARD_TIME,A.FREEBOARD_CONTENT,A.FREEBOARD_VIEW,A.FREEBOARD_LIKE,A.FREEBOARD_HATE,A.FREEBOARD_CATEGORY 
-	  FROM ( select  USER_NICKNAME, USER_NAME, USER_EMAIL, USER_PHONE,TIER
-        	 from T_USER
-        	 order by USER_NICKNAME DESC) A
-      where ${keyField} LIKE '%${keyWord}%') X
+	
 
- ]]>
-	</select>
     
 	</mapper>

@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 
@@ -21,7 +21,7 @@ public class FboardDao implements IFboardDao {
 	
 	private String namespace = "com.hk.trip.fboard.";
 	private String namespace1 = "com.hk.trip.comment.";
-
+	private String namespace2 = "com.hk.trip.checklike.";
 	
 	@Override
 	public List<FboardDto> getAllList(String keyWord, String keyField)	{
@@ -140,6 +140,8 @@ public class FboardDao implements IFboardDao {
 		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
+		System.out.println (sqlSession.selectList(namespace + "getNumlist", map));
+
 		return sqlSession.selectList(namespace + "getNumlist", map);
 		}
 	}
@@ -170,4 +172,65 @@ public class FboardDao implements IFboardDao {
 		return count > 0 ? true:false;
 	}
 	
+	
+	@Override
+	public boolean checkLike(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		
+		if(sqlSession.selectOne(namespace2 + "getLike", dto) == null) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		
+	}
+	@Override
+	public boolean deleteCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.delete(namespace2 + "delLike", dto);
+		
+		return count > 0 ? true: false;
+		
+	}
+	
+	@Override
+	public boolean insertCheck(CheckLikeDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.insert(namespace2 + "insLike" , dto);
+		return count > 0 ? true : false;
+	}
+	@Override
+	public int likeCount(int freeboard_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace2 + "likeCount", freeboard_num);
+	}
+	@Override
+	public void downLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace2 + "downLike" , freeboard_num);
+	}
+	@Override
+	public void upLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace2 + "upLike" , freeboard_num);
+	}
+	@Override
+	public void deleteLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace2 + "deleteLike" , freeboard_num); 
+	}
+	@Override
+	public void upComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "upComment", freeboard_num);
+	}
+	@Override
+	public void downComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "downComment", freeboard_num);
+
+	}
 }

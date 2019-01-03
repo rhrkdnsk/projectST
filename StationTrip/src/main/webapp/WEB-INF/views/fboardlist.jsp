@@ -199,12 +199,12 @@ body {
   	<%
   		if(session.getAttribute("login_user") == null) {
   			%>
-	  			<dd class="sub">${fdto.freeboard_title}</dd>
+	  			<dd class="sub">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</dd>
 	
 	<%
   		} else {
   			%>
-  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title}</a></dd>
+  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</a></dd>
   			<%
   		}
   	
@@ -298,7 +298,7 @@ body {
 </select>
 </form>
 
-<button onclick="setnull()">목록으로</button>
+
 
 <jsp:include page="footer.jsp" />
 

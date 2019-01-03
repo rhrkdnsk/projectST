@@ -2,6 +2,7 @@ package com.hk.trip.model;
 
 import java.util.List;
 
+import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 
@@ -23,4 +24,13 @@ public interface IFboardDao {
 	public boolean delComment(CommentDto cdto);
 	public boolean Commentreply(CommentDto dto);
 	public boolean bcDelete(int freeboard_num);
+	public boolean checkLike(CheckLikeDto dto);
+	public boolean insertCheck(CheckLikeDto dto);
+	public boolean deleteCheck(CheckLikeDto dto);
+	public int likeCount(int freeboard_num);
+	public void downLike(int freeboard_num);
+	public void upLike(int freeboard_num);
+	public void deleteLike(int freeboard_num);
+	public void upComment(int freeboard_num);
+	public void downComment(int freeboard_num);
 }
