@@ -12,29 +12,29 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#pwchange").click(function(){
+	$("#delemail").click(function(){
 		console.log("클릭")
-		var nowpw = $("#nowpw").val();
-		console.log("nowpw =" +nowpw)
-		var newpw = $("#newpw").val();
-		console.log("newpw = "+ newpw)
-		var data = {"nowpw" : nowpw, "newpw" : newpw}
+		var user_email = $("#d_email").text();
+		console.log("user_email =" +user_email)
+		var user_password = $("#user_password").val();
+		console.log("user_password = "+ user_password)
+		var data = {"user_email" : user_email, "user_password" : user_password}
 		
 		$.ajax({
-			url:"changepw.do",
+			url:"withdrawal.do",
 			type:'GET',
 			data: data,
 			success:function(data){
 				console.log(data)
 				if(data === "true"){
-					alert("변경성공")
-					location.href='mypage.do'
+					alert("탈퇴성공")
+					location.href='index.jsp'
 				} else {
-					alert("변경 실패"); 
+					alert("비밀번호가 다릅니다"); 
 				}
 			},
 			error:function(){
-				alert("변경 실패ㅜㅜ") ;
+				alert("탈퇴 실패ㅜㅜ") ;
 			}
 		}); 
 	});
@@ -52,21 +52,18 @@ $(document).ready(function(){
 <hr style="border-color:black;">
 </div>
 <div style="width: 800px;margin:auto;">
-<h3>주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요</h3>
+<h3 style="color:red; font-weight: bold;">회원탈퇴를 해도 후회하지 않으시겠습니까?</h3>
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
 	
+		<p><label class="labeltag">이메일</label><span id="d_email">${dto.user_email }</span></p>
 		<p>
-		<label class="labeltagpw">현재 비밀번호</label>
-		<input type="password" id="nowpw" placeholder="현재 비밀번호를 입력" />
-		</p>
-		<p>
-		<label class="labeltagpw">새 비밀번호</label>
-		<input type="password" id="newpw" placeholder="새 비밀번호를 입력"  />
+		<label class="labeltag">비밀번호</label>
+		<input type="password" id="user_password" placeholder="비밀번호를 입력"  />
 		</p>
 		<hr >
-		<button id="pwchange">저장</button>
+		<button id="delemail">삭제</button>
 	
 </div>
 
