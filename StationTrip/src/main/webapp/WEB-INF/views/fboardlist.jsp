@@ -15,14 +15,23 @@ function locainsert() {
 	location.href = "insertform.do";
 	
 }
+
 function check() {
+<%-- 	<% session.removeAttribute("skeyWord"); --%>
+//     session.removeAttribute("skeyField");
+<%--     %> --%>
+    
+	check1();
+	
+}
+function check1() {
 
     if (document.search.keyWord.value == "") {
         alert("검색어를 입력하세요.");
         document.search.keyWord.focus();
         return;
     }
-    location.href="fboardsessiondel2.do";
+  
     document.search.submit();
 }
 

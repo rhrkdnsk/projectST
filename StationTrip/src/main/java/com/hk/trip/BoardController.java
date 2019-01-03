@@ -193,6 +193,9 @@ public class BoardController {
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
 			String keyField) {
 		request.getSession().removeAttribute("readcount");
+//		request.getSession().removeAttribute("skeyField");
+//		request.getSession().removeAttribute("skeyWord"); 이게 있으면 페이징 처리 X
+
 
 		
 		
@@ -202,6 +205,9 @@ public class BoardController {
 		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
+		System.out.println("세션 키필드 : " +  (String)session.getAttribute("skeyField"));
+		System.out.println("세션 키워드 : " + (String)session.getAttribute("skeyWord"));
+
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		
 		String settingnum = request.getParameter("settingnum");
@@ -220,6 +226,15 @@ public class BoardController {
 			int setNum = (Integer) request.getSession().getAttribute("setnum");
 			countList = setNum;
 		}		 	
+		
+		//여기서 수정해보기 
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "") {
+			
+			request.getSession().removeAttribute("skeyField");
+			request.getSession().removeAttribute("skeyWord");
+		}
+		
+		
 		String skeyField = (String) session.getAttribute("skeyField");
 		String skeyWord = (String) session.getAttribute("skeyWord");
 			
@@ -272,8 +287,8 @@ public class BoardController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", pageNum);
-		model.addAttribute("keyWord", keyWord);
-		model.addAttribute("keyField", keyField);
+//		model.addAttribute("keyWord", keyWord);
+//		model.addAttribute("keyField", keyField);
 		return "fboardlist";
 	}
 	@RequestMapping(value = "fsessiondel.do")
@@ -353,12 +368,19 @@ public class BoardController {
 			System.out.println("Ajax 컨트롤러 요청 : " + json);
 			
 	}
-	
+		
+		@RequestMapping(value = "fboarddelsession.do")
 		public void fboardsessiondel2(HttpServletRequest request, Locale locale, Model model) {
-			//logger.info("자유게시판 페이징 처리", locale);
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			
+			System.out.println("fboardsessiondel2 호출");
 			request.getSession().removeAttribute("skeyWord");
 			request.getSession().removeAttribute("skeyField");
-			request.getSession().removeAttribute("setnum");
+			
+		
+			System.out.println("fboardsessiondel2 에서 세션 삭제 ");
+			
 		}
 		
 } // 끝
