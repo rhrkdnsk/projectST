@@ -139,7 +139,44 @@ public class MembershipController {
 		} else {
 			pw.print("false");
 		}
- 		
+	}
+	@RequestMapping(value = "withdrawalgo.do", method = RequestMethod.GET)
+	public String withdrawalgo(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		logger.info("withdrawalgo.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
+		if(session.getAttribute("login_user") == null || session.getAttribute("login_user") == "") {
+			model.addAttribute("msg", "역장수 회원만 이용가능한 페이지입니다");
+			return "error";
+		}
+		String nickname = (String) session.getAttribute("login_userId");
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("user_nickname", nickname);
+		LoginDto dto = mService.myInfo(map);
+ 		model.addAttribute("dto", dto);
+		
+		return "withdrawal";
 	}
 	
+	@RequestMapping(value = "withdrawal.do", method = RequestMethod.GET)
+	public void withdrawal(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		logger.info("withdrawal.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		String user_email = request.getParameter("user_email");
+		System.out.println("user_email=" + user_email);
+		String user_password = request.getParameter("user_password");
+		System.out.println("user_password=" + user_password);
+		boolean isS = mService.withdrawal(new LoginDto(user_email,user_password));
+		System.out.println(isS);
+		if(isS) {
+			pw.print("true");
+		} else {
+			pw.print("false");
+		}
+	}
 }

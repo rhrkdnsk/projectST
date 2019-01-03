@@ -32,7 +32,7 @@
 	
 	<delete id="withdrawal" parameterType="LoginDto">
 		DELETE T_USER
-		WHERE USER_NICKNAME = #{user_nickname} AND USER_PASSWORD = #{user_password}
+		WHERE USER_EMAIL = #{user_email} AND USER_PASSWORD = #{user_password}
 	</delete>
 
 </mapper>	
