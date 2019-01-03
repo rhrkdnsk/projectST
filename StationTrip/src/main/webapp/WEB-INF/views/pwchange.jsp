@@ -6,12 +6,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#pwchange").click(function(){
+		console.log("클릭")
+		var nowpw = $("#nowpw").val();
+		console.log("nowpw =" +nowpw)
+		var newpw = $("#newpw").val();
+		console.log("newpw = "+ newpw)
+		var data = {"nowpw" : nowpw, "newpw" : newpw}
+		
+		$.ajax({
+			url:"changepw.do",
+			type:'GET',
+			data: data,
+			success:function(data){
+				console.log(data)
+				if(data === "true"){
+					alert("변경성공")
+					location.href='mypage.do'
+				} else {
+					alert("변경 실패"); 
+				}
+			},
+			error:function(){
+				alert("변경 실패ㅜㅜ") ;
+			}
+		}); 
+	});
+});
+</script>
 <title>My page</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+
 <div style="text-align:center;	">
 <h1>My Page</h1>
 <a href="mypage.do">내정보 관리</a>
@@ -24,18 +56,18 @@
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
-	<form action="changepw.do">
+	
 		<p>
 		<label class="labeltagpw">현재 비밀번호</label>
-		<input type="password" name="nowpw" placeholder="현재 비밀번호를 입력" />
+		<input type="password" id="nowpw" placeholder="현재 비밀번호를 입력" />
 		</p>
 		<p>
 		<label class="labeltagpw">새 비밀번호</label>
-		<input type="password" name="newpw" placeholder="새 비밀번호를 입력"  />
+		<input type="password" id="newpw" placeholder="새 비밀번호를 입력"  />
 		</p>
 		<hr >
-		<button type="submit">저장</button>
-	</form>
+		<button id="pwchange">저장</button>
+	
 </div>
 
 
