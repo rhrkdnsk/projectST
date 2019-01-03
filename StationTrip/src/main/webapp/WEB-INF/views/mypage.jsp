@@ -11,6 +11,7 @@
 <title>My page</title>
 </head>
 <body>
+
 <jsp:include page="header.jsp"></jsp:include>
 <div style="text-align:center;	">
 <h1>My Page</h1>

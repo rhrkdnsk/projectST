@@ -24,14 +24,14 @@
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
-	<form action="nickchange.do">
+	<form action="changepw.do">
 		<p>
 		<label class="labeltagpw">현재 비밀번호</label>
-		<input type="text" name="nowpw" placeholder="현재 비밀번호를 입력" />
+		<input type="password" name="nowpw" placeholder="현재 비밀번호를 입력" />
 		</p>
 		<p>
 		<label class="labeltagpw">새 비밀번호</label>
-		<input type="text" name="newpw" placeholder="새 비밀번호를 입력"  />
+		<input type="password" name="newpw" placeholder="새 비밀번호를 입력"  />
 		</p>
 		<hr >
 		<button type="submit">저장</button>

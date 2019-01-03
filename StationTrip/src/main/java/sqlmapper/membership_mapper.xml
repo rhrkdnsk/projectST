@@ -12,10 +12,10 @@
 		WHERE USER_NICKNAME = #{user_nickname}
 	</select>
 	
-	<update id="pwchange" parameterType="LoginDto">
+	<update id="pwchange" parameterType="Map">
 		UPDATE T_USER
-		SET USER_PASSWORD = #{user_password}
-		WHERE USER_NICKNAME = #{user_nickname}
+		SET USER_PASSWORD = #{new_password}
+		WHERE USER_PASSWORD = #{now_password}
 	</update>
 	
 	<update id="nickchange" parameterType="LoginDto">

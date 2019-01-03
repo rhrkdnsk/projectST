@@ -118,4 +118,27 @@ public class MembershipController {
 		return "pwchange";
 	}
 	
+	@RequestMapping(value = "changepw.do", method = RequestMethod.GET)
+	public String changepw(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		logger.info("pwchange.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String nowpw = request.getParameter("nowpw");
+		String newpw = request.getParameter("newpw");
+		Map<String, String>map  = new HashMap<String, String>();
+		map.put("now_password", nowpw);
+		System.out.println("nowpw="+map.get("now_password"));
+		map.put("new_password", newpw);
+		System.out.println("newpw="+map.get("new_password"));
+		boolean isS = mService.pwChange(map);
+ 		if(isS) {
+ 			
+			return "redirect:mypage.do";
+		} else {
+			model.addAttribute("msg", "비밀번호변경 실패");
+			return "error";
+		}
+	}
+	
 }

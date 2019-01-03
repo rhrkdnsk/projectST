@@ -25,14 +25,14 @@ public class MembershipDao implements IMembershipDao {
 	}
 
 	@Override
-	public boolean pwChange(LoginDto dto) {
-		int count = sqlSession.update(namespace+"pwchange", dto);
+	public boolean pwChange(Map<String, String> map) {
+		int count = sqlSession.update(namespace+"pwchange", map);
 		return count > 0 ? true:false;
 	}
 
 	@Override
 	public boolean withdrawal(LoginDto dto) {
-		int count = sqlSession.update(namespace+"withdrawal", dto);
+		int count = sqlSession.delete(namespace+"withdrawal", dto);
 		return count > 0 ? true:false;
 	}
 
@@ -47,6 +47,7 @@ public class MembershipDao implements IMembershipDao {
 		int count = sqlSession.update(namespace+"phonechange", dto);
 		return count > 0 ? true:false;
 	}
+
 	
 	
 }
