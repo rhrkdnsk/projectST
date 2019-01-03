@@ -188,7 +188,8 @@ public class BoardController {
 	@RequestMapping(value = "fboardPage.do")
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
 			String keyField) {
-		
+		request.getSession().removeAttribute("readcount");
+
 		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
 			pageNum = 1;
 		}
