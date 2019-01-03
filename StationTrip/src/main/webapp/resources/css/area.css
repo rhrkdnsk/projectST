@@ -8,7 +8,7 @@
 
 .area-options>li {
 	list-style: none;
-	text-align: center;
+/* 	text-align: center; */
 	float: left;
 	margin: 5px;
 	padding: 2px;
@@ -25,6 +25,7 @@
 .area-content>li {
 	border-bottom: 1px solid #e0e0e0;
 	text-align: left;
+	
 }
 
 #areaBoard>div {
@@ -59,7 +60,13 @@ h1 {
 .pageNum {
 	width: 20px;
 	margin: 0 auto;
-	text-align: center;
+/* 	text-align: center; */
 	display: inline-block;
 	font-size: 18px;
+}
+
+#ad {
+	display: inline-block;
+	font-size: 10px;
+/* 	width: 600px; */
 }

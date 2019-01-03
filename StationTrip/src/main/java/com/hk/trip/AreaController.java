@@ -74,31 +74,18 @@ public class AreaController {
 		param += "&areaCode=" + case1;
 		urlCase2 = URL + serviceName + param;
 
-		/* 컨텐츠 조회 */
-//		serviceName = "areaBasedList";
-//		param += "&sigunguCode=" + case2;
-//		param += "&contentTypeId=" + case3;
-//		param += "&arrange=P";
-//		param += "&pageNo=1";
-//		param += "&startPage=1";
-//		param += "&totalCount";
-//		urlCase3 = URL + serviceName + param;
 
 		System.out.println("*******************************************************");
 		System.out.println(urlCase1);
 		System.out.println(urlCase2);
-//		System.out.println(urlCase3);
 		System.out.println("*******************************************************");
 		Document areaCase1 = null;
 		Document areaCase2 = null;
-//		Document areaContent = null;
 		try {
 			areaCase1 = Jsoup.connect(urlCase1).get();
 			areaCase2 = Jsoup.connect(urlCase2).get();
-//			areaContent = Jsoup.connect(urlCase3).get();
 			map.put("areaCase1", areaCase1.toString());
 			map.put("areaCase2", areaCase2.toString());
-//			map.put("areaContent", areaContent.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -107,13 +94,13 @@ public class AreaController {
 	
 	@ResponseBody
 	@RequestMapping(value = "contentList.do")
-	public Map<String, String> contentList(String case1, String case2, String case3, String pageNo,
+	public Map<String, String> contentList(String case1, String case2, String case3, String pageNo, String contentId,
 			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
-		logger.info("지역 목록 출력.", locale);
+		logger.info("컨텐츠 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
-
+		
 		if(case1 == "") {
 			case1 = "1";
 		} if(case2 == "") {
@@ -123,7 +110,7 @@ public class AreaController {
 		} if(pageNo == "") {
 			pageNo = "1";
 		}
-
+		
 		String urlCase3 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "areaBasedList";
@@ -149,6 +136,45 @@ public class AreaController {
 		try {
 			areaContent = Jsoup.connect(urlCase3).get();
 			map.put("areaContent", areaContent.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return map;
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "overView.do")
+	public Map<String, String> overView(String contentId,
+			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+		logger.info("컨텐츠 소개 출력.", locale);
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		Map<String,String>map=new HashMap<String, String>();
+		
+		String x = contentId.toString();
+		x = x.trim();
+		
+		String urlCase4 = null;
+		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
+		String serviceName = "detailCommon";
+		String param = "?"; 		//지역조회
+		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "&MobileOS=ETC";		
+		param += "&MobileApp=Test";
+		param += "&contentId=" + x;
+		param += "&overviewYN=Y";
+		/* 컨텐츠 소개 조회 */
+		urlCase4 = URL + serviceName + param;
+		
+		System.out.println("*******************************************************");
+		System.out.println(urlCase4);
+		System.out.println("*******************************************************");
+		Document overView = null;
+		try {
+			overView = Jsoup.connect(urlCase4).get();
+			map.put("overView", overView.toString());
+//			System.out.println("*** : "+overView.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
