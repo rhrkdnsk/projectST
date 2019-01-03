@@ -142,6 +142,7 @@ body {
 </style>
 </head>
 <body>
+<h1>${login_userId}님</h1>
 <h1>현재 페이지 번호${page}</h1>
 <h1> 카운트의 값 : ${totalCount}</h1>
 <h1>totalPage의 값 : ${totalPage }</h1>
@@ -207,8 +208,9 @@ body {
   <c:forEach items="${list}" var="fdto">
   <dl>
   	<dd class="num">${fdto.freeboard_num}</dd>
+  	
   	<%
-  		if(session.getAttribute("login_user") == null) {
+  		if(session.getAttribute("login_userId") == null) {
   			%>
 	  			<dd class="sub">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</dd>
 	
@@ -237,7 +239,7 @@ body {
    
 
 <%
-  		if(session.getAttribute("login_user") != null) {
+  		if(session.getAttribute("login_userId") != null) {
   			%>
   			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
   			<%

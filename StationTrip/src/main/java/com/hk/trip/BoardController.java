@@ -108,7 +108,7 @@ public class BoardController {
 			fboardService.readCount(freeboard_num);
 		}
 
-		if (session.getAttribute("login_user") == null) {
+		if (session.getAttribute("login_userId") == null) {
 
 			// out.println("<script>alert('회원전용');</script>");
 			// out.flush();
