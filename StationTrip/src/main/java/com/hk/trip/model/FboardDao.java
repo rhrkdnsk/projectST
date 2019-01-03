@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -215,6 +214,10 @@ public class FboardDao implements IFboardDao {
 	public void upLike(int freeboard_num) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace2 + "upLike" , freeboard_num);
-
+	}
+	@Override
+	public void deleteLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace2 + "deleteLike" , freeboard_num); 
 	}
 }

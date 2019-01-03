@@ -30,6 +30,11 @@
     <update id="downLike" parameterType="int">
   UPDATE FREEBOARD SET FREEBOARD_LIKE = FREEBOARD_LIKE -1 WHERE FREEBOARD_NUM = #{freeboard_num}
     </update>
+
+    <delete id="deleteLike" parameterType="int">
+ DELETE FROM CHECKLIKEHATE WHERE BOARDCODE = 1 AND BOARD_NUM = #{freeboard_num}
+
+    </delete>
   </mapper>
 
 

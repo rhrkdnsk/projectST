@@ -119,4 +119,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		ifboarddao.upLike(freeboard_num);
 	}
+	@Override
+	public void deleteLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		ifboarddao.deleteLike(freeboard_num);
+	}
 }

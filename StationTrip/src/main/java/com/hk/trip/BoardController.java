@@ -162,6 +162,7 @@ public class BoardController {
 		if (isS) {
 			fboardService.bcDelete(freeboard_num);
 			System.out.println("글삭제시 댓글도 같이 삭제 됩니다.");
+			fboardService.deleteLike(freeboard_num);
 			return "redirect:fboardPage.do?pageNum="+setNum;
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
