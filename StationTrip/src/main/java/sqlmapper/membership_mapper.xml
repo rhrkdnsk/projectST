@@ -18,6 +18,18 @@
 		WHERE USER_NICKNAME = #{user_nickname}
 	</update>
 	
+	<update id="nickchange" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_NICKNAME = #{user_nickname}
+		WHERE USER_EMAIL = #{user_email}
+	</update>
+	
+	<update id="phonechange" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_PHONE = #{user_phone}
+		WHERE USER_EMAIL = #{user_email}
+	</update>
+	
 	<delete id="withdrawal" parameterType="LoginDto">
 		DELETE T_USER
 		WHERE USER_NICKNAME = #{user_nickname} AND USER_PASSWORD = #{user_password}

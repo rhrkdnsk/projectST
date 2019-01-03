@@ -31,4 +31,16 @@ public class MembershipService implements IMembershipService {
 		// TODO Auto-generated method stub
 		return mDao.withdrawal(dto);
 	}
+
+	@Override
+	public boolean nickChange(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return mDao.nickChange(dto);
+	}
+
+	@Override
+	public boolean phoneChange(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return mDao.phoneChange(dto);
+	}
 }

@@ -8,5 +8,7 @@ public interface IMembershipService {
 
 	public LoginDto myInfo(Map<String, String> map);
 	public boolean pwChange(LoginDto dto);
+	public boolean nickChange(LoginDto dto);
+	public boolean phoneChange(LoginDto dto);
 	public boolean withdrawal(LoginDto dto);
 }

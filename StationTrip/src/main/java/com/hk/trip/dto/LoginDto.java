@@ -22,6 +22,16 @@ public class LoginDto {
 		this.user_email = user_email;
 		this.user_password = user_password;
 	}
+	
+	
+
+
+	public LoginDto(String user_nickname, String user_email, String user_phone) {
+		super();
+		this.user_nickname = user_nickname;
+		this.user_email = user_email;
+		this.user_phone = user_phone;
+	}
 
 
 	public LoginDto(String user_nickname, String tier, String user_email, String user_name, String user_password,

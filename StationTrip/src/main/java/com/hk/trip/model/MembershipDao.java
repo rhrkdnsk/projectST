@@ -35,6 +35,18 @@ public class MembershipDao implements IMembershipDao {
 		int count = sqlSession.update(namespace+"withdrawal", dto);
 		return count > 0 ? true:false;
 	}
+
+	@Override
+	public boolean nickChange(LoginDto dto) {
+		int count = sqlSession.update(namespace+"nickchange", dto);
+		return count > 0 ? true:false;
+	}
+
+	@Override
+	public boolean phoneChange(LoginDto dto) {
+		int count = sqlSession.update(namespace+"phonechange", dto);
+		return count > 0 ? true:false;
+	}
 	
 	
 }
