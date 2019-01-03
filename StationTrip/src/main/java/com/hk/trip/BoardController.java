@@ -194,6 +194,8 @@ public class BoardController {
 			String keyField) {
 		request.getSession().removeAttribute("readcount");
 
+		
+		
 		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
 			pageNum = 1;
 		}
@@ -351,6 +353,12 @@ public class BoardController {
 			System.out.println("Ajax 컨트롤러 요청 : " + json);
 			
 	}
-		
+	
+		public void fboardsessiondel2(HttpServletRequest request, Locale locale, Model model) {
+			//logger.info("자유게시판 페이징 처리", locale);
+			request.getSession().removeAttribute("skeyWord");
+			request.getSession().removeAttribute("skeyField");
+			request.getSession().removeAttribute("setnum");
+		}
 		
 } // 끝

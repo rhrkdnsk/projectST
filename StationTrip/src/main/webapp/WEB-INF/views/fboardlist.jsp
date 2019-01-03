@@ -16,11 +16,13 @@ function locainsert() {
 	
 }
 function check() {
+
     if (document.search.keyWord.value == "") {
         alert("검색어를 입력하세요.");
         document.search.keyWord.focus();
         return;
     }
+    location.href="fboardsessiondel2.do";
     document.search.submit();
 }
 
@@ -298,7 +300,7 @@ body {
 </select>
 </form>
 
-
+<button onclick="setnull()">목록으로</button>
 
 <jsp:include page="footer.jsp" />
 
