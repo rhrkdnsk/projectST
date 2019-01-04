@@ -115,7 +115,7 @@ public class FboardDao implements IFboardDao {
 			map.put("keyWord", keyWord);
 			
 			int asd =  sqlSession.selectOne(namespace + "getSearchCount", map);
-			System.out.println(asd);
+			//System.out.println(asd);
 			return asd;
 		} else {
 			return sqlSession.selectOne(namespace + "getCount");
@@ -140,7 +140,7 @@ public class FboardDao implements IFboardDao {
 		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
-		System.out.println (sqlSession.selectList(namespace + "getNumlist", map));
+		//System.out.println (sqlSession.selectList(namespace + "getNumlist", map));
 
 		return sqlSession.selectList(namespace + "getNumlist", map);
 		}

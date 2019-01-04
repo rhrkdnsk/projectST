@@ -48,7 +48,7 @@ function getlist() {
 <option value="팁" id="opvalue">팁</option>
 </select>
 <p>
-작성자 : <input type="text" id="id" name="user_nickname" value="${login_user.user_nickname}" readonly />
+작성자 : <input type="text" id="id" name="user_nickname" value="${login_userId}" readonly />
 <p>
 제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title"/>
 <p>

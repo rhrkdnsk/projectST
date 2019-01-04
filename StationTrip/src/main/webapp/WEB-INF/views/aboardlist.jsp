@@ -146,7 +146,7 @@ body {
 <h1>현재 페이지 번호${page}</h1>
 <h1> 카운트의 값 : ${totalCount}</h1>
 <h1>totalPage의 값 : ${totalPage }</h1>
-<a href="fboardPage.do">목록</a>
+
 <div id="board">
 
 <div id="title">
@@ -207,25 +207,25 @@ body {
   <c:otherwise>
   <c:forEach items="${list}" var="fdto">
   <dl>
-  	<dd class="num">${fdto.freeboard_num}</dd>
+  	<dd class="num">${fdto.areaboard_num}</dd>
   	
   	<%
   		if(session.getAttribute("login_userId") == null) {
   			%>
-	  			<dd class="sub">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</dd>
+	  			<dd class="sub">${fdto.areaboard_title} [${fdto.areaboard_commentcount}]</dd>
 	
 	<%
   		} else {
   			%>
-  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</a></dd>
+  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.areaboard_num}">${fdto.areaboard_title} [${fdto.areaboard_commentcount}]</a></dd>
   			<%
   		}
   	
   	%>
   	<dd class="name">${fdto.user_nickname}</dd>
-  	<dd class="data">${fdto.freeboard_time}</dd>
-  	<dd class="count">${fdto.freeboard_view}</dd>
-  	<dd class="count">${fdto.freeboard_like}</dd>
+  	<dd class="data">${fdto.areaboard_time}</dd>
+  	<dd class="count">${fdto.areaboard_view}</dd>
+  	<dd class="count">${fdto.areaboard_like}</dd>
   	</dl>
   	
   	</c:forEach>

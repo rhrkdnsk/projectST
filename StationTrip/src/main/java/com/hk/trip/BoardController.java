@@ -25,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
+import com.hk.trip.dto.AboardDto;
 import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
+import com.hk.trip.model.AboardService;
 import com.hk.trip.model.FboardService;
 
 /**
@@ -43,7 +45,9 @@ public class BoardController {
 	 */
 	@Autowired
 	private FboardService fboardService;
-
+	@Autowired
+	private AboardService aboardService;
+	
 //	@RequestMapping(value = "fboardlist.do")
 //	public String getBoard(HttpServletRequest request, Locale locale, Model model, String keyWord, String keyField) {
 //		logger.info("보드리스트 출력", locale);
@@ -108,7 +112,7 @@ public class BoardController {
 			fboardService.readCount(freeboard_num);
 		}
 
-		if (session.getAttribute("login_user") == null) {
+		if (session.getAttribute("login_userId") == null) {
 
 			// out.println("<script>alert('회원전용');</script>");
 			// out.flush();
@@ -193,13 +197,21 @@ public class BoardController {
 	public String fboardPage(HttpServletRequest request, Locale locale, Model model, int pageNum, String keyWord,
 			String keyField) {
 		request.getSession().removeAttribute("readcount");
+//		request.getSession().removeAttribute("skeyField");
+//		request.getSession().removeAttribute("skeyWord"); 이게 있으면 페이징 처리 X
 
+
+		
+		
 		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
 			pageNum = 1;
 		}
 		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
+		System.out.println("세션 키필드 : " +  (String)session.getAttribute("skeyField"));
+		System.out.println("세션 키워드 : " + (String)session.getAttribute("skeyWord"));
+
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		
 		String settingnum = request.getParameter("settingnum");
@@ -218,6 +230,15 @@ public class BoardController {
 			int setNum = (Integer) request.getSession().getAttribute("setnum");
 			countList = setNum;
 		}		 	
+		
+		//여기서 수정해보기 
+		if(keyField != null && keyWord != null && keyField != "" && keyWord != "") {
+			
+			request.getSession().removeAttribute("skeyField");
+			request.getSession().removeAttribute("skeyWord");
+		}
+		
+		
 		String skeyField = (String) session.getAttribute("skeyField");
 		String skeyWord = (String) session.getAttribute("skeyWord");
 			
@@ -270,8 +291,8 @@ public class BoardController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", pageNum);
-		model.addAttribute("keyWord", keyWord);
-		model.addAttribute("keyField", keyField);
+//		model.addAttribute("keyWord", keyWord);
+//		model.addAttribute("keyField", keyField);
 		return "fboardlist";
 	}
 	@RequestMapping(value = "fsessiondel.do")
@@ -351,6 +372,125 @@ public class BoardController {
 			System.out.println("Ajax 컨트롤러 요청 : " + json);
 			
 	}
+		
+		@RequestMapping(value = "fboarddelsession.do")
+		public void fboardsessiondel2(HttpServletRequest request, Locale locale, Model model) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			
+			System.out.println("fboardsessiondel2 호출");
+			request.getSession().removeAttribute("skeyWord");
+			request.getSession().removeAttribute("skeyField");
+			
+		
+			System.out.println("fboardsessiondel2 에서 세션 삭제 ");
+		}
+		
+		
+		@RequestMapping(value = "aboardPage.do")
+		public String aboardList(HttpServletRequest request, Locale locale, Model model,int apageNum,
+				String akeyField,String akeyWord,int areaboard_code) {
+			logger.info("지역게시판", locale);
+			request.getSession().removeAttribute("readcount");
+//			request.getSession().removeAttribute("skeyField");
+//			request.getSession().removeAttribute("skeyWord"); 이게 있으면 페이징 처리 X
+			System.out.println("apageNum : " + apageNum + "areaboard_code : " + areaboard_code);
+
+			
+			
+			if(request.getParameter("apageNum") == null || request.getParameter("apageNum") == "") {
+				apageNum = 1;
+			}
+			
+			HttpSession session = request.getSession();	
+//			System.out.println("세션 키필드 : " +  (String)session.getAttribute("skeyField"));
+//			System.out.println("세션 키워드 : " + (String)session.getAttribute("skeyWord"));
+
+			//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
+			
+			String settingnum = request.getParameter("settingnum");
+			int countList = 2;
+
+			if(settingnum != null && settingnum != "") {
+				int sum = Integer.parseInt(settingnum);
+				session.setAttribute("asetnum", sum);
+				
+				countList = sum;
+				}
+			
+			//System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
+
+			if(request.getSession().getAttribute("asetnum") != null) {
+				int setNum = (Integer) request.getSession().getAttribute("asetnum");
+				countList = setNum;
+			}		 	
+			
+			//여기서 수정해보기 
+			if(akeyField != null && akeyWord != null && akeyField != "" && akeyWord != "") {
+				
+				request.getSession().removeAttribute("askeyField");
+				request.getSession().removeAttribute("askeyWord");
+			}
+			
+			
+			String askeyField = (String) session.getAttribute("askeyField");
+			String askeyWord = (String) session.getAttribute("askeyWord");
+				
+			if(askeyField != null && askeyWord != null && askeyField != "" && askeyWord != "" ) {
+			akeyField = askeyField;
+			akeyWord = askeyWord;
+			}
+			
+			//System.out.println("skeyField 값 : " + skeyField + "skeyWord값 : " + skeyWord );
+			//+ "skeyWord값 : " + skeyWord	
+			//String settingnum = request.getParameter("settingnum");
+			//		if(settingnum != null && settingnum != "") {
+			//			int sum = Integer.parseInt(settingnum);
+			//			if(sum != 10) {
+			//				countList = sum;
+			//			}
+			//			
+			//		}
+			
+			int startNum = (apageNum - 1) * countList; //Sql문 돌릴곳에서 Row 값을 설정해준다
+			int endNum = apageNum * countList - 1; //Sql문 돌릴곳에서 Row값을 설정해준다 (startNum = ~(번호)에서부터 endNum = ~번호까지)
+			startNum++;
+			endNum++;
+//			System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
+			int totalCount = aboardService.getCount(akeyWord,akeyField,startNum,endNum,areaboard_code); //이걸 if로 나누어 두개로 만들어서 검색어별, 그냥별로 만들어본다
+			// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
+			int countPage = 5;	 //하단에 출력해줄 페이지의 개수
+			int totalPage = totalCount / countList; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
+			if (totalCount % countList > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
+			if (totalPage < apageNum) {apageNum = totalPage;}	// 
+			int startPage = ((apageNum - 1) / countPage) * countPage + 1; // 여기서 countPage는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
+			int endPage = startPage + countPage - 1; 	//start,endPage를 설정해줘야 
+			if (endPage > totalPage) {endPage = totalPage;}
+			if(apageNum == 0) {apageNum++;}
+			
+			//System.out.println("startPage :" + startPage + " endPage : " + endPage);
+			//System.out.println("로우 넘버: " + startNum + "endNum : " + endNum);
+			//System.out.println("Controller에서 totalPage의 값 : " + totalPage);
+			List<AboardDto> list = aboardService.getBoardList(startNum, endNum, akeyWord, akeyField,areaboard_code);
+			
+			if(akeyField != null && akeyWord != null && akeyField != "" && akeyWord != "" ) {
+				 session.setAttribute("skeyField", akeyField);
+				 session.setAttribute("skeyWord", akeyWord);
+				 }
+			session.setAttribute("anowPage", apageNum);
+			//System.out.println("totalPage의 값 : " + totalPage);
+			model.addAttribute("list", list);
+			model.addAttribute("totalCount", totalCount);
+			model.addAttribute("totalPage", totalPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("page", apageNum);
+//			model.addAttribute("keyWord", keyWord);
+//			model.addAttribute("keyField", keyField);
+	
+			return "aboardlist";
+		}
+		
 		
 		
 } // 끝

@@ -11,16 +11,18 @@
 <title>My page</title>
 </head>
 <body>
+
 <jsp:include page="header.jsp"></jsp:include>
 <div style="text-align:center;	">
 <h1>My Page</h1>
 <a href="mypage.do">내정보 관리</a>
 <a href="pwchange.do">비밀번호 변경</a>
-<a href="withdrawal.do">회원 탈퇴</a>
+<a href="withdrawalgo.do">회원 탈퇴</a>
+<a href="itinerary.do">여행 일정</a>
 <hr style="border-color:black;">
 </div>
 <div style="width: 800px;margin:auto;">
-<h2>내 정보를 <span style="color:red;">최신정보</span>로 관리해주세요</h2>
+<h3>내 정보를 <span style="color:red;">최신정보</span>로 관리해주세요</h3>
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">

@@ -30,7 +30,7 @@ $(document).ready(function(){
 $('#btnLike').click(function ()  {
     $.ajax({
         url:"fboardLike.do",
-        data: {user_nickname: '${login_user.user_nickname}', board_num: '${fdto.freeboard_num}' },
+        data: {user_nickname: '${login_userId}', board_num: '${fdto.freeboard_num}' },
         type:"post",
         success : function (data) {
             
@@ -63,7 +63,7 @@ $('#btnLike').click(function ()  {
 
   <body>  
   <jsp:include page="header.jsp" />
-  <h1>${login_user.user_nickname}님 환영합니다</h1>
+  <h1>${login_userId}님 환영합니다</h1>
 
 <h1>게시판 상세보기</h1> 
  제목 : ${fdto.freeboard_title} 날짜 : ${fdto.freeboard_time} 조회수 : ${fdto.freeboard_view}
@@ -80,18 +80,9 @@ id="like_img" height="50px" width="50px">
    
 </div>
 
- 좋아요 : ${fdto.freeboard_like} 싫어요 : ${fdto.freeboard_hate} 
- <c:if test="${ isLiked == true}">
-     눌린상태
-  </c:if>
-  
-  
-  <c:if test="${isLiked == false }">
-  안눌린 상태
-  </c:if>
-  
+ 좋아요 : ${fdto.freeboard_like} 
 <p>
-<c:if test="${fdto.user_nickname == login_user.user_nickname}">
+<c:if test="${fdto.user_nickname  == login_userId}">
 
 <button value="수정" onclick="goUpdate()">수정</button> <button onclick="goDelete()">삭제</button>
 
@@ -103,7 +94,7 @@ id="like_img" height="50px" width="50px">
 <form action="writereply.do" method="post">
 <div style="width:800px; border:1px solid black; height:357px;">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly>
+<input type="text" name="user_nickname" value="${login_userId}" readonly>
 <textarea rows="10" cols="85" name="comment_content"></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
@@ -141,7 +132,7 @@ id="like_img" height="50px" width="50px">
 <div id="lookreply" style="display:none">
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_user.user_nickname}"  readonly>
+<input type="text" name="user_nickname" value="${login_userId}"  readonly>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
 <textarea rows="10" cols="15" name="comment_content" ></textarea>
 <hr>
@@ -151,14 +142,15 @@ id="like_img" height="50px" width="50px">
 </c:if>
 
 
-  	<c:if test="${cdto.user_nickname == login_user.user_nickname}">
+  	<c:if test="${cdto.user_nickname == login_userId}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
+
+</c:if>
 <c:if test="${cdto.comment_step == 0}">
 <button id="lookbt">답글</button>
-</c:if>
 </c:if>
 <br />
   	

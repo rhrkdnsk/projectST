@@ -19,12 +19,13 @@ public class MembershipService implements IMembershipService {
 		//System.out.println("Service nickname = "+map.get("user_nickname"));
 		return mDao.myInfo(map);
 	}
-
+	
 	@Override
-	public boolean pwChange(LoginDto dto) {
-		// TODO Auto-generated method stub
-		return mDao.pwChange(dto);
+	public boolean pwChange(Map<String, String> map) {
+		
+		return mDao.pwChange(map);
 	}
+	
 
 	@Override
 	public boolean withdrawal(LoginDto dto) {
@@ -43,4 +44,7 @@ public class MembershipService implements IMembershipService {
 		// TODO Auto-generated method stub
 		return mDao.phoneChange(dto);
 	}
+
+
+
 }
