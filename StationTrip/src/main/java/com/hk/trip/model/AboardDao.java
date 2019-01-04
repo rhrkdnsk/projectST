@@ -76,4 +76,25 @@ public class AboardDao implements IAboardDao {
 		
 		return count > 0 ? true : false;
 	}
+	@Override
+	public AboardDto getDetailview(int areaboard_num, int areaboard_code) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		map.put("areaboard_num", areaboard_num);
+		map.put("areaboard_code", areaboard_code);
+		System.out.println("map : " + map);
+		return sqlSession.selectOne(namespace + "adetailview", map);
+	}
+	
+	
+	@Override
+	public boolean updateBoard(AboardDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		System.out.println("updateBoard dto : " + dto);
+		count = sqlSession.update(namespace + "updateaBoard" , dto);
+		
+		return count > 0 ? true : false;
+	}
 	} //끝

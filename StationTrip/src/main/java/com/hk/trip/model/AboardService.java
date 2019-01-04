@@ -30,4 +30,14 @@ public class AboardService implements IAboardService {
 		// TODO Auto-generated method stub
 		return iaboarddao.insertBoard(dto);
 	}
+	@Override
+	public AboardDto getDetailview(int areaboard_num, int areaboard_code) {
+		// TODO Auto-generated method stub
+		return iaboarddao.getDetailview(areaboard_num, areaboard_code);
+	}
+	@Override
+	public boolean updateBoard(AboardDto dto) {
+		// TODO Auto-generated method stub
+		return iaboarddao.updateBoard(dto);
+	}
 }

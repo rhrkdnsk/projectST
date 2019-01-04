@@ -48,5 +48,15 @@ where X.rnum >= #{startNum}  ]]>
  <insert id="ainsertBoard" parameterType="AboardDto">
  INSERT INTO AREABOARD VALUES ((SELECT NVL(MAX(AREABOARD_NUM)+1,0)FROM AREABOARD),#{user_nickname},#{areaboard_code},#{areaboard_title},SYSDATE,#{areaboard_content},0,0,0,#{areaboard_category},0) 
  </insert>
+
+ <select id="adetailview" parameterType="Map" resultType="AboardDto">
+SELECT * FROM AREABOARD WHERE AREABOARD_NUM = #{areaboard_num} AND AREABOARD_CODE = #{areaboard_code}
+ </select>
+
+  <update id="updateaBoard" parameterType="AboardDto">
+      UPDATE AREABOARD
+      SET AREABOARD_TITLE = #{areaboard_title}, AREABOARD_CONTENT = #{areaboard_content}, AREABOARD_TIME = SYSDATE
+      WHERE AREABOARD_NUM = #{areaboard_num}
+    </update>
    
   </mapper>

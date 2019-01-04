@@ -509,7 +509,43 @@ public class BoardController {
 				return "error";
 			}
 			
+			}
+		@RequestMapping(value = "aboarddetail.do", method = RequestMethod.GET)
+		public String aboarddetailview(HttpServletRequest request, Locale locale, Model model, int areaboard_num,int areaboard_code) {
+			logger.info("글 수정하기 폼 이동", locale);
+			AboardDto adto = aboardService.getDetailview(areaboard_num, areaboard_code);
+			System.out.println("adto : " + adto);
+			model.addAttribute("fdto", adto);
 			
+			
+			return "aboarddetail";
 			}
 		
+		@RequestMapping(value = "aboardupdate.do", method = RequestMethod.GET)
+		public String aboardupdateform(HttpServletRequest request, Locale locale, Model model, int areaboard_num,int areaboard_code) {
+			logger.info("글 수정하기 폼 이동", locale);
+			AboardDto adto = aboardService.getDetailview(areaboard_num, areaboard_code);
+			model.addAttribute("fdto", adto);
+					
+			
+			return "aboardupdate";
+			}
+		@RequestMapping(value = "aboardup.do")
+		public String aboardupdate(HttpServletRequest request, Locale locale, Model model, AboardDto dto) {
+			logger.info("글 수정하기 폼 이동", locale);
+			
+			int areaboard_num = dto.getAreaboard_num();
+			int areaboard_code = dto.getAreaboard_code();
+			
+			boolean isS = aboardService.updateBoard(dto);
+			if(isS) {
+				return "error";
+			} else {
+				return "error";
+			}
+					
+			
+			
+			}
+
 } // 끝
