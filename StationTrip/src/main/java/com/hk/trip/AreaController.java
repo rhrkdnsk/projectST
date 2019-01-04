@@ -118,7 +118,7 @@ public class AreaController {
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&numOfRows=15";
+		param += "&numOfRows=2";
 		param += "&areaCode=" + case1;
 		param += "&sigunguCode=" + case2;
 		param += "&contentTypeId=" + case3;
@@ -159,7 +159,7 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + x;
@@ -169,12 +169,13 @@ public class AreaController {
 		
 		System.out.println("*******************************************************");
 		System.out.println(urlCase4);
+		System.out.println(x);
 		System.out.println("*******************************************************");
 		Document overView = null;
 		try {
 			overView = Jsoup.connect(urlCase4).get();
 			map.put("overView", overView.toString());
-//			System.out.println("*** : "+overView.toString());
+			System.out.println("*** : "+overView.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
