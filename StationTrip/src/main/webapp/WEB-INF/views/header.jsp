@@ -48,7 +48,7 @@
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
       <a href="fsessiondel.do" class="w3-bar-item w3-button">자유 게시판</a>
       <a href="#" class="w3-bar-item w3-button">질문 과 답변</a>
-      <a href="#" class="w3-bar-item w3-button">지역 게시판</a>
+      <a href="aboardPage.do?apageNum=1&areaboard_code=1" class="w3-bar-item w3-button">지역 게시판</a>
     </div>
   </div>
     <div class="w3-dropdown-hover w3-hide-small">
