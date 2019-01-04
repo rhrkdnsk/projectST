@@ -26,8 +26,8 @@ public class AboardDao implements IAboardDao {
 		if(akeyField != null && akeyWord != null && akeyField != "" && akeyWord != "" ) {
 			map.put("startNum", startNum+"");
 			map.put("endNum", endNum+"");
-			map.put("keyField", akeyField);
-			map.put("keyWord", akeyWord);
+			map.put("akeyField", akeyField);
+			map.put("akeyWord", akeyWord);
 			map.put("areaboard_code", areaboard_code+"");
 			return sqlSession.selectList(namespace + "agetSearchlist", map);
 		} else {
@@ -49,14 +49,16 @@ public class AboardDao implements IAboardDao {
 		// TODO Auto-generated method stub
 		if(akeyField != null && akeyWord != null && akeyField != "" && akeyWord != "" ) {
 			System.out.println("Dao에서 if문 실행");
+			System.out.println("Dao startNum : " + startNum + "endNum : " + endNum + "akeyField : " + akeyField + "akeyWord : " + akeyWord + "areaboard_code : " + areaboard_code);
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("startNum", startNum+"");
-			map.put("endNum", endNum+"");
-			map.put("keyField", akeyField);
-			map.put("keyWord", akeyWord);
+			map.put("akeyWord", akeyWord);
+			map.put("akeyField", akeyField);
+//			map.put("startNum", startNum+"");
+//			map.put("endNum", endNum+"");
 			map.put("areaboard_code", areaboard_code+"");
+			System.out.println(map);
+			System.out.println("Dao getCount 실행결과 : " + sqlSession.selectOne(namespace + "agetSearchCount", map));
 			int asd =  sqlSession.selectOne(namespace + "agetSearchCount", map);
-			//System.out.println(asd);
 			return asd;
 		} else {
 			System.out.println(sqlSession.selectOne(namespace + "agetCount"));
@@ -65,5 +67,13 @@ public class AboardDao implements IAboardDao {
 		}	
 		
 	}
-	
+	@Override
+	public boolean insertBoard(AboardDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		System.out.println(dto);
+		count = sqlSession.insert(namespace + "ainsertBoard", dto);
+		
+		return count > 0 ? true : false;
+	}
 	} //끝

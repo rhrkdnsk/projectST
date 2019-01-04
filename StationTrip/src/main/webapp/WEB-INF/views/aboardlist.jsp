@@ -12,7 +12,7 @@
 <script type="text/javascript">
 function locainsert() {
 	alert("locainsert");
-	location.href = "insertform.do";
+	location.href = "aboardinsertform.do";
 	
 }
 
@@ -26,9 +26,9 @@ function check() {
 }
 function check1() {
 
-    if (document.search.keyWord.value == "") {
+    if (document.search.akeyWord.value == "") {
         alert("검색어를 입력하세요.");
-        document.search.keyWord.focus();
+        document.search.akeyWord.focus();
         return;
     }
   
@@ -288,21 +288,21 @@ body {
 </div>
 
 
-<form action="fboardPage.do?pageNum=1" name="search" method="post">
+<form action="aboardPage.do?apageNum=1&areaboard_code=1" name="search" method="post">
 
-<select name="keyField" size="1">
+<select name="akeyField" size="1">
 	<option value="user_nickname">아이디</option>
-	<option value="freeboard_title">제목</option>
+	<option value="areaboard_title">제목</option>
 	<option value="제목+내용">제목+내용</option>
-	<option value="freeboard_category">분류</option>
+	<option value="areaboard_category">분류</option>
 </select>
 
-<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
+<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${akeyWord}" />
 <input type="button" value="검색" onclick="check()" />
 <input type="hidden" name="page" value="0" />
 </form>
 
-<form action="fboardPage.do?pageNum=1" method = "post" name="looksetting">
+<form action="aboardPage.do?apageNum=1&areaboard_code=1" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()">
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
 <option value="5" onclick="lookBoard()">5개씩보기</option>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+	<mapper namespace="com.hk.trip.rhksfl">
+	
+	<select id="rgetAllList" resultType="RhksflDto"> 
+	SELECT SEQ,TITLE,CONTENT,ID,REGDATE 
+	FROM RHKSFLWK
+	</select>
+	 <select id="rgetBoard" resultType="RhksflDto">
+	SELECT SEQ,TITLE,CONTENT,ID,REGDATE	FROM RHKSFLWK
+	WHERE SEQ = #{seq}
+    </select>
+    <update id="rdelBoard">
+      DELETE RHKSFLWK   WHERE SEQ = #{seq}
+    </update>
+     <update id="rupdateBoard" parameterType="RhksflDto">
+      update RHKSFLWK
+      SET TITLE = #{title}, CONTENT = #{content}
+      WHERE SEQ = #{seq}
+    </update> 
+    <update id="rmulDelBoard" parameterType="Map">
+      DELETE RHKSFLWK where seq in
+      <foreach collection="seq" item="seq" open="(" close=")" separator=",">
+              #{seq}
+      </foreach> 
+    </update>
+    
+    <select id="rgetCount" resultType="int">
+	SELECT COUNT(*) AS totalCount FROM RHKSFLWK
+	
+	</select>
+	
+<select id="rgetNumlist" resultType="RhksflDto" parameterType="Map">
+	<![CDATA[select X.RNUM,X.SEQ, X.TITLE, X.CONTENT, X.ID,X.REGDATE
+		from (select rownum as rnum, A.SEQ, A.TITLE, A.CONTENT, A.ID, A.REGDATE FROM (
+		SELECT SEQ, TITLE, CONTENT, ID, REGDATE
+        from RHKSFLWK
+        order by SEQ DESC) A
+    where ROWNUM <= #{endNum}) X
+where X.rnum >= #{startNum}  ]]>
+	</select>
+	
+ <insert id="rinsertBoard" parameterType="RhksflDto">
+<!--       insert into RHKSFLWK values -->
+<!--       (RHKSFLWK_seq.nextval,#{id},#{title},#{content},sysdate) -->
+			INSERT INTO RHKSFLWK VALUES ((SELECT NVL(MAX(SEQ)+1,0)FROM RHKSFLWK)
+	 		,#{id},#{title},SYSDATE,#{content}) 
+    </insert>
+    
+	 
+
+    
+	</mapper>

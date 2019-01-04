@@ -25,4 +25,9 @@ public class AboardService implements IAboardService {
 		// TODO Auto-generated method stub
 		return iaboarddao.getCount(akeyWord, akeyField, startNum, endNum, areaboard_code);
 	}
+	@Override
+	public boolean insertBoard(AboardDto dto) {
+		// TODO Auto-generated method stub
+		return iaboarddao.insertBoard(dto);
+	}
 }

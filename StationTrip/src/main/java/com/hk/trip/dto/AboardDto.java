@@ -3,17 +3,17 @@ package com.hk.trip.dto;
 import java.sql.Date;
 
 public class AboardDto {
-	int areaboard_num;
-	String user_nickname;
-	int areaboard_code;
-	String areaboard_title;
-	Date areaboard_time;
-	String areaboard_content;
-	int areaboard_view;
-	int areaboard_like;
-	int areaboard_hate;
-	String areaboard_category;
-	int areaboard_commentcount;
+	private int areaboard_num;
+	private String user_nickname;
+	private int areaboard_code;
+	private String areaboard_title;
+	private Date areaboard_time;
+	private String areaboard_content;
+	private int areaboard_view;
+	private int areaboard_like;
+	private int areaboard_hate;
+	private String areaboard_category;
+	private int areaboard_commentcount;
 	
 	public AboardDto() {
 		super();

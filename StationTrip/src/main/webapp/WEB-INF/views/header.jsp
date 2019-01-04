@@ -54,7 +54,7 @@
     <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-hide-small w3-padding-large w3-hover-white" title="Notifications">고객 센터<i class="fa fa-caret-down"></i></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button">Q.A</a>
+      <a href="rsessiondel.do" class="w3-bar-item w3-button">Q.A</a>
       <a href="#" class="w3-bar-item w3-button">공지 사항</a>
       <a href="gsessiondel.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>

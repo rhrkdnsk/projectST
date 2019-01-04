@@ -474,8 +474,8 @@ public class BoardController {
 			List<AboardDto> list = aboardService.getBoardList(startNum, endNum, akeyWord, akeyField,areaboard_code);
 			
 			if(akeyField != null && akeyWord != null && akeyField != "" && akeyWord != "" ) {
-				 session.setAttribute("skeyField", akeyField);
-				 session.setAttribute("skeyWord", akeyWord);
+				 session.setAttribute("askeyField", akeyField);
+				 session.setAttribute("askeyWord", akeyWord);
 				 }
 			session.setAttribute("anowPage", apageNum);
 			//System.out.println("totalPage의 값 : " + totalPage);
@@ -490,7 +490,26 @@ public class BoardController {
 	
 			return "aboardlist";
 		}
+		@RequestMapping(value = "aboardinsertform.do")
+		public String aboardinsertform(HttpServletRequest request, Locale locale, Model model) {
+			logger.info("글쓰기 폼 이동", locale);		
+			return "aboardinsert";
+			
+		}
 		
-		
+		@RequestMapping(value = "aboardinsert.do")
+		public String aboardinsert(HttpServletRequest request, Locale locale, Model model,AboardDto dto) {
+			logger.info("글쓰기 폼 이동", locale);	
+			
+			boolean isS = aboardService.insertBoard(dto);
+			
+			if(isS) {
+				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+			} else {
+				return "error";
+			}
+			
+			
+			}
 		
 } // 끝
