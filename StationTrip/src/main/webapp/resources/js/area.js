@@ -57,7 +57,7 @@ $(function(){
 					for (var i = 0; i < areaContent.length; i++) {
 						$("#titles").append("<li id='listNum" + i + "'>" 
 								+ "<div id='img-side'><img id='area-img' src='" + imgTag.eq(i).text()
-								+ "' onerror='" + 'this.src="/trip/resources/images/noimage.png"' 
+								+ "' onerror='" + 'this.src="/trip/resources/images/no-image-icon-23494.png"' 
 								+ "' alt='썸네일' /></div><div id='text-side'><p id='titleText"+i+"' class='inlineText'><b>"
 								+ areaContent.eq(i).text() + "</b></p></div></li>");
 //						$("#titleText"+i).after("<p id='addr' class='inlineText'>[" + addr.eq(i).text() + "]</p>");
@@ -82,11 +82,7 @@ $(function(){
 				async:false,
 				success : function(obj){
 					var overView=$(obj["overView"]).find("overview");
-//					alert("그냥 + " + overView);
-//					alert("콘덴츠아이디 :" + contentId.eq(i).text());
-//					alert("eq : "+ overView.eq(i).text());
 					$("#titleText"+i).after("<p id='ad'>" +  overView.text() + "</p>");
-//					alert( "끝");
 				},
 				error:function(){
 					alert("에러");
@@ -121,4 +117,6 @@ $(function(){
 		pageNo = $(this).attr('id');
 		contentList();
 	})
+	
+	$("#area-img").click(function(){location.href="areaDetail.do"});
 });

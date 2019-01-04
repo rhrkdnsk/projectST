@@ -16,7 +16,6 @@
 <script type="text/javascript" src="/trip/resources/js/area.js"></script>
 <link rel="stylesheet" href="/trip/resources/css/area.css">
 
-
 </head>
 <body>
 	<form id="areaBoard">
@@ -50,8 +49,6 @@
 			</ul>
 
 		</div>
-		<!-- 	컨텐츠 선택 시 해당 리스트 조회	 -->
-
 	</form>
 	<%@include file="footer.jsp"%>
 </body>
