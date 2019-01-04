@@ -42,7 +42,8 @@ $(function() {
 <title></title>
 </head>
 <body>
-	<h1>도시리스트</h1>
+	<div id="trainbody" style="width: 800px;margin: auto;">
+	<h1 style="text-align:center;">열차조회</h1>
 	<table border="1">
 		<colgroup>
 			<col width="25%">
@@ -146,7 +147,8 @@ $(function() {
 			</td>
 		</tr>
 	</table>
-	<iframe id="trainframe" style="width:850px;height:400px;display:none" src="trainmove.do"></iframe>
+	<iframe id="trainframe" style="width:800px;height:400px;display:none" src="trainmove.do"></iframe>
+	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

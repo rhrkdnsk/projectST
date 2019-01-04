@@ -6,7 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/trip/resources/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+function goList() {
+	location.href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}"
+}
 
+</script>
 <title></title>
 </head>
 <body>
@@ -32,7 +37,7 @@
 이미지 업로드 <input type="file" />
 <p />
 
-<input type="submit" value="글수정" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center/>
+<input type="submit" value="글수정" id="submit" style=align:center/> <input type="button" value="취소" id="submit" style=align:center onclick="goList()"/>
 </form>
 <jsp:include page="footer.jsp" />
 

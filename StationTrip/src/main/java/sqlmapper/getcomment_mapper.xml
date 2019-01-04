@@ -14,11 +14,10 @@
 	</select>
 
 	<insert id="writeReply" parameterType="CommentDto">
-		INSERT INTO T_COMMENT
-		VALUES
-		((SELECT NVL(MAX(COMMENT_NUM)+1,0) FROM
-		T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0) FROM
-		T_COMMENT),#{comment_content},0,0)
+		
+        INSERT INTO T_COMMENT VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),
+#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0)
+FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num}),#{comment_content},0,0 )
 	</insert>
 	
     <delete id="delComment" parameterType="CommentDto">
@@ -33,4 +32,19 @@ INSERT INTO T_COMMENT
 	<delete id="bcDelete" parameterType="int">
     DELETE FROM T_COMMENT WHERE FREEBOARD_NUM=#{freeboard_num}
     </delete>
+
+   <update id="upComment" parameterType="int">
+     UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT +1 WHERE FREEBOARD_NUM = #{freeboard_num}
+   </update>
+
+   <update id="downComment" parameterType="int">
+     UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT -1 WHERE FREEBOARD_NUM = #{freeboard_num}
+   </update>
 </mapper>
+
+
+<!-- INSERT INTO T_COMMENT
+		VALUES
+		((SELECT NVL(MAX(COMMENT_NUM)+1,0) FROM
+		T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0) FROM
+		T_COMMENT),#{comment_content},0,0) -->

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +115,7 @@ public class FboardDao implements IFboardDao {
 			map.put("keyWord", keyWord);
 			
 			int asd =  sqlSession.selectOne(namespace + "getSearchCount", map);
-			System.out.println(asd);
+			//System.out.println(asd);
 			return asd;
 		} else {
 			return sqlSession.selectOne(namespace + "getCount");
@@ -141,6 +140,8 @@ public class FboardDao implements IFboardDao {
 		
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
+		//System.out.println (sqlSession.selectList(namespace + "getNumlist", map));
+
 		return sqlSession.selectList(namespace + "getNumlist", map);
 		}
 	}
@@ -215,6 +216,21 @@ public class FboardDao implements IFboardDao {
 	public void upLike(int freeboard_num) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace2 + "upLike" , freeboard_num);
+	}
+	@Override
+	public void deleteLike(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace2 + "deleteLike" , freeboard_num); 
+	}
+	@Override
+	public void upComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "upComment", freeboard_num);
+	}
+	@Override
+	public void downComment(int freeboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "downComment", freeboard_num);
 
 	}
 }

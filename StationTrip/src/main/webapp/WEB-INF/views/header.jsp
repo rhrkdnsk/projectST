@@ -48,7 +48,7 @@
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
       <a href="fsessiondel.do" class="w3-bar-item w3-button">자유 게시판</a>
       <a href="#" class="w3-bar-item w3-button">질문 과 답변</a>
-      <a href="#" class="w3-bar-item w3-button">지역 게시판</a>
+      <a href="aboardPage.do?apageNum=1&areaboard_code=1" class="w3-bar-item w3-button">지역 게시판</a>
     </div>
   </div>
     <div class="w3-dropdown-hover w3-hide-small">
@@ -275,10 +275,11 @@
 								<span class="labeltag">
 								<label>전화번호</label>
 								</span>
-								<input type="text" id="Sphone" />
+								<input type="text" id="Sphone" onkeydown = "if (event.keyCode == 13)
+                       				document.getElementById('tsign').click()"/>
 							</li>
 							<li>
-								<button onclick="ajaxSign()">회원가입</button>
+								<button id="tsign" onclick="ajaxSign()">회원가입</button>
 								<input type="button" class="can aright" value="취소" />	
 							</li>
 						</ul>

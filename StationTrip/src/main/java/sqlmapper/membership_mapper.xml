@@ -12,15 +12,27 @@
 		WHERE USER_NICKNAME = #{user_nickname}
 	</select>
 	
-	<update id="pwchange" parameterType="LoginDto">
+	<update id="pwchange" parameterType="Map">
 		UPDATE T_USER
-		SET USER_PASSWORD = #{user_password}
-		WHERE USER_NICKNAME = #{user_nickname}
+		SET USER_PASSWORD = #{new_password}
+		WHERE USER_PASSWORD = #{now_password} AND USER_EMAIL = #{user_email}
+	</update>
+	
+	<update id="nickchange" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_NICKNAME = #{user_nickname}
+		WHERE USER_EMAIL = #{user_email}
+	</update>
+	
+	<update id="phonechange" parameterType="LoginDto">
+		UPDATE T_USER
+		SET USER_PHONE = #{user_phone}
+		WHERE USER_EMAIL = #{user_email}
 	</update>
 	
 	<delete id="withdrawal" parameterType="LoginDto">
 		DELETE T_USER
-		WHERE USER_NICKNAME = #{user_nickname} AND USER_PASSWORD = #{user_password}
+		WHERE USER_EMAIL = #{user_email} AND USER_PASSWORD = #{user_password}
 	</delete>
 
 </mapper>	

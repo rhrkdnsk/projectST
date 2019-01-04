@@ -108,7 +108,7 @@ function tnum(data){
 			<th>운임</th>
 		</tr>
 	</table>
-	<table id="traininfo" onchange="location.reload()">
+	<table id="traininfo" onchange="location.reload()" style="text-align:center;">
 		<colgroup>
 			<col width="141px">
 			<col width="141px">
@@ -126,7 +126,9 @@ function tnum(data){
 			<th></th>
 		</tr>
 	</table>
-	<div class="list-bot">
+	<br>
+	<br>
+	<div class="list-bot"  style="text-align:center;">
 		<p></p>
 	</div>
 </body>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hk.trip.schedule">
+
+	<select id="sc_check" parameterType="ScheduleDto" resultType="ScheduleDto">
+		SELECT SCHEDULE_NUM,USER_NICKNAME,SPOT_NUM,SCHEDULE_TIME,SCHEDULE_SEQUENCE,SCHEDULE_NAME
+		FROM SCHEDULE
+		WHERE USER_NICKNAME = #{user_nickname}
+	</select>
+	
+
+</mapper>	

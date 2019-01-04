@@ -31,4 +31,7 @@ public interface IFboardService {
 	public int likeCount(int freeboard_num);
 	public void downLike(int freeboard_num);
 	public void upLike(int freeboard_num);
+	public void deleteLike(int freeboard_num);
+	public void upComment(int freeboard_num);
+	public void downComment(int freeboard_num);
 }
