@@ -217,7 +217,7 @@ body {
 	<%
   		} else {
   			%>
-  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.areaboard_num}">${fdto.areaboard_title} [${fdto.areaboard_commentcount}]</a></dd>
+  			<dd class="sub"><a class="title" href="aboarddetail.do?areaboard_num=${fdto.areaboard_num}&areaboard_code=${fdto.areaboard_code}">${fdto.areaboard_title} [${fdto.areaboard_commentcount}]</a></dd>
   			<%
   		}
   	
