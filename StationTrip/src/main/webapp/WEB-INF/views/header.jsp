@@ -275,10 +275,11 @@
 								<span class="labeltag">
 								<label>전화번호</label>
 								</span>
-								<input type="text" id="Sphone" />
+								<input type="text" id="Sphone" onkeydown = "if (event.keyCode == 13)
+                       				document.getElementById('tsign').click()"/>
 							</li>
 							<li>
-								<button onclick="ajaxSign()">회원가입</button>
+								<button id="tsign" onclick="ajaxSign()">회원가입</button>
 								<input type="button" class="can aright" value="취소" />	
 							</li>
 						</ul>

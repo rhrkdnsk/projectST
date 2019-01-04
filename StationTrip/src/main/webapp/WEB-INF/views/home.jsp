@@ -46,22 +46,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
       <h2><i class="w3-margin-right"></i>열차 찾기</h2>
     </div>
     <div class="w3-container w3-blue w3-padding-16">
-    
-    
-    
-    
-    
-	<form action="/action_page.php target="_blank"">
-	
-	
-	
-	</form>
-      
-      
-      
-      
-      
-      
+         
     </div>
       </div>
        <div class="w3-row-padding" style="margin:0 -16px">

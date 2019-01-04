@@ -14,11 +14,12 @@
 $(document).ready(function(){
 	$("#pwchange").click(function(){
 		console.log("클릭")
+		var email = $("#pch_email").val();
 		var nowpw = $("#nowpw").val();
 		console.log("nowpw =" +nowpw)
 		var newpw = $("#newpw").val();
 		console.log("newpw = "+ newpw)
-		var data = {"nowpw" : nowpw, "newpw" : newpw}
+		var data = {"nowpw" : nowpw, "newpw" : newpw, "user_email" : email}
 		
 		$.ajax({
 			url:"changepw.do",
@@ -56,14 +57,15 @@ $(document).ready(function(){
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
-	
+		<input id="pch_email" type="hidden" value="${dto.user_email }">
 		<p>
 		<label class="labeltagpw">현재 비밀번호</label>
 		<input type="password" id="nowpw" placeholder="현재 비밀번호를 입력" />
 		</p>
 		<p>
 		<label class="labeltagpw">새 비밀번호</label>
-		<input type="password" id="newpw" placeholder="새 비밀번호를 입력"  />
+		<input type="password" id="newpw" placeholder="새 비밀번호를 입력"   onkeydown = "if (event.keyCode == 13)
+                       				document.getElementById('pwchange').click()"/>
 		</p>
 		<hr >
 		<button id="pwchange">저장</button>

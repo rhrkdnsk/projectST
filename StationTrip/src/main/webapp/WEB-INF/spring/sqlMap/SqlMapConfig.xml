@@ -10,7 +10,11 @@
   		<typeAlias type="com.hk.trip.dto.FboardDto" alias="FboardDto"/>
   		<typeAlias type="com.hk.trip.dto.CommentDto" alias="CommentDto"/> 
         <typeAlias type="com.hk.trip.dto.CheckLikeDto" alias="CheckDto" />
+<<<<<<< HEAD
         <typeAlias type="com.hk.trip.dto.AboardDto" alias="AboardDto" />
+=======
+        <typeAlias type="com.hk.trip.dto.ScheduleDto" alias="ScheduleDto" />
+>>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
   	</typeAliases>
   	
   	<mappers>
@@ -20,7 +24,11 @@
   		<mapper resource="/sqlmapper/getcomment_mapper.xml" />
   		<mapper resource="/sqlmapper/membership_mapper.xml" />
         <mapper resource="/sqlmapper/checklike.xml" />
+<<<<<<< HEAD
         <mapper resource="/sqlmapper/aboard_mapper.xml" />
+=======
+         <mapper resource="/sqlmapper/schedule_mapper.xml" />
+>>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
       </mappers>
   	
 </configuration>

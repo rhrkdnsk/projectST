@@ -60,7 +60,8 @@ $(document).ready(function(){
 		<p><label class="labeltag">이메일</label><span id="d_email">${dto.user_email }</span></p>
 		<p>
 		<label class="labeltag">비밀번호</label>
-		<input type="password" id="user_password" placeholder="비밀번호를 입력"  />
+		<input type="password" id="user_password" placeholder="비밀번호를 입력" onkeydown = "if (event.keyCode == 13)
+                       				document.getElementById('delemail').click()" />
 		</p>
 		<hr >
 		<button id="delemail">삭제</button>
