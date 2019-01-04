@@ -27,7 +27,7 @@ h6 {
 </style>
 <script type="text/javascript">
 function getlist() {
-	location.href="fboardPage.do?pageNum=${nowPage}"
+	location.href="aboardPage.do?apageNum=${anowPage}"
 }
 
 </script>
@@ -37,24 +37,36 @@ function getlist() {
 
 <h1>게시글 작성</h1>
 <div>
- <form action="fboardinsert.do" method="post">
+ <form action="aboardinsert.do" method="post">
 
 <!-- <input type="hidden" name="command" value="boardinsert" /> -->
 
-  분류  <select id="opvalue" name="freeboard_category">
+  분류  <select id="opvalue" name="areaboard_category">
 <option value="분류" id="opvalue">분류</option>
 <option value="정보" id="opvalue">정보</option>
 <option value="잡담" id="opvalue">잡담</option>
 <option value="팁" id="opvalue">팁</option>
 </select>
+
+지역 <select id="areavalue" name="areaboard_code" >
+<option value="지역" id="opvalue">분류</option>
+<option value="1" id="opvalue">서울</option>
+<option value="2" id="opvalue">경기</option>
+<option value="3" id="opvalue">강원</option>
+<option value="4" id="opvalue">대구</option>
+<option value="5" id="opvalue">부산</option>
+<option value="6" id="opvalue">전라</option>
+<option value="7" id="opvalue">경상</option>
+
+</select>
 <p>
 작성자 : <input type="text" id="id" name="user_nickname" value="${login_userId}" readonly />
 <p>
-제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title"/>
+제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="areaboard_title"/>
 <p>
-<h6 style=text-align:center>내용</h6> <textarea name="freeboard_content" id="freeboard_content"></textarea>
+<h6 style=text-align:center>내용</h6> <textarea name="areaboard_content" id="areaboard_content"></textarea>
 <script type="text/javascript">
-  CKEDITOR.replace('freeboard_content',
+  CKEDITOR.replace('areaboard_content',
     {
       width : '720px',  // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
       height : '300px',  // 입력창의 높이

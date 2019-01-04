@@ -10,6 +10,6 @@ public interface IAboardService {
 
 	public List<AboardDto> getBoardList(int startNum,int endNum,String akeyWord, String akeyField,int areaboard_code);
 	public int getCount(String akeyWord, String akeyField,int startNum,int endNum,int areaboard_code);
-	
+	public boolean insertBoard(AboardDto dto);
 	
 }

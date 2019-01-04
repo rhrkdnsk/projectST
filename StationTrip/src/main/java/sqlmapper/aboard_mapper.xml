@@ -25,10 +25,28 @@ where X.rnum >= #{startNum}   ]]>
 select AREABOARD_NUM, USER_NICKNAME,AREABOARD_CODE,AREABOARD_TITLE, AREABOARD_TIME,AREABOARD_CONTENT,AREABOARD_VIEW,AREABOARD_LIKE,AREABOARD_HATE,AREABOARD_CATEGORY,AREABOARD_COMMENTCOUNT
         from AREABOARD
         order by AREABOARD_NUM DESC) A
-    where ROWNUM <= #{endNum} AND  AREABOARD_CODE = #{areaboard_code} AND ${keyField} LIKE '%${keyWord}%') X
+    where ROWNUM <= #{endNum} AND  AREABOARD_CODE = #{areaboard_code} AND ${akeyField} LIKE '%${akeyWord}%') X
 where X.rnum >= #{startNum}  ]]>
 	</select>
-
- 
-
+    
+ <select id="agetSearchCount" resultType="int" parameterType="Map">
+        <![CDATA[SELECT COUNT(AREABOARD_NUM) from 
+        (select rownum as rnum, A.AREABOARD_NUM,
+        A.USER_NICKNAME,AREABOARD_CODE,A.AREABOARD_TITLE, 
+        A.AREABOARD_TIME,A.AREABOARD_CONTENT,A.AREABOARD_VIEW,
+        A.AREABOARD_LIKE,A.AREABOARD_HATE,A.AREABOARD_CATEGORY,
+        A.AREABOARD_COMMENTCOUNT FROM (
+    select AREABOARD_NUM, USER_NICKNAME,
+    AREABOARD_CODE,AREABOARD_TITLE, AREABOARD_TIME,AREABOARD_CONTENT,
+    AREABOARD_VIEW,AREABOARD_LIKE,AREABOARD_HATE,AREABOARD_CATEGORY,
+    AREABOARD_COMMENTCOUNT
+            from AREABOARD
+            order by AREABOARD_NUM DESC) A
+        where AREABOARD_CODE = #{areaboard_code} AND ${akeyField} LIKE '%${akeyWord}%') X
+    ]]>
+	</select>
+ <insert id="ainsertBoard" parameterType="AboardDto">
+ INSERT INTO AREABOARD VALUES ((SELECT NVL(MAX(AREABOARD_NUM)+1,0)FROM AREABOARD),#{user_nickname},#{areaboard_code},#{areaboard_title},SYSDATE,#{areaboard_content},0,0,0,#{areaboard_category},0) 
+ </insert>
+   
   </mapper>
