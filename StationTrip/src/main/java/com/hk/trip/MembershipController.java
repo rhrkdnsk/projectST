@@ -127,11 +127,14 @@ public class MembershipController {
 		PrintWriter pw = response.getWriter();
 		String nowpw = request.getParameter("nowpw");
 		String newpw = request.getParameter("newpw");
+		String user_email = request.getParameter("user_email");
 		Map<String, String>map  = new HashMap<String, String>();
 		map.put("now_password", nowpw);
 		System.out.println("nowpw="+map.get("now_password"));
 		map.put("new_password", newpw);
 		System.out.println("newpw="+map.get("new_password"));
+		map.put("user_email", user_email);
+		System.out.println("user_email="+map.get("user_email"));
 		boolean isS = mService.pwChange(map);
 		System.out.println(isS);
 		if(isS) {

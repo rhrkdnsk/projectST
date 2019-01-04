@@ -85,50 +85,6 @@ public class TrainController {
         city = city	.replaceAll(" ", "");
         model.addAttribute("citylist", city);
     
-   /*     
-        //기차 표시
-        URL urld = new URL("http://openapi.tago.go.kr/openapi/service/TrainInfoService/getVhcleKndList?serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D");
-
-		XmlPullParserFactory factorys = XmlPullParserFactory.newInstance();
-        factorys.setNamespaceAware(true);
-        XmlPullParser xpps = factorys.newPullParser();
-        BufferedInputStream biss = new BufferedInputStream(urld.openStream());
-        xpps.setInput(biss, "utf-8");
-        
-        String tags = null;
-        int event_types = xpps.getEventType();
-        
-        ArrayList<String> traincode = new ArrayList<String>();
-        
-        String trainName = null;
-        String trainId = null;
-        while (event_types != XmlPullParser.END_DOCUMENT) {
-            if (event_types == XmlPullParser.START_TAG) {
-                tags = xpps.getName();
-            } else if (event_types == XmlPullParser.TEXT) {
-                 도시명만 가져옴 
-                if(tags.equals("vehiclekndnm")){
-                	trainName = xpps.getText();
-                }
-                if(tags.equals("vehiclekndid")){
-                	trainId = xpps.getText();
-                }
-            } else if (event_types == XmlPullParser.END_TAG) {
-                tags = xpps.getName();
-                if (tags.equals("item")) {
-                	traincode.add(trainId + "." + trainName);
-                }
-            }
- 
-            event_types = xpps.next();
-        }
-        String train = traincode.toString();
-        train = train.replaceAll("[\\[\\]]", "");
-        train = train.replaceAll(" ", "");
-       // System.out.println(train);
-        model.addAttribute("traincode", train);
-
-        */
         return "traininfo";
 	}
 //	http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList

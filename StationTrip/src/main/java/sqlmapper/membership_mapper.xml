@@ -15,7 +15,7 @@
 	<update id="pwchange" parameterType="Map">
 		UPDATE T_USER
 		SET USER_PASSWORD = #{new_password}
-		WHERE USER_PASSWORD = #{now_password}
+		WHERE USER_PASSWORD = #{now_password} AND USER_EMAIL = #{user_email}
 	</update>
 	
 	<update id="nickchange" parameterType="LoginDto">
