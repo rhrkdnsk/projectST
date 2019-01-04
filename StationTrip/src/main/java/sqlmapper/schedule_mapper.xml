@@ -7,7 +7,7 @@
 <mapper namespace="com.hk.trip.schedule">
 
 	<select id="sc_check" parameterType="ScheduleDto" resultType="ScheduleDto">
-		SELECT SCHEDULE_NUM,USER_NICKNAME,SPOT_NUM,SCHEDULE_TIME,SCHEDULE_SEQUENCE
+		SELECT SCHEDULE_NUM,USER_NICKNAME,SPOT_NUM,SCHEDULE_TIME,SCHEDULE_SEQUENCE,SCHEDULE_NAME
 		FROM SCHEDULE
 		WHERE USER_NICKNAME = #{user_nickname}
 	</select>

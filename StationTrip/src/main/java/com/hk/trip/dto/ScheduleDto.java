@@ -10,26 +10,34 @@ public class ScheduleDto {
 	int spot_num;
 	Date schedule_time;
 	int schedule_sequence;
+	String schedule_name;
 	
 	public ScheduleDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public ScheduleDto(String user_nickname) {
+		super();
+		this.user_nickname = user_nickname;
+	}
 
-	public ScheduleDto(int schedule_num, String user_nickname, int spot_num, Date schedule_time,
-			int schedule_sequence) {
+	public ScheduleDto(int schedule_num, String user_nickname, int spot_num, Date schedule_time, int schedule_sequence,
+			String schedule_name) {
 		super();
 		this.schedule_num = schedule_num;
 		this.user_nickname = user_nickname;
 		this.spot_num = spot_num;
 		this.schedule_time = schedule_time;
 		this.schedule_sequence = schedule_sequence;
+		this.schedule_name = schedule_name;
 	}
 
 	@Override
 	public String toString() {
 		return "ScheduleDto [schedule_num=" + schedule_num + ", user_nickname=" + user_nickname + ", spot_num="
-				+ spot_num + ", schedule_time=" + schedule_time + ", schedule_sequence=" + schedule_sequence + "]";
+				+ spot_num + ", schedule_time=" + schedule_time + ", schedule_sequence=" + schedule_sequence
+				+ ", schedule_name=" + schedule_name + "]";
 	}
 
 	public int getSchedule_num() {
@@ -71,8 +79,15 @@ public class ScheduleDto {
 	public void setSchedule_sequence(int schedule_sequence) {
 		this.schedule_sequence = schedule_sequence;
 	}
+
+	public String getSchedule_name() {
+		return schedule_name;
+	}
+
+	public void setSchedule_name(String schedule_name) {
+		this.schedule_name = schedule_name;
+	}
+
 	
-	
-	
-	
+
 }
