@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -103,23 +102,23 @@
 <body>
 <div id="container" class="list">
 <h1>유저 목록</h1>
-<a href="glist.do"></a>
-<form action="rhksflmuldel.do" method="post" onsubmit="return confirmChk()">
+<a href="rlist.do"></a>
+<form action="rmuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
 	<col width="50px">
 	<col width="50px">
 	<col width="100px">
 	<col width="100px">
 	<col width="100px">
-	<col width="50px">
+	
 	<tr>
 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
-		<th>닉네임</th>
+		<th>번호</th>
+		<th>제목</th>
+		<th>내용</th>
 		<th>이름</th>
-		<th>이메일</th>
-		<th>전화번호</th>
-		<th>포인트</th>
-		<th>등급</th>
+		<th>시간</th>
+		
 	</tr>
 	<c:choose>
 		<c:when test="${empty list}">
@@ -130,14 +129,13 @@
 				<tr>
 
 					<td>
-						<input type="checkbox" name="chk" value="${dto.user_nickname}"/>
+						<input type="checkbox" name="chk" value="${dto.seq}"/>
 					</td>
-					<td><a href="managerdetail.do?user_nickname=${dto.user_nickname}">${dto.user_nickname}</a></td>
-					<td>${dto.user_name}</td>
-					<td>${dto.user_email}</td>
-					<td>${dto.user_phone}</td>
-					<td>${dto.user_point}</td>
-					<td>${dto.tier}</td>
+					<td><a href="rdetail.do?seq=${dto.seq}">${dto.seq}</a></td>
+					<td>${dto.title}</td>
+					<td>${dto.content}</td>
+					<td>${dto.id}</td>
+					<td>${dto.regdate}</td>
 					
 				</tr>
 			</c:forEach>
@@ -146,7 +144,7 @@
 	<div class="list-bot">
 <p>
 <c:if test="${page-1 != 0 }">
-						<a href="glist.do?pageNum=${page-1}">이전</a>						
+						<a href="rlist.do?pageNum=${page-1}">이전</a>						
 
 </c:if>
 
@@ -161,7 +159,7 @@
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
-						<a href="glist.do?pageNum=<%=i%>"><%=i%></a>						
+						<a href="rlist.do?pageNum=<%=i%>"><%=i%></a>						
 			<%			
 		}
 %>
@@ -169,36 +167,21 @@
 
 
   <c:if test="${page+1 <= totalPage}">
-  <a href="glist.do?pageNum=${page+1}">다음</a>						
+  <a href="rlist.do?pageNum=${page+1}">다음</a>						
   </c:if>
 </p>
 </div>
 	<tr>
 		<td colspan="10">
 			<input class="btn btn-primary" type="submit" value="삭제"/>
+			<a class="btn btn-primary" href="rinsertform.do">글쓰기</a>
 		</td>
 	</tr>
 </table>
 </form>
 </div>
 
-<script>
- function locainsert() {
- 	alert("locainsert");
- 	location.href = "insertform.do";
-	 }
 
-</script>
 <%@include file="footer.jsp" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
