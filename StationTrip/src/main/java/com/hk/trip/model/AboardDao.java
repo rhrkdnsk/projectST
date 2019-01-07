@@ -61,8 +61,8 @@ public class AboardDao implements IAboardDao {
 			int asd =  sqlSession.selectOne(namespace + "agetSearchCount", map);
 			return asd;
 		} else {
-			System.out.println(sqlSession.selectOne(namespace + "agetCount"));
-			return sqlSession.selectOne(namespace + "agetCount");
+			System.out.println(sqlSession.selectOne(namespace + "agetCount",areaboard_code));
+			return sqlSession.selectOne(namespace + "agetCount",areaboard_code);
 
 		}	
 		

@@ -44,6 +44,11 @@ function setnull() {
 	location.href="fsessiondel.do";
 }
 
+function codeBoard() {
+	alert(document.boardcode.areaboard_code.value);
+    document.boardcode.submit();
+    
+}
 </script>
 <style>
 
@@ -248,7 +253,7 @@ body {
 <div class="list-bot">
 <p>
 <c:if test="${page-1 != 0 }">
-						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
+						<a href="aboardPage.do?apageNum=${page-1}&areaboard_code=${sareaboard_code}">이전</a>						
 
 </c:if>
 
@@ -263,7 +268,7 @@ body {
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
-						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>						
+						<a href="aboardPage.do?pageNum=<%=i%>&areaboard_code=${sareaboard_code}"><%=i%></a>						
 			<%			
 		}
 %>
@@ -280,7 +285,7 @@ body {
   <a href="#">▷</a>
   <a href="#">▶</a> -->
   <c:if test="${page+1 <= totalPage}">
-  <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
+  <a href="aboardPage.do?apageNum=${page+1}&areaboard_code=${sareaboard_code}">다음</a>						
   </c:if>
 </p>
 </div>
@@ -288,7 +293,7 @@ body {
 </div>
 
 
-<form action="aboardPage.do?apageNum=1&areaboard_code=1" name="search" method="post">
+<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" name="search" method="post">
 
 <select name="akeyField" size="1">
 	<option value="user_nickname">아이디</option>
@@ -302,7 +307,7 @@ body {
 <input type="hidden" name="page" value="0" />
 </form>
 
-<form action="aboardPage.do?apageNum=1&areaboard_code=1" method = "post" name="looksetting">
+<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()">
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
 <option value="5" onclick="lookBoard()">5개씩보기</option>
@@ -311,6 +316,19 @@ body {
 </select>
 </form>
 
+<form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
+지역 <select name="areaboard_code" onchange="codeBoard()" >
+<option value="지역">분류</option>
+<option value="1" onclick="codeBoard()">서울</option>
+<option value="2" onclick="codeBoard()">경기</option>
+<option value="3" onclick="codeBoard()">강원</option>
+<option value="4" onclick="codeBoard()">대구</option>
+<option value="5" onclick="codeBoard()">부산</option>
+<option value="6" onclick="codeBoard()">전라</option>
+<option value="7" onclick="codeBoard()">경상</option>
+<option value="8" onclick="codeBoard()">기타</option>
+</select>
+</form>
 <button onclick="setnull()">목록으로</button>
 
 <jsp:include page="footer.jsp" />

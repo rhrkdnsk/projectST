@@ -7,8 +7,8 @@
   <mapper namespace="com.hk.trip.aboard">
 
 
-<select id="agetCount" resultType="int">
-	SELECT COUNT(*) AS totalCount FROM AREABOARD
+<select id="agetCount" resultType="int" parameterType="int">
+	SELECT COUNT(*) AS totalCount FROM AREABOARD WHERE AREABOARD_CODE = #{areaboard_code}
 	</select>
 	
 <select id="agetNumlist" resultType="AboardDto" parameterType="Map">

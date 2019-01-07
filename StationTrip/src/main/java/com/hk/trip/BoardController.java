@@ -407,6 +407,10 @@ public class BoardController {
 //			System.out.println("세션 키워드 : " + (String)session.getAttribute("skeyWord"));
 
 			//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
+			if(areaboard_code == 0 ) {
+				areaboard_code = 1;
+			}
+			session.setAttribute("sareaboard_code", areaboard_code);
 			
 			String settingnum = request.getParameter("settingnum");
 			int countList = 2;
@@ -539,7 +543,7 @@ public class BoardController {
 			
 			boolean isS = aboardService.updateBoard(dto);
 			if(isS) {
-				return "error";
+				return "redirect:aboarddetail.do?areaboard_num=+areaboard_num&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
 			}
@@ -547,5 +551,21 @@ public class BoardController {
 			
 			
 			}
+		
+		@RequestMapping(value = "aboarddelsession.do")
+		public String aboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			
+			System.out.println("aboardsessiondel 호출");
+			request.getSession().removeAttribute("askeyWord");
+			request.getSession().removeAttribute("askeyField");
+			request.getSession().removeAttribute("asetnum");
+
+		
+			System.out.println("aboardsessiondel 에서 세션 삭제 ");
+			
+			return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+		}
 
 } // 끝

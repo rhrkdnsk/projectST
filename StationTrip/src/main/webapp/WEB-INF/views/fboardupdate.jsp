@@ -22,7 +22,7 @@ function goList() {
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}" />
 제목 : <input type="text" name="freeboard_title" value="${fdto.freeboard_title}">
 <p>
-작성자 : <input type="text" value="${fdto.user_nickname}">
+작성자 : <input type="text" value="${fdto.user_nickname}" readonly>
 
 <textarea name="freeboard_content" id="freeboard_content">${fdto.freeboard_content}</textarea>
 <script type="text/javascript">
