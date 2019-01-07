@@ -29,7 +29,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 $('#btnLike').click(function ()  {
     $.ajax({
-        url:"fboardLike.do",
+        url:"aboardLike.do",
         data: {user_nickname: '${login_userId}', board_num: '${fdto.areaboard_num}' },
         type:"post",
         success : function (data) {
@@ -91,9 +91,10 @@ id="like_img" height="50px" width="50px">
 <p>
 
    --------------------------------댓글 보기--------------------------------------------------------------------- 
-<form action="writereply.do" method="post">
+<form action="awritereply.do" method="post">
 <div style="width:800px; border:1px solid black; height:357px;">
-<input type="hidden" name="freeboard_num" value="${fdto.areaboard_num}">
+<input type="hidden" name="areaboard_code"	value="${fdto.areaboard_code}" />
+<input type="hidden" name="areaboard_num" value="${fdto.areaboard_num}">
 <input type="text" name="user_nickname" value="${login_userId}" readonly>
 <textarea rows="10" cols="85" name="comment_content"></textarea>
 <hr>
@@ -130,7 +131,7 @@ id="like_img" height="50px" width="50px">
 <c:if test="${cdto.comment_step == 0}">
 
 <div id="lookreply" style="display:none">
-   	<form action="fboardrepre.do" method="post">
+   	<form action="aboardrepre.do" method="post">
 <input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
 <input type="text" name="user_nickname" value="${login_userId}"  readonly>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
@@ -145,7 +146,7 @@ id="like_img" height="50px" width="50px">
   	<c:if test="${cdto.user_nickname == login_userId}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
-<a href="fdelcomment.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
+<a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
 
 </c:if>
@@ -160,23 +161,23 @@ id="like_img" height="50px" width="50px">
   	</c:choose>
   	      	
   	      	
-     	▲ 다음글 보기<a class="title" href="fboarddetail.do?areaboard_num=${ndto.areaboard_num}">${ndto.areaboard_title }</a>
+     	▲ 다음글 보기<a class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
   	<p>
-  		▼ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.areaboard_num}">${bdto.areaboard_title}</a>
+  		▼ 이전글 보기<a class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
 
   <script type="text/javascript">
   function goUpdate() {
 	  location.href="aboardupdate.do?areaboard_num=${fdto.areaboard_num}&areaboard_code=${fdto.areaboard_code}";
   }
   function goDelete() {
-	  location.href="fboarddelete.do?freeboard_num=" + ${fdto.areaboard_num};
+	  location.href="aboarddel.do?areaboard_num=${fdto.areaboard_num}&areaboard_code=${fdto.areaboard_code}";
   }
-  function goNext() {
-	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.areaboard_num}+1;
-  }
-  function goBack()	{
-	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.areaboard_num}-1;
-  }
+//   function goNext() {
+// 	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.areaboard_num}+1;
+//   }
+//   function goBack()	{
+// 	  location.href="fboarddetail.do?freeboard_num=" + ${fdto.areaboard_num}-1;
+//   }
 
   
   </script>

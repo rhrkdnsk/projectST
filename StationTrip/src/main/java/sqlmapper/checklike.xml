@@ -33,8 +33,32 @@
 
     <delete id="deleteLike" parameterType="int">
  DELETE FROM CHECKLIKEHATE WHERE BOARDCODE = 1 AND BOARD_NUM = #{freeboard_num}
-
     </delete>
+
+<select id="agetLike" parameterType="CheckDto" resultType="int">
+    SELECT * FROM CHECKLIKEHATE WHERE BOARDCODE = 2 AND USER_NICKNAME = '${user_nickname}' AND BOARD_NUM = ${board_num} 
+    </select>
+
+ <insert id="ainsLike" parameterType="CheckDto">
+    INSERT INTO CHECKLIKEHATE VALUES 
+    ( (SELECT NVL(MAX(SEQ_NUMBER)+1,0)FROM CHECKLIKEHATE),2,'${user_nickname}',${board_num})
+    </insert>
+
+    <delete id="adelLike" parameterType="CheckDto">
+    DELETE FROM CHECKLIKEHATE WHERE BOARD_NUM = #{board_num} AND USER_NICKNAME = #{user_nickname} AND BOARDCODE = 2
+    </delete>
+
+      <update id="aupLike" parameterType="int">
+  UPDATE AREABOARD SET AREABOARD_LIKE = AREABOARD_LIKE +1 WHERE AREABOARD_NUM = #{areaboard_num}
+    </update>
+
+    <update id="adownLike" parameterType="int">
+  UPDATE AREABOARD SET AREABOARD_LIKE = AREABOARD_LIKE -1 WHERE AREABOARD_NUM = #{areaboard_num}
+    </update>
+
+  <select id="alikeCount" parameterType="int" resultType="int">
+    SELECT AREABOARD_LIKE FROM AREABOARD WHERE AREABOARD_NUM = #{areaboard_num}
+    </select>
   </mapper>
 
 

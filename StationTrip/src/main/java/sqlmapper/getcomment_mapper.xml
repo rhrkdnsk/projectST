@@ -40,6 +40,15 @@ INSERT INTO T_COMMENT
    <update id="downComment" parameterType="int">
      UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT -1 WHERE FREEBOARD_NUM = #{freeboard_num}
    </update>
+
+   <select id="agetReply" resultType="CommentDto" parameterType="int">
+		SELECT * FROM T_COMMENT WHERE AREABOARD_NUM =
+		#{areaboard_num} ORDER BY COMMENT_REFER,COMMENT_STEP ASC
+	</select>
+
+    <delete id="adelComment" parameterType="CommentDto">
+    DELETE FROM T_COMMENT WHERE COMMENT_NUM = #{comment_num} AND AREABOARD_NUM = #{areaboard_num}
+   </delete>
 </mapper>
 
 

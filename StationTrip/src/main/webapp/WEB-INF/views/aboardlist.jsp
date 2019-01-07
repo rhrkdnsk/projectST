@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자유게시판 리스트</title>
+<title>지역게시판 리스트</title>
 <script type="text/javascript">
 function locainsert() {
 	alert("locainsert");
@@ -268,7 +268,7 @@ body {
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
-						<a href="aboardPage.do?pageNum=<%=i%>&areaboard_code=${sareaboard_code}"><%=i%></a>						
+						<a href="aboardPage.do?apageNum=<%=i%>&areaboard_code=${sareaboard_code}"><%=i%></a>						
 			<%			
 		}
 %>
