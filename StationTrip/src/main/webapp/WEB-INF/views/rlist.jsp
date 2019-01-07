@@ -101,7 +101,7 @@
 </head>
 <body>
 <div id="container" class="list">
-<h1>유저 목록</h1>
+<h1>공지사항</h1>
 <a href="rlist.do"></a>
 <form action="rmuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
@@ -171,12 +171,24 @@
   </c:if>
 </p>
 </div>
-	<tr>
+<%
+  		if(session.getAttribute("login_userId") == null) {
+  			%>
+	  			
+	
+	<%
+  		} else {
+  			%>
+<tr>
 		<td colspan="10">
 			<a class="btn btn-primary" href="rinsertform.do">글쓰기</a>
 			<input class="btn btn-primary" type="submit" value="삭제"/>
 		</td>
-	</tr>
+	</tr>  			<%
+  		}
+  	
+  	%>
+	
 </table>
 </form>
 </div>
