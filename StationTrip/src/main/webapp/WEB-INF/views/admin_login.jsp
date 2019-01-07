@@ -21,6 +21,7 @@ function admin_login(){
 		success:function(data){
 			console.log(data)
 			if(data != "fail"){
+				alert("관리자님이 로그인함");
 				location.href="home.do"
 			} else {
 				alert("로그인 실패"); 
@@ -42,7 +43,7 @@ function admin_login(){
 <br />
 <label class="labeltag">비밀번호</label><span>
 <input type="password" id="admin_loginPw" onkeydown = "if (event.keyCode == 13)
-                       				document.getElementById('loginbtn').click()"></span>
+                       				document.getElementById('admin_loginBtn').click()"></span>
 <br />
 <button id="admin_loginBtn" onclick="admin_login()">로그인</button>
 
