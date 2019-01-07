@@ -304,6 +304,7 @@ public class LoginController {
 		System.out.println(loginService.admin_login(dto));
 		if (loginService.admin_login(dto) != null) {
 			session.setAttribute("login_admin", loginService.admin_login(dto));
+			session.setAttribute("login_userId", "관리자");
 			out.print(session.getAttribute("login_admin"));
 		} else {
 			out.print("fail");
