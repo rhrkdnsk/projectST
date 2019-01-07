@@ -411,6 +411,11 @@ public class BoardController {
 			if(areaboard_code == 0 ) {
 				areaboard_code = 1;
 			}
+			if(request.getParameter("areaboard_code") != null && request.getParameter("areaboard_code") != "") {
+				request.getSession().removeAttribute("sareaboard_code");
+
+			}
+			
 			session.setAttribute("sareaboard_code", areaboard_code);
 			
 			String settingnum = request.getParameter("settingnum");
@@ -570,7 +575,7 @@ public class BoardController {
 			
 			boolean isS = aboardService.updateBoard(dto);
 			if(isS) {
-				return "redirect:aboarddetail.do?areaboard_num=+areaboard_num&areaboard_code="+areaboard_code;
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
 			}
@@ -604,7 +609,7 @@ public class BoardController {
 			if(isS) {
 				aboardService.bcDelete(areaboard_num);
 				aboardService.delLike(areaboard_num);
-				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+				return "redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+areaboard_code;
 
 			} else {
 				return "error";

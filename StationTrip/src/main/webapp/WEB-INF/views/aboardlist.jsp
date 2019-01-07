@@ -318,15 +318,15 @@ body {
 
 <form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
 지역 <select name="areaboard_code" onchange="codeBoard()" >
-<option value="지역">분류</option>
+<option value="지역" selected="selected">분류</option>
 <option value="1" onclick="codeBoard()">서울</option>
 <option value="2" onclick="codeBoard()">경기</option>
 <option value="3" onclick="codeBoard()">강원</option>
-<option value="4" onclick="codeBoard()">대구</option>
+<option value="4" onclick="codeBoard()" >대구</option>
 <option value="5" onclick="codeBoard()">부산</option>
 <option value="6" onclick="codeBoard()">전라</option>
-<option value="7" onclick="codeBoard()">경상</option>
-<option value="8" onclick="codeBoard()">기타</option>
+<option value="7" onclick="codeBoard()" >경상</option>
+<option value="8" onclick="codeBoard()" >기타</option>
 </select>
 </form>
 <button onclick="setnull()">목록으로</button>
