@@ -45,7 +45,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	ILoginService loginService;
+	private ILoginService loginService;
 
 	@RequestMapping(value = "login.do", method = RequestMethod.GET)
 	public void login(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)

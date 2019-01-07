@@ -10,7 +10,7 @@ public class ScheduleService implements IScheduleService {
 
 	
 	@Autowired
-	IScheduleDao sc_dao;
+	private IScheduleDao sc_dao;
 
 	@Override
 	public ScheduleDto scCheck(ScheduleDto dto) {
