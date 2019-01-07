@@ -29,9 +29,8 @@ import com.hk.trip.dto.AreaDto;
 
 @Controller
 public class AreaController {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	private AreaDto AreaDto;
 
 	@RequestMapping(value = "areaboard.do", method = RequestMethod.GET)
 	public String areaboard(Locale locale, Model model) {
@@ -118,7 +117,7 @@ public class AreaController {
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&numOfRows=15";
+		param += "&numOfRows=2";
 		param += "&areaCode=" + case1;
 		param += "&sigunguCode=" + case2;
 		param += "&contentTypeId=" + case3;
@@ -184,10 +183,23 @@ public class AreaController {
 	}
 	
 	@RequestMapping(value = "areaDetail.do", method = RequestMethod.GET)
-	public String areaDetail(Locale locale, Model model) {
+	public String areaDetail(String con, Locale locale, Model model) {
 		logger.info("관광지 상세보기 이동.", locale);
-
+		model.addAttribute("con", con);
+		
+		
 		return "areadetail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "detailView.do")
+	public Map<String, String> detailView(Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+		logger.info("관광지 상세보기.", locale);
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		Map<String,String>map=new HashMap<String, String>();
+		
+		return map;
 	}
 }
 

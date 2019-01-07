@@ -63,7 +63,7 @@ h1 {
 	text-align: left;
 }
 
-#ad {
+.context {
 	overflow: hidden;
 	width: 650px;
 	height: 160px;

@@ -10,16 +10,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/areadetail.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>관광지 정보</title>
 </head>
 <body>
 <form>
-	<h1>관광지 상세보기</h1>
+	<h1 id='opq'>관광지 정보</h1>
 	<div id='area-detail'>
 		<div id='area-detail-img'>
 		<!-- 이미지 -->

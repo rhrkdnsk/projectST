@@ -10,10 +10,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+<title>지역정보</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/area.js"></script>
+<script type="text/javascript" src="/trip/resources/js/areadetail.js"></script>
 <link rel="stylesheet" href="/trip/resources/css/area.css">
 
 </head>

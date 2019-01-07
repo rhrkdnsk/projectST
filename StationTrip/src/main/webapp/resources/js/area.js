@@ -81,8 +81,10 @@ $(function(){
 				data : {"contentId" : contentId.eq(i).text()},
 				async:false,
 				success : function(obj){
+					var contentIdTrim = $(obj["overView"]).find("contentId").text();
 					var overView=$(obj["overView"]).find("overview");
-					$("#titleText"+i).after("<p id='ad'>" +  overView.text() + "</p>");
+					contentIdTrim = contentIdTrim.trim();
+					$("#titleText"+i).after("<p id='" + contentIdTrim + "' class='context'>" +  overView.text() + "</p>");
 				},
 				error:function(){
 					alert("에러");
@@ -117,6 +119,4 @@ $(function(){
 		pageNo = $(this).attr('id');
 		contentList();
 	})
-	
-	$("#area-img").click(function(){location.href="areaDetail.do"});
 });
