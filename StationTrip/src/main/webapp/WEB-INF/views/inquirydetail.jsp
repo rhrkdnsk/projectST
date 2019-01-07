@@ -13,6 +13,34 @@
 <head>
 <jsp:include page="header.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript"
+	src="/trip/resources/js/ckeditor/ckeditor.js"></script>
+	<style type="text/css">
+.labeltag {
+	margin-right: 20px;
+	text-align: right;
+	color: green;
+}
+
+#inquiry_div {
+	width: 722px;
+	margin: auto;
+	border: 1px solid lightgray;
+}
+
+.inquiry_input {
+	width: 722px;
+	border: 1px solid lightgray;
+	height: 30px;
+}
+.inquiry_input2 {
+	width: 361px;
+	border: 1px solid lightgray;
+	height: 30px;
+	float:left;
+}
+
+</style>
 <title>자유게시판 리스트</title>
 
 </head>
@@ -34,8 +62,8 @@
 		<br>
 	</div>
 	<div
-		style="width: 800px; height: 400px; margin: auto; font-size: initial;">
-
+		style="width: 800px; height: 600px; margin: auto; font-size: initial;">
+		<form action="inquiry_update.do" method="get">
 		<input type="hidden" name="inquiry_num" value="${inquiryDto.inquiry_num}">
 		<div>
 			<div>
@@ -52,10 +80,10 @@
 					});
 				</script>
 			</div>
-			<input type="submit" value="작성완료" id="submit" class="inquiry_input" />
-			<input type="button" value="돌아가기" class="inquiry_input" />
+			<input type="submit" value="수정하기" id="submit" class="inquiry_input2" />
+			<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='myinquiry.do'"/>
 		</div>
-
+		</form>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

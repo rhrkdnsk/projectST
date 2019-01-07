@@ -37,4 +37,11 @@ public class InquiryDao implements IInquiryDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"inquiry_detail", inquiry_num);
 	}
+
+
+	@Override
+	public boolean inquiry_update(InquiryDto idto) {
+		int count = sqlSession.update(namespace+"inquiry_update", idto);
+		return count > 0 ? true:false;
+	}
 }

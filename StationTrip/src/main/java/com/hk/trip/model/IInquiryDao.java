@@ -10,4 +10,5 @@ public interface IInquiryDao {
 	public boolean user_insert(Map<String, String>map);
 	public List<InquiryDto> inquiry_list(Map<String, String>map);
 	public InquiryDto inquiry_detail(int inquiry_num);
+	public boolean inquiry_update(InquiryDto idto);
 }

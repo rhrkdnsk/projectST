@@ -86,7 +86,7 @@ public class InquiryController {
 	@RequestMapping(value = "inquiry_detail.do", method = RequestMethod.GET)
 	public String inquiry_detail(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int inquiry_num) throws IOException {
 		
-		logger.info("myinquiry.do {}.", locale);
+		logger.info("inquiry_detail.do {}.", locale);
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -96,5 +96,26 @@ public class InquiryController {
 		
 		return "inquirydetail";
 
+	}
+	
+	@RequestMapping(value = "inquiry_update.do", method = RequestMethod.GET)
+	public String inquiry_update(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		logger.info("inquiry_update.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		int inquiry_num = Integer.parseInt(request.getParameter("inquiry_num"));
+		String inquiry_title = request.getParameter("inquiry_title");
+		String inquiry_content = request.getParameter("inquiry_content");
+		InquiryDto iDto = new InquiryDto(inquiry_num,inquiry_title,inquiry_content);
+		boolean isS = inqService.inquiry_update(iDto);
+		if(isS) {
+			return "redirect:myinquiry.do";
+		} else {
+			model.addAttribute("msg", "문의글 수정에 실패하였습니다");
+			return "error";
+		}
 	}
 }
