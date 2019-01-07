@@ -507,9 +507,10 @@ public class BoardController {
 			logger.info("글쓰기 폼 이동", locale);	
 			
 			boolean isS = aboardService.insertBoard(dto);
-			
+			int areaboard_code = dto.getAreaboard_code();
+
 			if(isS) {
-				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+				return "redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
 			}
