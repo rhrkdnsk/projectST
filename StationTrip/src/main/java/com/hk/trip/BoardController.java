@@ -601,6 +601,7 @@ public class BoardController {
 			boolean isS = aboardService.deleteBoard(areaboard_num, areaboard_code);
 			
 			if(isS) {
+				
 				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
 
 			} else {

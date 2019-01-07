@@ -105,4 +105,9 @@ public class AboardService implements IAboardService {
 	public int likeCount(int areaboard_num) {
 		return iaboarddao.likeCount(areaboard_num);
 	}
+	@Override
+	public boolean bcDelete(int areaboard_num) {
+		// TODO Auto-generated method stub
+		return iaboarddao.bcDelete(areaboard_num);
+	}
 }

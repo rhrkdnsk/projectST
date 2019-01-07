@@ -28,4 +28,5 @@ public interface IAboardService {
 	public void downLike(int areaboard_num);
 	public void upLike(int areaboard_num);
 	public int likeCount(int areaboard_num);
+	public boolean bcDelete(int areaboard_num);
 }

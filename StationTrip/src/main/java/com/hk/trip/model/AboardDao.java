@@ -200,6 +200,13 @@ public class AboardDao implements IAboardDao {
 		
 		return sqlSession.selectOne(namespace2 + "alikeCount", areaboard_num);
 	}
+	@Override
+	public boolean bcDelete(int areaboard_num) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.delete(namespace1 + "abcDelete", areaboard_num);
+		return count >0? true:false;
+	}
 	
 	
 	} //끝
