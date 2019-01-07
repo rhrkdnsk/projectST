@@ -48,7 +48,8 @@ where X.rnum >= #{startNum}  ]]>
 <!--       insert into RHKSFLWK values -->
 <!--       (RHKSFLWK_seq.nextval,#{id},#{title},#{content},sysdate) -->
 			INSERT INTO RHKSFLWK VALUES ((SELECT NVL(MAX(SEQ)+1,0)FROM RHKSFLWK)
-	 		,#{id},#{title},SYSDATE,#{content}) 
+	 		,#{title},#{content},#{id},SYSDATE) 
+	 	
     </insert>
     
 	 

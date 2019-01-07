@@ -28,8 +28,10 @@ public class RhkflDao implements IRhkflDao{
 
 	@Override
 	public boolean rinsertBoard(RhksflDto dto) {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println(dto);
+		int count=0;
+		count=sqlSession.insert(namespace+"rinsertBoard", dto);
+		return count>0?true:false;
 	}
 
 	@Override

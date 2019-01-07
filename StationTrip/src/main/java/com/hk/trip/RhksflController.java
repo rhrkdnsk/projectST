@@ -57,7 +57,7 @@ public class RhksflController {
 		logger.info("글삭제하기 {}.", locale);
 		boolean isS=rhksflservice.rdelBoard(dto);
 		if(isS) {
-			return "redirect:rlist.do";
+			return "redirect:rlist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "회원 삭제실패");
 			return "error";
@@ -71,7 +71,7 @@ public class RhksflController {
 		logger.info("글여러개삭제하기 {}.", locale);
 		boolean fdto=rhksflservice.rmulDelBoard(chk);
 		if(fdto) {
-			return "redirect:rlist.do";
+			return "redirect:rlist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "글여러개삭제하기실패");
 			return "error";
@@ -141,12 +141,11 @@ public class RhksflController {
 	public String insertBoard(Locale locale,Model model,RhksflDto dto) {
 		logger.info("글추가하기 {}.", locale);
 		boolean isS=rhksflservice.rinsertBoard(dto);
-		return "rlist";
-//		if(isS) {
-//			return "redirect:rlist.do";
-//		}else {
+		if(isS) {
+			return "redirect:rlist.do?pageNum=1";
+		}else {
 //			model.addAttribute("msg", "글추가하기실패");
-//			return "error";
-//		}
+			return "rlist";
+		}
 	}
 }
