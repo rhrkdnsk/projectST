@@ -20,9 +20,10 @@ function goList() {
 <h1>글 수정하기</h1>
 <form action="aboardup.do" method="post">
 <input type="hidden" name="areaboard_num" value="${fdto.areaboard_num}" />
+<input type="hidden" name="areaboard_code" value="${fdto.areaboard_code}"/>
 제목 : <input type="text" name="areaboard_title" value="${fdto.areaboard_title}">
 <p>
-작성자 : <input type="text" value="${fdto.user_nickname}">
+작성자 : <input type="text" value="${fdto.user_nickname}" readonly>
 
 <textarea name="areaboard_content" id="areaboard_content">${fdto.areaboard_content}</textarea>
 <script type="text/javascript">
