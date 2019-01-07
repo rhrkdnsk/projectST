@@ -59,6 +59,10 @@
   <select id="alikeCount" parameterType="int" resultType="int">
     SELECT AREABOARD_LIKE FROM AREABOARD WHERE AREABOARD_NUM = #{areaboard_num}
     </select>
+
+      <delete id="adeleteLike" parameterType="int">
+ DELETE FROM CHECKLIKEHATE WHERE BOARDCODE = 2 AND BOARD_NUM = #{areaboard_num}
+    </delete>
   </mapper>
 
 

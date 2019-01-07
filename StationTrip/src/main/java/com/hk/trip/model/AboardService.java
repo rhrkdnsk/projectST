@@ -110,4 +110,19 @@ public class AboardService implements IAboardService {
 		// TODO Auto-generated method stub
 		return iaboarddao.bcDelete(areaboard_num);
 	}
+	@Override
+	public void delLike(int areaboard_num) {
+		// TODO Auto-generated method stub
+		iaboarddao.delLike(areaboard_num);
+	}
+	@Override
+	public void upComment(int areaboard_num) {
+		// TODO Auto-generated method stub
+		iaboarddao.upComment(areaboard_num);
+	}
+	@Override
+	public void downComment(int areaboard_num) {
+		// TODO Auto-generated method stub
+		iaboarddao.downComment(areaboard_num);
+	}
 }

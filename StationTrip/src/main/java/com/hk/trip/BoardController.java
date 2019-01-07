@@ -601,7 +601,8 @@ public class BoardController {
 			boolean isS = aboardService.deleteBoard(areaboard_num, areaboard_code);
 			
 			if(isS) {
-				
+				aboardService.bcDelete(areaboard_num);
+				aboardService.delLike(areaboard_num);
 				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
 
 			} else {
@@ -617,6 +618,7 @@ public class BoardController {
 			int areaboard_num = dto.getAreaboard_num();
 			
 			if(isS) {
+				aboardService.upComment(areaboard_num);
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
@@ -630,6 +632,7 @@ public class BoardController {
 			int areaboard_num = dto.getAreaboard_num();
 			
 			if(isS) {
+				aboardService.downComment(areaboard_num);
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";

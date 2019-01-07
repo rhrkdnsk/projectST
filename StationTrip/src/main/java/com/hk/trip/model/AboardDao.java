@@ -207,6 +207,20 @@ public class AboardDao implements IAboardDao {
 		count = sqlSession.delete(namespace1 + "abcDelete", areaboard_num);
 		return count >0? true:false;
 	}
-	
+	@Override
+	public void delLike(int areaboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace2 + "adeleteLike", areaboard_num);
+	}
+	@Override
+	public void upComment(int areaboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "aupComment",areaboard_num);
+	}
+	@Override
+	public void downComment(int areaboard_num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "adownComment",areaboard_num);
+	}
 	
 	} //끝

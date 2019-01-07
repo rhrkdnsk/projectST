@@ -49,10 +49,18 @@ INSERT INTO T_COMMENT
     <delete id="adelComment" parameterType="CommentDto">
     DELETE FROM T_COMMENT WHERE COMMENT_NUM = #{comment_num} AND AREABOARD_NUM = #{areaboard_num}
    </delete>
-   
+
 <delete id="abcDelete" parameterType="int">
     DELETE FROM T_COMMENT WHERE AREABOARD_NUM=#{areaboard_num}
     </delete>
+
+     <update id="aupComment" parameterType="int">
+     UPDATE AREABOARD SET AREABOARD_COMMENTCOUNT = AREABOARD_COMMENTCOUNT +1 WHERE AREABOARD_NUM = #{areaboard_num}
+   </update>
+
+   <update id="adownComment" parameterType="int">
+     UPDATE AREABOARD SET AREABOARD_COMMENTCOUNT = AREABOARD_COMMENTCOUNT -1 WHERE AREABOARD_NUM = #{areaboard_num}
+   </update>
 
 </mapper>
 
