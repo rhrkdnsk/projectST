@@ -173,8 +173,8 @@
 </div>
 	<tr>
 		<td colspan="10">
-			<input class="btn btn-primary" type="submit" value="삭제"/>
 			<a class="btn btn-primary" href="rinsertform.do">글쓰기</a>
+			<input class="btn btn-primary" type="submit" value="삭제"/>
 		</td>
 	</tr>
 </table>

@@ -25,7 +25,7 @@ public class RhkflService implements IRhkflService{
 	@Override
 	public boolean rinsertBoard(RhksflDto dto) {
 		// TODO Auto-generated method stub
-		return false;
+		return rhksflDao.rinsertBoard(dto);
 	}
 
 	@Override
