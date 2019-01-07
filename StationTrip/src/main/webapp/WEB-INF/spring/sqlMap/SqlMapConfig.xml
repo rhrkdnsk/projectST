@@ -13,6 +13,7 @@
         <typeAlias type="com.hk.trip.dto.CheckLikeDto" alias="CheckDto" />
         <typeAlias type="com.hk.trip.dto.AboardDto" alias="AboardDto" />
         <typeAlias type="com.hk.trip.dto.ScheduleDto" alias="ScheduleDto" />
+        <typeAlias type="com.hk.trip.dto.AdminDto" alias="AdminDto" />
   	</typeAliases>
   	
   	<mappers>

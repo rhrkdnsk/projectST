@@ -28,5 +28,11 @@
 		SET USER_PASSWORD = #{user_password}
 		WHERE USER_EMAIL = #{user_email}
 	</update>
+	
+	<select id="admin_login" parameterType="AdminDto" resultType="AdminDto">
+		SELECT ADMIN_ID, ADMIN_PASSWORD
+		FROM ADMIN
+		WHERE ADMIN_ID = #{admin_id} AND ADMIN_PASSWORD = #{admin_password}
+	</select>
 
 </mapper>	
