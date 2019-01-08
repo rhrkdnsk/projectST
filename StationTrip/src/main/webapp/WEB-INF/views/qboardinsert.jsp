@@ -13,22 +13,18 @@
 <body>
 <div id="container">
 <h1>게시글작성</h1>
-<form action="rinsertboard.do" method="post">
+<form action="qinsertboard.do" method="post">
 <table class="table table-hover">
 	<col width="100px"><col width="400px">
 	<tr>
 		<th>제 목</th>
-		<td><input type="text" name="title" /></td>
+		<td><input type="text" name="faq_title" /></td>
 	</tr>
 	<tr>
 		<th>내 용</th>
-		<td><textarea rows="10" cols="60" name="content" ></textarea> </td>
+		<td><textarea rows="10" cols="60" name="faq_content" ></textarea> </td>
 	</tr>
 	<tr>
-	<tr>
-		<th>작성자</th>
-		<td><input  type="text" name="id"/></td>
-	</tr>
 	<tr>
 		<td colspan="2">
 			<input type="submit" class="btn btn-primary" value="글등록">

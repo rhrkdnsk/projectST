@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.hk.trip.dto.RhksflDto;
 import com.hk.trip.model.IRhkflService;
 
@@ -40,6 +41,7 @@ public class RhksflController {
 		return "rupdate";
 	}
 
+	
 	@RequestMapping(value="/rupdateBoard.do" , method=RequestMethod.POST)
 	public String rupdateBoard(Locale locale,Model model,RhksflDto dto) {
 		logger.info("글수정하기 {}.", locale);

@@ -9,6 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
@@ -54,28 +58,6 @@
 			.find("input").attr("disabled","disabled");
 		});
 		
-		//ajax처리: 글 제목에 마우스 올리면 textarea에 내용 출력하기
-		$(".titleval").hover(function(){
-			       // <a>  --> <td>  ---> <td>--> <td>--> <td>text</td>
-			var seq=$(this).parent("td").prev().prev().text();
-			$.ajax({
-				url:"detailajax.do",
-				data:{"seq":seq},// "seq="+seq
-				datatype:"json",
-				method:"post",
-				success:function(obj){ //컨트롤에서 전달받은 객체(map)--> obj
-					var dto=obj["dto"];//map에서 dto객체 꺼내고
-					$("textarea[name=testAjax]").val(dto["content"]);
-				},
-				error:function(){
-					alert("서버통신실패!!");
-				}
-			});
-		},function(){
-			$("textarea[name=testAjax]").val("");
-		});
-	});
-	
 	function setnull() {
 		location.href="rsessiondel.do";
 	}
@@ -93,26 +75,27 @@
 		text-overflow: ellipsis;
 		white-space:nowrap;
 	}
-	textarea[name=testAjax]{
-		position: fixed;
-		left: 100px;
-		top:150px;
-	}
+/* 	textarea[name=testAjax]{ */
+/* 		position: fixed; */
+/* 		left: 100px; */
+/* 		top:150px; */
+/* 	} */
 </style>
 </head>
 <body>
-<div id="container" class="list">
-<h1>유저 목록</h1>
+<div id="container" class="container w3-center" >
+<div class="w3-panel w3-topbar w3-bottombar w3-border-black w3-pale-blue"><h3>유저 목록</h3></div>
 <a href="glist.do"></a>
-<form action="rhksflmuldel.do" method="post" onsubmit="return confirmChk()">
-<table class="table table-hover">
-	<col width="50px">
+<form action="rhksflmuldel.do" method="post" onsubmit="return confirmChk()" class="w3-center">
+<table class="table table-bordered w3-center">
 	<col width="50px">
 	<col width="100px">
 	<col width="100px">
-	<col width="100px">
+	<col width="200px">
+	<col width="200px">
 	<col width="50px">
-	<tr>
+	<col width="50px">
+	<tr class="w3-center">
 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
 		<th>닉네임</th>
 		<th>이름</th>
@@ -141,9 +124,7 @@
 					
 				</tr>
 			</c:forEach>
-		</c:otherwise>
-	</c:choose>
-	<div class="list-bot">
+			<td class="w3-center">
 <p>
 <c:if test="${page-1 != 0 }">
 						<a href="glist.do?pageNum=${page-1}">이전</a>						
@@ -172,7 +153,11 @@
   <a href="glist.do?pageNum=${page+1}">다음</a>						
   </c:if>
 </p>
-</div>
+<td>
+		</c:otherwise>
+	</c:choose>
+	
+	
 	<tr>
 		<td colspan="10">
 			<input class="btn btn-primary" type="submit" value="삭제"/>

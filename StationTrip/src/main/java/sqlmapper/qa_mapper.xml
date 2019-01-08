@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+	<mapper namespace="com.hk.trip.qa">
+	
+	<select id="qgetAllList" resultType="QADto"> 
+	SELECT FAQ_NUM,FAQ_TITLE,FAQ_CONTENT
+	FROM FAQ
+	</select>
+	 <select id="qgetBoard" resultType="QADto">
+	SELECT FAQ_NUM,FAQ_TITLE,FAQ_CONTENT	
+	FROM FAQ
+	WHERE faq_num = #{faq_num}
+    </select>
+    <update id="qdelBoard">
+      DELETE FAQ   WHERE faq_num = #{faq_num}
+    </update>
+     <update id="qupdateBoard" parameterType="QADto">
+      UPDATE FAQ
+      SET TITLE = #{faq_title}, CONTENT = #{faq_content}
+      WHERE FAQ_NUM = #{faq_num}
+    </update> 
+    
+    <select id="qgetCount" resultType="int">
+		SELECT COUNT(*) AS totalCount FROM FAQ
+	
+	</select>
+	
+ 	<insert id="qinsertBoard" parameterType="QADto">
+		INSERT INTO FAQ VALUES ((SELECT NVL(MAX(FAQ_NUM)+1,0)FROM FAQ),#{faq_title},#{faq_content}) 
+    </insert>
+   
+	 
+
+    
+	</mapper>

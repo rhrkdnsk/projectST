@@ -8,75 +8,73 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hk.trip.dto.RhksflDto;
+import com.hk.trip.dto.QADto;
 @Repository
-public class RhkflDao implements IRhkflDao{
-	
+public class QADao implements IQADao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	private String namespace="com.hk.trip.rhksfl.";
-
+	private String namespace="com.hk.trip.qa.";
 	@Override
-	public List<RhksflDto> rgetAllList() {
-		return sqlSession.selectList(namespace+"rgetAllList");
+	public List<QADto> qgetAllList() {
+		return sqlSession.selectList(namespace+"qgetAllList");
 	}
 
 	@Override
-	public RhksflDto rgetBoard(int seq) {
-		return sqlSession.selectOne(namespace+"rgetBoard", seq);
+	public QADto qgetBoard(int faq_num) {
+		return sqlSession.selectOne(namespace+"qgetBoard", faq_num);
+
 	}
 
 	@Override
-	public boolean rinsertBoard(RhksflDto dto) {
+	public boolean qinsertBoard(QADto dto) {
 		System.out.println(dto);
 		int count=0;
-		count=sqlSession.insert(namespace+"rinsertBoard", dto);
+		count=sqlSession.insert(namespace+"qinsertBoard", dto);
 		return count>0?true:false;
 	}
 
 	@Override
-	public boolean rupdateBoard(RhksflDto dto) {
+	public boolean qupdateBoard(QADto dto) {
 		int count=0;
 		System.out.println(dto);
-		count=sqlSession.update(namespace+"rupdateBoard", dto);
+		count=sqlSession.update(namespace+"qupdateBoard", dto);
 		return count>0?true:false;
-		
 	}
 
 	@Override
-	public boolean rdelBoard(RhksflDto dto) {
+	public boolean qdelBoard(QADto dto) {
 		int count=0;
-		count=sqlSession.update(namespace+"rdelBoard", dto);
+		count=sqlSession.update(namespace+"qdelBoard", dto);
 		return count>0?true:false;
 	}
 
+
 	@Override
-	public boolean rmulDelBoard(String[] dto) {
+	public boolean qmulDelBoard(String[] dto) {
 		Map<String, String[]>map=new HashMap<String, String[]>();
-		map.put("seq", dto);
+		map.put("faq_num", dto);
 		int count=0;
-		count=sqlSession.update(namespace+"rmulDelBoard", map);
+		count=sqlSession.update(namespace+"qmulDelBoard", map);
 		return count>0?true:false;
 	}
-
 	@Override
-	public RhksflDto getDetailAjax(RhksflDto dto) {
+	public QADto getDetailAjax(QADto dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int rgetCount() {
+	public int qgetCount() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<RhksflDto> rgetBoardList(int startNum, int endNum) {
+	public List<QADto> qgetBoardList(int startNum, int endNum) {
 		Map<String, String> map = new HashMap<String, String>();	
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
-		return sqlSession.selectList(namespace + "rgetNumlist", map);
+		return sqlSession.selectList(namespace + "qgetNumlist", map);
 		}
-	
+
 }
