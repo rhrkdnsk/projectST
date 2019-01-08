@@ -19,6 +19,7 @@
 <body>
 <form>
 	<h1 id='opq'>관광지 정보</h1>
+	<input type='hidden' value='${con}' id='contentId'>
 	<div id='area-detail'>
 		<div id='area-detail-img'>
 		<!-- 이미지 -->
@@ -26,8 +27,14 @@
 		<div id='area-detail-title'>
 		<!-- 타이틀 -->
 		</div>
+		<div id='area-detail-addr'>
+		<!-- 주소 -->
+		</div>
 		<div id='area-detail-content'>
 		<!-- 설명 -->
+		</div>
+		<div id='area-detail-homepage'>
+		<!-- 홈페이지 url -->
 		</div>
 	</div>
 </form>
