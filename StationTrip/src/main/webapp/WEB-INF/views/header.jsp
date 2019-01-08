@@ -22,7 +22,9 @@
 <link rel="stylesheet" href="/trip/resources/css/login.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/trip/resources/js/constraints.js"></script>
 <script type="text/javascript" src="/trip/resources/js/login.js"></script>
+
 
 
 <title>역장수</title>    
@@ -79,7 +81,7 @@
     	 <a href="gsessiondel.do" class="w3-bar-item w3-button">회원 관리</a>
       <a href="rsessiondel.do" class="w3-bar-item w3-button">공지사항 관리</a>
       <a href="#" class="w3-bar-item w3-button">Q.A</a>
-      <a href="gsessiondel.do" class="w3-bar-item w3-button">1:1문의</a>
+      <a href="admin_inquiry.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>  			<%
   		}
@@ -210,7 +212,7 @@
 								<a href="#searchModalLayer" class="searchModalLink aright" >비밀번호 찾기</a>
 							</li>
 							<li>
-								<button onclick="ajaxLogin()" id="loginbtn">로그인</button>
+								<button id="loginbtn">로그인</button>
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
 							</li>
 						</ul>
@@ -306,7 +308,7 @@
                        				document.getElementById('tsign').click()"/>
 							</li>
 							<li>
-								<button id="tsign" onclick="ajaxSign()">회원가입</button>
+								<button id="tsign">회원가입</button>
 								<input type="button" class="can aright" value="취소" />	
 							</li>
 						</ul>

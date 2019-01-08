@@ -44,4 +44,18 @@ public class InquiryDao implements IInquiryDao{
 		int count = sqlSession.update(namespace+"inquiry_update", idto);
 		return count > 0 ? true:false;
 	}
+
+
+	@Override
+	public List<InquiryDto> admin_inquiry_list() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"admin_inquiry_list", null);
+	}
+
+
+	@Override
+	public boolean admin_insert(InquiryDto idto) {
+		int count = sqlSession.insert(namespace+"admin_inquiry_insert", idto);
+		return count > 0 ? true:false;
+	}
 }

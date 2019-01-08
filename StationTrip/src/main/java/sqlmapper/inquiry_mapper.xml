@@ -10,11 +10,23 @@
 		INSERT INTO INQUIRY
 		VALUES( (SELECT MAX(INQUIRY_NUM) FROM INQUIRY)+1,#{inquiry_title},SYSDATE,#{inquiry_content},0,(SELECT MAX(INQUIRY_REFER) FROM INQUIRY)+1,null,#{user_nickname})
 	</insert>
+	
+	<insert id="admin_inquiry_insert" parameterType="InquiryDto">
+		INSERT INTO INQUIRY
+		VALUES( (SELECT MAX(INQUIRY_NUM) FROM INQUIRY)+1,#{inquiry_title},SYSDATE,#{inquiry_content},(SELECT MAX(INQUIRY_DEPTH) FROM INQUIRY WHERE INQUIRY_NUM = #{inquiry_num} )+1,#{inquiry_refer},#{admin_id},#{user_nickname})
+	</insert>
 
 	<select id="inquiry_list" parameterType="Map" resultType="InquiryDto">
 		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
 		FROM INQUIRY
 		WHERE USER_NICKNAME = #{user_nickname}
+		ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC
+	</select>
+	
+	<select id="admin_inquiry_list" resultType="InquiryDto">
+		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
+		FROM INQUIRY
+		ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC
 	</select>
 	
 	<select id="inquiry_detail" parameterType="int" resultType="InquiryDto">

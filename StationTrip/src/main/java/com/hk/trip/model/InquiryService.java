@@ -39,4 +39,16 @@ public class InquiryService implements IInquiryService{
 		// TODO Auto-generated method stub
 		return iDao.inquiry_update(idto);
 	}
+
+	@Override
+	public List<InquiryDto> admin_inquiry_list() {
+		// TODO Auto-generated method stub
+		return iDao.admin_inquiry_list();
+	}
+
+	@Override
+	public boolean admin_insert(InquiryDto idto) {
+		// TODO Auto-generated method stub
+		return iDao.admin_insert(idto);
+	}
 }

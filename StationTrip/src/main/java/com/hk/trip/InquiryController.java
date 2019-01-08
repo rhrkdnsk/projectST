@@ -83,6 +83,7 @@ public class InquiryController {
 		return "myinquiry";
 
 	}
+	
 	@RequestMapping(value = "inquiry_detail.do", method = RequestMethod.GET)
 	public String inquiry_detail(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int inquiry_num) throws IOException {
 		
@@ -115,6 +116,71 @@ public class InquiryController {
 			return "redirect:myinquiry.do";
 		} else {
 			model.addAttribute("msg", "문의글 수정에 실패하였습니다");
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "admin_inquiry.do", method = RequestMethod.GET)
+	public String admin_inquiry(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		logger.info("admin_inquiry.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		List<InquiryDto> list = inqService.admin_inquiry_list();
+		System.out.println("list = "+list);
+		model.addAttribute("admin_inquiry_list", list);
+		return "admin_inquiry";
+
+	}
+	
+	@RequestMapping(value = "admin_inquiry_detail.do", method = RequestMethod.GET)
+	public String admin_inquiry_detail(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int inquiry_num) throws IOException {
+		
+		logger.info("admin_inquiry_detail.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		InquiryDto iDto = inqService.inquiry_detail(inquiry_num);
+		model.addAttribute("inquiryDto", iDto);
+		
+		return "admin_inquiry_detail";
+
+	}
+	@RequestMapping(value = "admin_inquiry_insert.do", method = RequestMethod.GET)
+	public String admin_inquiry_insert(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int inquiry_num) throws IOException {
+		
+		logger.info("admin_inquiry_insert.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		InquiryDto iDto = inqService.inquiry_detail(inquiry_num);
+		model.addAttribute("inquiryDto", iDto);
+		return "admin_inquiry_insert";
+	}
+	
+	@RequestMapping(value = "admin_insert.do", method = RequestMethod.GET)
+	public String admin_insert(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		logger.info("admin_insert.do {}.", locale);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		int inquiry_num = Integer.parseInt(request.getParameter("inquiry_num"));
+		int inquiry_refer = Integer.parseInt(request.getParameter("inquiry_refer"));
+		HttpSession session = request.getSession();
+		String admin_id = (String) session.getAttribute("login_adminId");
+		String user_nickname = request.getParameter("user_nickname");
+		String inquiry_title = request.getParameter("inquiry_title");
+		String inquiry_content = request.getParameter("inquiry_content");
+		InquiryDto iDto = new InquiryDto(inquiry_num,inquiry_title,inquiry_content,inquiry_refer,admin_id,user_nickname);
+		boolean isS = inqService.admin_insert(iDto);
+		if(isS) {
+			return "redirect:admin_inquiry.do";
+		} else {
+			model.addAttribute("msg", "문의글 작성에 실패하였습니다");
 			return "error";
 		}
 	}

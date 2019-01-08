@@ -49,12 +49,15 @@
 		<hr>
 	</div>
 	<div id="inquiry_div">
-		<form action="inquiryinsert.do" method="get">
-			<input type="hidden" name="user_nickname" value="${login_userId}">
+		<form action="admin_insert.do" method="get">
+			<input type="hidden" name="admin_id" value="${login_userId}">
+			<input type="hidden" name="user_nickname" value="${inquiryDto.user_nickname}" readonly>
+			<input type="hidden" name="inquiry_num" value="${inquiryDto.inquiry_num}" readonly>
+			<input type="hidden" name="inquiry_refer" value="${inquiryDto.inquiry_refer}" readonly>
 			<div>
 				<div>
 					<input type="text" placeholder="     제목을 작성하십시오"
-						class="inquiry_input" name="inquiry_title" id="inquiry_title"/>
+						class="inquiry_input" name="inquiry_title" id="inquiry_title" />
 				</div>
 				<div>
 					<textarea name="inquiry_content" id="inquiry_content"></textarea>

@@ -66,22 +66,39 @@
 		<form action="inquiry_update.do" method="get">
 		<input type="hidden" name="inquiry_num" value="${inquiryDto.inquiry_num}">
 		<div>
-			<div>
-				<input type="text" class="inquiry_input" name="inquiry_title" value="${inquiryDto.inquiry_title }"/>
-				<span><fmt:formatDate value="${list.inquiry_time}" pattern="yyyy년 MM월 dd일" /></span>
-			</div>
-			<div>
-				<textarea name="inquiry_content" id="inquiry_content">${inquiryDto.inquiry_content }</textarea>
-				<script type="text/javascript">
-					CKEDITOR.replace('inquiry_content', {
-						width : '720px', // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
-						height : '300px', // 입력창의 높이
-						startupFocus : false
-					});
-				</script>
-			</div>
-			<input type="submit" value="수정하기" id="submit" class="inquiry_input2" />
-			<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='myinquiry.do'"/>
+			<c:if test="${empty inquiryDto.admin_id}">
+				<div>
+					<input type="text" class="inquiry_input" name="inquiry_title" id="inquiry_title" value="${inquiryDto.inquiry_title }"/>
+				</div>
+				<div>
+					<textarea name="inquiry_content" id="inquiry_content">${inquiryDto.inquiry_content }</textarea>
+					<script type="text/javascript">
+						CKEDITOR.replace('inquiry_content', {
+							width : '720px', // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
+							height : '300px', // 입력창의 높이
+							startupFocus : false
+						});
+					</script>
+				</div>
+				<input type="submit" value="수정하기" id="inquiry_submit" class="inquiry_input2" />
+				<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='myinquiry.do'"/>
+			</c:if>
+			<c:if test="${!empty inquiryDto.admin_id}">
+				<div>
+					<input type="text" class="inquiry_input" name="inquiry_title" id="inquiry_title" value="${inquiryDto.inquiry_title }" readonly/>
+				</div>
+				<div>
+					<textarea name="inquiry_content" id="inquiry_content" readonly>${inquiryDto.inquiry_content }</textarea>
+					<script type="text/javascript">
+						CKEDITOR.replace('inquiry_content', {
+							width : '720px', // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
+							height : '300px', // 입력창의 높이
+							startupFocus : false
+						});
+					</script>
+				</div>
+				<input type="button" value="돌아가기" class="inquiry_input" onclick="location.href='myinquiry.do'"/>
+			</c:if>
 		</div>
 		</form>
 	</div>

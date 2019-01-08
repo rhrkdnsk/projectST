@@ -17,46 +17,7 @@ $(document).ready(function(){
 	  
 	  
 	  
-	  var modalLink5 = $(".loginModalLink2");
-	  modalLink5.click(function(){
-		  var remail = $("#remail").val();
-		  var remailchk = $("#remailchk").val();
-		  
-		  if(remail != remailchk){
-			  alert("비밀번호가 다릅니다")
-		  } else {
-				// alert(password)
-			  var data = { "email": femail, "password": remail };
-			  $.ajax({
-				  url:"resetpw.do",
-				  type:'GET',
-				  data: data,
-				  success:function(data){
-					  if(data == ""){
-						  alert("비밀번호 변경에 실패하였습니다")
-						  modalLayer.fadeIn("slow");
-						  modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
-						  $(this).blur();
-						  $(".loginModalContent > #email").focus(); 
-						  return false;
-					  } else {
-						  alert(data)
-						  $("#resetModalLayer").hide();
-						  $("#searchModalLayer").hide();
-						  $("#signModalLayer").hide();
-						  modalLayer.fadeIn("slow");
-						  modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
-						  $(this).blur();
-						  $(".loginModalContent > #email").focus(); 
-						  return false;
-					  }
-				  },
-				  error:function(){
-					  alert("로그인 실패ㅜㅜ") ;
-				  }
-			  }); 
-		  	}
-	  	});
+	
 
 	  // 회원가입 모달
 	  var modalLayer2 = $("#signModalLayer");
@@ -222,7 +183,7 @@ function sessionCheck(data){
 		$("#loginModalLayer").hide();
 		$('#mask').hide();
 		$('.window').hide(); 
-		//window.location.reload()
+		// window.location.reload()
 		
 	} else {
 		username = null;
@@ -280,6 +241,8 @@ function ajaxSign(){
 			$("#Sname").val("");
 			$("#Sphone").val("");
 			$("#signModalLayer").hide();
+	        $("#searchModalLayer").hide();
+	        $("#resetModalLayer").hide();
 			$("#loginModalLayer").fadeIn("slow");
 			$(".loginModalContent").css({"margin-top" : -$(".loginModalContent").outerHeight()/2, "margin-left" : -$(".loginModalContent").outerWidth()/2});
 			/*
@@ -324,3 +287,44 @@ function ajaxEmail(){
 	}); 
 }
 // ---------------------------- //
+
+
+// -- 비밀번호 변경 -- //
+function pwChange(){
+	var remail = $("#remail").val();
+	var remailchk = $("#remailchk").val();
+	if(remail != remailchk){
+		alert("비밀번호가 다릅니다")
+	} else {
+		// alert(password)
+		var data = { "email": femail, "password": remail };
+		$.ajax({
+			url:"resetpw.do",
+			type:'GET',
+			data: data,
+			success:function(data){
+				if(data == ""){
+					alert("비밀번호 변경에 실패하였습니다")
+					modalLayer.fadeIn("slow");
+					modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+					$(this).blur();
+					$(".loginModalContent > #email").focus(); 
+					return false;
+				} else {
+					alert(data)
+					$("#resetModalLayer").hide();
+					$("#searchModalLayer").hide();
+					$("#signModalLayer").hide();
+					modalLayer.fadeIn("slow");
+					modalCont.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+					$(this).blur();
+					$(".loginModalContent > #email").focus(); 
+					return false;
+				}
+			},
+			error:function(){
+				alert("비밀번호 변경 실패ㅜㅜ") ;
+			}
+		}); 
+	}
+};

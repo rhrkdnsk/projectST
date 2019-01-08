@@ -38,6 +38,18 @@ public class InquiryDto {
 		this.inquiry_title = inquiry_title;
 		this.inquiry_content = inquiry_content;
 	}
+	
+
+	public InquiryDto(int inquiry_num, String inquiry_title, String inquiry_content, int inquiry_refer, String admin_id,
+			String user_nickname) {
+		super();
+		this.inquiry_num = inquiry_num;
+		this.inquiry_title = inquiry_title;
+		this.inquiry_content = inquiry_content;
+		this.inquiry_refer = inquiry_refer;
+		this.admin_id = admin_id;
+		this.user_nickname = user_nickname;
+	}
 
 	@Override
 	public String toString() {
