@@ -22,7 +22,9 @@
 <link rel="stylesheet" href="/trip/resources/css/login.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/trip/resources/js/constraints.js"></script>
 <script type="text/javascript" src="/trip/resources/js/login.js"></script>
+
 
 
 <title>역장수</title>    
@@ -48,17 +50,54 @@
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
       <a href="fsessiondel.do" class="w3-bar-item w3-button">자유 게시판</a>
       <a href="#" class="w3-bar-item w3-button">질문 과 답변</a>
-      <a href="aboardPage.do?apageNum=1&areaboard_code=1" class="w3-bar-item w3-button">지역 게시판</a>
+      <a href="aboarddelsession.do" class="w3-bar-item w3-button">지역 게시판</a>
     </div>
   </div>
     <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-hide-small w3-padding-large w3-hover-white" title="Notifications">고객 센터<i class="fa fa-caret-down"></i></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="rsessiondel.do" class="w3-bar-item w3-button">Q.A</a>
-      <a href="#" class="w3-bar-item w3-button">공지 사항</a>
-      <a href="gsessiondel.do" class="w3-bar-item w3-button">1:1문의</a>
+      <a href="rsessiondel.do" class="w3-bar-item w3-button">공지 사항</a>
+<<<<<<< HEAD
+      <a href="qlist.do" class="w3-bar-item w3-button">Q.A</a>
+      <a href="#" class="w3-bar-item w3-button">1:1문의</a>
+=======
+      <a href="#" class="w3-bar-item w3-button">Q.A</a>
+      <a 
+      <%if(session.getAttribute("login_userId")==null){
+    	  %>
+    	href="#"
+    	  <%} else { %>
+      	href="inquiry.do"
+      <%} %> class="w3-bar-item w3-button">1:1문의</a>
+>>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
     </div>
   </div>
+  <%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+  						
+	
+	<%
+  		} else {
+  			%>
+ 		<div class="w3-dropdown-hover w3-hide-small">
+    	<button class="w3-button w3-hide-small w3-padding-large w3-hover-white" title="Notifications">관리자 고객 센터<i class="fa fa-caret-down"></i></button>     
+    	<div class="w3-dropdown-content w3-card-4 w3-bar-block">
+    	 <a href="gsessiondel.do" class="w3-bar-item w3-button">회원 관리</a>
+      <a href="rsessiondel.do" class="w3-bar-item w3-button">공지사항 관리</a>
+<<<<<<< HEAD
+      <a href="qlist.do" class="w3-bar-item w3-button">Q.A</a>
+      <a href="gsessiondel.do" class="w3-bar-item w3-button">1:1문의</a>
+=======
+      <a href="#" class="w3-bar-item w3-button">Q.A</a>
+      <a href="admin_inquiry.do" class="w3-bar-item w3-button">1:1문의</a>
+>>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
+    </div>
+  </div>  			<%
+  		}
+  	
+  	%>
+ 
 
 <script type="text/javascript" src="/trip/resources/js/google&fb.js"></script> 
 
@@ -183,7 +222,7 @@
 								<a href="#searchModalLayer" class="searchModalLink aright" >비밀번호 찾기</a>
 							</li>
 							<li>
-								<button onclick="ajaxLogin()" id="loginbtn">로그인</button>
+								<button id="loginbtn">로그인</button>
 								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
 							</li>
 						</ul>
@@ -279,7 +318,7 @@
                        				document.getElementById('tsign').click()"/>
 							</li>
 							<li>
-								<button id="tsign" onclick="ajaxSign()">회원가입</button>
+								<button id="tsign">회원가입</button>
 								<input type="button" class="can aright" value="취소" />	
 							</li>
 						</ul>

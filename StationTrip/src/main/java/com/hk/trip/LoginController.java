@@ -35,6 +35,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hk.trip.dto.AdminDto;
 import com.hk.trip.dto.LoginDto;
 import com.hk.trip.model.ILoginService;
 
@@ -44,7 +45,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	ILoginService loginService;
+	private ILoginService loginService;
 
 	@RequestMapping(value = "login.do", method = RequestMethod.GET)
 	public void login(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
@@ -275,6 +276,39 @@ public class LoginController {
 			out.print("변경 성공");
 		} else {
 			out.print("");
+		}
+	}
+	
+	@RequestMapping(value = "admin_loginForm.do", method = RequestMethod.GET)
+	public String admin_loginForm(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		logger.info("admin_loginForm {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		return "admin_login";
+	}
+	
+	@RequestMapping(value = "admin_login.do", method = RequestMethod.GET)
+	public void admin_login(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		logger.info("admin_login {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String admin_id = request.getParameter("admin_id");
+		System.out.println("admin_id = "+admin_id);
+		String admin_password = request.getParameter("admin_password");
+		System.out.println("admin_password = "+admin_password);
+		HttpSession session = request.getSession();
+		AdminDto dto = new AdminDto(admin_id, admin_password);
+		System.out.println(loginService.admin_login(dto));
+		if (loginService.admin_login(dto) != null) {
+			session.setAttribute("login_admin", loginService.admin_login(dto));
+			session.setAttribute("login_adminId", loginService.admin_login(dto).getAdmin_id());
+			session.setAttribute("login_userId", "관리자");
+			out.print(session.getAttribute("login_admin"));
+		} else {
+			out.print("fail");
 		}
 	}
 }

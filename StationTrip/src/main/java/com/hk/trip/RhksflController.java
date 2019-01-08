@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.hk.trip.dto.RhksflDto;
 import com.hk.trip.model.IRhkflService;
 
@@ -40,6 +41,7 @@ public class RhksflController {
 		return "rupdate";
 	}
 
+	
 	@RequestMapping(value="/rupdateBoard.do" , method=RequestMethod.POST)
 	public String rupdateBoard(Locale locale,Model model,RhksflDto dto) {
 		logger.info("글수정하기 {}.", locale);
@@ -57,7 +59,7 @@ public class RhksflController {
 		logger.info("글삭제하기 {}.", locale);
 		boolean isS=rhksflservice.rdelBoard(dto);
 		if(isS) {
-			return "redirect:rlist.do";
+			return "redirect:rlist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "회원 삭제실패");
 			return "error";
@@ -71,7 +73,7 @@ public class RhksflController {
 		logger.info("글여러개삭제하기 {}.", locale);
 		boolean fdto=rhksflservice.rmulDelBoard(chk);
 		if(fdto) {
-			return "redirect:rlist.do";
+			return "redirect:rlist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "글여러개삭제하기실패");
 			return "error";
@@ -141,12 +143,11 @@ public class RhksflController {
 	public String insertBoard(Locale locale,Model model,RhksflDto dto) {
 		logger.info("글추가하기 {}.", locale);
 		boolean isS=rhksflservice.rinsertBoard(dto);
-		return "rlist";
-//		if(isS) {
-//			return "redirect:rlist.do";
-//		}else {
+		if(isS) {
+			return "redirect:rlist.do?pageNum=1";
+		}else {
 //			model.addAttribute("msg", "글추가하기실패");
-//			return "error";
-//		}
+			return "rlist";
+		}
 	}
 }

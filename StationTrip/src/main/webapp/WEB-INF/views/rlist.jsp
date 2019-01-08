@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
-	//전체 선택 체크박스 구현
+
 	function allSel(bool){
 		var chks=document.getElementsByName("chk");//배열로 반환[chk,chk,chk...]
 		for (var i = 0; i < chks.length; i++) {
@@ -54,25 +54,8 @@
 		});
 		
 		//ajax처리: 글 제목에 마우스 올리면 textarea에 내용 출력하기
-		$(".titleval").hover(function(){
-			       // <a>  --> <td>  ---> <td>--> <td>--> <td>text</td>
-			var seq=$(this).parent("td").prev().prev().text();
-			$.ajax({
-				url:"detailajax.do",
-				data:{"seq":seq},// "seq="+seq
-				datatype:"json",
-				method:"post",
-				success:function(obj){ //컨트롤에서 전달받은 객체(map)--> obj
-					var dto=obj["dto"];//map에서 dto객체 꺼내고
-					$("textarea[name=testAjax]").val(dto["content"]);
-				},
-				error:function(){
-					alert("서버통신실패!!");
-				}
-			});
-		},function(){
-			$("textarea[name=testAjax]").val("");
-		});
+	
+		
 	});
 	
 	function setnull() {
@@ -101,18 +84,43 @@
 </head>
 <body>
 <div id="container" class="list">
-<h1>유저 목록</h1>
+<h1>공지사항</h1>
 <a href="rlist.do"></a>
-<form action="rmuldel.do" method="post" onsubmit="return confirmChk()">
+<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+  						
+	
+	<%
+  		} else {
+  			%>
+ 		<form action="rmuldel.do" method="post" onsubmit="return confirmChk()">
+ 					<%
+  		}
+  	
+  	%>
 <table class="table table-hover">
 	<col width="50px">
+	<col width="100px">
+	<col width="100px">
 	<col width="50px">
-	<col width="100px">
-	<col width="100px">
 	<col width="100px">
 	
 	<tr>
-		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
+		<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+  						
+	
+	<%
+  		} else {
+  			%>
+ 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
+ 					<%
+  		}
+  	
+  	%>
+		
 		<th>번호</th>
 		<th>제목</th>
 		<th>내용</th>
@@ -127,13 +135,24 @@
 		<c:otherwise>
 			<c:forEach items="${list}" var="dto">
 				<tr>
-
-					<td>
+<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+  						
+	
+	<%
+  		} else {
+  			%>
+ 		<td>
 						<input type="checkbox" name="chk" value="${dto.seq}"/>
 					</td>
+ 					<%
+  		}
+  	
+  	%>
 					<td><a href="rdetail.do?seq=${dto.seq}">${dto.seq}</a></td>
-					<td>${dto.title}</td>
-					<td>${dto.content}</td>
+					<td><a class="titleval"href="rdetail.do?seq=${dto.seq}">${dto.title}</a></td>
+					<td><a class="titleval"href="rdetail.do?seq=${dto.seq}">${dto.content}</a></td>
 					<td>${dto.id}</td>
 					<td>${dto.regdate}</td>
 					
@@ -171,12 +190,24 @@
   </c:if>
 </p>
 </div>
-	<tr>
+<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+	  			
+	
+	<%
+  		} else {
+  			%>
+<tr>
 		<td colspan="10">
-			<input class="btn btn-primary" type="submit" value="삭제"/>
 			<a class="btn btn-primary" href="rinsertform.do">글쓰기</a>
+			<input class="btn btn-primary" type="submit" value="삭제"/>
 		</td>
-	</tr>
+	</tr>  			<%
+  		}
+  	
+  	%>
+	
 </table>
 </form>
 </div>

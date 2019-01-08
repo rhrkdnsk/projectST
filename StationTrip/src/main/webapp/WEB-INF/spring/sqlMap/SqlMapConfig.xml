@@ -6,6 +6,7 @@
 <configuration>
   	
 	<typeAliases>
+		<typeAlias type="com.hk.trip.dto.QADto" alias="QADto" />
 		<typeAlias type="com.hk.trip.dto.RhksflDto" alias="RhksflDto" />
   		<typeAlias type="com.hk.trip.dto.LoginDto" alias="LoginDto" />
   		<typeAlias type="com.hk.trip.dto.FboardDto" alias="FboardDto"/>
@@ -13,9 +14,12 @@
         <typeAlias type="com.hk.trip.dto.CheckLikeDto" alias="CheckDto" />
         <typeAlias type="com.hk.trip.dto.AboardDto" alias="AboardDto" />
         <typeAlias type="com.hk.trip.dto.ScheduleDto" alias="ScheduleDto" />
+        <typeAlias type="com.hk.trip.dto.AdminDto" alias="AdminDto" />
+        <typeAlias type="com.hk.trip.dto.InquiryDto" alias="InquiryDto" />
   	</typeAliases>
   	
   	<mappers>
+  		<mapper resource="/sqlmapper/qa_mapper.xml" />
   		<mapper resource="/sqlmapper/rhksfl_mapper.xml" />
   		<mapper resource="/sqlmapper/Manager_mapper.xml" />
   		<mapper resource="/sqlmapper/login_mapper.xml" />
@@ -24,7 +28,8 @@
   		<mapper resource="/sqlmapper/membership_mapper.xml" />
         <mapper resource="/sqlmapper/checklike.xml" />
         <mapper resource="/sqlmapper/aboard_mapper.xml" />
-         <mapper resource="/sqlmapper/schedule_mapper.xml" />
+        <mapper resource="/sqlmapper/schedule_mapper.xml" />
+        <mapper resource="/sqlmapper/inquiry_mapper.xml" />
       </mappers>
   	
 </configuration>

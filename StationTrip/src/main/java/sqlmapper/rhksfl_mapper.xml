@@ -19,8 +19,9 @@
     </update>
      <update id="rupdateBoard" parameterType="RhksflDto">
       update RHKSFLWK
-      SET TITLE = #{title}, CONTENT = #{content}
+      set title = #{title}, content = #{content}, regdate = sysdate
       WHERE SEQ = #{seq}
+      
     </update> 
     <update id="rmulDelBoard" parameterType="Map">
       DELETE RHKSFLWK where seq in
@@ -45,10 +46,9 @@ where X.rnum >= #{startNum}  ]]>
 	</select>
 	
  <insert id="rinsertBoard" parameterType="RhksflDto">
-<!--       insert into RHKSFLWK values -->
-<!--       (RHKSFLWK_seq.nextval,#{id},#{title},#{content},sysdate) -->
 			INSERT INTO RHKSFLWK VALUES ((SELECT NVL(MAX(SEQ)+1,0)FROM RHKSFLWK)
-	 		,#{id},#{title},SYSDATE,#{content}) 
+	 		,#{title},#{content},#{id},SYSDATE) 
+	 	
     </insert>
     
 	 

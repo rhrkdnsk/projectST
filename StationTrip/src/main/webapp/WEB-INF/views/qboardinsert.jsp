@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%request.setCharacterEncoding("utf-8"); %>
+<%response.setContentType("text/html; charset=utf-8"); %>
+<%@include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+</head>
+<body>
+<div id="container">
+<h1>게시글작성</h1>
+<form action="qinsertboard.do" method="post">
+<table class="table table-hover">
+	<col width="100px"><col width="400px">
+	<tr>
+		<th>제 목</th>
+		<td><input type="text" name="faq_title" /></td>
+	</tr>
+	<tr>
+		<th>내 용</th>
+		<td><textarea rows="10" cols="60" name="faq_content" ></textarea> </td>
+	</tr>
+	<tr>
+	<tr>
+		<td colspan="2">
+			<input type="submit" class="btn btn-primary" value="글등록">
+			<input type="button" value="취소" id="submit" onclick="getlist()"/>
+			
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+<%@include file="footer.jsp" %>
+</body>
+</html>

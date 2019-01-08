@@ -49,12 +49,13 @@ $(document).ready(function(){
 <h1>My Page</h1>
 <a href="mypage.do">내정보 관리</a>
 <a href="pwchange.do">비밀번호 변경</a>
-<a href="withdrawalgo.do">회원 탈퇴</a>
+<a href="myinquiry.do">나의 문의글</a>
 <a href="itinerary.do">여행 일정</a>
+<a href="withdrawalgo.do">회원 탈퇴</a>
 <hr style="border-color:black;">
 </div>
 <div style="width: 800px;margin:auto;">
-<h3>주기적인 비밀번호 변경을 통해 개인정보를 안전하게 보호하세요</h3>
+<h3>주기적인  <span style="color:red;">비밀번호 변경</span>을 통해 개인정보를 안전하게 보호하세요</h3>
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">

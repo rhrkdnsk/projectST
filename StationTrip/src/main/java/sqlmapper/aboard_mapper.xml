@@ -7,8 +7,8 @@
   <mapper namespace="com.hk.trip.aboard">
 
 
-<select id="agetCount" resultType="int">
-	SELECT COUNT(*) AS totalCount FROM AREABOARD
+<select id="agetCount" resultType="int" parameterType="int">
+	SELECT COUNT(*) AS totalCount FROM AREABOARD WHERE AREABOARD_CODE = #{areaboard_code}
 	</select>
 	
 <select id="agetNumlist" resultType="AboardDto" parameterType="Map">
@@ -58,5 +58,27 @@ SELECT * FROM AREABOARD WHERE AREABOARD_NUM = #{areaboard_num} AND AREABOARD_COD
       SET AREABOARD_TITLE = #{areaboard_title}, AREABOARD_CONTENT = #{areaboard_content}, AREABOARD_TIME = SYSDATE
       WHERE AREABOARD_NUM = #{areaboard_num}
     </update>
-   
+
+      <delete id="adeleteBoard" parameterType="Map">
+    DELETE AREABOARD WHERE AREABOARD_NUM=#{areaboard_num} AND AREABOARD_CODE = #{areaboard_code}
+    </delete>
+
+    <insert id="insareply" parameterType="AboardDto">
+   INSERT INTO T_COMMENT VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),
+NULL,#{areaboard_num},#{user_nickname},SYSDATE,0,0,(SELECT NVL(MAX(COMMENT_REFER)+1,0)
+FROM T_COMMENT WHERE AREABOARD_NUM = #{areaboard_num} ),#{comment_content},0,0 )
+   </insert>
+
+<select id="agoNext" parameterType="Map" resultType="AboardDto">
+	<![CDATA[ SELECT AREABOARD_NUM,AREABOARD_TITLE,AREABOARD_CODE FROM AREABOARD WHERE AREABOARD_NUM=(SELECT MIN(AREABOARD_NUM) FROM AREABOARD WHERE AREABOARD_NUM > #{areaboard_num}) AND AREABOARD_CODE = #{areaboard_code}]]> 
+	</select>
+	
+	<select id="agoBack" parameterType="Map" resultType="AboardDto">
+	<![CDATA[ SELECT AREABOARD_NUM,AREABOARD_TITLE,AREABOARD_CODE FROM AREABOARD WHERE AREABOARD_NUM=(SELECT max(AREABOARD_NUM) FROM AREABOARD WHERE AREABOARD_NUM < #{areaboard_num}) AND AREABOARD_CODE = #{areaboard_code}]]> 
+	</select>
+
+    <update id="areadCount" parameterType="int">
+	 UPDATE AREABOARD SET AREABOARD_VIEW = AREABOARD_VIEW+1 WHERE AREABOARD_NUM=#{areaboard_num}
+	</update>
+    
   </mapper>

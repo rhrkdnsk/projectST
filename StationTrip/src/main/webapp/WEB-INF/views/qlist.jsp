@@ -1,0 +1,110 @@
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%request.setCharacterEncoding("utf-8"); %>
+<%response.setContentType("text/html; charset=utf-8"); %>
+<%@include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<style type="text/css">
+
+/* 	입력범위가 벗어나는 경우 텍스트 처리 (내용이....) */
+	.titleval{
+		display: inline-block;
+		width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space:nowrap;
+	}
+	.panel, .flip {
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+}
+.panel {
+  padding: 50px;
+  display: none;
+}
+</style>
+<script> 
+$(document).ready(function(){
+	$(".panel").eq(0).show();
+	  $(".flip").click(function(){
+		  $(this).next().slideToggle("slow");
+	    $(this).parent().parent().siblings().find(".panel").slideUp()
+	  });
+	});	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+<div id="container" class="list">
+<h1>FQA</h1>
+<a href="qlist.do"></a>
+<div style="height: 300px;">
+<table class="table table-hover">
+	
+
+	<c:choose>
+		<c:when test="${empty list}">
+			<tr><td colspan="10">---작성된 글이 없습니다.---</td></tr>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${list}" var="dto">
+				
+			<tr>			
+			<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+	  			<td><div class="flip">${dto.faq_title}</div>
+				<div class="panel">${dto.faq_content}</div></td>
+	
+		<%
+  		} else {
+  			%>
+		<td>${dto.faq_num}</td>
+		<td>${dto.faq_title}</td>
+		<td><a  class="titleval"href="qdetail.do?faq_num=${dto.faq_num}">${dto.faq_content}</a></td>
+	 			<%
+  		}
+  	
+  	%>
+			</tr>
+			
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
+<%
+  		if(session.getAttribute("login_admin") == null) {
+  			%>
+	  			
+	
+	<%
+  		} else {
+  			%>
+<tr>
+		<td colspan="10">
+			<a class="btn btn-primary" href="qinsertform.do">글쓰기</a>
+			<input class="btn btn-primary" type="submit" value="삭제"/>
+		</td>
+	</tr>  			<%
+  		}
+  	
+  	%>
+	
+</table>
+</div>
+</div>
+
+
+<%@include file="footer.jsp" %>
+</body>
+</html>

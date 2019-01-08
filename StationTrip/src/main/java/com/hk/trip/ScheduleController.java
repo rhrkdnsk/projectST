@@ -23,7 +23,7 @@ public class ScheduleController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	IScheduleService sc_service;
+	private IScheduleService sc_service;
 	
 	@RequestMapping(value = "itinerary.do", method = RequestMethod.GET)
 	public String itinerary(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {

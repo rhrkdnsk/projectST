@@ -17,10 +17,6 @@
 <table class="table table-hover">
 	<col width="100px"><col width="400px">
 	<tr>
-		<th>작성자</th>
-		<td><input  type="text" name="id"/></td>
-	</tr>
-	<tr>
 		<th>제 목</th>
 		<td><input type="text" name="title" /></td>
 	</tr>
@@ -29,8 +25,15 @@
 		<td><textarea rows="10" cols="60" name="content" ></textarea> </td>
 	</tr>
 	<tr>
+	<tr>
+		<th>작성자</th>
+		<td><input  type="text" name="id"/></td>
+	</tr>
+	<tr>
 		<td colspan="2">
 			<input type="submit" class="btn btn-primary" value="글등록">
+			<input type="button" value="취소" id="submit" onclick="getlist()"/>
+			
 		</td>
 	</tr>
 </table>
