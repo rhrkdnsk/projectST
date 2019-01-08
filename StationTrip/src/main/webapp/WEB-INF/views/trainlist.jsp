@@ -84,7 +84,6 @@ function tnum(data){
 		console.log("for문 실행")
 		$(".list-bot").append("<button onclick='straingo(" + i + ")'>" + i + "</button>")
 	}
-	
 }
 </script>
 <title>Insert title here</title>

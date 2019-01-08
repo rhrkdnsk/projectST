@@ -7,7 +7,7 @@ public class ScheduleDto {
 	
 	int schedule_num;
 	String user_nickname;
-	int spot_num;
+	String content_id;
 	Date schedule_time;
 	int schedule_sequence;
 	String schedule_name;
@@ -22,12 +22,12 @@ public class ScheduleDto {
 		this.user_nickname = user_nickname;
 	}
 
-	public ScheduleDto(int schedule_num, String user_nickname, int spot_num, Date schedule_time, int schedule_sequence,
+	public ScheduleDto(int schedule_num, String user_nickname, String content_id, Date schedule_time, int schedule_sequence,
 			String schedule_name) {
 		super();
 		this.schedule_num = schedule_num;
 		this.user_nickname = user_nickname;
-		this.spot_num = spot_num;
+		this.content_id = content_id;
 		this.schedule_time = schedule_time;
 		this.schedule_sequence = schedule_sequence;
 		this.schedule_name = schedule_name;
@@ -35,8 +35,8 @@ public class ScheduleDto {
 
 	@Override
 	public String toString() {
-		return "ScheduleDto [schedule_num=" + schedule_num + ", user_nickname=" + user_nickname + ", spot_num="
-				+ spot_num + ", schedule_time=" + schedule_time + ", schedule_sequence=" + schedule_sequence
+		return "ScheduleDto [schedule_num=" + schedule_num + ", user_nickname=" + user_nickname + ", content_id="
+				+ content_id + ", schedule_time=" + schedule_time + ", schedule_sequence=" + schedule_sequence
 				+ ", schedule_name=" + schedule_name + "]";
 	}
 
@@ -56,12 +56,12 @@ public class ScheduleDto {
 		this.user_nickname = user_nickname;
 	}
 
-	public int getSpot_num() {
-		return spot_num;
+	public String getContent_id() {
+		return content_id;
 	}
 
-	public void setSpot_num(int spot_num) {
-		this.spot_num = spot_num;
+	public void setContent_id(String content_id) {
+		this.content_id = content_id;
 	}
 
 	public Date getSchedule_time() {
