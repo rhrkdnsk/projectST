@@ -130,12 +130,13 @@ id="like_img" height="50px" width="50px">
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
-   	<c:if test="${cdto.comment_step == 0}">
-<button class="lookbt">답글</button>
-</c:if>
+   
+   	<button class="lookbt">답글</button>
+   
 	</c:if>
 	
 	<c:if test="${cdto.comment_step != 0 }">
+	
 		<div class="lookreply" style="display:none">
    	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
@@ -164,15 +165,6 @@ id="like_img" height="50px" width="50px">
 </div>
 
 </c:if>
-  	
-<c:if test="${cdto.user_nickname == login_userId}">
-<button value="수정" onclick="goUpdate()">수정</button>
-
-<a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
-<!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
-
-</c:if>
-
 
 <br />
   	
