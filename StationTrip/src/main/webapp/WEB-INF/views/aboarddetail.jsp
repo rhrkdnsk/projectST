@@ -135,20 +135,9 @@ id="like_img" height="50px" width="50px">
    
 	</c:if>
 	
-	<c:if test="${cdto.comment_step != 0 }">
 	
-		<div class="lookreply" style="display:none">
-   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
-   	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
-   	시간 : ${cdto.comment_time}
-   	좋아요 : ${cdto.comment_like} 
-   	싫어요 : ${cdto.comment_hate} 
-   	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+   	<!-- if test 가 같아야 실행됨  -->
    	
-   	</div>
-   	
-	</c:if>
 
 <c:if test="${cdto.comment_step == 0}">
 
@@ -162,18 +151,28 @@ id="like_img" height="50px" width="50px">
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
 </form>
-</div>
+   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
+   	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
+   	시간 : ${cdto.comment_time}
+   	좋아요 : ${cdto.comment_like} 
+   	싫어요 : ${cdto.comment_hate} 
+   	리퍼 : ${cdto.comment_refer}
+   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+   	</div>
+
 
 </c:if>
 
-<br />
+
+
+
   	
   	
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
   	      	
-  	      	
+  	      	<br />
      	▲ 다음글 보기<a class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
   	<p>
   		▼ 이전글 보기<a class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
