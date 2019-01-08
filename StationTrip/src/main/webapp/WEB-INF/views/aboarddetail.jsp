@@ -17,10 +17,11 @@ $(document).ready(function(){
 
     $('.lookbt').click(function () {  
     	alert("클릭")
-        if($(this).next(".lookreply").css("display") == "none"){   
-            jQuery(this).next(".lookreply").css("display", "block");   
+    	alert($(this).next(".lookreply").css("display"))
+        if($(this).next(".lookreply",".lookreply").css("display") == "none"){   
+            jQuery(this).nextAll(".lookreply",".lookreply").show();   
         } else {  
-            jQuery(this).next(".lookreply").css("display", "none");   
+            jQuery(this).nextAll(".lookreply","lookreply").hide();   
         }  
     });   
    
@@ -130,13 +131,15 @@ id="like_img" height="50px" width="50px">
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
-   
-   	<button class="lookbt">답글</button>
-   
+   <c:if test="${login_userId == cdto.user_nickname}">
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
 	</c:if>
-	
-	
-   	<!-- if test 가 같아야 실행됨  -->
+   	<button class="lookbt">답글</button>
+   	
+   	
+	</c:if>
+	 
+	 
    	
 
 <c:if test="${cdto.comment_step == 0}">
@@ -150,24 +153,31 @@ id="like_img" height="50px" width="50px">
 <textarea rows="5" cols="15" name="comment_content" ></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
+
+
 </form>
-   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
+</div>
+
+</c:if>
+<c:if test="${cdto.comment_step != 0 }">
+	<div class="lookreply" style="display:none">
+	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
    	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+   	스텝 : ${cdto.comment_step}
+   		<c:if test="${login_userId == cdto.user_nickname}">
+
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
+	</c:if>
    	</div>
+   	<!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+	</c:if>
+   	<!-- if test 가 같아야 실행됨  -->
 
 
-</c:if>
-
-
-
-
-  	
-  	
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
