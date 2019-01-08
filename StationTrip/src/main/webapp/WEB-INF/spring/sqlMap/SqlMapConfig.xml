@@ -15,6 +15,7 @@
         <typeAlias type="com.hk.trip.dto.AboardDto" alias="AboardDto" />
         <typeAlias type="com.hk.trip.dto.ScheduleDto" alias="ScheduleDto" />
         <typeAlias type="com.hk.trip.dto.AdminDto" alias="AdminDto" />
+        <typeAlias type="com.hk.trip.dto.InquiryDto" alias="InquiryDto" />
   	</typeAliases>
   	
   	<mappers>
@@ -27,7 +28,8 @@
   		<mapper resource="/sqlmapper/membership_mapper.xml" />
         <mapper resource="/sqlmapper/checklike.xml" />
         <mapper resource="/sqlmapper/aboard_mapper.xml" />
-         <mapper resource="/sqlmapper/schedule_mapper.xml" />
+        <mapper resource="/sqlmapper/schedule_mapper.xml" />
+        <mapper resource="/sqlmapper/inquiry_mapper.xml" />
       </mappers>
   	
 </configuration>

@@ -97,6 +97,7 @@ public class BoardController {
 		// session.setAttribute("session1", session);
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
+		
 		CheckLikeDto dto = new CheckLikeDto();
 		dto.setBoard_num(freeboard_num);
 		String asd = (String) request.getSession().getAttribute("login_userId");
@@ -391,7 +392,7 @@ public class BoardController {
 		public String aboardList(HttpServletRequest request, Locale locale, Model model,int apageNum,
 				String akeyField,String akeyWord,int areaboard_code) {
 			logger.info("지역게시판", locale);
-			request.getSession().removeAttribute("readcount");
+			request.getSession().removeAttribute("areadcount");
 //			request.getSession().removeAttribute("skeyField");
 //			request.getSession().removeAttribute("skeyWord"); 이게 있으면 페이징 처리 X
 			System.out.println("apageNum : " + apageNum + "areaboard_code : " + areaboard_code);
@@ -407,6 +408,15 @@ public class BoardController {
 //			System.out.println("세션 키워드 : " + (String)session.getAttribute("skeyWord"));
 
 			//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
+			if(areaboard_code == 0 ) {
+				areaboard_code = 1;
+			}
+			if(request.getParameter("areaboard_code") != null && request.getParameter("areaboard_code") != "") {
+				request.getSession().removeAttribute("sareaboard_code");
+
+			}
+			
+			session.setAttribute("sareaboard_code", areaboard_code);
 			
 			String settingnum = request.getParameter("settingnum");
 			int countList = 2;
@@ -502,9 +512,10 @@ public class BoardController {
 			logger.info("글쓰기 폼 이동", locale);	
 			
 			boolean isS = aboardService.insertBoard(dto);
-			
+			int areaboard_code = dto.getAreaboard_code();
+
 			if(isS) {
-				return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+				return "redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
 			}
@@ -513,11 +524,36 @@ public class BoardController {
 		@RequestMapping(value = "aboarddetail.do", method = RequestMethod.GET)
 		public String aboarddetailview(HttpServletRequest request, Locale locale, Model model, int areaboard_num,int areaboard_code) {
 			logger.info("글 수정하기 폼 이동", locale);
+			
+			String rnum = (String) request.getSession().getAttribute("areadcount");
+			if (rnum == null) {
+				aboardService.readCount(areaboard_num);
+			}
+			
+			
+			request.getSession().setAttribute("areadcount", "조회하였음");
+
+			CheckLikeDto dto1 = new CheckLikeDto();
+			dto1.setBoard_num(areaboard_num);
+			String asd = (String) request.getSession().getAttribute("login_userId");
+			dto1.setUser_nickname(asd);
+			
+			System.out.println(asd);
+			boolean isLiked = aboardService.checkLike(dto1);
+			//DB에 값이 없으면 Null 오류 나옴
+			model.addAttribute("isLiked", isLiked);
+			
 			AboardDto adto = aboardService.getDetailview(areaboard_num, areaboard_code);
+			List<CommentDto> dto = aboardService.getReply(areaboard_num);
+			AboardDto bdto = aboardService.goBack(areaboard_num, areaboard_code);
+			AboardDto ndto = aboardService.goNext(areaboard_num, areaboard_code);
+					
+			
 			System.out.println("adto : " + adto);
 			model.addAttribute("fdto", adto);
-			
-			
+			model.addAttribute("list", dto);
+			model.addAttribute("bdto", bdto);
+			model.addAttribute("ndto",ndto);
 			return "aboarddetail";
 			}
 		
@@ -539,7 +575,7 @@ public class BoardController {
 			
 			boolean isS = aboardService.updateBoard(dto);
 			if(isS) {
-				return "error";
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
 			}
@@ -547,5 +583,114 @@ public class BoardController {
 			
 			
 			}
+		
+		@RequestMapping(value = "aboarddelsession.do")
+		public String aboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
 
+			
+			System.out.println("aboardsessiondel 호출");
+			request.getSession().removeAttribute("askeyWord");
+			request.getSession().removeAttribute("askeyField");
+			request.getSession().removeAttribute("asetnum");
+
+		
+			System.out.println("aboardsessiondel 에서 세션 삭제 ");
+			
+			return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+		}
+		
+		@RequestMapping(value = "aboarddel.do")
+		public String aboarddel(HttpServletRequest request, Locale locale, Model model,int areaboard_num,int areaboard_code) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			boolean isS = aboardService.deleteBoard(areaboard_num, areaboard_code);
+			
+			if(isS) {
+				aboardService.bcDelete(areaboard_num);
+				aboardService.delLike(areaboard_num);
+				return "redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+areaboard_code;
+
+			} else {
+				return "error";
+			}
+						
+		}
+		@RequestMapping(value = "awritereply.do")
+		public String aboardrep(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_code) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			boolean isS = aboardService.insReply(dto);
+			int areaboard_num = dto.getAreaboard_num();
+			
+			if(isS) {
+				aboardService.upComment(areaboard_num);
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
+			} else {
+				return "error";
+			}
+			}
+		@RequestMapping(value = "adelreply.do")
+		public String aboardrepdel(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_code) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			boolean isS = aboardService.deleteReply(dto);
+			int areaboard_num = dto.getAreaboard_num();
+			
+			if(isS) {
+				aboardService.downComment(areaboard_num);
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
+			} else {
+				return "error";
+			}
+			}
+		@RequestMapping(value = "aboardLike.do")
+		public void aboardLike(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model,CheckLikeDto dto) throws IOException {
+			logger.info("좋아요 기능 구현", locale);
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			int like_count = 0;
+			int areaboard_num = dto.getBoard_num();
+			boolean isS = aboardService.checkLike(dto);
+			HashMap status = new HashMap();
+			
+			if(isS) {
+				aboardService.deleteCheck(dto);
+				aboardService.downLike(areaboard_num);
+				status.put("status", 404);
+			} else {
+				aboardService.insertCheck(dto);
+				aboardService.upLike(areaboard_num);
+				status.put("status", 200);
+			}
+	like_count = aboardService.likeCount(areaboard_num);
+		
+			status.put("like_count", like_count);
+			String json = new Gson().toJson(status);
+			 response.getWriter().write(json);
+
+
+			System.out.println("Ajax 컨트롤러 요청 : " + json);
+			
+	}
+		
+		@RequestMapping(value = "aboardrepre.do")
+		public String aboardcomment2(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_code) {
+			logger.info("자유게시판 페이징 처리", locale);
+			
+			
+			boolean isS = aboardService.Commentreply(dto);
+			int areaboard_num = dto.getAreaboard_num();
+			if(isS) {
+				aboardService.upComment(areaboard_num);
+
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
+			} else {
+				System.out.println("커밋오류처리");
+				return "error";
+			}
+	
+	}
 } // 끝

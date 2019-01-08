@@ -40,7 +40,35 @@ INSERT INTO T_COMMENT
    <update id="downComment" parameterType="int">
      UPDATE FREEBOARD SET FREEBOARD_COMMENTCOUNT = FREEBOARD_COMMENTCOUNT -1 WHERE FREEBOARD_NUM = #{freeboard_num}
    </update>
+
+   <select id="agetReply" resultType="CommentDto" parameterType="int">
+		SELECT * FROM T_COMMENT WHERE AREABOARD_NUM =
+		#{areaboard_num} ORDER BY COMMENT_REFER,COMMENT_STEP ASC
+	</select>
+
+    <delete id="adelComment" parameterType="CommentDto">
+    DELETE FROM T_COMMENT WHERE COMMENT_NUM = #{comment_num} AND AREABOARD_NUM = #{areaboard_num}
+   </delete>
+
+<delete id="abcDelete" parameterType="int">
+    DELETE FROM T_COMMENT WHERE AREABOARD_NUM=#{areaboard_num}
+    </delete>
+
+     <update id="aupComment" parameterType="int">
+     UPDATE AREABOARD SET AREABOARD_COMMENTCOUNT = AREABOARD_COMMENTCOUNT +1 WHERE AREABOARD_NUM = #{areaboard_num}
+   </update>
+
+   <update id="adownComment" parameterType="int">
+     UPDATE AREABOARD SET AREABOARD_COMMENTCOUNT = AREABOARD_COMMENTCOUNT -1 WHERE AREABOARD_NUM = #{areaboard_num}
+   </update>
+
+   <insert id="ainsComment" parameterType="CommentDto">
+INSERT INTO T_COMMENT  
+	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),NULL,#{areaboard_num},#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE AREABOARD_NUM = #{areaboard_num} AND COMMENT_REFER = #{comment_refer}),#{comment_refer},#{comment_content},0,0 ) 
+        </insert>
+
 </mapper>
+
 
 
 <!-- INSERT INTO T_COMMENT

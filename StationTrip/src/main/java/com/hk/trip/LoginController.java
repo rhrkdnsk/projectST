@@ -45,7 +45,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
-	ILoginService loginService;
+	private ILoginService loginService;
 
 	@RequestMapping(value = "login.do", method = RequestMethod.GET)
 	public void login(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response)
@@ -304,6 +304,7 @@ public class LoginController {
 		System.out.println(loginService.admin_login(dto));
 		if (loginService.admin_login(dto) != null) {
 			session.setAttribute("login_admin", loginService.admin_login(dto));
+			session.setAttribute("login_adminId", loginService.admin_login(dto).getAdmin_id());
 			session.setAttribute("login_userId", "관리자");
 			out.print(session.getAttribute("login_admin"));
 		} else {

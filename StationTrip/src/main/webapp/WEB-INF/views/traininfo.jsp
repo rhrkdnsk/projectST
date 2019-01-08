@@ -38,18 +38,54 @@ $(function() {
 });
 
 </script>
-
+<style type="text/css">
+#startcitycode, #starttowncode, #endcitycode, #endtowncode{
+	width: 140px;
+	height:30px;
+	border:none;
+}
+#train_btn{
+	width:140px;
+	background-color:white;
+	border:none;	
+}
+#Datepicker{
+	padding-left:10px;
+	width:130px;
+	height:29px;
+	border:none;
+}
+#h1_train{
+	text-align: center;
+    font-family: cursive;
+    color: black;
+}
+#hr_train{
+	border-color:black;
+}
+#trainframe{
+	width:900px;
+	height:460px;
+	display:none;
+	border:none;
+}
+</style>
 <title></title>
 </head>
 <body>
-	<div id="trainbody" style="width: 800px;margin: auto;">
-	<h1 style="text-align:center;">열차조회</h1>
+	<div>
+	<h1 id="h1_train">열차 조회</h1>
+	<hr id="hr_train">
+	</div>
+	<div id="trainbody" style="width: 900px;margin: auto;height:630px;">
 	<table border="1">
 		<colgroup>
-			<col width="25%">
-			<col width="25%">
-			<col width="25%">
-			<col width="25%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
 			<%-- 	<col width="20%"> --%>
 		</colgroup>
 		<tr>
@@ -58,6 +94,9 @@ $(function() {
 			</th>
 			<th colspan="2">
 				<p>도착역</p>
+			</th>
+			<th colspan="2">
+				<p>출발일</p>
 			</th>
 			<!-- 				<th>
 					<p>열차 선택</p>
@@ -123,12 +162,11 @@ $(function() {
 							</c:choose>
 					</select>
 				</td> --%>
-		</tr>
-		<tr>
+		
 			<!-- 날짜 선택 -->
 			<td><input type="text" id="Datepicker" class="traindate"
 				autocomplete=off></td>
-			<td><select id="highnoon">
+			<%-- <td><select id="highnoon">
 					<option class="traintime" value="오전">오전</option>
 					<option class="traintime" value="오후">오후</option>
 			</select> <select id="traintime">
@@ -140,14 +178,13 @@ $(function() {
 					<%
 						}
 					%>
-			</select></td>
+			</select></td> --%>
 			<td>
-
-				<button onclick="traingoti(1)">선택</button>
+				<button onclick="traingoti(1)" id="train_btn">선택</button>
 			</td>
 		</tr>
 	</table>
-	<iframe id="trainframe" style="width:800px;height:400px;display:none" src="trainmove.do"></iframe>
+	<iframe id="trainframe" src="trainmove.do"></iframe>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
