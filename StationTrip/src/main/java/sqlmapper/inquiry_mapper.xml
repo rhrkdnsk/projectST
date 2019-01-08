@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hk.trip.inquiry">
+
+	<insert id="user_inquiry_insert" parameterType="Map">
+		INSERT INTO INQUIRY
+		VALUES( (SELECT MAX(INQUIRY_NUM) FROM INQUIRY)+1,#{inquiry_title},SYSDATE,#{inquiry_content},0,(SELECT MAX(INQUIRY_REFER) FROM INQUIRY)+1,null,#{user_nickname})
+	</insert>
+
+	<select id="inquiry_list" parameterType="Map" resultType="InquiryDto">
+		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
+		FROM INQUIRY
+		WHERE USER_NICKNAME = #{user_nickname}
+	</select>
+	
+	<select id="inquiry_detail" parameterType="int" resultType="InquiryDto">
+		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
+		FROM INQUIRY
+		WHERE INQUIRY_NUM = #{inquiry_num}
+	</select>
+	
+	<update id="inquiry_update" parameterType="InquiryDto">
+		UPDATE INQUIRY
+		SET INQUIRY_TITLE = #{inquiry_title}, INQUIRY_CONTENT = #{inquiry_content}, INQUIRY_TIME = SYSDATE
+		WHERE INQUIRY_NUM = #{inquiry_num}
+	</update>
+</mapper>	

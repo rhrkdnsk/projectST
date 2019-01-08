@@ -17,8 +17,9 @@
 <h1>My Page</h1>
 <a href="mypage.do">내정보 관리</a>
 <a href="pwchange.do">비밀번호 변경</a>
-<a href="withdrawalgo.do">회원 탈퇴</a>
+<a href="myinquiry.do">나의 문의글</a>
 <a href="itinerary.do">여행 일정</a>
+<a href="withdrawalgo.do">회원 탈퇴</a>
 <hr style="border-color:black;">
 </div>
 <div style="width: 800px;margin:auto;">

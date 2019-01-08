@@ -30,8 +30,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 @Controller
 public class TrainController {
 
-	
-
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
     public static String PHARM_URL;
@@ -100,7 +98,7 @@ public class TrainController {
 			city = sCode;
 		}
         URL url = new URL(getURLParam(null) + "&cityCode="+city);
-
+        
 		System.out.println(city);
 		
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -142,6 +140,8 @@ public class TrainController {
         town = town.replaceAll("[\\[\\]]", "");
         town = town	.replaceAll(" ", "");
         //System.out.println(town);
+        
+        
         pw.print(town);
 	}
 	
