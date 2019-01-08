@@ -222,5 +222,12 @@ public class AboardDao implements IAboardDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace1 + "adownComment",areaboard_num);
 	}
+	@Override
+	public boolean Commentreply(CommentDto dto) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = sqlSession.insert(namespace1 + "ainsComment", dto);
+		return count > 0 ? true : false;
+	}
 	
 	} //끝

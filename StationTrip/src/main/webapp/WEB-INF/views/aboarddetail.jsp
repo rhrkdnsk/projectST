@@ -15,16 +15,19 @@
  
 $(document).ready(function(){
 
-    $('#lookbt').click(function () {  
+    $('.lookbt').click(function () {  
     	alert("클릭")
-        if($("#lookreply").css("display") == "none"){   
-            jQuery('#lookreply').css("display", "block");   
+        if($(this).next(".lookreply").css("display") == "none"){   
+            jQuery(this).next(".lookreply").css("display", "block");   
         } else {  
-            jQuery('#lookreply').css("display", "none");   
+            jQuery(this).next(".lookreply").css("display", "none");   
         }  
     });   
    
 });
+
+
+
 
 $(document).ready(function(){
 $('#btnLike').click(function ()  {
@@ -113,11 +116,12 @@ id="like_img" height="50px" width="50px">
 		<dd>-------작성된 댓글이 없습니다.----</dd>
 	</dl>
   </c:when>
+  
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
-  
-  
- 	<div id="step1p">
+ 	
+ 	<c:if test="${cdto.comment_step == 0}">
+   	<div class="step1p">
    	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
@@ -126,33 +130,50 @@ id="like_img" height="50px" width="50px">
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
-
+   	<c:if test="${cdto.comment_step == 0}">
+<button class="lookbt">답글</button>
+</c:if>
+	</c:if>
+	
+	<c:if test="${cdto.comment_step != 0 }">
+		<div class="lookreply" style="display:none">
+   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
+   	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
+   	시간 : ${cdto.comment_time}
+   	좋아요 : ${cdto.comment_like} 
+   	싫어요 : ${cdto.comment_hate} 
+   	리퍼 : ${cdto.comment_refer}
+   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+   	
+   	</div>
+   	
+	</c:if>
 
 <c:if test="${cdto.comment_step == 0}">
 
-<div id="lookreply" style="display:none">
+<div class="lookreply" style="display:none">
    	<form action="aboardrepre.do" method="post">
 <input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
+<input type="hidden" name="areaboard_code" value="${fdto.areaboard_code}">
 <input type="text" name="user_nickname" value="${login_userId}"  readonly>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
-<textarea rows="10" cols="15" name="comment_content" ></textarea>
+<textarea rows="5" cols="15" name="comment_content" ></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
 </form>
 </div>
+
 </c:if>
-
-
-  	<c:if test="${cdto.user_nickname == login_userId}">
+  	
+<c:if test="${cdto.user_nickname == login_userId}">
 <button value="수정" onclick="goUpdate()">수정</button>
 
 <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
 <!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
 
 </c:if>
-<c:if test="${cdto.comment_step == 0}">
-<button id="lookbt">답글</button>
-</c:if>
+
+
 <br />
   	
   	

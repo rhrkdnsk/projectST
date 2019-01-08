@@ -125,4 +125,9 @@ public class AboardService implements IAboardService {
 		// TODO Auto-generated method stub
 		iaboarddao.downComment(areaboard_num);
 	}
+	@Override
+	public boolean Commentreply(CommentDto dto) {
+		// TODO Auto-generated method stub
+		return iaboarddao.Commentreply(dto);
+	}
 }

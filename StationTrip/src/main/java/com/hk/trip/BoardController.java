@@ -676,4 +676,21 @@ public class BoardController {
 			
 	}
 		
+		@RequestMapping(value = "aboardrepre.do")
+		public String aboardcomment2(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_code) {
+			logger.info("자유게시판 페이징 처리", locale);
+			
+			
+			boolean isS = aboardService.Commentreply(dto);
+			int areaboard_num = dto.getAreaboard_num();
+			if(isS) {
+				aboardService.upComment(areaboard_num);
+
+				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
+			} else {
+				System.out.println("커밋오류처리");
+				return "error";
+			}
+	
+	}
 } // 끝

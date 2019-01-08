@@ -32,4 +32,5 @@ public interface IAboardService {
 	public void delLike(int areaboard_num);
 	public void upComment(int areaboard_num);
 	public void downComment(int areaboard_num);
+	public boolean Commentreply(CommentDto dto);
 }
