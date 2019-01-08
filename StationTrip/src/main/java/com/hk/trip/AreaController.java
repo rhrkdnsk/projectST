@@ -112,7 +112,7 @@ public class AreaController {
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&numOfRows=2";
+		param += "&numOfRows=15";
 		param += "&areaCode=" + case1;
 		param += "&sigunguCode=" + case2;
 		param += "&contentTypeId=" + case3;

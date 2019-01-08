@@ -132,10 +132,9 @@ $(function(){
 		contentList();
 	});
 
-	$("#titles").on("click", ".img-side", ".titleText", function(){  // 너 왜 안 되니..
+	$("#titles").on("click", ".img-side", function(){  // 너 왜 안 되니..
 		
 		var con = $(this).parent().attr('id');
-		alert("con = " + con);
-//		location.href='areaDetail.do?con=' + con;
+		location.href='areaDetail.do?con=' + con;
 	});
 });
