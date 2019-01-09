@@ -124,19 +124,24 @@ id="like_img" height="50px" width="50px">
   
   <c:if test="${cdto.comment_step==0 }">
  	<div id="step1p">
-   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
-   	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
-   	시간 : ${cdto.comment_time}
-   	좋아요 : ${cdto.comment_like} 
-   	싫어요 : ${cdto.comment_hate} 
-   	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+<%--    	댓글번호 : ${cdto.comment_num} --%>
+<%--    	 게시판번호 : ${cdto.freeboard_num} --%>
+	
+   	 <h3>${cdto.user_nickname}</h3>
+   	  <p/>
+   <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
+    <h6>${cdto.comment_time}</h6>
+<%--    	좋아요 : ${cdto.comment_like}  --%>
+<%--    	싫어요 : ${cdto.comment_hate}  --%>
+<%--    	리퍼 : ${cdto.comment_refer} --%>
+<%--    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 --> --%>
    	</div>
   	<c:if test="${cdto.user_nickname == login_userId}">
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 </c:if>
 <input type="hidden" value="${cdto.freeboard_num}" class="freeboard_num" />
 <button class="lookbt">답글</button>
+<!--<hr /> 들어올 곳-->
 
 <div class="lookreply" style="display:none">
 
