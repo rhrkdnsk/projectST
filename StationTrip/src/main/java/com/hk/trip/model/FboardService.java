@@ -1,6 +1,7 @@
 package com.hk.trip.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -133,5 +134,11 @@ public class FboardService implements IFboardService {
 	public void downComment(int freeboard_num) {
 		// TODO Auto-generated method stub
 		ifboarddao.downComment(freeboard_num);
+	}
+
+	@Override
+	public List<CommentDto> aReplyList(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return ifboarddao.aReplyList(map);
 	}
 }

@@ -728,4 +728,34 @@ public class BoardController {
 				return "error";
 			}
 		}
+		
+		@RequestMapping(value = "freplyList.do")
+		public String freplyList(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int freeboard_num,int comment_refer) {
+			logger.info("자유게시판 페이징 처리", locale);
+			System.out.println("frnum = "+freeboard_num);
+			System.out.println("refer = "+comment_refer);
+			Map<String, Integer>map = new HashMap<String, Integer>();
+			map.put("freeboard_num", freeboard_num);
+			map.put("comment_refer", comment_refer);
+			List<CommentDto>list = fboardService.aReplyList(map);
+			System.out.println("list = "+list);
+			model.addAttribute("relist",list);
+			model.addAttribute("oriRefer", comment_refer);
+			return "replyList";
+	}
+		@RequestMapping(value = "fdelreplyList.do")
+		public String fdelreplyList(HttpServletRequest request, Locale locale, Model model,CommentDto cdto,int areaboard_code,int comment_refer) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			System.out.println(cdto);
+			boolean isS = fboardService.delComment(cdto);
+			int freeboard_num = cdto.getFreeboard_num();
+			
+			if(isS) {
+				fboardService.downComment(freeboard_num);
+				
+				return "redirect:replyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer;
+			} else {
+				return "error";
+			}
+		}
 } // 끝

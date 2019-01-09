@@ -15,12 +15,19 @@
  
 $(document).ready(function(){
 
-    $('#lookbt').click(function () {  
-    	alert("클릭")
-        if($("#lookreply").css("display") == "none"){   
-            jQuery('#lookreply').css("display", "block");   
+    $('.lookbt').click(function () {  
+    	var freeboard_num = $(".freeboard_num").val();
+    	var comment_refer = $(this).next().next().val()
+	
+    	
+    	alert(comment_refer)
+    	alert($(this).next().css("display"))
+        if($(this).next().css("display") == "none"){
+        	jQuery(this).next().find("iframe").attr("src","freplyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer+"");
+            jQuery(this).next().show();   
         } else {  
-            jQuery('#lookreply').css("display", "none");   
+        	jQuery(this).next().find("iframe").removeAttr("src");
+            jQuery(this).next().hide();   
         }  
     });   
    
@@ -115,7 +122,7 @@ id="like_img" height="50px" width="50px">
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
   
-  
+  <c:if test="${cdto.comment_step==0 }">
  	<div id="step1p">
    	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.freeboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
@@ -125,11 +132,15 @@ id="like_img" height="50px" width="50px">
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
+  	<c:if test="${cdto.user_nickname == login_userId}">
+<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
+</c:if>
+<input type="hidden" value="${cdto.freeboard_num}" class="freeboard_num" />
+<button class="lookbt">답글</button>
 
+<div class="lookreply" style="display:none">
 
-<c:if test="${cdto.comment_step == 0}">
-
-<div id="lookreply" style="display:none">
+   	<iframe class="reList" style="width:1000px;heigth:1000px;"></iframe>
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
 <input type="text" name="user_nickname" value="${login_userId}"  readonly>
@@ -139,27 +150,18 @@ id="like_img" height="50px" width="50px">
 <input type="submit" value="댓글작성" style="float:right">
 </form>
 </div>
-</c:if>
-
-
-  	<c:if test="${cdto.user_nickname == login_userId}">
-<button value="수정" onclick="goUpdate()">수정</button>
-
-<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
-<!--  <button onclick="goCdelete()">삭제</button> cdto.comment, fdto.freeboard_num hidden으로 값 전달  -->
+	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
 
 </c:if>
-<c:if test="${cdto.comment_step == 0}">
-<button id="lookbt">답글</button>
-</c:if>
-<br />
+
+
   	
   	
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
   	      	
-  	      	
+  	      	<br />
      	▲ 다음글 보기<a class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a>
   	<p>
   		▼ 이전글 보기<a class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
