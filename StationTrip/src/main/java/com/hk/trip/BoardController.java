@@ -319,7 +319,6 @@ public class BoardController {
 		
 		if(isS) {
 			fboardService.downComment(freeboard_num);
-
 			return "redirect:fboarddetail.do?freeboard_num="+cdto.getFreeboard_num();
 
 		} else {
@@ -332,6 +331,7 @@ public class BoardController {
 			logger.info("자유게시판 페이징 처리", locale);
 			boolean isS = fboardService.Commentreply(dto);
 			int freeboard_num = dto.getFreeboard_num();
+			System.out.println("repre : " + dto);
 			if(isS) {
 				fboardService.upComment(freeboard_num);
 
@@ -741,10 +741,10 @@ public class BoardController {
 			System.out.println("list = "+list);
 			model.addAttribute("relist",list);
 			model.addAttribute("oriRefer", comment_refer);
-			return "replyList";
+			return "freplyList";
 	}
 		@RequestMapping(value = "fdelreplyList.do")
-		public String fdelreplyList(HttpServletRequest request, Locale locale, Model model,CommentDto cdto,int areaboard_code,int comment_refer) {
+		public String fdelreplyList(HttpServletRequest request, Locale locale, Model model,CommentDto cdto,int comment_refer) {
 			//logger.info("새로 검색시 검색값 없애기", locale);
 			System.out.println(cdto);
 			boolean isS = fboardService.delComment(cdto);
@@ -753,7 +753,7 @@ public class BoardController {
 			if(isS) {
 				fboardService.downComment(freeboard_num);
 				
-				return "redirect:replyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer;
+				return "redirect:freplyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer;
 			} else {
 				return "error";
 			}

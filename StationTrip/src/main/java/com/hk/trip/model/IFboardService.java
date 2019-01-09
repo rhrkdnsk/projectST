@@ -36,5 +36,5 @@ public interface IFboardService {
 	public void upComment(int freeboard_num);
 	public void downComment(int freeboard_num);
 	public List<CommentDto> aReplyList(Map<String,Integer>map);
-
+	public void deleteStep(CommentDto cdto);
 }

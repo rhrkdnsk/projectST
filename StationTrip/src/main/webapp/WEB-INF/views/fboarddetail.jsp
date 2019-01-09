@@ -143,11 +143,12 @@ id="like_img" height="50px" width="50px">
    	<iframe class="reList" style="width:1000px;heigth:1000px;"></iframe>
    	<form action="fboardrepre.do" method="post">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_userId}"  readonly>
+<input type="text" name="user_nickname" value="${login_userId}" style="width:150px"  readonly>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
+<br />
 <textarea rows="10" cols="15" name="comment_content" ></textarea>
-<hr>
 <input type="submit" value="댓글작성" style="float:right">
+<hr>
 </form>
 </div>
 	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
