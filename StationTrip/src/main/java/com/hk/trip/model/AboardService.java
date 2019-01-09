@@ -1,6 +1,7 @@
 package com.hk.trip.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -129,5 +130,11 @@ public class AboardService implements IAboardService {
 	public boolean Commentreply(CommentDto dto) {
 		// TODO Auto-generated method stub
 		return iaboarddao.Commentreply(dto);
+	}
+
+	@Override
+	public List<CommentDto> aReplyList(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return iaboarddao.aReplyList(map);
 	}
 }

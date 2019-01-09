@@ -1,6 +1,7 @@
 package com.hk.trip.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hk.trip.dto.AboardDto;
 import com.hk.trip.dto.CheckLikeDto;
@@ -18,6 +19,7 @@ public interface IAboardService {
 	public boolean deleteBoard(int areaboard_num, int areaboard_code);
 	public boolean insReply(CommentDto dto);
 	public List<CommentDto> getReply(int areaboard_num);
+	public List<CommentDto> aReplyList(Map<String,Integer>map);
 	public AboardDto goBack(int areaboard_num, int areaboard_code);
 	public AboardDto goNext(int areaboard_num, int areaboard_code);
 	public boolean readCount (int areaboard_num);

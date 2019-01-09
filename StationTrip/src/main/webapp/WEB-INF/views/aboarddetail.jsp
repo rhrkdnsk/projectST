@@ -16,12 +16,18 @@
 $(document).ready(function(){
 
     $('.lookbt').click(function () {  
-    	alert("클릭")
-    	alert($(this).next(".lookreply").css("display"))
-        if($(this).next(".lookreply",".lookreply").css("display") == "none"){   
-            jQuery(this).nextAll(".lookreply",".lookreply").show();   
+    	var areaboard_num = $(".areaboard_num").val();
+    	var comment_refer = $(this).next().next().val()
+		var areaboard_code = $("#areaboard_code").val()
+    	
+    	alert(comment_refer)
+    	alert($(this).next().css("display"))
+        if($(this).next().css("display") == "none"){
+        	jQuery(this).next().find("iframe").attr("src","replyList.do?areaboard_num="+areaboard_num+"&comment_refer="+comment_refer+"&areaboard_code="+areaboard_code+"");
+            jQuery(this).next().show();   
         } else {  
-            jQuery(this).nextAll(".lookreply","lookreply").hide();   
+        	jQuery(this).next().find("iframe").removeAttr("src");
+            jQuery(this).next().hide();   
         }  
     });   
    
@@ -134,29 +140,31 @@ id="like_img" height="50px" width="50px">
    <c:if test="${login_userId == cdto.user_nickname}">
  <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
 	</c:if>
+	<input type="hidden" value="${cdto.areaboard_num}" class="areaboard_num">
    	<button class="lookbt">답글</button>
-   	
-   	
+   
+   	<div class="lookreply" style="display:none">
+	   	
+   	<iframe class="reList" style="width:1000px;heigth:1000px;"></iframe>
+   	<form action="aboardrepre.do" method="post">
+		<input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
+		<input type="hidden" name="areaboard_code" id="areaboard_code" value="${fdto.areaboard_code}">
+		<input type="text" name="user_nickname" value="${login_userId}"  readonly>
+		<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
+		<textarea rows="5" cols="15" name="comment_content" ></textarea>
+		<hr>
+		<input type="submit" value="댓글작성" style="float:right">
+	</form>
+	</div>
+	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
 	</c:if>
 	 
 	 
    	
 
-<c:if test="${cdto.comment_step == 0}">
-
-<div class="lookreply" style="display:none">
-   	<form action="aboardrepre.do" method="post">
-<input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
-<input type="hidden" name="areaboard_code" value="${fdto.areaboard_code}">
-<input type="text" name="user_nickname" value="${login_userId}"  readonly>
-<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
-<textarea rows="5" cols="15" name="comment_content" ></textarea>
-<hr>
-<input type="submit" value="댓글작성" style="float:right">
+<%-- <c:if test="${cdto.comment_step == 0}">
 
 
-</form>
-</div>
 
 </c:if>
 <c:if test="${cdto.comment_step != 0 }">
@@ -176,7 +184,7 @@ id="like_img" height="50px" width="50px">
    	<!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
 	</c:if>
    	<!-- if test 가 같아야 실행됨  -->
-
+ --%>
 
   	</c:forEach>
   	</c:otherwise>

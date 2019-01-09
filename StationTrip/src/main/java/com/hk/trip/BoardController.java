@@ -31,6 +31,7 @@ import com.hk.trip.dto.CommentDto;
 import com.hk.trip.dto.FboardDto;
 import com.hk.trip.model.AboardService;
 import com.hk.trip.model.FboardService;
+import com.hk.trip.model.IAboardDao;
 
 /**
  * Handles requests for the application home page.
@@ -643,7 +644,10 @@ public class BoardController {
 			} else {
 				return "error";
 			}
-			}
+		}
+		
+		
+		
 		@RequestMapping(value = "aboardLike.do")
 		public void aboardLike(HttpServletRequest request,HttpServletResponse response, Locale locale, Model model,CheckLikeDto dto) throws IOException {
 			logger.info("좋아요 기능 구현", locale);
@@ -693,4 +697,35 @@ public class BoardController {
 			}
 	
 	}
+		@RequestMapping(value = "replyList.do")
+		public String replyList(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_num,int comment_refer,int areaboard_code) {
+			logger.info("자유게시판 페이징 처리", locale);
+			System.out.println("arnum = "+areaboard_num);
+			System.out.println("refer = "+comment_refer);
+			Map<String, Integer>map = new HashMap<String, Integer>();
+			map.put("areaboard_num", areaboard_num);
+			map.put("comment_refer", comment_refer);
+			List<CommentDto>list = aboardService.aReplyList(map);
+			System.out.println("list = "+list);
+			model.addAttribute("relist",list);
+			model.addAttribute("areaboard_code",areaboard_code);
+			model.addAttribute("oriRefer", comment_refer);
+			return "replyList";
+	}
+		
+		@RequestMapping(value = "adelreplyList.do")
+		public String adelreplyList(HttpServletRequest request, Locale locale, Model model,CommentDto dto,int areaboard_code,int comment_refer) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			
+			boolean isS = aboardService.deleteReply(dto);
+			int areaboard_num = dto.getAreaboard_num();
+			
+			if(isS) {
+				aboardService.downComment(areaboard_num);
+				
+				return "redirect:replyList.do?areaboard_num="+areaboard_num+"&comment_refer="+comment_refer+"&areaboard_code="+areaboard_code;
+			} else {
+				return "error";
+			}
+		}
 } // 끝
