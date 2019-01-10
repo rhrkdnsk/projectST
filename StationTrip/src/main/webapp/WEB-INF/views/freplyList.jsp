@@ -11,10 +11,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+hr {
+background-color:#fafafa;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background-color:#fafafa;">
 
 	<c:if test="${!empty relist}">
 		<c:forEach items="${relist}" var="rdto">
