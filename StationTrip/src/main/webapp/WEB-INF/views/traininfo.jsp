@@ -81,13 +81,8 @@ $(function() {
 	border:none;
 	color: #fff;	
 }
-#h1_train{
-	text-align: center;
-    font-family: cursive;
-	color: #153d73;
-}
 #hr_train{
-	border-color:black;
+	border-color:#153d73;
 }
 #trainframe{
 	width:900px;
@@ -123,10 +118,10 @@ table#infoTable td {
 <title></title>
 </head>
 <body>
-	<div>
-	<h1 id="h1_train">열차 조회</h1>
-	<hr id="hr_train">
+	<div id="amazingtext">
+	<h1>열차 조회</h1>
 	</div>
+	<hr id="hr_train">
 	<div id="trainbody" style="width: 900px;margin: auto;height:800px;">
 	<table id="infoTable">
 		<colgroup>

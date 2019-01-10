@@ -41,7 +41,9 @@ table.type04 td {
 <body>
 
 <div style="text-align:center;	">
+<div id="amazingtext">
 <h1>My Page</h1>
+</div>
 <a href="mypage.do">내정보 관리</a>
 <a href="pwchange.do">비밀번호 변경</a>
 <a href="myinquiry.do">나의 문의글</a>
