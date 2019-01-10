@@ -26,7 +26,7 @@
 <h3>내 정보를 <span style="color:red;">최신정보</span>로 관리해주세요</h3>
 <br>
 </div>
-<div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
+<div style="width: 800px;height: 420px; margin:auto; font-size: initial;">
 	<div>
 		<p><label class="labeltag">이메일</label>${dto.user_email }</p>
 		<p><label class="labeltag">이름 </label>${dto.user_name }</p>

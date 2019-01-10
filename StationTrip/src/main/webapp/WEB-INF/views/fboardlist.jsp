@@ -45,94 +45,7 @@ function setnull() {
 }
 
 </script>
-<style>
 
-* {
-  margin:0; padding:0;
-}
-
-body {
-  font-size:14px;
-  font-family:"맑은 고딕";
-}
-
- a {
-    color:#000;
-   text-decoration:none;
-   cursor:pointer;
-  }
-
-  a:hover {
-    color:yellowgreen;
-    text-decoration:underline;
-  }
-
-#board {
-  width:890px;
-  margin:30px auto 10px;
-}
-
-  #title {
-    height:45px;
-   font-weight:bold;
-   font-size:16px;
-    clear:both;
-  }
-
-.list dl dt {
-  float:left;
-}
-
-.list dl dd {
-  float:left;
-}
-
-   .list .num {width:60px;} 
-.list .sub {width:410px;} 
-.list .name {width:95px;} 
-.list .data {width:140px;} 
-.list .count {width:60px;} 
-
-
-.list dt {
-  width:150px;
-  text-align:center;
-  background-color:lightblue;
-  border-bottom:2px solid black;
-  padding:10px 5px;
-  }
-
-.list dd {
-  width:150px;
-  text-align:center;
-  padding:8px 5px;
-  border-bottom:1px solid #ccc;
-}
-
-  .list dd.sub {
-  text-align:center; padding-left:5px; width:410px;
-}
-
-#board .list-bot {
-   clear: both;
-   text-align:center;
-   padding:10px 10px;
-}
-
-#writebt {
-	margin-left: 790px;
-	margin-top : 10px;
-}
-
-
-/* #notice { */
-/* 	text-align:center; */
-/* border-bottom:10px 5px solid #ccc; */
-/* margin-top: 10px; */
-
-/* } */
-
-</style>
 <jsp:include page="header.jsp" />
 <style type="text/css">
 *, *:before, *:after{
@@ -140,112 +53,75 @@ body {
 }
 
 </style>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<h1>${login_userId}님</h1>
-<h1>현재 페이지 번호${page}</h1>
-<h1> 카운트의 값 : ${totalCount}</h1>
-<h1>totalPage의 값 : ${totalPage }</h1>
-<a href="fboardPage.do">목록</a>
-<div id="board">
-
-<div id="title">
-    <h3>l 게시판</h3>
-</div>
-
-<div class="list" style="border-bottom: 1px; border-bottom-color: black; border-bottom-style: solid; "> 
-
-  <dl>
-   <dt class="num">번호</dt>
-   <dt class="sub">제목</dt>
-   <dt class="name">작성자</dt>
-   <dt class="data">작성일</dt>
-   <dt class="count">조회수</dt>
-   <dt class="count">좋아요</dt>
-   
-  </dl>
-	<dl id="notice" style="text-align:center; font-size:30px; ">공지사항</dl>
-  <dl>
-   <dd class="num">3</dd>
-   <dd class="sub"><a href="#">월요일 입니다.</a></dd>
-   <dd class="name">김민석</dd>
-   <dd class="data">2000-10-10</dd>
-   <dd class="count">1</dd>
-   <dd class="count">1</dd>
-   
-  </dl>
-  
-  <dl>
-   <dd class="num">2</dd>
-   <dd class="sub"><a href="#">화요일 입니다.</a></dd>
-   <dd class="name">김준면</dd>
-   <dd class="data">2000-10-10</dd>
-   <dd class="count">1</dd>
-      <dd class="count">1</dd>
-   
-  </dl>
-
-  <dl>
-   <dd class="num">1</dd>
-   <dd class="sub"><a href="#">수요일 입니다.</a></dd>
-   <dd class="name">김종인</dd>
-   <dd class="data">2000-10-10</dd>
-   <dd class="count">1</dd>
-      <dd class="count">1</dd>
-   
-  </dl>
-
-  
-  <p style="text-align:center; color:white;">----------------------------------------------------------------------------------------------------------------------------------</p>
-  
+<div id="container" class="container w3-center" >
+<div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>공 지 사 항</h1></div>
+<table class="table table-hover">
+	<col width="50px">
+	<col width="100px">
+	<col width="100px">
+	<col width="150px">
+	<col width="50px">
+	<col width="50px">
+	<col width="50px">
+  <tr>
+   <td class="w3-center">번호</td>
+   <td class="w3-center">제목</td>
+   <td class="w3-center">작성자</td>
+   <td class="w3-center">작성일</td>
+   <td class="w3-center">조회수</td>
+   <td class="w3-center">좋아요</td>
+   <td class="w3-center">분류</td>
+  </tr>  
 	<c:choose>
 	<c:when test="${empty list}">
-	<dl>	
-		<dd>-------작성된 글이 없습니다.----</dd>
-	</dl>
+	<tr>	
+		<td>-------작성된 글이 없습니다.----</td>
+	</tr>
   </c:when>
   <c:otherwise>
   <c:forEach items="${list}" var="fdto">
-  <dl>
-  	<dd class="num">${fdto.freeboard_num}</dd>
+  <tr>
+  	<td class="w3-center">${fdto.freeboard_num}</td>
   	
   	<%
   		if(session.getAttribute("login_userId") == null) {
   			%>
-	  			<dd class="sub">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</dd>
+	  			<td class="w3-center">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</td>
 	
 	<%
   		} else {
   			%>
-  			<dd class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</a></dd>
+  			<td class="sub"><a class="title" href="fboarddetail.do?freeboard_num=${fdto.freeboard_num}">${fdto.freeboard_title} [${fdto.freeboard_commentcount}]</a></td>
   			<%
   		}
   	
   	%>
-  	<dd class="name">${fdto.user_nickname}</dd>
-  	<dd class="data">${fdto.freeboard_time}</dd>
-  	<dd class="count">${fdto.freeboard_view}</dd>
-  	<dd class="count">${fdto.freeboard_like}</dd>
-  	</dl>
-  	
+  	<td class="w3-center">${fdto.user_nickname}</td>
+  	<td class="w3-center">${fdto.freeboard_time}</td>
+  	<td class="w3-center">${fdto.freeboard_view}</td>
+  	<td class="w3-center">${fdto.freeboard_like}</td>
+  	<td class="w3-center">${fdto.freeboard_category}</td>
+  	</tr>
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-	
-   
- 
-   
-   
-   
-
+  	<tr>
 <%
   		if(session.getAttribute("login_userId") != null) {
   			%>
-  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			 <td><button type="button" id="writebt" onclick="locainsert()">글쓰기</button></td>
   			<%
   		} 	
   	%>
-<div class="list-bot">
+	<tr>
+	<td colspan="10">
 <p>
 <c:if test="${page-1 != 0 }">
 						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
@@ -268,26 +144,13 @@ body {
 		}
 %>
 
-
-
- <!--  <a href="#">◀</a>
-  <a href="#">◁</a>
-  <a href="#">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a> 
-  <a href="#">▷</a>
-  <a href="#">▶</a> -->
   <c:if test="${page+1 <= totalPage}">
   <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
   </c:if>
 </p>
-</div>
-</div>
-</div>
-
-
+</td>
+<tr>
+</table>
 <form action="fboardPage.do?pageNum=1" name="search" method="post">
 
 <select name="keyField" size="1">
@@ -310,7 +173,7 @@ body {
 <option value="15" onclick="lookBoard()">15개씩보기</option>
 </select>
 </form>
-
+</div>
 <button onclick="setnull()">목록으로</button>
 
 <jsp:include page="footer.jsp" />

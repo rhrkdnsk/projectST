@@ -16,6 +16,99 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="/trip/resources/js/train_info.js"></script>
+<style type="text/css">
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+  	margin : 20px 10px;
+  	
+}
+table.type04 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type04 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type03 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+  	margin : 20px 10px;
+  	
+}
+table.type03 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: none;
+    color: #153d73;	
+}
+table.type03 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: none;
+}
+
+.list-bot{
+    text-align: center;
+    float: right;
+    position: relative;
+    left: -50%;}
+
+
+.button-7{
+  width:60px;
+  height:30px;
+  border:2px solid #34495e;
+  float:left;
+  left: 50%;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:5px;
+}
+.button-7 a{
+  font-family:arial;
+  font-size:16px;
+  color:#34495e;
+  text-decoration:none;
+  line-height:30px;
+  transition:all .5s ease;
+  z-index:2;
+  position:relative;
+}
+.eff-7{
+  width:60px;
+  height:30px;
+  border:0px solid #34495e;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+  box-sizing:border-box;
+}
+.button-7:hover .eff-7{
+  border:30px solid #34495e;
+}
+.button-7:hover a{
+  color:#fff;
+}
+</style>
 <script type="text/javascript">
 
 var trpage;
@@ -82,21 +175,22 @@ function tnum(data){
 	console.log("tnum data = "+data)
 	for(var i=1; i<= data; i++){
 		console.log("for문 실행")
-		$(".list-bot").append("<button onclick='straingo(" + i + ")'>" + i + "</button>")
+		$(".list-bot").append("<div onclick='straingo(" + i + ")' class='button-7'><div class='eff-7'></div><a>" + i + "</a></div>")
 	}
 }
 </script>
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+
+	<table class="type03">
 		<colgroup>
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
 		</colgroup>
 		<tr>
 			<th>차량 종류</th>
@@ -107,14 +201,14 @@ function tnum(data){
 			<th>운임</th>
 		</tr>
 	</table>
-	<table id="traininfo" onchange="location.reload()" style="text-align:center;">
+	<table id="traininfo" onchange="location.reload()" class="type04">
 		<colgroup>
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
-			<col width="141px">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
+			<col width="16%">
 		</colgroup>
 		<tr>
 			<th></th>
@@ -127,7 +221,7 @@ function tnum(data){
 	</table>
 	<br>
 	<br>
-	<div class="list-bot"  style="text-align:center;">
+	<div class="list-bot" >
 		<p></p>
 	</div>
 </body>

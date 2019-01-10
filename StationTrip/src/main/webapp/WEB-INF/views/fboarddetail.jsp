@@ -19,7 +19,53 @@
 
 
 <script>
+<<<<<<< HEAD
 	
+=======
+ 
+$(document).ready(function(){
+
+    $('.lookbt').click(function () {  
+    	var freeboard_num = $(".freeboard_num").val();
+    	var comment_refer = $(this).next().next().val()
+		console.log(comment_refer)
+    	
+    	alert(comment_refer)
+    	alert($(this).next().css("display"))
+        if($(this).next().css("display") == "none"){
+        	jQuery(this).next().find("iframe").attr("src","freplyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer+"");
+            jQuery(this).next().show();   
+        } else {  
+        	jQuery(this).next().find("iframe").removeAttr("src");
+            jQuery(this).next().hide();   
+        }  
+    });   
+   
+});
+
+$(document).ready(function(){
+$('#btnLike').click(function ()  {
+    $.ajax({
+        url:"fboardLike.do",
+        data: {user_nickname: '${login_userId}', board_num: '${fdto.freeboard_num}' },
+        type:"post",
+        success : function (data) {
+            
+            var result = JSON.parse(data);
+            
+
+            if(result.status == 404){
+                $('img#like_img').attr('src', '/trip/resources/images/empty heart.jpg');
+            } else {
+                $('img#like_img').attr('src', '/trip/resources/images/heart.png');
+            }
+            $('span#like_count').html(result.like_count);
+        }
+    })
+});
+
+});	
+>>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
 	
 	$(document).ready(
 			function() {

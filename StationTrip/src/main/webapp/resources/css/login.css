@@ -3,6 +3,34 @@
 a {
 	color: #000;
 }
+.idCheck{
+	height: 10px;
+}
+#pwSearch{
+	float: right;
+   	margin-right: 14%;
+}
+
+#loginbtn{
+	width: 240px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+#tsign,#tsignCan{
+	width:240px;
+	margin-top: 5px;
+}
+#signBtn{
+	width:240px;
+}
+#signBtn2{
+	width: 118px;
+    margin-top: 3px;
+    margin-bottom: 0;
+    margin-left: 1px;
+    margin-right: 1px;
+    float: left;
+}
 
 .mask {
 	width: 100%;
@@ -21,54 +49,53 @@ a {
 	position: relative;
 }
 
-#loginModalLayer .loginModalContent  {
-	width: 440px;
-	height: 400px;
-	padding: 0px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
+#loginModalLayer .loginModalContent {
+	width: 340px;
+    height: 400px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    z-index: 11;
+    background: #fff;
+    color: black;
 }
+
 #signModalLayer {
 	display: none;
 	position: relative;
 }
 
-
-#signModalLayer .signModalContent  {
-	width: 440px;
-	height: 400px;
-	padding: 0px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
+#signModalLayer .signModalContent {
+	width: 340px;
+    height: 400px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    z-index: 11;
+    background: #fff;
+    color: black;
 }
 
-#searchModalLayer{
+#searchModalLayer {
 	display: none;
 	position: relative;
 }
 
-
 #searchModalLayer .searchModalContent {
-	width: 440px;
-	height: 400px;
-	padding: 0px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
+	width: 340px;
+    height: 400px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    z-index: 11;
+    background: #fff;
+    color: black;
 }
 
 #resetModalLayer {
@@ -76,54 +103,150 @@ a {
 	position: relative;
 }
 
-
-#resetModalLayer .resetModalContent  {
-	width: 440px;
-	height: 400px;
-	padding: 0px;
-	border: 1px solid #ccc;
-	position: fixed;
-	left: 50%;
-	top: 25%;
-	z-index: 11;
-	background: #fff;
-	color: black;
+#resetModalLayer .resetModalContent {
+	width: 340px;
+    height: 400px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    z-index: 11;
+    background: #fff;
+    color: black;
 }
 
 .labeltag {
-	float:left;
-	width:80px;
+	float: left;
+	width: 80px;
 }
 
 .labeltagpw {
-	float:left;
-	width:130px;
+	float: left;
+	width: 130px;
 }
 
-fieldset{
-	margin:0;
-	padding:0;
-	width: 438px;
-	height: 400px;
+.login_fieldl {
+	margin: 0;
+    width: 340px;
+    height: 400px;
+    border: none;
 }
-fieldset > legend{
-	text-align:center;
+
+.login_fieldl > legend {
+	text-align: center;
+	padding-top: 30px;
 }
+
+.login_inputbox{
+	width: 240px;
+	margin-bottom:5px;
+	border-radius:5px;
+}
+#femailNumber{
+	width: 185px;
+    float: left;
+}
+#femailBtn{
+	font-size: 5px;
+    margin: 0;
+    float: left;
+    height: 33px;
+}
+
 
 /* 모달사용시 화면가리기용 */
-#mask {  
-      position:absolute;  
-      z-index:9000;  
-      background-color:#000;  
-      display:none;  
-      left:0;
-      top:0;
-    }
-    .window{
-      display: none;
-      position:absolute;  
-      left:100px;
-      top:100px;
-      z-index:10000;
-    }
+#mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+.window {
+	display: none;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	z-index: 10000;
+}
 /*---------------*/
+.login_ul li {
+	list-style: none;
+}
+
+
+/*	버튼 CSS	*/
+.login_button{
+  background:#4C69BA;
+  color:#fff;
+  border:none;
+  position:relative;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius: 25px;
+}
+
+.login_button:hover{
+  background:#fff;
+  color:#4C69BA;
+}
+.login_button:before,.login_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #4C69BA;
+  transition:400ms ease all;
+}
+.login_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.login_button:hover:before,.login_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+.login_button2{
+  background:#4C69BA;
+  color:#fff;
+  border:none;
+  position:relative;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius:10px;
+}
+.login_button2:hover{
+  background:#fff;
+  color:#4C69BA;
+}
+.login_button2:before,.login_button2:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #4C69BA;
+  transition:400ms ease all;
+}
+.login_button2:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.login_button2:hover:before,.login_button2:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

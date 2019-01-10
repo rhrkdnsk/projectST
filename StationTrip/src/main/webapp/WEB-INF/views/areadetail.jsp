@@ -12,7 +12,7 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/areadetail.js"></script>
-
+<script type="text/javascript" src="/trip/resources/js/area.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관광지 정보</title>
 </head>
@@ -20,6 +20,7 @@
 <form>
 	<h1 id='opq'>관광지 정보</h1>
 	<input type='hidden' value='${con}' id='contentId'>
+	<input type='hidden' value='${type}' id='contentTypeId'>
 	<div id='area-detail'>
 		<div id='area-detail-img'>
 		<!-- 이미지 -->
@@ -36,6 +37,12 @@
 		<div id='area-detail-homepage'>
 		<!-- 홈페이지 url -->
 		</div>
+		<div id='area-detail-infotext'>
+		
+		</div>
+	</div>
+	<div>
+		<button id='backPage' onclick="areaboard.do">돌아가기</button>
 	</div>
 </form>
 <%@include file="footer.jsp"%>

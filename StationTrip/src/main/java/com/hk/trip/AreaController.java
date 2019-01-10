@@ -112,7 +112,7 @@ public class AreaController {
 		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&numOfRows=15";
+		param += "&numOfRows=5";
 		param += "&areaCode=" + case1;
 		param += "&sigunguCode=" + case2;
 		param += "&contentTypeId=" + case3;
@@ -173,23 +173,31 @@ public class AreaController {
 	}
 	
 	@RequestMapping(value = "areaDetail.do", method = RequestMethod.GET)
-	public String areaDetail(String con, Locale locale, Model model) {
+	public String areaDetail(String con, String type, Locale locale, Model model) {
 		logger.info("관광지 상세보기 이동.", locale);
-		model.addAttribute("con", con);
 		
+		
+		model.addAttribute("type", type);
+		model.addAttribute("con", con);
 		
 		return "areadetail";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "detailView.do")
-	public Map<String, String> detailView(String con, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	public Map<String, String> detailView(String con, String type,
+			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("관광지 상세보기.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
 		
+		if(type == null) {
+			type = "12";
+		}
+		
 		String detailUrl = null;
+		String infoUrl = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		
@@ -197,6 +205,12 @@ public class AreaController {
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + con;
+		param += "&contentTypeId=" + type;
+
+		
+		
+		infoUrl = URL + "detailInfo" + param;
+		
 		param += "&overviewYN=Y";
 		param += "&addrinfoYN=Y";
 		param += "&firstImageYN=Y";
@@ -204,13 +218,14 @@ public class AreaController {
 		/* 컨텐츠 소개 조회 */
 		detailUrl = URL + serviceName + param;
 		
-		System.out.println("*******************************************************");
-		System.out.println(detailUrl);
-		System.out.println("*******************************************************");
 		Document detailView = null;
+		Document infoView = null;
 		try {
 			detailView = Jsoup.connect(detailUrl).get();
+			infoView = Jsoup.connect(infoUrl).get();
 			map.put("detailView", detailView.toString());
+			map.put("infoView", infoView.toString());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

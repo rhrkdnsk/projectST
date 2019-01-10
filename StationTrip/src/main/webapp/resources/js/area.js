@@ -133,8 +133,11 @@ $(function(){
 	});
 
 	$("#titles").on("click", ".img-side", function(){  // 너 왜 안 되니..
-		
 		var con = $(this).parent().attr('id');
-		location.href='areaDetail.do?con=' + con;
+		if(case3_Code == null){
+			case3_Code = "12";
+		}
+		location.href='areaDetail.do?con=' + con + '&type=' + case3_Code;
 	});
+	
 });

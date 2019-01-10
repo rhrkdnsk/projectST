@@ -108,10 +108,9 @@
 	   <div class="window">
 		   <div id="loginModalLayer">
 				<div class="loginModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>로그인</legend>
-						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
 							<button class="loginBtn loginBtn--facebook"  id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
 							  	if(this.value === 'Login'){
@@ -164,12 +163,9 @@
 							<li>
 							</li>
 						</ul>
-						<ul>
-							<li>
-								<span class="labeltag">
-								<label>이메일</label>
-								</span>
-								<input type="text" id="email" <%   
+						<ul class="login_ul">
+							<li style="margin-bottom:5px;">
+								<input type="text" class="login_inputbox" id="email" placeholder="Email" <%   
 								Cookie[] cookies = request.getCookies() ;
 								String cName = null;
 							    String cValue = null;
@@ -188,13 +184,10 @@
 								%>/>
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>비밀번호</label>
-								</span>
-								<input type="password" id="password" onkeydown = "if (event.keyCode == 13)
+								<input type="password" class="login_inputbox"  id="password" placeholder="Password"  onkeydown = "if (event.keyCode == 13)
                        				document.getElementById('loginbtn').click()"/>
 							</li>
-							<li>
+							<li style="font-size:3px;margin-top:10px;">
 								<input type="checkbox" id="idCheck" <%   							     
 							    if(cookies != null){
 							    	for(int i=0; i < cookies.length; i++){
@@ -209,11 +202,11 @@
 							    	}
 							    }
 								%>>아이디 저장
-								<a href="#searchModalLayer" class="searchModalLink aright" >비밀번호 찾기</a>
+								<a href="#searchModalLayer" class="searchModalLink aright" ><button class="login_button" id="pwSearch" >비밀번호 찾기</button></a>
 							</li>
 							<li>
-								<button id="loginbtn">로그인</button>
-								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
+								<button id="loginbtn" class="login_button">로그인</button>
+								<a href="#signModalLayer" class="signModalLink aright" ><button id="signBtn" class="login_button">회원가입</button></a>
 							</li>
 						</ul>
 					</fieldset>
@@ -221,25 +214,26 @@
 			</div>
 			<div id="searchModalLayer">
 				<div class="searchModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>비밀번호 찾기</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
-								<span class="labeltag">
-								<label>이메일</label>
-								</span>
-								<input type="text" id="femail" />
+								<input type="text" id="femail"  class="login_inputbox"  placeholder="Email" />
 							</li>
 							<li>
-								<input type="text" id="femailNumber" placeholder="인증번호"/>
-								<button onclick="ajaxEmail()">인증번호 전송</button>
+								<input type="text" id="femailNumber"  class="login_inputbox"  placeholder="인증번호"/>
+								<button id="femailBtn" class="login_button2" style="border-radius: unset;" onclick="ajaxEmail()">인증번호<br>전송</button>
 							</li>
 							<li>
-								<a href="#resetModalLayer" class="resetModalLink aright"">비밀번호 재설정</a>
+							<br><br>
 							</li>
 							<li>
-								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
+								<a href="#resetModalLayer" class="resetModalLink aright"><button id="signBtn" class="login_button2">비밀번호 재설정</button></a>
+							</li>
+							<li>
+								<a href="#signModalLayer" class="signModalLink aright" ><button id="signBtn2" class="login_button2">회원가입</button></a>
+								<input type="button" id="signBtn2" class="can aright login_button2" value="취소" />	
 							</li>
 						</ul>
 					</fieldset>
@@ -247,24 +241,18 @@
 			</div>
 			<div id="resetModalLayer">
 				<div class="resetModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>비밀번호 재설정</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
-								<span class="labeltag">
-								<label >비밀번호</label>
-								</span>
-								<input type="password" id="remail" />
+								<input type="password" id="remail" class="login_inputbox"  placeholder="Password" />
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>확인</label>
-								</span>
-								<input type="password" id="remailchk" />
+								<input type="password" id="remailchk" class="login_inputbox"  placeholder="Password 확인"/>
 							</li>
 							<li>
-								 <a href="#loginModalLayer" class="loginModalLink2">변경 완료</a>
+								 <a href="#loginModalLayer" class="loginModalLink2"><button id="signBtn" class="login_button2">변경 완료</button></a>
 							</li>
 						</ul>
 					</fieldset>
@@ -272,44 +260,28 @@
 			</div>
 			  	<div id="signModalLayer">
 					<div class="signModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>회원가입</legend>
-						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
-								<span class="labeltag">
-								<label>이메일</label>
-								</span>
-								<input type="text" id="Semail" />
+								<input type="text" id="Semail" class="login_inputbox" placeholder="Email" />
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>비밀번호</label>
-								</span>
-								<input type="password" id="Spassword" />
+								<input type="password" id="Spassword" class="login_inputbox"  placeholder="Password"/>
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>닉네임</label>
-								</span>
-								<input type="text" id="Snickname" />
+								<input type="text" id="Snickname" class="login_inputbox"  placeholder="닉네임"/>
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>이름</label>
-								</span>
-								<input type="text" id="Sname" />
+								<input type="text" id="Sname" class="login_inputbox"  placeholder="이름" />
 							</li>
 							<li>
-								<span class="labeltag">
-								<label>전화번호</label>
-								</span>
-								<input type="text" id="Sphone" onkeydown = "if (event.keyCode == 13)
+								<input type="text" id="Sphone"  class="login_inputbox" placeholder="전화번호" onkeydown = "if (event.keyCode == 13)
                        				document.getElementById('tsign').click()"/>
 							</li>
 							<li>
-								<button id="tsign">회원가입</button>
-								<input type="button" class="can aright" value="취소" />	
+								<button id="tsign" class="login_button2">회원가입</button>
+								<input type="button" id="tsignCan" class="can aright login_button2" value="취소" />	
 							</li>
 						</ul>
 					</fieldset>
