@@ -19,9 +19,6 @@
 
 
 <script>
-<<<<<<< HEAD
-	
-=======
  
 $(document).ready(function(){
 
@@ -65,7 +62,7 @@ $('#btnLike').click(function ()  {
 });
 
 });	
->>>>>>> branch 'master' of https://github.com/rhrkdnsk/projectST.git
+
 	
 	$(document).ready(
 			function() {
