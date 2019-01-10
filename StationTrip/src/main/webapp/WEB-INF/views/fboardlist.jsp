@@ -112,16 +112,10 @@ function setnull() {
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-  	<tr>
-<%
-  		if(session.getAttribute("login_userId") != null) {
-  			%>
-  			 <td><button type="button" id="writebt" onclick="locainsert()">글쓰기</button></td>
-  			<%
-  		} 	
-  	%>
+  	
+
 	<tr>
-	<td colspan="10">
+	<td colspan="6">
 <p>
 <c:if test="${page-1 != 0 }">
 						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
@@ -148,7 +142,16 @@ function setnull() {
   <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
   </c:if>
 </p>
-</td>
+</td><td>
+<%
+  		if(session.getAttribute("login_userId") != null) {
+  			%>
+  			
+  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			 
+  			<%
+  		} 	
+  	%></td>
 <tr>
 </table>
 <form action="fboardPage.do?pageNum=1" name="search" method="post">

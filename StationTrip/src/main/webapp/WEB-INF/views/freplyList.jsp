@@ -20,7 +20,9 @@ background-color:#fafafa;
 <title>Insert title here</title>
 </head>
 <body style="background-color:#fafafa;">
-
+	<c:if test="${empty relist}">
+		<p style="color:gray;text-align:center;">등록된 댓글이 없습니다</p>
+	</c:if>
 	<c:if test="${!empty relist}">
 		<c:forEach items="${relist}" var="rdto">
 			<div class="lookreply">
