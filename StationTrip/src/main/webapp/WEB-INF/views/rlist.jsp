@@ -7,7 +7,10 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
@@ -75,16 +78,16 @@
 		text-overflow: ellipsis;
 		white-space:nowrap;
 	}
-	textarea[name=testAjax]{
-		position: fixed;
-		left: 100px;
-		top:150px;
-	}
+/* 	textarea[name=testAjax]{ */
+/* 		position: fixed; */
+/* 		left: 100px; */
+/* 		top:150px; */
+/* 	} */
 </style>
 </head>
 <body>
-<div id="container" class="list">
-<h1>공지사항</h1>
+<div id="container" class="container w3-center" >
+<div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>공 지 사 항</h1></div>
 <a href="rlist.do"></a>
 <%
   		if(session.getAttribute("login_admin") == null) {
@@ -115,17 +118,17 @@
 	<%
   		} else {
   			%>
- 		<th><input type="checkbox" name="all" onclick="allSel(this.checked)" /></th>
+ 		<th class="w3-center"><input type="checkbox" name="all" onclick="allSel(this.checked)" class="w3-center"/></th>
  					<%
   		}
   	
   	%>
 		
-		<th>번호</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>이름</th>
-		<th>시간</th>
+		<th class="w3-center">번호</th>
+		<th class="w3-center">제목</th>
+		<th class="w3-center">내용</th>
+		<th class="w3-center">이름</th>
+		<th class="w3-center">시간</th>
 		
 	</tr>
 	<c:choose>
@@ -154,7 +157,7 @@
 					<td><a class="titleval"href="rdetail.do?seq=${dto.seq}">${dto.title}</a></td>
 					<td><a class="titleval"href="rdetail.do?seq=${dto.seq}">${dto.content}</a></td>
 					<td>${dto.id}</td>
-					<td>${dto.regdate}</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.regdate}"/> </td>
 					
 				</tr>
 			</c:forEach>

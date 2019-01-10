@@ -7,8 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <style type="text/css">
 
@@ -46,8 +49,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div id="container" class="list">
-<h1>FQA</h1>
+<div id="container" class="container w3-center" >
+<div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>FAQ</h1></div>
 <a href="qlist.do"></a>
 <div style="height: 300px;">
 <table class="table table-hover">
@@ -55,7 +58,7 @@ $(document).ready(function(){
 
 	<c:choose>
 		<c:when test="${empty list}">
-			<tr><td colspan="10">---작성된 글이 없습니다.---</td></tr>
+			<tr class="w3-center"><td colspan="10">---작성된 글이 없습니다.---</td></tr>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${list}" var="dto">
@@ -64,15 +67,15 @@ $(document).ready(function(){
 			<%
   		if(session.getAttribute("login_admin") == null) {
   			%>
-	  			<td><div class="flip">${dto.faq_title}</div>
+	  			<td class="w3-center"><div class="flip">${dto.faq_title}</div>
 				<div class="panel">${dto.faq_content}</div></td>
 	
 		<%
   		} else {
   			%>
-		<td>${dto.faq_num}</td>
-		<td>${dto.faq_title}</td>
-		<td><a  class="titleval"href="qdetail.do?faq_num=${dto.faq_num}">${dto.faq_content}</a></td>
+		<td class="w3-center">${dto.faq_num}</td>
+		<td class="w3-center">${dto.faq_title}</td>
+		<td class="w3-center"><a  class="titleval"href="qdetail.do?faq_num=${dto.faq_num}">${dto.faq_content}</a></td>
 	 			<%
   		}
   	

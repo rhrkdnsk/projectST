@@ -89,7 +89,7 @@ public class ManagerController {
 		logger.info("글여러개삭제하기 {}.", locale);
 		boolean fdto=managerService.smulDelBoard(chk);
 		if(fdto) {
-			return "redirect:glist.do";
+			return "redirect:glist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "글여러개삭제하기실패");
 			return "error";
@@ -105,7 +105,7 @@ public class ManagerController {
 		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
-		int countList = 10;
+		int countList = 15;
 		System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
 
 
