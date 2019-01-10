@@ -12,6 +12,11 @@
 		SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM =
 		#{freeboard_num} ORDER BY COMMENT_REFER,COMMENT_STEP ASC
 	</select>
+	
+	<select id="aReplyList" resultType="CommentDto"
+		parameterType="Map">
+		SELECT * FROM T_COMMENT WHERE AREABOARD_NUM = #{areaboard_num} AND COMMENT_REFER = #{comment_refer} AND COMMENT_STEP > 0
+	</select>
 
 	<insert id="writeReply" parameterType="CommentDto">
 		
@@ -26,7 +31,9 @@ FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num}),#{comment_content},0,0 )
 
    <insert id="insComment" parameterType="CommentDto">
 INSERT INTO T_COMMENT  
-	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}),0,#{comment_content},0,0 ) 
+	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),#{freeboard_num},NULL,#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}),#{comment_refer},#{comment_content},0,0 ) 
+        
+       
         </insert>
         
 	<delete id="bcDelete" parameterType="int">
@@ -66,6 +73,14 @@ INSERT INTO T_COMMENT
 INSERT INTO T_COMMENT  
 	  VALUES ((SELECT NVL(MAX(COMMENT_NUM)+1,0)FROM T_COMMENT),NULL,#{areaboard_num},#{user_nickname},SYSDATE,0,(SELECT NVL(MAX(COMMENT_STEP)+1,0)FROM T_COMMENT WHERE AREABOARD_NUM = #{areaboard_num} AND COMMENT_REFER = #{comment_refer}),#{comment_refer},#{comment_content},0,0 ) 
         </insert>
+<select id="fReplyList" resultType="CommentDto"
+		parameterType="Map">
+		SELECT * FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer} AND COMMENT_STEP > 0
+	</select>
+
+<delete id="andCommentdel" parameterType="CommentDto">
+    DELETE FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer} AND COMMENT_STEP > 0
+</delete>
 
 </mapper>
 

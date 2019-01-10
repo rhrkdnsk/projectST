@@ -229,5 +229,11 @@ public class AboardDao implements IAboardDao {
 		count = sqlSession.insert(namespace1 + "ainsComment", dto);
 		return count > 0 ? true : false;
 	}
+
+	@Override
+	public List<CommentDto> aReplyList(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace1+"aReplyList", map);
+	}
 	
 	} //끝

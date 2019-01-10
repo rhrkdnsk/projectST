@@ -29,9 +29,8 @@ import com.hk.trip.dto.AreaDto;
 
 @Controller
 public class AreaController {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	private AreaDto AreaDto;
 
 	@RequestMapping(value = "areaboard.do", method = RequestMethod.GET)
 	public String areaboard(Locale locale, Model model) {
@@ -74,11 +73,6 @@ public class AreaController {
 		param += "&areaCode=" + case1;
 		urlCase2 = URL + serviceName + param;
 
-
-		System.out.println("*******************************************************");
-		System.out.println(urlCase1);
-		System.out.println(urlCase2);
-		System.out.println("*******************************************************");
 		Document areaCase1 = null;
 		Document areaCase2 = null;
 		try {
@@ -129,13 +123,10 @@ public class AreaController {
 		/* 컨텐츠 조회 */
 		urlCase3 = URL + serviceName + param;
 		
-		System.out.println("*******************************************************");
-		System.out.println(urlCase3);
-		System.out.println("*******************************************************");
 		Document areaContent = null;
 		try {
 			areaContent = Jsoup.connect(urlCase3).get();
-			map.put("areaContent", areaContent.toString());
+			map.put("content", areaContent.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -159,23 +150,21 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
+		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + x;
 		param += "&overviewYN=Y";
+		param += "&firstImageYN=Y";
+		param += "&defaultYN=Y";
+		
 		/* 컨텐츠 소개 조회 */
 		urlCase4 = URL + serviceName + param;
 		
-		System.out.println("*******************************************************");
-		System.out.println(urlCase4);
-		System.out.println(x);
-		System.out.println("*******************************************************");
 		Document overView = null;
 		try {
 			overView = Jsoup.connect(urlCase4).get();
 			map.put("overView", overView.toString());
-			System.out.println("*** : "+overView.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -184,10 +173,49 @@ public class AreaController {
 	}
 	
 	@RequestMapping(value = "areaDetail.do", method = RequestMethod.GET)
-	public String areaDetail(Locale locale, Model model) {
+	public String areaDetail(String con, Locale locale, Model model) {
 		logger.info("관광지 상세보기 이동.", locale);
-
+		model.addAttribute("con", con);
+		
+		
 		return "areadetail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "detailView.do")
+	public Map<String, String> detailView(String con, Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
+		logger.info("관광지 상세보기.", locale);
+		res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		Map<String,String>map=new HashMap<String, String>();
+		
+		String detailUrl = null;
+		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
+		String serviceName = "detailCommon";
+		String param = "?"; 		
+		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "&MobileOS=ETC";		
+		param += "&MobileApp=Test";
+		param += "&contentId=" + con;
+		param += "&overviewYN=Y";
+		param += "&addrinfoYN=Y";
+		param += "&firstImageYN=Y";
+		param += "&defaultYN=Y";
+		/* 컨텐츠 소개 조회 */
+		detailUrl = URL + serviceName + param;
+		
+		System.out.println("*******************************************************");
+		System.out.println(detailUrl);
+		System.out.println("*******************************************************");
+		Document detailView = null;
+		try {
+			detailView = Jsoup.connect(detailUrl).get();
+			map.put("detailView", detailView.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
 	}
 }
 

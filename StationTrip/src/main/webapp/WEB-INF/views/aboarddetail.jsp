@@ -16,11 +16,18 @@
 $(document).ready(function(){
 
     $('.lookbt').click(function () {  
-    	alert("클릭")
-        if($(this).next(".lookreply").css("display") == "none"){   
-            jQuery(this).next(".lookreply").css("display", "block");   
+    	var areaboard_num = $(".areaboard_num").val();
+    	var comment_refer = $(this).next().next().val()
+		var areaboard_code = $("#areaboard_code").val()
+    	
+    	alert(comment_refer)
+    	alert($(this).next().css("display"))
+        if($(this).next().css("display") == "none"){
+        	jQuery(this).next().find("iframe").attr("src","replyList.do?areaboard_num="+areaboard_num+"&comment_refer="+comment_refer+"&areaboard_code="+areaboard_code+"");
+            jQuery(this).next().show();   
         } else {  
-            jQuery(this).next(".lookreply").css("display", "none");   
+        	jQuery(this).next().find("iframe").removeAttr("src");
+            jQuery(this).next().hide();   
         }  
     });   
    
@@ -130,50 +137,60 @@ id="like_img" height="50px" width="50px">
    	리퍼 : ${cdto.comment_refer}
    	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
    	</div>
-   
+   <c:if test="${login_userId == cdto.user_nickname}">
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
+	</c:if>
+	<input type="hidden" value="${cdto.areaboard_num}" class="areaboard_num">
    	<button class="lookbt">답글</button>
    
+   	<div class="lookreply" style="display:none">
+	   	
+   	<iframe class="reList" style="width:1000px;heigth:1000px;"></iframe>
+   	<form action="aboardrepre.do" method="post">
+		<input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
+		<input type="hidden" name="areaboard_code" id="areaboard_code" value="${fdto.areaboard_code}">
+		<input type="text" name="user_nickname" value="${login_userId}"  readonly>
+		<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
+		<textarea rows="5" cols="15" name="comment_content" ></textarea>
+		<hr>
+		<input type="submit" value="댓글작성" style="float:right">
+	</form>
+	</div>
+	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
 	</c:if>
-	
-	<c:if test="${cdto.comment_step != 0 }">
-	
-		<div class="lookreply" style="display:none">
-   	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
+	 
+	 
+   	
+
+<%-- <c:if test="${cdto.comment_step == 0}">
+
+
+
+</c:if>
+<c:if test="${cdto.comment_step != 0 }">
+	<div class="lookreply" style="display:none">
+	댓글번호 : ${cdto.comment_num} 게시판번호 : ${cdto.areaboard_num} 아이디 :${cdto.user_nickname}
    	내용 : <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
    	시간 : ${cdto.comment_time}
    	좋아요 : ${cdto.comment_like} 
    	싫어요 : ${cdto.comment_hate} 
    	리퍼 : ${cdto.comment_refer}
-   	스텝 : ${cdto.comment_step} <!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
-   	
-   	</div>
-   	
+   	스텝 : ${cdto.comment_step}
+   		<c:if test="${login_userId == cdto.user_nickname}">
+
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button>삭제</button></a>
 	</c:if>
+   	</div>
+   	<!-- 답글버튼을 눌렀을때 답글이 나오고 다시 눌렀을때 접을수 있게 처리해야함 -->
+	</c:if>
+   	<!-- if test 가 같아야 실행됨  -->
+ --%>
 
-<c:if test="${cdto.comment_step == 0}">
-
-<div class="lookreply" style="display:none">
-   	<form action="aboardrepre.do" method="post">
-<input type="hidden" name="areaboard_num" value="${cdto.areaboard_num}">
-<input type="hidden" name="areaboard_code" value="${fdto.areaboard_code}">
-<input type="text" name="user_nickname" value="${login_userId}"  readonly>
-<input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
-<textarea rows="5" cols="15" name="comment_content" ></textarea>
-<hr>
-<input type="submit" value="댓글작성" style="float:right">
-</form>
-</div>
-
-</c:if>
-
-<br />
-  	
-  	
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
   	      	
-  	      	
+  	      	<br />
      	▲ 다음글 보기<a class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
   	<p>
   		▼ 이전글 보기<a class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>

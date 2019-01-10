@@ -1,6 +1,7 @@
 package com.hk.trip.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hk.trip.dto.CheckLikeDto;
 import com.hk.trip.dto.CommentDto;
@@ -34,4 +35,6 @@ public interface IFboardService {
 	public void deleteLike(int freeboard_num);
 	public void upComment(int freeboard_num);
 	public void downComment(int freeboard_num);
+	public List<CommentDto> aReplyList(Map<String,Integer>map);
+	public void deleteStep(CommentDto cdto);
 }

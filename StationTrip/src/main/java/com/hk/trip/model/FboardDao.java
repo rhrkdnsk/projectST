@@ -233,4 +233,15 @@ public class FboardDao implements IFboardDao {
 		sqlSession.update(namespace1 + "downComment", freeboard_num);
 
 	}
+
+	@Override
+	public List<CommentDto> aReplyList(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace1 + "fReplyList",map);
+	}
+	@Override
+	public void deleteStep(CommentDto cdto) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace1 + "andCommentdel" , cdto);
+	}
 }
