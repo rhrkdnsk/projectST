@@ -141,4 +141,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		return ifboarddao.aReplyList(map);
 	}
+	@Override
+	public void deleteStep(CommentDto cdto) {
+		// TODO Auto-generated method stub
+		ifboarddao.deleteStep(cdto);
+	}
 }

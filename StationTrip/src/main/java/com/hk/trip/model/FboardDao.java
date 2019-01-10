@@ -239,4 +239,9 @@ public class FboardDao implements IFboardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace1 + "fReplyList",map);
 	}
+	@Override
+	public void deleteStep(CommentDto cdto) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace1 + "andCommentdel" , cdto);
+	}
 }
