@@ -61,7 +61,7 @@ function setnull() {
 </head>
 <body>
 <div id="container" class="container w3-center" >
-<div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>공 지 사 항</h1></div>
+<div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>자 유 게 시 판</h1></div>
 <table class="table table-hover">
 	<col width="50px">
 	<col width="100px">
@@ -82,7 +82,7 @@ function setnull() {
 	<c:choose>
 	<c:when test="${empty list}">
 	<tr>	
-		<td>-------작성된 글이 없습니다.----</td>
+		<td colspan="7">-------작성된 글이 없습니다.----</td>
 	</tr>
   </c:when>
   <c:otherwise>
