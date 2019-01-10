@@ -43,32 +43,82 @@ $(function() {
 	width: 140px;
 	height:30px;
 	border:none;
+    color: #153d73;
+}
+#startcitycode:hover, #starttowncode:hover, #endcitycode:hover, #endtowncode:hover{
+	width: 140px;
+	height:30px;
+	border:none;
+    background-color:#34495e;
+	border:none;
+	color: #fff;	
 }
 #train_btn{
 	width:140px;
 	background-color:white;
-	border:none;	
+	border:none;
+	color: #153d73;	
+}
+#train_btn:hover{
+	width:140px;
+	height:30px;
+	background-color:#34495e;
+	border:none;
+	color: #fff;	
 }
 #Datepicker{
 	padding-left:10px;
 	width:130px;
 	height:29px;
 	border:none;
+	color: #153d73;	
+}
+#Datepicker:hover{
+	padding-left:10px;
+	width:130px;
+	height:29px;
+	background-color:#34495e;
+	border:none;
+	color: #fff;	
 }
 #h1_train{
 	text-align: center;
     font-family: cursive;
-    color: black;
+	color: #153d73;
 }
 #hr_train{
 	border-color:black;
 }
 #trainframe{
 	width:900px;
-	height:460px;
+	height:700px;
 	display:none;
 	border:none;
 }
+table#infoTable {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+}
+table#infoTable th {
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+table#infoTable td {
+	color: #153d73;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-top: 3px solid #369;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
 </style>
 <title></title>
 </head>
@@ -77,8 +127,8 @@ $(function() {
 	<h1 id="h1_train">열차 조회</h1>
 	<hr id="hr_train">
 	</div>
-	<div id="trainbody" style="width: 900px;margin: auto;height:630px;">
-	<table border="1">
+	<div id="trainbody" style="width: 900px;margin: auto;height:800px;">
+	<table id="infoTable">
 		<colgroup>
 			<col width="16%">
 			<col width="16%">

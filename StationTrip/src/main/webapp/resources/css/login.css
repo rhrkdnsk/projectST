@@ -21,7 +21,7 @@ a {
 	position: relative;
 }
 
-#loginModalLayer .loginModalContent  {
+#loginModalLayer .loginModalContent {
 	width: 440px;
 	height: 400px;
 	padding: 0px;
@@ -33,13 +33,13 @@ a {
 	background: #fff;
 	color: black;
 }
+
 #signModalLayer {
 	display: none;
 	position: relative;
 }
 
-
-#signModalLayer .signModalContent  {
+#signModalLayer .signModalContent {
 	width: 440px;
 	height: 400px;
 	padding: 0px;
@@ -52,11 +52,10 @@ a {
 	color: black;
 }
 
-#searchModalLayer{
+#searchModalLayer {
 	display: none;
 	position: relative;
 }
-
 
 #searchModalLayer .searchModalContent {
 	width: 440px;
@@ -76,8 +75,7 @@ a {
 	position: relative;
 }
 
-
-#resetModalLayer .resetModalContent  {
+#resetModalLayer .resetModalContent {
 	width: 440px;
 	height: 400px;
 	padding: 0px;
@@ -91,39 +89,81 @@ a {
 }
 
 .labeltag {
-	float:left;
-	width:80px;
+	float: left;
+	width: 80px;
 }
 
 .labeltagpw {
-	float:left;
-	width:130px;
+	float: left;
+	width: 130px;
 }
 
-fieldset{
-	margin:0;
-	padding:0;
+.login_fieldl {
+	margin: 0;
 	width: 438px;
 	height: 400px;
+	border: none;
 }
-fieldset > legend{
-	text-align:center;
+
+.login_fieldl > legend {
+	text-align: center;
+	padding: 10px;
 }
 
 /* 모달사용시 화면가리기용 */
-#mask {  
-      position:absolute;  
-      z-index:9000;  
-      background-color:#000;  
-      display:none;  
-      left:0;
-      top:0;
-    }
-    .window{
-      display: none;
-      position:absolute;  
-      left:100px;
-      top:100px;
-      z-index:10000;
-    }
+#mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+.window {
+	display: none;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	z-index: 10000;
+}
 /*---------------*/
+.login_ul li {
+	list-style: none;
+}
+
+
+/*	버튼 CSS	*/
+.login_button{
+  background:#4C69BA;
+  color:#fff;
+  border:none;
+  position:relative;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.login_button:hover{
+  background:#fff;
+  color:#4C69BA;
+}
+.login_button:before,.login_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #4C69BA;
+  transition:400ms ease all;
+}
+.login_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.login_button:hover:before,.login_button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

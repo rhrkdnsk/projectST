@@ -57,7 +57,7 @@ $(document).ready(function(){
 <h3 style="color:red; font-weight: bold;">회원탈퇴를 해도 후회하지 않으시겠습니까?</h3>
 <br>
 </div>
-<div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
+<div style="width: 800px;height: 420px; margin:auto; font-size: initial;">
 	
 		<p><label class="labeltag">이메일</label><span id="d_email">${dto.user_email }</span></p>
 		<p>

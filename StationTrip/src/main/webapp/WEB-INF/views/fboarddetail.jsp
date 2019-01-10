@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('.lookbt').click(function () {  
     	var freeboard_num = $(".freeboard_num").val();
     	var comment_refer = $(this).next().next().val()
-	
+		console.log(comment_refer)
     	
     	alert(comment_refer)
     	alert($(this).next().css("display"))

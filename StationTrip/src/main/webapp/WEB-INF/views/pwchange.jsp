@@ -58,7 +58,7 @@ $(document).ready(function(){
 <h3>주기적인  <span style="color:red;">비밀번호 변경</span>을 통해 개인정보를 안전하게 보호하세요</h3>
 <br>
 </div>
-<div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
+<div style="width: 800px;height: 420px; margin:auto; font-size: initial;">
 		<input id="pch_email" type="hidden" value="${dto.user_email }">
 		<p>
 		<label class="labeltagpw">현재 비밀번호</label>

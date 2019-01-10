@@ -108,10 +108,10 @@
 	   <div class="window">
 		   <div id="loginModalLayer">
 				<div class="loginModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>로그인</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
 							<button class="loginBtn loginBtn--facebook"  id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick="
 							  	if(this.value === 'Login'){
@@ -164,7 +164,7 @@
 							<li>
 							</li>
 						</ul>
-						<ul>
+						<ul class="login_ul">
 							<li>
 								<span class="labeltag">
 								<label>이메일</label>
@@ -194,6 +194,8 @@
 								<input type="password" id="password" onkeydown = "if (event.keyCode == 13)
                        				document.getElementById('loginbtn').click()"/>
 							</li>
+							</ul>
+							<ul class="login_ul">
 							<li>
 								<input type="checkbox" id="idCheck" <%   							     
 							    if(cookies != null){
@@ -209,11 +211,11 @@
 							    	}
 							    }
 								%>>아이디 저장
-								<a href="#searchModalLayer" class="searchModalLink aright" >비밀번호 찾기</a>
+								<a href="#searchModalLayer" class="searchModalLink aright" ><button class="login_button">비밀번호 찾기</button></a>
 							</li>
 							<li>
-								<button id="loginbtn">로그인</button>
-								<a href="#signModalLayer" class="signModalLink aright" >회원가입</a>
+								<button id="loginbtn" class="login_button">로그인</button>
+								<a href="#signModalLayer" class="signModalLink aright" ><button class="login_button">회원가입</button></a>
 							</li>
 						</ul>
 					</fieldset>
@@ -221,10 +223,10 @@
 			</div>
 			<div id="searchModalLayer">
 				<div class="searchModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>비밀번호 찾기</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
 								<span class="labeltag">
 								<label>이메일</label>
@@ -247,10 +249,10 @@
 			</div>
 			<div id="resetModalLayer">
 				<div class="resetModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>비밀번호 재설정</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
 								<span class="labeltag">
 								<label >비밀번호</label>
@@ -272,10 +274,10 @@
 			</div>
 			  	<div id="signModalLayer">
 					<div class="signModalContent">
-					<fieldset>
+					<fieldset class="login_fieldl">
 						<legend>회원가입</legend>
 						<br />
-						<ul>
+						<ul class="login_ul">
 							<li>
 								<span class="labeltag">
 								<label>이메일</label>
