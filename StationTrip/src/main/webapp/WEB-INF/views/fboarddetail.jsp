@@ -101,7 +101,7 @@ id="like_img" height="50px" width="50px">
 <form action="writereply.do" method="post">
 <div style="width:800px; border:1px solid black; height:357px;">
 <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_userId}" readonly>
+<input type="text" name="user_nickname" value="${login_userId}" style="border:none;" readonly>
 <textarea rows="10" cols="85" name="comment_content"></textarea>
 <hr>
 <input type="submit" value="댓글작성" style="float:right">
@@ -129,7 +129,7 @@ id="like_img" height="50px" width="50px">
 	
    	 <h3>${cdto.user_nickname}</h3>
    	  <p/>
-   <input type="text" value="${cdto.comment_content}" style="border:none" readonly>
+   <h6>${cdto.comment_content}</h6>
     <h6>${cdto.comment_time}</h6>
 <%--    	좋아요 : ${cdto.comment_like}  --%>
 <%--    	싫어요 : ${cdto.comment_hate}  --%>
@@ -140,26 +140,29 @@ id="like_img" height="50px" width="50px">
 <a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button>삭제</button></a>
 </c:if>
 <input type="hidden" value="${cdto.freeboard_num}" class="freeboard_num" />
+
 <button class="lookbt">답글</button>
 <!--<hr /> 들어올 곳-->
 
 <div class="lookreply" style="display:none">
 
-   	<iframe class="reList" style="width:1000px;heigth:1000px;"></iframe>
+   	<iframe class="reList" style="width:800px;"></iframe>
    	<form action="fboardrepre.do" method="post">
+   	<div style="width:800px; border:1px solid black; height:357px;">
 <input type="hidden" name="freeboard_num" value="${cdto.freeboard_num}">
-<input type="text" name="user_nickname" value="${login_userId}" style="width:150px"  readonly>
+<input type="hidden" name="user_nickname" value="${login_userId}" style="width:150px" style="border:none" readonly>
+<h6>${login_userId}</h6>
 <input type="hidden" name="comment_refer" value="${cdto.comment_refer}">
-<br />
-<textarea rows="10" cols="15" name="comment_content" ></textarea>
-<input type="submit" value="댓글작성" style="float:right">
-<hr>
+<textarea rows="10" cols="85" name="comment_content" ></textarea>
+<input type="submit" value="댓글작성" style="float:right;">
+</div>
 </form>
+
 </div>
 	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
+<hr />
 
 </c:if>
-
 
   	
   	
