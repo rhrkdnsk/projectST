@@ -165,16 +165,16 @@
 						<%--    	댓글번호 : ${cdto.comment_num} --%>
 						<%--    	 게시판번호 : ${cdto.freeboard_num} --%>
 
-						<strong style="text-align:left;float:left;">${cdto.user_nickname}</strong>
+						<strong style="text-align:left;float:left; margin-left:10px;">${cdto.user_nickname}</strong>
 						<c:if test="${cdto.user_nickname == login_userId}">
 						<a
 							href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button class="fbdel" style="margin-top: 10px;">삭제</button></a>
 						
 						
 						</c:if>
-						<br><br>
-						<h6 style="text-align:left;">${cdto.comment_content}</h6>
-						<h6 style="text-align:left;">${cdto.comment_time}</h6>
+						<br>
+						<p style="text-align:left; margin-top:10px;">${cdto.comment_content}</p>
+						<h6 style="text-align:left; font-size:13px;">${cdto.comment_time}</h6>
 						<%--    	좋아요 : ${cdto.comment_like}  --%>
 						<%--    	싫어요 : ${cdto.comment_hate}  --%>
 						<%--    	리퍼 : ${cdto.comment_refer} --%>
