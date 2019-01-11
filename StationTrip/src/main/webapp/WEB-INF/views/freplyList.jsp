@@ -22,7 +22,7 @@ background-color:#fafafa;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body style="background-color:#fafafa;">
+<body style="background-color:#fafafa;font-family:Verdana,sans-serif;">
 	<c:if test="${empty relist}">
 		<p style="color:gray;text-align:center;">등록된 댓글이 없습니다</p>
 	</c:if>
