@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> 

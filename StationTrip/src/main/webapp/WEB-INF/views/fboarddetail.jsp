@@ -174,7 +174,7 @@
 						</c:if>
 						<br>
 						<p style="text-align:left; margin-top:10px; margin-left:10px;">${cdto.comment_content}</p>
-						<h6 style="text-align:right; font-size:13px;">${cdto.comment_time}</h6>
+						<h6 style="text-align:left; font-size:13px; margin-left:10px;">${cdto.comment_time}</h6>
 						<%--    	좋아요 : ${cdto.comment_like}  --%>
 						<%--    	싫어요 : ${cdto.comment_hate}  --%>
 						<%--    	리퍼 : ${cdto.comment_refer} --%>
@@ -184,7 +184,7 @@
 					<input type="hidden" value="${cdto.freeboard_num}"
 						class="freeboard_num" />
 					<div>
-					<button style="margin-left:10px;" class="lookbt">답글</button>
+					<button style="margin-left:15px;" class="lookbt">답글</button>
 					<!--<hr /> 들어올 곳-->
 
 					<div class="lookreply" id="replyDiv" style="display: none">
