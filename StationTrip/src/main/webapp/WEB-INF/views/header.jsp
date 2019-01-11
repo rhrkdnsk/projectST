@@ -233,7 +233,7 @@
 							</li>
 							<li>
 								<a href="#signModalLayer" class="signModalLink aright" ><button id="signBtn2" class="login_button2">회원가입</button></a>
-								<input type="button" id="signBtn2" class="can aright login_button2" value="취소" />	
+								<button id="signBtn2" class="can aright login_button2">취소</button>
 							</li>
 						</ul>
 					</fieldset>
@@ -281,7 +281,7 @@
 							</li>
 							<li>
 								<button id="tsign" class="login_button2">회원가입</button>
-								<input type="button" id="tsignCan" class="can aright login_button2" value="취소" />	
+								<button id="tsignCan" class="can aright login_button2">취소</button>
 							</li>
 						</ul>
 					</fieldset>
