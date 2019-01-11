@@ -25,6 +25,9 @@
 .fbdel{
 	float:right;
 }
+#fboard_table td{
+	border-top:1px solid black;
+}
 </style>
 
 <script>
@@ -92,7 +95,7 @@
 	<div id="container" class="container w3-center" style="width:900px;" >
 		<h1>자유게시판 상세보기</h1>
 	
-	<table border="1" class="table table-hover">
+	<table id="fboard_table" border="1" class="table table-hover" style="margin-bottom:0;border-bottom:none;">
 		<col width="80px">
 		<col width="150px">
 		<col width="80px">
@@ -110,42 +113,36 @@
 		<tr>
 			<td  colspan="3">${fdto.freeboard_content}
 
-				<div class="col-md-4" id="likeArea" style="width: 870px;">
+				<div class="col-md-4" id="likeArea" style="width:870px;padding:0;">
 					<button type="button" id="btnLike" style="text-align:center;">
 						<img
 							src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }"
 							id="like_img" height="50px" width="50px">
 					</button>
 					<p class="like_count">좋아요 : ${fdto.freeboard_like}</p>
-
+						
+					<c:if test="${fdto.user_nickname  == login_userId}">
+						<span style="float:right;">
+						<button class="btn btn-primary" onclick="goUpdate()">수정</button>
+						<button class="btn btn-primary" onclick="goDelete()">삭제</button>
+						</span>
+					</c:if>
 				</div>
 			
 			</td>
 		</tr>
 		
 	</table>
-	
-	<p />
-	<c:if test="${fdto.user_nickname  == login_userId}">
 
-		<button value="수정" onclick="goUpdate()">수정</button>
-		<button onclick="goDelete()">삭제</button>
 
-	</c:if>
-	
-	<p>
-	
-	<p>--------------------------------댓글
-		보기---------------------------------------------------------------------
-	
 	<form action="writereply.do" method="post">
-		<div style="width: 870px; border: 1px solid black; height: 220px;">
+		<div style="width: 888px; border: 1px solid black; height: 200px;">
 			<input type="hidden" name="user_nickname" value="${login_userId}" style="border: none;" readonly>
-			<p style="text-align: left; margin-left:10px "><strong>${login_userId}</strong></p>
+			<p style="text-align: left; margin-left:15px;margin-top:15px; "><strong>${login_userId}</strong></p>
 			<input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> 
 			<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
-			 height: 88px; width: 860px; border:none;" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
-			<hr>
+			 height: 88px; width: 885px; border: 1px solid lightgray;" placeholder="  주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+			
 			<input type="submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
 
 		</div>
@@ -158,9 +155,7 @@
 	<!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 	<c:choose>
 		<c:when test="${empty list}">
-			<dl>
-				<dd>-------작성된 댓글이 없습니다.----</dd>
-			</dl>
+			
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${list}" var="cdto">
@@ -173,7 +168,7 @@
 						<h3 style="text-align:left;float:left;">${cdto.user_nickname}</h3>
 						<c:if test="${cdto.user_nickname == login_userId}">
 						<a
-							href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button class="fbdel">삭제</button></a>
+							href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}"><button class="fbdel" style="margin-top: 10px;">삭제</button></a>
 						
 						
 						</c:if>
@@ -235,7 +230,9 @@
 	<p style="text-align:left"> ▲ 다음글 보기
 	<a class="title"
 		href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title }</a></p>
-	<p style="text-align:left"> ▼ 이전글 보기
+	<p style="text-align:left"> ▼
+	<a class="title"
+			href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">이전글 보기</a>
 	<a class="title"
 			href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a></p>
 

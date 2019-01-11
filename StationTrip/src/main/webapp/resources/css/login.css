@@ -2,6 +2,7 @@
 
 a {
 	color: #000;
+	text-decoration:none;
 }
 
 #pwSearch{
@@ -268,4 +269,15 @@ a {
       0 4px 0px #7d7b7a,
       0 5px 0px #686766,
       0 6px 3px #5f5e5d;
+}
+
+.mp_menu{
+	font-family: 'Nanum Pen Script', cursive;
+	font-weight: bold;
+    font-size: x-large;
+	margin:10px;
+}
+
+.mp_menu:hover{
+	color:blue;
 }

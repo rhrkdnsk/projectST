@@ -99,7 +99,7 @@
 	} else {
 		%>
 		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
-		<span class="w3-bar-item  w3-hide-small w3-padding-large w3-right"><a href="mypage.do" style="color:white;"><%=session.getAttribute("login_userId") %></a></span>
+		<span class="w3-dropdown-hover w3-hide-small w3-right"><a href="mypage.do"  style="color:white;text-decoration:none"><button class="w3-button w3-hide-small w3-padding-large w3-hover-white"><%=session.getAttribute("login_userId") %></button></a></span>
 		<%
 	}
 	%>
