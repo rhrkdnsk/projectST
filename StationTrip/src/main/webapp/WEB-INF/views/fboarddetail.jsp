@@ -196,7 +196,8 @@
 									value="${cdto.freeboard_num}"> <input type="hidden"
 									name="user_nickname" value="${login_userId}"
 									style="width: 150px" style="border:none" readonly>
-								<p style="text-align: left; margin-bottom: 20px; margin-left: 10px;"><span>${login_userId}</span></p>
+								<p style="text-align: left; margin-top: 15px; margin-left: 45px;"><strong>${login_userId}</strong
+								></p>
 							<input type="hidden" name="comment_refer"
 									value="${cdto.comment_refer}">
 							<div style="margin:auto;width: 800px;">
