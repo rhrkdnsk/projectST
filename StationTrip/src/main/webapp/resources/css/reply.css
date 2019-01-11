@@ -1,0 +1,21 @@
+@charset "UTF-8";
+#replyDiv{
+	background-color: #fafafa;
+    border-top: 1px solid #aaaaaa;
+}
+#replyIframe{
+	width: 868px;
+    border: none;
+    margin-bottom: 0;
+}
+#rereplyDiv{
+	width: 868px;
+    border-top: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+    height: 220px;
+    background-color: #fafafa;
+    margin-top: 0;
+}
+#rereplyDiv textarea{
+	border:1px solid #aaaaaa;
+}
