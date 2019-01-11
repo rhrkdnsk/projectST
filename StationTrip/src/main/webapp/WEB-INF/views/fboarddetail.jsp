@@ -15,7 +15,7 @@
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
 .lookbt{
     position: relative;
@@ -187,16 +187,16 @@
 					<button style="margin-left:10px;" class="lookbt">답글</button>
 					<!--<hr /> 들어올 곳-->
 
-					<div class="lookreply" style="display: none">
+					<div class="lookreply" id="replyDiv" style="display: none">
 						
-						<iframe class="reList" style="width: 888px;"></iframe>
+						<iframe class="reList" id="replyIframe" style="width: 888px;"></iframe>
 						<form action="fboardrepre.do" method="post">
-						<div style="width: 888px; border: 1px solid black; height: 220px;">
+						<div id="rereplyDiv" style="width: 888px;height: 220px;">
 							<input type="hidden" name="freeboard_num"
 									value="${cdto.freeboard_num}"> <input type="hidden"
 									name="user_nickname" value="${login_userId}"
 									style="width: 150px" style="border:none" readonly>
-								<p style="text-align:left; float:left; margin-left:10px"><span>${login_userId}</span></p>
+								<p style="text-align: left; margin-bottom: 20px; margin-left: 10px;"><span>${login_userId}</span></p>
 							<input type="hidden" name="comment_refer"
 									value="${cdto.comment_refer}">
 							<div style="margin:auto;width: 800px;">
@@ -215,7 +215,7 @@
 											<td><input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary"></td>
 										</tr>
 									</table>
-									</div>
+							</div>
 						</div>
 							<!-- <div
 								style="width: 870px; border: 1px solid black; height: 320px;">
