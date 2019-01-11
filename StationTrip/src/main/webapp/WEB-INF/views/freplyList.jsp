@@ -11,6 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/trip/resources/css/reply.css">
+
 <style type="text/css">
 hr {
 background-color:#fafafa;
@@ -28,9 +31,9 @@ background-color:#fafafa;
 			<div class="lookreply">
 <%-- 				댓글번호 : ${rdto.comment_num} --%>
 <%-- 				 게시판번호 : ${rdto.freeboard_num} --%>
-				 <h3>ㄴ  ${rdto.user_nickname}</h3>
-				   <h6>${rdto.comment_content}</h6>
-    				<h6>${rdto.comment_time}</h6>
+				 <strong >ㄴ  ${rdto.user_nickname}</strong>
+				   <p style="margin-left:20px">${rdto.comment_content}</p>
+    				<p style="margin-left:20px">${rdto.comment_time}</p>
 <%-- 				좋아요 : ${rdto.comment_like} --%>
 <%-- 				 싫어요 : ${rdto.comment_hate}  --%>
 <%-- 				 리퍼 : ${rdto.comment_refer}  --%>
