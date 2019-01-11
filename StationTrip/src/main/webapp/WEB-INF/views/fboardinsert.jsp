@@ -41,28 +41,35 @@ function getlist() {
 
 <div id="container" class="container" style="width:900px;">
 <h1>자유게시판 글 작성</h1>
+<br />
  <form action="fboardinsert.do" method="post">
-<table border="1" class="table table-hover">
+ <div>
+<table >
 <!-- <input type="hidden" name="command" value="boardinsert" /> -->
 <col width="200px">
 <col width="80px">
 		
 
+<!-- <tr > -->
+
+<%-- <td>작성자 : ${login_userId} --%>
+<!-- </td> -->
+
+
+<!-- </tr> -->
+
 <tr>
-<td>작성자 : ${login_userId}
+
+<td><input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title" class="form-control"/>
 <input type="hidden" id="id" name="user_nickname" value="${login_userId}">
-</td>
- <td> 분류  <select id="opvalue" name="freeboard_category">
+ </td>
+ <td><select id="opvalue" name="freeboard_category" class="form-control">
 <option value="분류" id="opvalue">분류</option>
 <option value="정보" id="opvalue">정보</option>
 <option value="잡담" id="opvalue">잡담</option>
 <option value="팁" id="opvalue">팁</option>
 </select>
 </td>
-</tr>
-
-<tr>
-<td colspan="2">제목 : <input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title"/> </td>
 </tr>
 <tr>
 <td colspan="2" style="padding:0px;"> <textarea name="freeboard_content" id="freeboard_content"></textarea>
@@ -72,7 +79,7 @@ function getlist() {
       width : '870px',  // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
       height : '500px',  // 입력창의 높이
       startupFocus : false,
-      uiColor : ﻿'#9ab8f3'
+      uiColor : ﻿'#fafafa'
     }
   );
 </script>
@@ -82,10 +89,12 @@ function getlist() {
 <!-- <td colspan="2">이미지 업로드 <input type="file" /></td> -->
 <!-- </tr> -->
 <tr>
-<td colspan="2"><input type="submit" value="글쓰기" id="submit" style=align:center class="btn btn-primary"/> <input type="button" value="취소" id="submit" class="btn btn-danger" style=align:center onclick="getlist()"/>
+<td colspan="2"> <input type="button" value="취소" id="submit" class="btn btn-danger" style="float:right; margin-left:5px;  margin-top:10px" onclick="getlist()"/>
+<input type="submit" value="글쓰기" id="submit" style="float:right; margin-top:10px;" class="btn btn-primary"/>
 </td>
 </tr>
 </table>
+</div>
 </form>
 </div>
 <jsp:include page="footer.jsp" />
