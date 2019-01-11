@@ -183,7 +183,7 @@
 					
 					<input type="hidden" value="${cdto.freeboard_num}"
 						class="freeboard_num" />
-					<div>
+					<div style="width:888px;">
 					<button style="margin-left:15px;" class="lookbt">답글</button>
 					<!--<hr /> 들어올 곳-->
 
@@ -274,6 +274,16 @@
 			}
 		</script>
 </div>
+<script type="text/javascript">
+$(function(){
+	$("iframe.reList").load(function(){ //iframe 컨텐츠가 로드 된 후에 호출됩니다.
+		var frame = $(this).get(0);
+		var doc = (frame.contentDocument) ? frame.contentDocument : frame.contentWindow.document;
+		$(this).height(doc.body.scrollHeight);
+		$(this).width(doc.body.scrollWidth);
+	});
+});
+</script>
 	<br />
 		<jsp:include page="footer.jsp" />
 </body>
