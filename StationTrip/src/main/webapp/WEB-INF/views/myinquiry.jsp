@@ -72,7 +72,7 @@ table.type04 td {
 			<c:choose>
 				<c:when test="${empty inquiry_list}">
 					<tr>
-						<td>-------작성된 글이 없습니다.----</td>
+						<td colspan="3" >  작성된 글이 없습니다. </td>
 					</tr>
 				</c:when>
 				<c:otherwise>

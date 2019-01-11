@@ -8,6 +8,8 @@
 <head>
 <jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/trip/resources/css/mypage.css">
+
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -72,7 +74,7 @@ $(document).ready(function(){
                        				document.getElementById('pwchange').click()"/>
 		</p>
 		<hr >
-		<button id="pwchange">저장</button>
+		<button id="pwchange" style="background-color:white;">저장</button>
 	
 </div>
 

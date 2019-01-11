@@ -68,7 +68,7 @@ $(document).ready(function(){
                        				document.getElementById('delemail').click()" />
 		</p>
 		<hr >
-		<button id="delemail">삭제</button>
+		<button id="delemail" style="background-color:white;">삭제</button>
 	
 </div>
 

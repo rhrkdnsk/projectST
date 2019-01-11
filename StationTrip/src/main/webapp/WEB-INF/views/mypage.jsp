@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/trip/resources/css/mypage.css">
 
 <title>My page</title>
 </head>
@@ -41,7 +42,7 @@
 			<input type="hidden"  name="n_email" value="${dto.user_email }"> 
 			<input type="text" id="nickput" name="nickput" value="${dto.user_nickname }" style="border:none;" readonly="readonly"/>
 			<span id="nickspan">
-				<button id="btnnick" style="margin-left:15px;background-color: white;" >수정</button>
+				<button id="btnnick" style="margin-left:15px;background-color:white;" >수정</button>
 			</span>
 		</p>
 		</form>
@@ -51,7 +52,7 @@
 			<input type="hidden" name="p_email" value="${dto.user_email }">    
 			<input type="text" id="phoneput" name="phoneput" value="${dto.user_phone }" style="border:none;" readonly="readonly"/>
 			<span id="phonespan">
-				<button id="btnph" style="margin-left:15px;background-color: white;" >수정</button>
+				<button id="btnph" style="margin-left:15px;background-color:white;" >수정</button>
 			</span>
 		</p>
 		</form>
