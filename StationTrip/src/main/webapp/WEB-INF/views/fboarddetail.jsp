@@ -173,8 +173,8 @@
 						
 						</c:if>
 						<br>
-						<p style="text-align:left; margin-top:10px;">${cdto.comment_content}</p>
-						<h6 style="text-align:left; font-size:13px;">${cdto.comment_time}</h6>
+						<p style="text-align:left; margin-top:10px; margin-left:10px;">${cdto.comment_content}</p>
+						<h6 style="text-align:right; font-size:13px;">${cdto.comment_time}</h6>
 						<%--    	좋아요 : ${cdto.comment_like}  --%>
 						<%--    	싫어요 : ${cdto.comment_hate}  --%>
 						<%--    	리퍼 : ${cdto.comment_refer} --%>
@@ -184,26 +184,38 @@
 					<input type="hidden" value="${cdto.freeboard_num}"
 						class="freeboard_num" />
 					<div>
-					<button class="lookbt">답글</button>
+					<button style="margin-left:10px;" class="lookbt">답글</button>
 					<!--<hr /> 들어올 곳-->
 
 					<div class="lookreply" style="display: none">
 						
-						<iframe class="reList" style="width: 870px;"></iframe>
+						<iframe class="reList" style="width: 888px;"></iframe>
 						<form action="fboardrepre.do" method="post">
-						<div style="width: 870px; border: 1px solid black; height: 220px;">
+						<div style="width: 888px; border: 1px solid black; height: 220px;">
 							<input type="hidden" name="freeboard_num"
 									value="${cdto.freeboard_num}"> <input type="hidden"
 									name="user_nickname" value="${login_userId}"
 									style="width: 150px" style="border:none" readonly>
-								<h6>${login_userId}</h6>
+								<p style="text-align:left; float:left; margin-left:10px"><span>${login_userId}</span></p>
 							<input type="hidden" name="comment_refer"
 									value="${cdto.comment_refer}">
-							<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
-							 height: 88px; width: 860px; border:none; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
-							<hr>
-							<input type="submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
-				
+							<div style="margin:auto;width: 800px;">
+									<table id="trplyTable">
+										<colgroup>
+											<col width="90%">
+											<col width="10%">
+										</colgroup>
+										<tr>
+											<td colspan="2">
+												<textarea rows="5" cols="55" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td><input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary"></td>
+										</tr>
+									</table>
+									</div>
 						</div>
 							<!-- <div
 								style="width: 870px; border: 1px solid black; height: 320px;">
