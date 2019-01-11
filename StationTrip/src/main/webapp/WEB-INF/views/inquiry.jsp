@@ -78,11 +78,11 @@
 							width : '720px', // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
 							height : '500px', // 입력창의 높이
 							startupFocus : false,
-							uiColor : ﻿'#9ab8f3'
+							uiColor : ﻿'#fafafa'
 						});
 					</script>
 				</div>
-				<input type="submit" value="작성완료" id="inquiry_submit" class="inquiry_input" style="background-color:#9ab8f3;" />
+				<input type="submit" value="작성완료" id="inquiry_submit" class="inquiry_input " style="background-color:#9ab8f3;" />
 			</div>
 
 		</form>

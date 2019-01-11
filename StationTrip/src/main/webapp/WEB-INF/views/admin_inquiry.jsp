@@ -38,7 +38,7 @@ margin:0;
 <h3>1:1 <span style="color:red;">문의글</span></h3>
 <br>
 </div>
-<div style="width: 900px;height: 400px; margin:auto; font-size: initial;">
+<div style="width: 900px;min-height: 400px; margin:auto; font-size: initial;">
 	<div class="list">
 		<dl>
 			<dd class="inq_title">제목</dd>

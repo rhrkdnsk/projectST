@@ -56,7 +56,7 @@ table.type04 td {
 <br>
 </div>
 
-<div style="width: 800px;height: 500px; margin:auto; font-size: initial;">
+<div style="width: 800px;min-height: 500px; margin:auto; font-size: initial;">
 	<div class="list">
 		<table class="type04">
 			<colgroup>
