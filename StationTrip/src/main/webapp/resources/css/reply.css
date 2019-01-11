@@ -17,5 +17,17 @@
     margin-top: 0;
 }
 #rereplyDiv textarea{
+	border:none;
+	margin: 0px;
+	height: 88px; 
+	width: 800px; 
+	resize:none
+}
+#trplyTable{
+	border-collapse: collapse;
+    border-spacing: 0;
+}
+#trplyTable tr, #trplyTable td{
+	background-color:white;
 	border:1px solid #aaaaaa;
 }
