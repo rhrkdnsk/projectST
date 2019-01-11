@@ -14,7 +14,8 @@
 <head>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
 
 <style type="text/css">
 .lookbt{
@@ -29,7 +30,7 @@
 	border-top:1px solid black;
 }
 </style>
-
+<link rel="stylesheet" href="/trip/resources/css/reply.css">
 <script>
 
 	
@@ -187,11 +188,11 @@
 					<button class="lookbt">답글</button>
 					<!--<hr /> 들어올 곳-->
 
-					<div class="lookreply" style="display: none">
+					<div class="lookreply" id="replyDiv" style="display: none">
 						
-						<iframe class="reList" style="width: 870px;"></iframe>
+						<iframe class="reList" id="replyIframe" style="width: 870px;"></iframe>
 						<form action="fboardrepre.do" method="post">
-						<div style="width: 870px; border: 1px solid black; height: 220px;">
+						<div id="rereplyDiv" style="width: 870px; height: 220px;">
 							<input type="hidden" name="freeboard_num"
 									value="${cdto.freeboard_num}"> <input type="hidden"
 									name="user_nickname" value="${login_userId}"
@@ -200,7 +201,7 @@
 							<input type="hidden" name="comment_refer"
 									value="${cdto.comment_refer}">
 							<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
-							 height: 88px; width: 860px; border:none; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+							 height: 88px; width: 860px; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
 							<hr>
 							<input type="submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
 				
