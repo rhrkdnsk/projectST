@@ -150,7 +150,8 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + x;
@@ -201,30 +202,30 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + con;
 		param += "&contentTypeId=" + type;
-
 		
-		
-		infoUrl = URL + "detailInfo" + param;
+		infoUrl = URL + "detailIntro" + param;
 		
 		param += "&overviewYN=Y";
 		param += "&addrinfoYN=Y";
 		param += "&firstImageYN=Y";
 		param += "&defaultYN=Y";
+		
 		/* 컨텐츠 소개 조회 */
 		detailUrl = URL + serviceName + param;
 		
 		Document detailView = null;
-		Document infoView = null;
+		Document introView = null;
 		try {
 			detailView = Jsoup.connect(detailUrl).get();
-			infoView = Jsoup.connect(infoUrl).get();
+			introView = Jsoup.connect(infoUrl).get();
 			map.put("detailView", detailView.toString());
-			map.put("infoView", infoView.toString());
+			map.put("introView", introView.toString());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
