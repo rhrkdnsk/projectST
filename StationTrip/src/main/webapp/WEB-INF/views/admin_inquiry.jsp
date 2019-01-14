@@ -15,20 +15,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>문의글 리스트</title>
 <style type="text/css">
-.inq_title{
-float:left;
-width:420px;
-margin:0;
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+  	margin : 20px 10px;
 }
-.inq_id{
-float:left;
-width:150px;
-margin:0;
+table.type04 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
 }
-.inq_time{
-float:left;
-width:200px;
-margin:0;
+table.type04 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
 }
 </style>
 </head>
@@ -38,41 +44,68 @@ margin:0;
 <h3>1:1 <span style="color:red;">문의글</span></h3>
 <br>
 </div>
-<div style="width: 900px;min-height: 400px; margin:auto; font-size: initial;">
+<div style="width: 900px;min-height: 500px; margin:auto; font-size: initial;">
 	<div class="list">
-		<dl>
-			<dd class="inq_title">제목</dd>
-			<dd class="inq_id">작성자</dd>
-			<dd class="inq_time">작성일</dd>
-		</dl>
-		<br>
-		<c:choose>
-			<c:when test="${empty admin_inquiry_list}">
-				<dl>
-					<dd>-------작성된 글이 없습니다.----</dd>
-				</dl>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${admin_inquiry_list}" var="list">
-
-					<dl>
-						<c:if test="${empty list.admin_id}">
-							<dd class="inq_title"><a href='admin_inquiry_detail.do?inquiry_num=${list.inquiry_num }'>${list.inquiry_title}</a></dd>
-							<dd class="inq_id">${list.user_nickname}</dd>
-					 	</c:if>
-					 	<c:if test="${!empty list.admin_id}">
-							<dd class="inq_title">&nbsp;&nbsp;&nbsp;<img alt="화살표" src="/trip/resources/images/Arrow3.png"><a href='admin_inquiry_detail.do?inquiry_num=${list.inquiry_num }'>${list.inquiry_title}</a></dd>
-							<dd class="inq_id">${list.admin_id}</dd>
-					 	</c:if>
-						
-						<dd class="inq_time">
-							<fmt:formatDate value="${list.inquiry_time}" pattern="yyyy년 MM월 dd일" />
-						</dd>
-					</dl>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+		<table class="type04">
+			<colgroup>
+				<col width="50%">
+				<col width="20%">
+				<col width="30%">
+			</colgroup>
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+			</tr>
+			<c:choose>
+				<c:when test="${empty admin_inquiry_list}">
+					<tr>
+						<td colspan="3" >  작성된 글이 없습니다. </td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${admin_inquiry_list}" var="list">
+	
+						<tr>
+							<c:if test="${empty list.admin_id}">
+								<td><a href='admin_inquiry_detail.do?inquiry_num=${list.inquiry_num }'>${list.inquiry_title}</a></td>
+								<td>${list.user_nickname}</td>
+						 	</c:if>
+						 	<c:if test="${!empty list.admin_id}">
+								<td>&nbsp;&nbsp;&nbsp;<img alt="화살표" src="/trip/resources/images/Arrow3.png"><a href='admin_inquiry_detail.do?inquiry_num=${list.inquiry_num }'>${list.inquiry_title}</a></td>
+								<td>${list.admin_id}</td>
+						 	</c:if>
+													
+							<td>
+								<fmt:formatDate value="${list.inquiry_time}" pattern="yyyy년 MM월 dd일" />
+							</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			<tr>
+				<td colspan="3" style="text-align:center;">
+					<c:if test="${page-1 != 0 }">
+						<a href="admin_inquiry.do?pageNum=${page-1}">이전</a>						
+					</c:if>
+					<%
+						int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
+						int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+						int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+						for(int i=startPage; i<=endPage; i++) {
+							%>			
+								<a href="admin_inquiry.do?pageNum=<%=i%>"><%=i%></a>						
+							<%			
+						}
+					%>
+					<c:if test="${page+1 <= totalPage}">
+						<a href="admin_inquiry.do?pageNum=${page+1}">다음</a>						
+					</c:if>
+				</td>
+			<tr>
+		</table>
 	</div>
+	
 </div>
 
 	<jsp:include page="footer.jsp" />

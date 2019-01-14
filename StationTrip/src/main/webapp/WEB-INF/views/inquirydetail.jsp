@@ -50,7 +50,7 @@
 		<h1>My Page</h1>
 		<a href="mypage.do">내정보 관리</a> 
 		<a href="pwchange.do">비밀번호 변경</a> 
-		<a href="myinquiry.do">나의 문의글</a> 
+		<a href="myinquiry_sdel.do">나의 문의글</a> 
 		<a href="itinerary.do">여행 일정</a> 
 		<a href="withdrawalgo.do">회원 탈퇴</a>
 		<hr style="border-color: black;">
@@ -81,7 +81,7 @@
 					</script>
 				</div>
 				<input type="submit" value="수정하기" id="inquiry_submit" class="inquiry_input2" />
-				<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='myinquiry.do'"/>
+				<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='myinquiry_sdel.do'"/>
 			</c:if>
 			<c:if test="${!empty inquiryDto.admin_id}">
 				<div>
@@ -97,7 +97,7 @@
 						});
 					</script>
 				</div>
-				<input type="button" value="돌아가기" class="inquiry_input" onclick="location.href='myinquiry.do'"/>
+				<input type="button" value="돌아가기" class="inquiry_input" onclick="location.href='myinquiry_sdel.do'"/>
 			</c:if>
 		</div>
 		</form>

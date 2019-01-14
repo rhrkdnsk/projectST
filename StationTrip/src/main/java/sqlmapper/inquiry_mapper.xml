@@ -16,18 +16,18 @@
 		VALUES( (SELECT MAX(INQUIRY_NUM) FROM INQUIRY)+1,#{inquiry_title},SYSDATE,#{inquiry_content},(SELECT MAX(INQUIRY_DEPTH) FROM INQUIRY WHERE INQUIRY_NUM = #{inquiry_num} )+1,#{inquiry_refer},#{admin_id},#{user_nickname})
 	</insert>
 
-	<select id="inquiry_list" parameterType="Map" resultType="InquiryDto">
+<!-- 	<select id="inquiry_list" parameterType="Map" resultType="InquiryDto">
 		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
 		FROM INQUIRY
 		WHERE USER_NICKNAME = #{user_nickname}
 		ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC
-	</select>
+	</select> -->
 	
-	<select id="admin_inquiry_list" resultType="InquiryDto">
+	<!-- <select id="admin_inquiry_list" resultType="InquiryDto">
 		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
 		FROM INQUIRY
 		ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC
-	</select>
+	</select> -->
 	
 	<select id="inquiry_detail" parameterType="int" resultType="InquiryDto">
 		SELECT INQUIRY_NUM,INQUIRY_TITLE,INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID,USER_NICKNAME
@@ -40,4 +40,34 @@
 		SET INQUIRY_TITLE = #{inquiry_title}, INQUIRY_CONTENT = #{inquiry_content}, INQUIRY_TIME = SYSDATE
 		WHERE INQUIRY_NUM = #{inquiry_num}
 	</update>
+	
+	<select id="inquiry_getCount" resultType="int" parameterType="Map">
+	SELECT COUNT(*) AS totalCount FROM INQUIRY WHERE USER_NICKNAME = #{user_nickname}
+	</select>
+	
+	<select id="admin_inquiry_getCount" resultType="int">
+	SELECT COUNT(*) AS totalCount FROM INQUIRY
+	</select>
+	
+	<select id="inquiry_list" parameterType="Map" resultType="InquiryDto">
+	
+	<![CDATA[SELECT X.RNUM,X.INQUIRY_NUM, X.USER_NICKNAME, X.INQUIRY_TITLE, X.INQUIRY_TIME,X.INQUIRY_CONTENT,X.INQUIRY_DEPTH,X.INQUIRY_REFER,X.ADMIN_ID 
+					FROM (SELECT ROWNUM AS RNUM, A.INQUIRY_NUM, A.USER_NICKNAME, A.INQUIRY_TITLE, A.INQUIRY_TIME,A.INQUIRY_CONTENT,A.INQUIRY_DEPTH,A.INQUIRY_REFER,A.ADMIN_ID   
+			 			  FROM ( SELECT INQUIRY_NUM, USER_NICKNAME, INQUIRY_TITLE, INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID 
+						   		 FROM INQUIRY
+        				   		 ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC) A
+						  WHERE ROWNUM <= #{endNum} AND USER_NICKNAME = #{user_nickname} ) X
+			 WHERE X.RNUM >= #{startNum} ]]>
+	</select>
+	
+	<select id="admin_inquiry_list" parameterType="Map" resultType="InquiryDto">
+	
+	<![CDATA[SELECT X.RNUM,X.INQUIRY_NUM, X.USER_NICKNAME, X.INQUIRY_TITLE, X.INQUIRY_TIME,X.INQUIRY_CONTENT,X.INQUIRY_DEPTH,X.INQUIRY_REFER,X.ADMIN_ID 
+					FROM (SELECT ROWNUM AS RNUM, A.INQUIRY_NUM, A.USER_NICKNAME, A.INQUIRY_TITLE, A.INQUIRY_TIME,A.INQUIRY_CONTENT,A.INQUIRY_DEPTH,A.INQUIRY_REFER,A.ADMIN_ID   
+			 			  FROM ( SELECT INQUIRY_NUM, USER_NICKNAME, INQUIRY_TITLE, INQUIRY_TIME,INQUIRY_CONTENT,INQUIRY_DEPTH,INQUIRY_REFER,ADMIN_ID 
+						   		 FROM INQUIRY
+        				   		 ORDER BY INQUIRY_REFER ASC, INQUIRY_NUM ASC) A
+						  WHERE ROWNUM <= #{endNum} ) X
+			 WHERE X.RNUM >= #{startNum} ]]>
+	</select>
 </mapper>	

@@ -85,7 +85,7 @@
     	 <a href="gsessiondel.do" class="w3-bar-item w3-button">회원 관리</a>
       <a href="rsessiondel.do" class="w3-bar-item w3-button">공지사항 관리</a>
       <a href="qlist.do" class="w3-bar-item w3-button">Q.A</a>
-      <a href="admin_inquiry.do" class="w3-bar-item w3-button">1:1문의</a>
+      <a href="admin_inquiry_sdel.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>  			<%
   		}

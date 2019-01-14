@@ -70,7 +70,7 @@
 				</script>
 			</div>
 			<input type="submit" value="답변달기" id="submit" class="inquiry_input2" />
-			<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='admin_inquiry.do'"/>
+			<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='admin_inquiry_sdel.do'"/>
 		</div>
 		</form>
 	</div>

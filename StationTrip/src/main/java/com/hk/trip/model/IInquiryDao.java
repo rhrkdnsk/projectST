@@ -11,6 +11,8 @@ public interface IInquiryDao {
 	public List<InquiryDto> inquiry_list(Map<String, String>map);
 	public InquiryDto inquiry_detail(int inquiry_num);
 	public boolean inquiry_update(InquiryDto idto);
-	public List<InquiryDto> admin_inquiry_list();
+	public List<InquiryDto> admin_inquiry_list(Map<String, String>map);
 	public boolean admin_insert(InquiryDto idto);
+	public int getCount(Map<String, String>map);
+	public int admin_getCount();
 }
