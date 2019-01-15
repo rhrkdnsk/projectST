@@ -10,6 +10,33 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script type="text/javascript" src="/trip/resources/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
+
+// 	$("form").on("submit", function() {
+// 	       var title = $("#title").val();
+// 	       alert("submit");
+// 	       if(title.length < 5) {
+// 	    	   alert("5자리 이상 작성하여 주십시오");
+// 	       }
+	       
+// 	    });
+
+	
+$(function(){
+	$("#update_submit").click(function(){
+		alert("submit");
+		var title = $("#title").val();
+		var content = CKEDITOR.instances['areaboard_content'].getData();
+		if(title.length < 5 || title.length > 20){
+			event.preventDefault();
+			alert("제목은 5글자 이상, 20글자 이하로 입력하여 주십시오.")
+		} else if(content.length < 5 ){
+			event.preventDefault();
+			alert("내용은 5글자 이상 입력하여야 합니다.")
+		}
+	})
+})
+
+
 function goList() {
 	location.href="aboarddetail.do?areaboard_num=${fdto.areaboard_num}&areaboard_code=${sareaboard_code}"
 }
@@ -24,7 +51,7 @@ function goList() {
 <div id="container" class="container" style="width:900px;">
 <h1>글 수정하기</h1>
 
-<form action="aboardup.do" method="post">
+<form action="aboardup.do" method="post" name="frm">
 <div>
 <table>
 <tr>
@@ -34,7 +61,7 @@ function goList() {
 </tr>
 
 <tr>
-<td><input type="text" name="areaboard_title" value="${fdto.areaboard_title}" class="form-control">
+<td><input type="text" id="title" name="areaboard_title" value="${fdto.areaboard_title}" class="form-control">
 </td>
 
 <td><select id="opvalue" name="areaboard_category" class="form-control">
@@ -75,7 +102,7 @@ function goList() {
 <td colspan="3">
 
 <input type="button" value="취소" id="submit" class="btn btn-danger" style="float:right; margin-left:5px; margin-top:10px" onclick="goList()"/>
-<input type="submit" value="글수정" id="submit"  style="float:right; margin-top:10px;" class="btn btn-primary"/> 
+<input type="submit" value="글수정" id="update_submit"  style="float:right; margin-top:10px;" class="btn btn-primary" onclick="func2()"/> 
 </td>
 </tr>
 </table>

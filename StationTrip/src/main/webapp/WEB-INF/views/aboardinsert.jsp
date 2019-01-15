@@ -24,11 +24,48 @@ select {
 h6 {
 	text-align:center;
 }
+
+#areavalue:focus, #opvaluea:focus, #title:focus {
+	border-color:red;
+}
 </style>
 <script type="text/javascript">
 function getlist() {
 	location.href="aboardPage.do?apageNum=${anowPage}&areaboard_code=${sareaboard_code}"
 }
+
+$(function(){
+	$("#insert_submit").click(function(){
+		alert("submit");
+		var title = $("#title").val();
+		var content = CKEDITOR.instances['areaboard_content'].getData();
+		var select = $("#opvaluea option:selected").val();
+		var area = $("#areavalue option:selected").val();
+		alert("select = " + select);
+		if(title.length < 3 || title.length > 20){
+			event.preventDefault();
+			alert("제목은 3글자 이상, 20글자 이하로 입력하여 주십시오.")
+			document.getElementById("title").focus();
+			return false;
+		} else if(content.length < 5 ){
+			event.preventDefault();
+			alert("내용은 5글자 이상 입력하여야 합니다.")
+			document.getElementById("areaboard_content").focus();
+			return false;
+		} if(select == "분류") {
+			event.preventDefault();
+			alert("글 분류를 설정하여 주십시오.");
+			document.getElementById("opvaluea").focus();
+			return false;
+		} if(area == "지역") {
+			event.preventDefault();
+			alert("지역을 설정하여 주십시오.");
+			document.getElementById("areavalue").focus();
+			return false;		
+		}
+	})
+})
+
 
 </script>
 </head>
@@ -46,9 +83,9 @@ function getlist() {
 <col width="80px">
 <tr>
  <td><input type="hidden" id="id" name="user_nickname" value="${login_userId}"/>
- <input type="text" placeholder="제목을 작성하십시오" size="20" name="areaboard_title" class="form-control"/></td>
+ <input type="text" id="title" placeholder="제목을 작성하십시오" size="20" name="areaboard_title" class="form-control"/></td>
 
-  <td><select id="opvalue" name="areaboard_category" class="form-control">
+  <td><select id="opvaluea" name="areaboard_category" class="form-control">
 <option value="분류" id="opvalue">분류</option>
 <option value="정보" id="opvalue">정보</option>
 <option value="잡담" id="opvalue">잡담</option>
@@ -86,7 +123,7 @@ function getlist() {
 <tr>
 <td colspan="3">
 <input type="button" value="취소" id="submit" class="btn btn-danger" style="float:right; margin-left:5px; margin-top:10px" onclick="getlist()"/>
-<input type="submit" value="글쓰기" id="submit" style="float:right; margin-top:10px;" class="btn btn-primary"/> 
+<input type="submit" value="글쓰기" id="insert_submit" style="float:right; margin-top:10px;" class="btn btn-primary"/> 
 </td></tr>
 </table>
 </div>
