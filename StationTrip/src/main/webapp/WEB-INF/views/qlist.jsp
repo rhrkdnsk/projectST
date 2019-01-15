@@ -52,7 +52,7 @@ $(document).ready(function(){
 <div id="container" class="container w3-center" >
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>FAQ</h1></div>
 <a href="qlist.do"></a>
-<div style="height: 300px;">
+<!-- <div style="height: 300px;"> -->
 <table class="table table-hover">
 	
 
@@ -105,9 +105,6 @@ $(document).ready(function(){
 	
 </table>
 </div>
-</div>
-
-
-<%@include file="footer.jsp" %>
 </body>
 </html>
+<%@include file="footer.jsp" %>

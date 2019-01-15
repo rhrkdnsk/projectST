@@ -8,31 +8,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script type="text/javascript" src="/trip/resources/js/ckeditor/ckeditor.js"></script>
+<style>
+#submit {
+	text-align: center;
+
+}
+
+select {
+	width:150px;
+}
+
+h6 {
+	text-align:center;
+
+}
+</style>
 </head>
 <body>
-<div id="container">
+<div id="container" class="container" style="width:900px;">
 <h1>게시글작성</h1>
 <form action="qinsertboard.do" method="post">
-<table class="table table-hover">
-	<col width="100px"><col width="400px">
+<div>
+<table>
+	<col width="200px">
+	<col width="80px">
 	<tr>
-		<th>제 목</th>
-		<td><input type="text" name="faq_title" /></td>
+	<td><input type="text" placeholder="제목을 작성하십시오" size="40" name="faq_title" class="form-control"/>
 	</tr>
 	<tr>
-		<th>내 용</th>
-		<td><textarea rows="10" cols="60" name="faq_content" ></textarea> </td>
+		<td colspan="2" style="padding:0px;"> <textarea name="faq_content" id="faq_content"></textarea>
+<script type="text/javascript">
+  		CKEDITOR.replace('faq_content',
+   		 {
+     	 width : '870px',  // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
+     	 height : '500px',  // 입력창의 높이
+     	 startupFocus : false,
+     	 uiColor : ﻿'#fafafa'
+   		 }
+		  );
+</script>
+</td>
 	</tr>
 	<tr>
 	<tr>
-		<td colspan="2">
-			<input type="submit" class="btn btn-primary" value="글등록">
-			<input type="button" value="취소" id="submit" onclick="getlist()"/>
+		<td colspan="2"> <input type="button" value="취소" id="submit" class="btn btn-danger" style="float:right; margin-left:5px;  margin-top:10px" onclick="getlist()"/>
+<input type="submit" value="글쓰기" id="submit" style="float:right; margin-top:10px;" class="btn btn-primary"/>
+</td>
 			
-		</td>
 	</tr>
 </table>
+</div>
 </form>
 </div>
 <%@include file="footer.jsp" %>

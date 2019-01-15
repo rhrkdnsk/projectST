@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세보기</title>
 <style type="text/css">
@@ -33,30 +38,30 @@
 <body>
 <div id="container">
 <h1>회원 정보</h1>
-<table class="table table-hover">
+<table>
 		<tr>
 		<th>닉네임</th>
-		<td>${fdto.user_nickname}</td>
+		<td class="form-control">${fdto.user_nickname}</td>
 	</tr>
 	<tr>
 		<th>이름</th>
-		<td>${fdto.user_name}</td>
+		<td class="form-control">${fdto.user_name}</td>
 	</tr>
 	<tr>
 		<th>이메일</th>
-		<td>${fdto.user_email}</td>
+		<td class="form-control">${fdto.user_email}</td>
 	</tr>
 	<tr>
 		<th>전화번호</th>
-		<td>${fdto.user_phone}</td>
+		<td class="form-control">${fdto.user_phone}</td>
 	</tr>
 	<tr>
 		<th>포인트</th>
-		<td>${fdto.user_point}</td>
+		<td class="form-control">${fdto.user_point}</td>
 	</tr>
 	<tr>
 		<th>등급</th>
-		<td>${fdto.tier}</td>
+		<td class="form-control">${fdto.tier}</td>
 	</tr>
 	<tr>
 		<td colspan="2">

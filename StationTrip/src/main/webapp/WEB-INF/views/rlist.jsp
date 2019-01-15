@@ -7,10 +7,18 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
@@ -72,11 +80,14 @@
 	
 /* 	입력범위가 벗어나는 경우 텍스트 처리 (내용이....) */
 	.titleval{
-		display: inline-block;
-		width: 200px;
-		overflow: hidden;
+		display: inline-block; 
+		width: 200px; 
+		white-space: nowrap; 
+		overflow: hidden; 
 		text-overflow: ellipsis;
-		white-space:nowrap;
+		white-space: normal; line-height: 1; height: 2em;
+
+
 	}
 /* 	textarea[name=testAjax]{ */
 /* 		position: fixed; */
@@ -214,7 +225,6 @@
 </table>
 </form>
 </div>
-
 
 <%@include file="footer.jsp" %>
 </body>
