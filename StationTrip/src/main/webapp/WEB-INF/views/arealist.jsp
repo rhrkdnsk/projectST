@@ -32,8 +32,8 @@
 				<!-- 지역 별 컨텐츠 목록 조회  -->
 				<li value="12">관광지</li>
 				<li value="14">문화시설</li>
-				<li value="15">행사/공연</li>
-				<li value="25">여행코스</li>
+<!-- 				<li value="15">행사/공연</li> -->
+<!-- 				<li value="25">여행코스</li> -->
 				<li value="28">레포츠</li>
 				<li value="32">숙박</li>
 				<li value="38">쇼핑</li>
