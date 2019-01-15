@@ -16,9 +16,6 @@ $(document).ready(function(){
 	  });
 	  
 	  
-	  
-	
-
 	  // 회원가입 모달
 	  var modalLayer2 = $("#signModalLayer");
 	  var modalLink2 = $(".signModalLink");

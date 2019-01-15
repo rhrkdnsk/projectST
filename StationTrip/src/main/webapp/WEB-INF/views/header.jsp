@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
 <link rel="stylesheet" href="/trip/resources/css/login.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
