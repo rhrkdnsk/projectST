@@ -30,11 +30,13 @@
 	height: 30px;
 	float:left;
 	color:#4c80e4;
+	text-align:center;
 }
 .inquiry_tinput {
 	width: 622px;
 	border: 1px solid lightgray;
 	height: 30px;
+	text-align:center;
 }
 
 
@@ -67,8 +69,8 @@
 			
 			<div>
 				<div style="width:722px;">
-					<input type="text" class="inquiry_ninput" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${login_userId}" readonly="readonly"><span>
-					<input type="text" placeholder="     제목을 작성하십시오"
+					<input type="text" class="inquiry_ninput" value="${login_userId}" readonly="readonly"><span>
+					<input type="text" placeholder="제목을 작성하십시오"
 						class="inquiry_tinput" name="inquiry_title" id="inquiry_title"/></span>
 				</div>
 				<div>
