@@ -48,12 +48,10 @@
 <body>
 
 
-	<div style="width: 800px; margin: auto;">
-		<h3>
-			1:1 <span style="color: red;">문의글</span>
-		</h3>
-		<br>
+	<div id="amazingtext">
+	<h1>1:1 문의</h1>
 	</div>
+	<hr style="border-color:#153d73;">
 	<div
 		style="width: 800px; min-height: 600px; margin: 50px auto auto; font-size: initial;">
 		<form action="admin_inquiry_insert.do" method="get">

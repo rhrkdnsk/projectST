@@ -29,6 +29,7 @@ table.type04 th {
     font-weight: bold;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
+    color:red;
 }
 table.type04 td {
     width: 350px;
@@ -40,11 +41,11 @@ table.type04 td {
 </head>
 <body>
 
-<div style="width: 900px;margin:auto;">
-<h3>1:1 <span style="color:red;">문의글</span></h3>
-<br>
-</div>
-<div style="width: 900px;min-height: 500px; margin:auto; font-size: initial;">
+<div id="amazingtext">
+	<h1>1:1 문의</h1>
+	</div>
+	<hr style="border-color:#153d73;">
+<div style="width: 800px;min-height: 500px; margin:50px auto; font-size: initial;">
 	<div class="list">
 		<table class="type04">
 			<colgroup>
