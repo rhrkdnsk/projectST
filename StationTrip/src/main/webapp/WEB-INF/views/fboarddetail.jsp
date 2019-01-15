@@ -115,10 +115,10 @@ $(document).ready(function() {
 		<form action="writereply.do" method="post">
 			<div style="width: 888px; border: 1px solid black; height: 200px;">
 				<input type="hidden" name="user_nickname" value="${login_userId}" style="border: none;" readonly>
+				<input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> 
 				<p style="text-align: left; margin-left:15px;margin-top:15px; ">
 					<strong>${login_userId}</strong>
 				</p>
-				<input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> 
 				<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
 				 		  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="  주제와 무관한 댓글,악플은 삭제될 수 있습니다">
 				</textarea>
@@ -150,7 +150,7 @@ $(document).ready(function() {
 						</div>
 						
 						<input type="hidden" value="${cdto.freeboard_num}" class="freeboard_num" />
-						
+						<!-- 맨위에 Jquery 클래스 값 보내기용 -->
 						
 						<!-- 댓글 -->
 						<div style="width:888px;">

@@ -152,7 +152,7 @@ function setnull() {
   			<%
   		} 	
   	%></td>
-<tr>
+</tr>
 </table>
 <form action="fboardPage.do?pageNum=1" name="search" method="post">
 
