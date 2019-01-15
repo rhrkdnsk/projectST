@@ -498,7 +498,36 @@ public class BoardController {
 			model.addAttribute("page", apageNum);
 //			model.addAttribute("keyWord", keyWord);
 //			model.addAttribute("keyField", keyField);
-	
+			String myArea = null;
+			
+			switch(areaboard_code) {
+			case 1:
+				myArea = "서울";
+				break;
+			case 2:
+				myArea = "경기";
+				break;
+			case 3:
+				myArea = "강원";
+				break;
+			case 4:
+				myArea = "대구";
+				break;
+			case 5:
+				myArea = "부산";
+				break;
+			case 6:
+				myArea = "전라";
+				break;
+			case 7:
+				myArea = "경상";
+				break;
+			case 8:
+				myArea = "기타";
+				break;
+			}
+			
+			model.addAttribute("myArea", myArea);
 			return "aboardlist";
 		}
 		@RequestMapping(value = "aboardinsertform.do")
@@ -702,6 +731,7 @@ public class BoardController {
 			logger.info("자유게시판 페이징 처리", locale);
 			System.out.println("arnum = "+areaboard_num);
 			System.out.println("refer = "+comment_refer);
+			System.out.println("replyList에서 areaboard_code : " + areaboard_code);
 			Map<String, Integer>map = new HashMap<String, Integer>();
 			map.put("areaboard_num", areaboard_num);
 			map.put("comment_refer", comment_refer);

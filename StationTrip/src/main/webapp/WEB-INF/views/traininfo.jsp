@@ -33,7 +33,8 @@ $(function() {
         dateFormat: "yymmdd",
         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12']
+        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+        
     });
 });
 
@@ -66,6 +67,10 @@ $(function() {
 	border:none;
 	color: #fff;	
 }
+
+.ui-datepicker-calendar > tbody td.ui-datepicker-week-end:first-child a { color: red; }
+.ui-datepicker-calendar > tbody td.ui-datepicker-week-end:last-child a { color: blue; } 
+
 #Datepicker{
 	padding-left:10px;
 	width:130px;

@@ -29,6 +29,7 @@ table.type04 th {
     font-weight: bold;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
+    color:red;
 }
 table.type04 td {
     width: 350px;
@@ -40,23 +41,19 @@ table.type04 td {
 </head>
 <body>
 
-<div style="text-align:center;	">
-<div id="amazingtext">
-<h1 style="margin-bottom: 30px;">My Page</h1>
-</div>
-<a href="mypage.do" class="mp_menu" >내정보 관리</a>
-<a href="pwchange.do" class="mp_menu" >비밀번호 변경</a>
-<a href="myinquiry.do" class="mp_menu" style="color:blue;">나의 문의글</a>
-<a href="itinerary.do" class="mp_menu" >여행 일정</a>
-<a href="withdrawalgo.do" class="mp_menu" >회원 탈퇴</a>
-<hr style="border-color:black;">
-</div>
-<div style="width: 800px;margin:auto;">
-<h3>나의 <span style="color:red;">문의글</span></h3>
-<br>
-</div>
+	<div style="text-align:center;	">
+		<div id="amazingtext">
+			<h1 style="margin-bottom: 30px;">My Page</h1>
+		</div>
+		<a href="mypage.do" class="mp_menu" >내정보 관리</a>
+		<a href="pwchange.do" class="mp_menu" >비밀번호 변경</a>
+		<a href="myinquiry_sdel.do" class="mp_menu" style="color:blue;">나의 문의글</a>
+		<a href="itinerary.do" class="mp_menu" >여행 일정</a>
+		<a href="withdrawalgo.do" class="mp_menu" >회원 탈퇴</a>
+		<hr style="border-color:black;">
+	</div>
 
-<div style="width: 800px;min-height: 500px; margin:auto; font-size: initial;">
+<div style="width: 800px;min-height: 500px; margin:50px auto; font-size: initial;">
 	<div class="list">
 		<table class="type04">
 			<colgroup>
@@ -95,6 +92,26 @@ table.type04 td {
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+			<tr>
+				<td colspan="3" style="text-align:center;">
+					<c:if test="${page-1 != 0 }">
+						<a href="myinquiry.do?pageNum=${page-1}">이전</a>						
+					</c:if>
+					<%
+						int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
+						int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+						int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+						for(int i=startPage; i<=endPage; i++) {
+							%>			
+								<a href="myinquiry.do?pageNum=<%=i%>"><%=i%></a>						
+							<%			
+						}
+					%>
+					<c:if test="${page+1 <= totalPage}">
+						<a href="myinquiry.do?pageNum=${page+1}">다음</a>						
+					</c:if>
+				</td>
+			<tr>
 		</table>
 	</div>
 	

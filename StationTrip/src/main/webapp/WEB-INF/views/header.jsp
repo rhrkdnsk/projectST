@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
 <link rel="stylesheet" href="/trip/resources/css/login.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
 <script type="text/javascript" src="/trip/resources/js/jquery.cookie.js"></script>
@@ -85,7 +86,7 @@
     	 <a href="gsessiondel.do" class="w3-bar-item w3-button">회원 관리</a>
       <a href="rsessiondel.do" class="w3-bar-item w3-button">공지사항 관리</a>
       <a href="qlist.do" class="w3-bar-item w3-button">Q.A</a>
-      <a href="admin_inquiry.do" class="w3-bar-item w3-button">1:1문의</a>
+      <a href="admin_inquiry_sdel.do" class="w3-bar-item w3-button">1:1문의</a>
     </div>
   </div>  			<%
   		}
@@ -103,7 +104,22 @@
 	} else {
 		%>
 		<a href="index.jsp" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" onclick="signOut();" >로그아웃</a>
-		<span class="w3-dropdown-hover w3-hide-small w3-right"><a href="mypage.do"  style="color:white;text-decoration:none"><button class="w3-button w3-hide-small w3-padding-large w3-hover-white"><%=session.getAttribute("login_userId") %></button></a></span>
+		<span class="w3-dropdown-hover w3-hide-small w3-right">
+		<%if(session.getAttribute("login_user") == null) {
+			
+			%>
+			<a href="#"  style="color:white;text-decoration:none">
+				<button class="w3-button w3-hide-small w3-padding-large w3-hover-white" onclick="alert('역장수 회원만 이용가능')"><%=session.getAttribute("login_userId") %></button>
+			</a>
+			<%
+		} else {
+			%> 
+			<a href="mypage.do"  style="color:white;text-decoration:none">
+				<button class="w3-button w3-hide-small w3-padding-large w3-hover-white"><%=session.getAttribute("login_userId") %></button>
+			</a>
+			<%	} 
+		%>
+		</span>
 		<%
 	}
 	%>

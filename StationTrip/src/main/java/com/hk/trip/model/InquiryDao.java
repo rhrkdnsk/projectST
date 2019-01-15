@@ -28,6 +28,9 @@ public class InquiryDao implements IInquiryDao{
 	public List<InquiryDto> inquiry_list(Map<String, String>map) {
 		// TODO Auto-generated method stub
 		System.out.println("dao");
+		System.out.println("user_nickname = "+map.get("user_nickname"));
+		System.out.println("startNum = "+map.get("startNum"));
+		System.out.println("endNum = "+map.get("endNum"));
 		return sqlSession.selectList(namespace+"inquiry_list", map);
 	}
 
@@ -47,9 +50,9 @@ public class InquiryDao implements IInquiryDao{
 
 
 	@Override
-	public List<InquiryDto> admin_inquiry_list() {
+	public List<InquiryDto> admin_inquiry_list(Map<String, String>map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"admin_inquiry_list", null);
+		return sqlSession.selectList(namespace+"admin_inquiry_list", map);
 	}
 
 
@@ -57,5 +60,21 @@ public class InquiryDao implements IInquiryDao{
 	public boolean admin_insert(InquiryDto idto) {
 		int count = sqlSession.insert(namespace+"admin_inquiry_insert", idto);
 		return count > 0 ? true:false;
+	}
+	
+	@Override
+	public int getCount(Map<String, String>map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "inquiry_getCount",map);
+
+		//System.out.println("getCount 값 :" + sqlSession.selectOne(namespace + "getCount"));
+		
+	}
+
+
+	@Override
+	public int admin_getCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"admin_inquiry_getCount");
 	}
 }

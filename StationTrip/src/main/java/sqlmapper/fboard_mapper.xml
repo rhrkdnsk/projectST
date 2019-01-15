@@ -25,7 +25,7 @@
  
   <update id="updateBoard" parameterType="FboardDto">
       UPDATE FREEBOARD
-      SET FREEBOARD_TITLE = #{freeboard_title}, FREEBOARD_CONTENT = #{freeboard_content}, FREEBOARD_TIME = SYSDATE
+      SET FREEBOARD_TITLE = #{freeboard_title}, FREEBOARD_CONTENT = #{freeboard_content}, FREEBOARD_TIME = SYSDATE, FREEBOARD_CATEGORY = #{freeboard_category}
       WHERE FREEBOARD_NUM = #{freeboard_num}
     </update>
     

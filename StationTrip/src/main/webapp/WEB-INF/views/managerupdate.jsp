@@ -55,7 +55,7 @@
 	</tr>
 	<tr>
 		<th>등급</th>
-		<td><textarea rows="1" cols="10" name="tier">${fdto.tier}</textarea></td>
+		<td><input type="text" name="tier" value="${fdto.tier}"/></td>
 	</tr>
 	<tr>
 		<td colspan="2">

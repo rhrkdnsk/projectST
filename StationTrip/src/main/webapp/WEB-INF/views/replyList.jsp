@@ -11,25 +11,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/trip/resources/css/reply.css">
+<style type="text/css">
+hr {
+background-color:#fafafa;
+}
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background-color:#fafafa;font-family:Verdana,sans-serif;width:880px;">
 
 	<c:if test="${!empty relist}">
 		<c:forEach items="${relist}" var="rdto">
 			<div class="lookreply">
-				댓글번호 : ${rdto.comment_num} 게시판번호 : ${rdto.areaboard_num} 아이디
-				:${rdto.user_nickname} 내용 : <input type="text"
-					value="${rdto.comment_content}" style="border: none" readonly>
-				시간 : ${rdto.comment_time} 좋아요 : ${rdto.comment_like} 싫어요 :
-				${rdto.comment_hate} 리퍼 : ${rdto.comment_refer} 스텝 :
-				${rdto.comment_step}
+				 <strong >ㄴ  ${rdto.user_nickname}</strong>
+				   <p style="margin-left:20px">${rdto.comment_content}</p>
+    				<p style="margin-left:20px">${rdto.comment_time}</p>
+
 				<c:if test="${login_userId == rdto.user_nickname}">
 
 					<a
 						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button>삭제</button></a>
 				</c:if>
+				<hr />
 			</div>
 		</c:forEach>
 	</c:if>

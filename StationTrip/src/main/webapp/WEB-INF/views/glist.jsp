@@ -71,13 +71,7 @@ function confirmChk(){
 <!-- <form action="smuldel.do" method="post" onsubmit="return confirmChk()" class="w3-center"> -->
 <form action="smuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
-	<col width="50px">
-	<col width="100px">
-	<col width="100px">
-	<col width="200px">
-	<col width="200px">
-	<col width="50px">
-	<col width="50px">
+	
 	<tr>
 		<th class="w3-center"><input type="checkbox" name="all" onclick="allSel(this.checked)" class="w3-center"/></th>
 		<th class="w3-center">닉네임</th>

@@ -41,14 +41,26 @@ public class InquiryService implements IInquiryService{
 	}
 
 	@Override
-	public List<InquiryDto> admin_inquiry_list() {
+	public List<InquiryDto> admin_inquiry_list(Map<String, String>map) {
 		// TODO Auto-generated method stub
-		return iDao.admin_inquiry_list();
+		return iDao.admin_inquiry_list(map);
 	}
 
 	@Override
 	public boolean admin_insert(InquiryDto idto) {
 		// TODO Auto-generated method stub
 		return iDao.admin_insert(idto);
+	}
+
+	@Override
+	public int getCount(Map<String, String>map) {
+		// TODO Auto-generated method stub
+		return iDao.getCount(map);
+	}
+
+	@Override
+	public int admin_getCount() {
+		// TODO Auto-generated method stub
+		return iDao.admin_getCount();
 	}
 }

@@ -89,7 +89,7 @@ public class RhksflController {
 		
 		logger.info("자유게시판 페이징 처리", locale);
 		HttpSession session = request.getSession();	
-		int countList = 10;
+		int countList = 15;
 		System.out.println("session setnum의 값  " + request.getSession().getAttribute("setnum"));
 
 

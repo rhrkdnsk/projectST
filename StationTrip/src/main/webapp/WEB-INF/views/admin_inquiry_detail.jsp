@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript"
 	src="/trip/resources/js/ckeditor/ckeditor.js"></script>
-	<style type="text/css">
+<style type="text/css">
 .labeltag {
 	margin-right: 20px;
 	text-align: right;
@@ -33,47 +33,51 @@
 	border: 1px solid lightgray;
 	height: 30px;
 }
+
 .inquiry_input2 {
-	width: 361px;
 	border: 1px solid lightgray;
 	height: 30px;
-	float:left;
+	margin: 5px;
+	position: relative;
+	left: 77%;
 }
-
 </style>
 <title>자유게시판 리스트</title>
 
 </head>
 <body>
 
-	
-	<div style="width: 800px; margin: auto;">
-		<h3>
-			1:1 <span style="color: red;">문의글</span>
-		</h3>
-		<br>
+
+	<div id="amazingtext">
+	<h1>1:1 문의</h1>
 	</div>
+	<hr style="border-color:#153d73;">
 	<div
-		style="width: 800px; height: 600px; margin: auto; font-size: initial;">
+		style="width: 800px; min-height: 600px; margin: 50px auto auto; font-size: initial;">
 		<form action="admin_inquiry_insert.do" method="get">
-		<input type="hidden" name="inquiry_num" value="${inquiryDto.inquiry_num}" readonly>
-		<div>
-			<div>
-				<input type="text" name="inquiry_title" class="inquiry_input"  value="${inquiryDto.inquiry_title}" readonly>
-				<textarea name="inquiry_content" id="inquiry_content" readonly>${inquiryDto.inquiry_content }</textarea>
-				<script type="text/javascript">
-					CKEDITOR.replace('inquiry_content', {
-						width : '720px', // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
-						height : '300px', // 입력창의 높이
-						startupFocus : false
-					});
-				</script>
+			<!-- 		<form action="inquiry_update.do" method="get"> -->
+			<input type="hidden" name="inquiry_num"
+				value="${inquiryDto.inquiry_num}">
+			<div style="width: 760px; margin: auto;">
+				<p class="hn" style="font-size: x-large; margin-left: 5px;">${inquiryDto.inquiry_title }</p>
+				<p class="hn" style="margin-top: 10px; float: right; font-size: small;">
+					<fmt:formatDate value="${inquiryDto.inquiry_time}" pattern="yyyy년 MM월 dd일" />
+				</p>
+				<hr>
+				<input type="hidden" class="inquiry_input" name="inquiry_title"
+					id="inquiry_title" value="${inquiryDto.inquiry_title }" />
+				<div
+					style="width: 700px; min-height: 300px; margin: 100px auto auto;"
+					class="hn">${inquiryDto.inquiry_content }</div>
+
+				<hr>
+				<input type="submit" value="답변달기" id="submit" class="inquiry_input2" />
+				<input type="button" value="돌아가기" class="inquiry_input2"
+					onclick="location.href='admin_inquiry_sdel.do'" />
 			</div>
-			<input type="submit" value="답변달기" id="submit" class="inquiry_input2" />
-			<input type="button" value="돌아가기" class="inquiry_input2" onclick="location.href='admin_inquiry.do'"/>
-		</div>
 		</form>
 	</div>
+
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
