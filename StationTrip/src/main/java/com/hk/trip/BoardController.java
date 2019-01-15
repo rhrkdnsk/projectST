@@ -577,9 +577,8 @@ public class BoardController {
 			List<CommentDto> dto = aboardService.getReply(areaboard_num);
 			AboardDto bdto = aboardService.goBack(areaboard_num, areaboard_code);
 			AboardDto ndto = aboardService.goNext(areaboard_num, areaboard_code);
-					
-			
-			System.out.println("adto : " + adto);
+			System.out.println("bdto : " + bdto);
+			System.out.println("ndto : " + ndto);
 			model.addAttribute("fdto", adto);
 			model.addAttribute("list", dto);
 			model.addAttribute("bdto", bdto);
