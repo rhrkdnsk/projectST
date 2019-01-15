@@ -13,12 +13,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
@@ -46,28 +42,7 @@
 		return count>0?true:false;//true이면 submit실행, false이면 취소
 	}
 	
-	$(function(){ // onload: 페이지가 로딩 되면 바로 함수를 실행시켜주는 이벤트
-		//답변형을 위한 속성중에 refer,step,depth를 감추고 보이게 하는 기능
-		//slice(), each(), toggle(), click()
-		$("#container > h1").click(function(){//h1을 클리한다면 함수를 실행해라
-			$("#container form col").slice(5,8).toggle();
-			$("#container form th").slice(5,8).toggle();//th중에 5번째~7번째선택해서 감추거나 보여주거나
-			$("#container form tr").each(function(){//tr들의 개수만큼 함수를 반복 실행해라!!
-				$(this).children("td").slice(5,8).toggle();//반복할때 tr하나씩 얻어와서 자식요소td구함
-			});
-		});
 	
-		//삭제된 글에 해당하는 체크박스를 비활성화 하자!!
-		$(".delboard").each(function(){
-			//this---> [delboard,delboard,delboard,delboard]
-			$(this).parent("tr").children("td").eq(0)
-			.find("input").attr("disabled","disabled");
-		});
-		
-		//ajax처리: 글 제목에 마우스 올리면 textarea에 내용 출력하기
-	
-		
-	});
 	
 	function setnull() {
 		location.href="rsessiondel.do";
@@ -89,11 +64,6 @@
 
 
 	}
-/* 	textarea[name=testAjax]{ */
-/* 		position: fixed; */
-/* 		left: 100px; */
-/* 		top:150px; */
-/* 	} */
 </style>
 </head>
 <body>
@@ -174,36 +144,29 @@
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-	<div class="list-bot">
-<p>
-<c:if test="${page-1 != 0 }">
-						<a href="rlist.do?pageNum=${page-1}">이전</a>						
-
-</c:if>
-
-<%
-// String aaa = (String)request.getAttribute("totalPage");
-// 	System.out.println("list에서 aaa의 값 : " + aaa);
-	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-
-	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
-//int totalPage = Integer.parseInt(aaa);
-		for(int i=startPage; i<=endPage; i++) {
-			%>			
-						<a href="rlist.do?pageNum=<%=i%>"><%=i%></a>						
-			<%			
-		}
-%>
-
-
-
-  <c:if test="${page+1 <= totalPage}">
-  <a href="rlist.do?pageNum=${page+1}">다음</a>						
-  </c:if>
-</p>
-</div>
+		<tr>
+		<td colspan="6">
+	<p>
+	<c:if test="${page-1 != 0 }"><a href="rlist.do?pageNum=${page-1}">이전</a>	</c:if>
+	<%
+		int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
+		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+	
+		System.out.println("jsp list의 totalPage의 값 : " + totalPage);
+			for(int i=startPage; i<=endPage; i++) {
+				%><a href="rlist.do?pageNum=<%=i%>"><%=i%></a><%			
+			}%>
+	  <c:if test="${page+1 <= totalPage}">
+	  <a href="rlist.do?pageNum=${page+1}">다음</a>						
+	  </c:if>
+	</p>
+	</td>
+			
+				
+			
+		</tr>
+	
 <%
   		if(session.getAttribute("login_admin") == null) {
   			%>

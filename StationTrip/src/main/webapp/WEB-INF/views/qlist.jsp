@@ -14,7 +14,53 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <style type="text/css">
+html,
 
+body {
+
+    margin:0;
+
+    padding:0;
+
+    height:100%;
+
+}
+
+#wrapper {
+
+	position:relative;
+
+    min-height:100%;
+
+}
+
+#header {
+
+	height:70px;
+
+    background:#ccc;
+
+}
+
+#container {
+
+    padding:20px;
+
+}
+
+#footer {
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:70px;   
+
+    background:#ccc;
+
+}
 /* 	입력범위가 벗어나는 경우 텍스트 처리 (내용이....) */
 	.titleval{
 		display: inline-block;
@@ -47,6 +93,7 @@ $(document).ready(function(){
 	
 	
 </script>
+
 </head>
 <body>
 <div id="container" class="container w3-center" >
@@ -105,6 +152,6 @@ $(document).ready(function(){
 	
 </table>
 </div>
+<div id="footer"><%@include file="footer.jsp" %></div>
 </body>
 </html>
-<%@include file="footer.jsp" %>
