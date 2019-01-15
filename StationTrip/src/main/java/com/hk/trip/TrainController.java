@@ -43,6 +43,7 @@ public class TrainController {
 		PHARM_URL = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyCodeList";
 		
         URL url = new URL(getURLParam(null));
+        System.out.println(url);
    	 
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);

@@ -6,13 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>My page</title>
 </head>
 <body>
 
-<jsp:include page="header.jsp"></jsp:include>
+
 <div style="text-align:center;	">
 <div id="amazingtext">
 <h1 style="margin-bottom: 30px;">My Page</h1>
@@ -26,7 +27,7 @@
 </div>
 <div style="width: 800px;margin:auto;height: 80px;">
 <h3 style="text-align:center;margin:0;">여행일정</h3>
-<a href="schedulemake.do" style="float:right;padding-top: 15px;"><button>일정만들기</button></a>
+<button style="float:right;" onclick="location.href='schedulemake.do'">일정만들기</button>
 <br>
 </div>
 <div style="width: 800px;height: 400px; margin:auto; font-size: initial;">
