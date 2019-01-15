@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <title>글쓰기</title>
 
 <script type="text/javascript" src="/trip/resources/js/ckeditor/ckeditor.js"></script>
@@ -27,7 +31,7 @@ h6 {
 </style>
 <script type="text/javascript">
 function getlist() {
-	location.href="aboardPage.do?apageNum=${anowPage}"
+	location.href="aboardPage.do?apageNum=${anowPage}&areaboard_code=${sareaboard_code}"
 }
 
 </script>

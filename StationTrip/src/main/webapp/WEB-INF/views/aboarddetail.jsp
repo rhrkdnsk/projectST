@@ -113,8 +113,8 @@ id="like_img" height="50px" width="50px">
 
 <c:if test="${fdto.user_nickname  == login_userId}">
 		<span style="float:right;">
-		<button value="수정" onclick="goUpdate()">수정</button> 
-		<button onclick="goDelete()">삭제</button>
+		<button class="btn btn-primary" onclick="goUpdate()">수정</button> 
+		<button class="btn btn-primary" onclick="goDelete()">삭제</button>
 		</span>
 </c:if>
 </div>
@@ -132,7 +132,7 @@ id="like_img" height="50px" width="50px">
 </p>
 <textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
-<input type="submit" value="댓글작성" style="float:right">
+<input type="submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
 
 </div>
 <%-- <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> --%>
@@ -144,9 +144,7 @@ id="like_img" height="50px" width="50px">
 <!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 <c:choose>
 	<c:when test="${empty list}">
-	<dl>	
-		<dd>-------작성된 댓글이 없습니다.----</dd>
-	</dl>
+
   </c:when>
   
   <c:otherwise>
@@ -216,8 +214,8 @@ id="like_img" height="50px" width="50px">
   	      	
   	      <c:if test="${ndto.areaboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${areaboard_code}">${ndto.areaboard_title}</a>
+				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
+				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
 				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
@@ -225,7 +223,7 @@ id="like_img" height="50px" width="50px">
 			
 		<c:if test="${bdto.areaboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}">이전글 보기</a>
+				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
 				<a style="font-size:14px" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
 				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
 			</p>
