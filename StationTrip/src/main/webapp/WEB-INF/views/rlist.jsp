@@ -49,6 +49,55 @@
 	}
 </script>
 <style type="text/css">
+
+html,
+
+body {
+
+    margin:0;
+
+    padding:0;
+
+    height:100%;
+
+}
+
+#wrapper {
+
+	position:relative;
+
+    min-height:100%;
+
+}
+
+#header {
+
+	height:70px;
+
+    background:#ccc;
+
+}
+
+#container {
+
+    padding:20px;
+
+}
+
+#footer {
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:70px;   
+
+    background:#ccc;
+
+}
+
 	/* 	링크에 밑줄 제거 */
 	table a{text-decoration: none;}
 	img{width:10px; height: 10px;}
@@ -60,7 +109,7 @@
 		white-space: nowrap; 
 		overflow: hidden; 
 		text-overflow: ellipsis;
-		white-space: normal; line-height: 1; height: 2em;
+		white-space: normal; line-height: 1; height: 1em;
 
 
 	}
@@ -145,7 +194,7 @@
 		</c:otherwise>
 	</c:choose>
 		<tr>
-		<td colspan="6">
+		<td colspan="10">
 	<p>
 	<c:if test="${page-1 != 0 }"><a href="rlist.do?pageNum=${page-1}">이전</a>	</c:if>
 	<%
@@ -188,7 +237,6 @@
 </table>
 </form>
 </div>
-
-<%@include file="footer.jsp" %>
+<div id="footer"><%@include file="footer.jsp" %></div>
 </body>
 </html>

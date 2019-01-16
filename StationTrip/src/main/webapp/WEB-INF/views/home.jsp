@@ -7,6 +7,12 @@
 <%@ page session="false" %>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
@@ -22,57 +28,55 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 .mySlides {display:none;}
+.max-small {
+    width: 760px; height: 450px;
+
+}
 </style>
 </head>
 
 
 <div class="w3-display-container w3-animate-opacity">
-  <img src="/trip/resources/images/a1.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
+  <img src="/trip/resources/images/s1.jpg" alt="boat" style="width:100%;min-height:350px;max-height:600px;">
   
 </div>
 <div class="w3-content w3-section" style="max-width:1600px;">
 
-  <!-- Good offers -->
+  <!-- Good offers -->	
  <div class="w3-container w3-margin-top">
     <h3>지금당장 떠나세요~</h3>
     <h6>멀리가지 말고 <strong>국내!</strong> 여행을 가세요~ </h6>
   </div>
   
-  <div class="w3-row-padding w3-text-white w3-large">
+ <div class="w3-row-padding w3-large">
   
     <div class="w3-half w3-margin-bottom">
-      <div class="w3-display-container">
-      <div class="w3-container w3-black">
-      <h2><i class="w3-margin-right"></i>열차 찾기</h2>
-    </div>
-    <div class="w3-container w3-blue w3-padding-16">
-         
-    </div>
-      </div>
+      
        <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container">
-            <img src="/trip/resources/images/ckdsud.jpg" alt="Pisa" style="width:100%; max-width:500px">
-            <span class="w3-display-bottomleft w3-padding">창녕</span>
-          </div>
-        </div>
+        
      <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-       <img class="mySlides" src="/trip/resources/images/ckdsud.jpg" alt="boat" style="width:100%; max-width:500px">
-  <img class="mySlides" src="/trip/resources/images/eowjs.jpg" alt="boat" style="width:100%; max-width:500px">
-    <img class="mySlides" src="/trip/resources/images/chunma.jpg" alt="boat" style="width:100%; max-width:500px">
-    <img class="mySlides" src="/trip/resources/images/a3.jpg" alt="boat" style="width:100%; max-width:500px">
-        <span class="w3-display-bottomleft w3-padding"></span>
+  <img class="mySlides max-small" src="/trip/resources/images/ckdsud.jpg" alt="boat" style="height: 450px">
+  <img class="mySlides max-small" src="/trip/resources/images/eowjs.jpg" alt="boat" style="height: 450px">
+    <img class="mySlides max-small" src="/trip/resources/images/chunma.jpg" alt="boat" style="height: 450px">
+    <img class="mySlides max-small" src="/trip/resources/images/a3.jpg" alt="boat" style="height: 450px">
+     <img class="mySlides max-small" src="/trip/resources/images/s2.jpg" alt="boat" style="height: 450px">
+      <img class="mySlides max-small" src="/trip/resources/images/s3.jpg" alt="boat" style="height: 450px">
+       <img class="mySlides max-small" src="/trip/resources/images/s4.jpg" alt="boat" style="height: 450px">
+        <span class="w3-display-bottomleft w3-padding"></span> 
       </div>
+       <div class="w3-container w3-white">
+      	<h3>다른사이트</h3>
+       <h6>서울시 <strong>공식</strong> 관광정보 사이트~ </h6>
+       <a href="http://korean.visitseoul.net/index" class="w3-button w3-margin-bottom w3-right">자세히..</a>
+       </div>
+       <img class="max-small" src="/trip/resources/images/visitseoul_sns.png" alt="boat" style="height: 450px">
     </div>
       </div>
     </div>
-    
      <div class="w3-half w3-margin-bottom">
-      <img src="/trip/resources/images/bbb.jpg" alt="Austria" style="width:100%">
-      <div class="w3-container w3-white">
-        <button class="w3-button w3-margin-bottom w3-right">자세히..</button>
-      </div>
+      <img class='max-small' src="/trip/resources/images/bbb.jpg" alt="Austria" style="width: 760px; height: 1000px;">
+      
     </div>
       </div>
 <script>
@@ -98,20 +102,20 @@ function carousel() {
   </div>
   <div class="w3-row-padding">
     <div class="w3-half w3-margin-bottom">
-      <img src="/trip/resources/images/ocean2.jpg" alt="Norway" style="width:100%">
+      <img class='max-small' src="/trip/resources/images/dhleh1.jpg" alt="Norway" style="height: 400px">
       <div class="w3-container w3-white">
-        <h3>동 해</h3>
+        <h3>외 도</h3>
         <p class="w3-opacity"></p>
-		<p>시원한 바다 바람을 즐기고, 아침 해가 뜨는 동해로 가요!</p>
-        <button class="w3-button w3-margin-bottom w3-right" >자세히..</button>
+		<p>아름답고 이국적인 외도로~</p>
+        <a href="http://localhost:9999/trip/areaDetail.do?con=126581&type=12" class="w3-button w3-margin-bottom w3-right">자세히..</a>
       </div>
     </div>
     <div class="w3-half w3-margin-bottom">
-      <img src="/trip/resources/images/mountains2.jpg" alt="Austria" style="width:100%">
+      <img class='max-small' src="/trip/resources/images/rhdtkstjd.jpg" alt="Austria" style="height: 400px">
       <div class="w3-container w3-white">
-        <h3>강원도 겨울 산</h3>
-        <p>새하얀 눈길을 걸으며...</p>
-        <button class="w3-button w3-margin-bottom w3-right">자세히..</button>
+        <h3>공주 공산성</h3>
+        <p>유네스코에 지정된 세계유산~</p>
+        <a href="http://localhost:9999/trip/areaDetail.do?con=125949&type=12" class="w3-button w3-margin-bottom w3-right">자세히..</a>
       </div>
     </div>
   </div>

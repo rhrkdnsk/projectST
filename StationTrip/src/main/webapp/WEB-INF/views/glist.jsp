@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
@@ -62,13 +61,25 @@ function confirmChk(){
 /* 		left: 100px; */
 /* 		top:150px; */
 /* 	} */
+	#footer {
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:70px;   
+
+    background:#ccc;
+
+}
 </style>
 </head>
 <body>
 <div id="container" class="container w3-center" >
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>유저 목록</h1></div>
 <a href="glist.do"></a>
-<!-- <form action="smuldel.do" method="post" onsubmit="return confirmChk()" class="w3-center"> -->
 <form action="smuldel.do" method="post" onsubmit="return confirmChk()">
 <table class="table table-hover">
 	
@@ -103,8 +114,6 @@ function confirmChk(){
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-
-
 	<tr>
 	<td colspan="10">
 <p>
@@ -139,7 +148,7 @@ function confirmChk(){
 	 }
 
 </script>
-<%@include file="footer.jsp" %>
+<div id="footer"><%@include file="footer.jsp" %></div>
 </body>
 </html>
 
