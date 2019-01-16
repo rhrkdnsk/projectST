@@ -251,4 +251,25 @@ public class FboardDao implements IFboardDao {
 		System.out.println(map.get("ori_nickname"));
 		sqlSession.update(namespace+"updateNickname", map);
 	}
+	@Override
+	public void pointUp(String user_nickname) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "pointUp", user_nickname);
+	}
+	@Override
+	public void pointDown(String user_nickname) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "pointDown" ,user_nickname);
+	}
+	@Override
+	public void upGrade(String user_nickname) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "upGrade",user_nickname);
+	}
+	
+	@Override
+	public void pointUp10(String user_nickname) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace + "point10Up" ,user_nickname);
+	}
 }

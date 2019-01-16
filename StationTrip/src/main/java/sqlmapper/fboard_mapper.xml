@@ -95,6 +95,27 @@ from (select rownum as rnum, A.FREEBOARD_NUM, A.USER_NICKNAME, A.FREEBOARD_TITLE
  ]]>
 	</select>
 
+  <update id="pointUp" parameterType="String">
+    UPDATE T_USER SET USER_POINT = USER_POINT + 1 WHERE USER_NICKNAME = #{user_nickname}
+    </update>
+
+    <update id="pointDown" parameterType="String">
+    UPDATE T_USER SET USER_POINT = USER_POINT - 1 WHERE USER_NICKNAME = #{user_nickname}
+    </update>
+
+    <update id="upGrade" parameterType="String">
+
+UPDATE T_USER
+SET TIER = (SELECT E.TIER
+			FROM TIER E ,T_USER T
+			WHERE USER_POINT BETWEEN LOWPOINT AND HIGHPOINT
+			AND USER_NICKNAME = #{user_nickname})
+WHERE USER_NICKNAME = #{user_nickname}
+</update>
+ <update id="point10Up" parameterType="String">
+    UPDATE T_USER SET USER_POINT = USER_POINT + 10 WHERE USER_NICKNAME = #{user_nickname}
+    </update>
+
+   </mapper>
 <!-- bad sql error = 끝에 세미콜론 붙였는지 확인하기 -->
 <!-- 부등호 사용시 오류날때엔 CDATA 추가해주기 -->
-   </mapper>

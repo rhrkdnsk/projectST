@@ -69,13 +69,13 @@ $(document).ready(function() {
 		$(".comment_submit").click(function(){
 			
 			alert("대댓글 클릭은 됨");
-			var commentcontent = $(this).prevAll($(".comment_content")).val();
-			
-			
+			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
+
 			alert(commentcontent);
+			
 			if(commentcontent.length < 3 || commentcontent.length > 100 ){
 				event.preventDefault();
-				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
 				document.getElementById("comment_content").focus();
 				return false;
 			}
@@ -220,7 +220,7 @@ $(document).ready(function() {
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" ></textarea>
+														<textarea rows="5" cols="55" id="comment_content" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" ></textarea>
 													</td>
 												</tr>
 												<tr>
