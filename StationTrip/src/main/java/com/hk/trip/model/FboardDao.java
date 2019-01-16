@@ -244,4 +244,11 @@ public class FboardDao implements IFboardDao {
 		// TODO Auto-generated method stub
 		sqlSession.delete(namespace1 + "andCommentdel" , cdto);
 	}
+
+	@Override
+	public void updateNickname(Map<String, String> map) {
+		System.out.println(map.get("user_nickname"));
+		System.out.println(map.get("ori_nickname"));
+		sqlSession.update(namespace+"updateNickname", map);
+	}
 }

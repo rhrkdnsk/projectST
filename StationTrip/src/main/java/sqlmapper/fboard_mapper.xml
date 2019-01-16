@@ -29,6 +29,12 @@
       WHERE FREEBOARD_NUM = #{freeboard_num}
     </update>
     
+     <update id="updateNickname" parameterType="Map">
+      UPDATE FREEBOARD
+      SET USER_NICKNAME = #{user_nickname}
+      WHERE USER_NICKNAME = #{ori_nickname}
+    </update>
+    
     <delete id="deleteBoard">
     DELETE FREEBOARD WHERE FREEBOARD_NUM=#{freeboard_num}
     </delete>

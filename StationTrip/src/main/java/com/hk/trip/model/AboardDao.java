@@ -235,5 +235,17 @@ public class AboardDao implements IAboardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace1+"aReplyList", map);
 	}
+
+	@Override
+	public void AupdateNickname(Map<String, String> map) {
+		sqlSession.update(namespace+"AupdateNickname", map);
+		
+	}
+	
+	@Override
+	public void CupdateNickname(Map<String, String> map) {
+		sqlSession.update(namespace1+"CupdateNickname", map);
+		
+	}
 	
 	} //끝

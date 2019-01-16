@@ -35,19 +35,21 @@ $(function(){
 		$('#area-detail-content').append("<p>" + content.text() + "</p>");
 		$('#area-detail-homepage').append("<p>" + homepage.text() + "</p>");
 	}
-
+	
 	function getServiceData12(obj) {
-
-		var parking = $(obj['introView']).find('parking').text();
-		var chkbabycarriage = $(obj['introView']).find('chkbabycarriage').text();
-		var chkpet = $(obj['introView']).find('chkpet').text();
-		var chkcreditcard = $(obj['introView']).find('chkcreditcard').text();
-
-		$('#area-detail-introtext').append("<p>주차장 : " + parking + "</p>");
-		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriage + "</p>");
-		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpet + "</p>");
-		$('#area-detail-introtext').append("<p>카드사용 : " + chkcreditcard + "</p>");
+		var iView = $(obj['introView']);
+		alert(iView.text())
 		
+		var parking =  iView.find('parking').text();
+		var chkbabycarriage =  iView.find('chkbabycarriage').text();
+		var chkpet =  iView.find('chkpet').text();
+		var chkcreditcard =  iView.find('chkcreditcard').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parking + "</p>")
+			.append("<p>유모차 대여 : " + chkbabycarriage + "</p>")
+			.append("<p>애완동물 동반 : " + chkpet + "</p>")
+			.append("<p>카드사용 : " + chkcreditcard + "</p>")
 	}
 
 	function getServiceData14(obj) {

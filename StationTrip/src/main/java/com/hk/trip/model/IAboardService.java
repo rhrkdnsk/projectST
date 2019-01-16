@@ -35,4 +35,6 @@ public interface IAboardService {
 	public void upComment(int areaboard_num);
 	public void downComment(int areaboard_num);
 	public boolean Commentreply(CommentDto dto);
+	public void AupdateNickname(Map<String, String> map);
+	public void CupdateNickname(Map<String, String> map);
 }

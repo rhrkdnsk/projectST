@@ -137,4 +137,16 @@ public class AboardService implements IAboardService {
 		// TODO Auto-generated method stub
 		return iaboarddao.aReplyList(map);
 	}
+
+	@Override
+	public void AupdateNickname(Map<String, String> map) {
+		iaboarddao.AupdateNickname(map);
+		
+	}
+	
+	@Override
+	public void CupdateNickname(Map<String, String> map) {
+		iaboarddao.CupdateNickname(map);
+		
+	}
 }

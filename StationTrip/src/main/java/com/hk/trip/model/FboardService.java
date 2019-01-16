@@ -146,4 +146,9 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		ifboarddao.deleteStep(cdto);
 	}
+
+	@Override
+	public void updateNickname(Map<String, String> map) {
+		 ifboarddao.updateNickname(map);
+	}
 }

@@ -40,6 +40,7 @@
 		<p>
 			<label class="labeltag">닉네임</label>  
 			<input type="hidden"  name="n_email" value="${dto.user_email }"> 
+			<input type="hidden"  name="ori_Nickname" value="${dto.user_nickname }"> 
 			<input type="text" id="nickput" name="nickput" value="${dto.user_nickname }" style="border:none;" readonly="readonly"/>
 			<span id="nickspan">
 				<button id="btnnick" style="margin-left:15px;background-color:white;" >수정</button>

@@ -80,5 +80,11 @@ FROM T_COMMENT WHERE AREABOARD_NUM = #{areaboard_num} ),#{comment_content},0,0 )
     <update id="areadCount" parameterType="int">
 	 UPDATE AREABOARD SET AREABOARD_VIEW = AREABOARD_VIEW+1 WHERE AREABOARD_NUM=#{areaboard_num}
 	</update>
+	
+	 <update id="AupdateNickname" parameterType="Map">
+      UPDATE AREABOARD
+      SET USER_NICKNAME = #{user_nickname}
+      WHERE USER_NICKNAME = #{ori_nickname}
+    </update>
     
   </mapper>
