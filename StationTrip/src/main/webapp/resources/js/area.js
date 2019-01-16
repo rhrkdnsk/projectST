@@ -1,11 +1,12 @@
 $(function(){
 	var case1_Code = null;
 	var case2_Code = null;
-	var case3_Code = null;
+	var case3_Code = null; 
 	var pageNo = null;
-	
+
+
 	areaList();
-	
+
 	/* Area List 생성 */
 	function getAreaSearchData(obj, num){
 		var name = $(obj["areaCase" + num]).find("name");
@@ -17,7 +18,7 @@ $(function(){
 			$("#case" + num).append("<li value='"+ code.eq(i).text() +"'>" + name.eq(i).text() + "</li>");
 		}
 	}
-	
+
 	/* Area Data 요청 */
 	function areaList(){
 		$.ajax({
@@ -43,7 +44,6 @@ $(function(){
 	function getContentSize(obj, contentId, rows){
 		var count = $(obj["content"]).find("totalCount").text().trim();
 		var totalPage = Math.ceil(count / rows);
-
 		$("#titles").empty();
 
 		for(var i = 0; i < rows; i++){
@@ -51,12 +51,11 @@ $(function(){
 			$("#"+ contentId.eq(i).text().trim()).append("<div id='content-img-" + i + "'class='img-side'></div>" );
 			$("#"+ contentId.eq(i).text().trim()).append("<div id='content-text-" + i + "'class='text-side'></div><butten");
 		}
-
 		for (var i = 1; i <= totalPage; i++) {
 			$("#titles").append("<p id='"+i+"' class='pageNum'>"+ i + "</p>");
 		}
 	}
-	
+
 	/* Content Block > Title, Image, Content-text 입력 */
 	function getContentData(contentId, rows){
 		for(var i = 0; i < rows; i++){
@@ -83,7 +82,7 @@ $(function(){
 			});
 		}
 	}
-	
+
 	/* Content Data 요청 */
 	function contentList(){
 		$.ajax({
@@ -98,6 +97,11 @@ $(function(){
 
 				getContentSize(obj, contentId, rows);
 				getContentData(contentId, rows);
+				
+				case1_Code = obj.case1;
+				case2_Code = obj.case2;
+				case3_Code = obj.case3;
+				alert(case1_Code + " / " + case2_Code + " / " + case3_Code)
 			},
 			error:function(){
 				alert("에러");
@@ -134,10 +138,20 @@ $(function(){
 
 	$("#titles").on("click", ".img-side", function(){
 		var con = $(this).parent().attr('id');
+		if(case1_Code == null){
+			case1_Code = "1";
+		}
+		if(case2_Code == null){
+			case2_Code = "1";
+		}
 		if(case3_Code == null){
 			case3_Code = "12";
 		}
-		location.href='areaDetail.do?con=' + con + '&type=' + case3_Code;
+		if(pageNo == null){
+			pageNo = "1";
+		}
+		location.href='areaDetail.do?con=' + con + '&type1=' + case1_Code 
+		+ '&type2=' + case2_Code + '&type3=' + case3_Code + '&page=' + pageNo;
 	});
-	
+
 });

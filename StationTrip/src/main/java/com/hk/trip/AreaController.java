@@ -10,8 +10,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.mail.Session;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,11 +32,23 @@ import com.hk.trip.dto.AreaDto;
 
 @Controller
 public class AreaController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "areaboard.do", method = RequestMethod.GET)
-	public String areaboard(Locale locale, Model model) {
+	public String areaboard(Locale locale, Model model,  HttpServletRequest req) {
+		logger.info("지역 검색 이동.", locale);
+
+		for(int i=0; i<4; i++) {
+			req.getSession().removeAttribute("case"+i);
+		}
+		req.getSession().removeAttribute("pageNo");
+
+		return "arealist";
+	}
+	
+	@RequestMapping(value = "areaboardgo.do", method = RequestMethod.GET)
+	public String areaboardgo(Locale locale, Model model,  HttpServletRequest req) {
 		logger.info("지역 검색 이동.", locale);
 
 		return "arealist";
@@ -85,25 +100,49 @@ public class AreaController {
 		}
 		return map;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "contentList.do")
-	public Map<String, String> contentList(String case1, String case2, String case3, String pageNo, String contentId,
+	public Map<String, String> contentList(String case1, String case2, String case3, String pageNo,
 			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("컨텐츠 목록 출력.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
+
+		HttpSession session = req.getSession();
+
+		if(case1 == "" && case2 == "" && case3 == "" && pageNo == "") {
+			case1 = (String)session.getAttribute("case1");
+			case2 = (String)session.getAttribute("case2");
+			case3 = (String)session.getAttribute("case3");
+			pageNo = (String)session.getAttribute("pageNo");
+		}
 		
-		if(case1 == "") {
+		System.out.println("********************************************************");
+		System.out.println("case1 = " + case1);
+		System.out.println("case2 = " + case2);
+		System.out.println("case3 = " + case3);
+		System.out.println("pageNo = " + pageNo);
+		System.out.println("********************************************************");
+		
+		if(case1 == null || case1 == "") {
 			case1 = "1";
-		} if(case2 == "") {
+		} if(case2 == null || case2 == "") {
 			case2 = "1";
-		} if(case3 == "") {
+		} if(case3 == null || case3 == "") {
 			case3 = "12";
-		} if(pageNo == "") {
+		} if(pageNo == null || pageNo == "") {
 			pageNo = "1";
 		}
+		
+		System.out.println("********************************************************");
+		System.out.println("no. 2");
+		System.out.println("case1 = " + case1);
+		System.out.println("case2 = " + case2);
+		System.out.println("case3 = " + case3);
+		System.out.println("pageNo = " + pageNo);
+		System.out.println("********************************************************");
 		
 		String urlCase3 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
@@ -122,18 +161,22 @@ public class AreaController {
 		param += "&totalCount";
 		/* 컨텐츠 조회 */
 		urlCase3 = URL + serviceName + param;
-		
+
 		Document areaContent = null;
 		try {
 			areaContent = Jsoup.connect(urlCase3).get();
 			map.put("content", areaContent.toString());
+			map.put("case1", case1);
+			map.put("case2", case2);
+			map.put("case3", case3);
+			map.put("pageNo", pageNo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return map;
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "overView.do")
 	public Map<String, String> overView(String contentId,
@@ -142,26 +185,26 @@ public class AreaController {
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
-		
+
 		String x = contentId.toString();
 		x = x.trim();
-		
+
 		String urlCase4 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		//지역조회
-//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
+		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + x;
 		param += "&overviewYN=Y";
 		param += "&firstImageYN=Y";
 		param += "&defaultYN=Y";
-		
+
 		/* 컨텐츠 소개 조회 */
 		urlCase4 = URL + serviceName + param;
-		
+
 		Document overView = null;
 		try {
 			overView = Jsoup.connect(urlCase4).get();
@@ -172,53 +215,65 @@ public class AreaController {
 		return map;
 
 	}
-	
+
 	@RequestMapping(value = "areaDetail.do", method = RequestMethod.GET)
-	public String areaDetail(String con, String type, Locale locale, Model model) {
+	public String areaDetail(String con, String type1, String type2, String type3, String page, 
+			Locale locale, Model model, HttpServletRequest req) {
 		logger.info("관광지 상세보기 이동.", locale);
-		
-		
-		model.addAttribute("type", type);
+		HttpSession session = req.getSession();
+
+		model.addAttribute("type", type3);
 		model.addAttribute("con", con);
+		System.out.println("********************************************************");
+		System.out.println("no. 3");
+		System.out.println("case1 = " + type1);
+		System.out.println("case2 = " + type2);
+		System.out.println("case3 = " + type3);
+		System.out.println("pageNo = " + page);
+		System.out.println("********************************************************");
+		session.setAttribute("case1", type1);
+		session.setAttribute("case2", type2);
+		session.setAttribute("case3", type3);
+		session.setAttribute("pageNo", page);
 		
 		return "areadetail";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "detailView.do")
-	public Map<String, String> detailView(String con, String type,
+	public Map<String, String> detailView(String con, String type, 
 			Locale locale, Model model, HttpServletResponse res, HttpServletRequest req) throws Exception {
 		logger.info("관광지 상세보기.", locale);
 		res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		Map<String,String>map=new HashMap<String, String>();
-		
+
 		if(type == null) {
 			type = "12";
 		}
-		
+
 		String detailUrl = null;
 		String infoUrl = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		
-//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
+		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + con;
 		param += "&contentTypeId=" + type;
-		
+
 		infoUrl = URL + "detailIntro" + param;
-		
+
 		param += "&overviewYN=Y";
 		param += "&addrinfoYN=Y";
 		param += "&firstImageYN=Y";
 		param += "&defaultYN=Y";
-		
+
 		/* 컨텐츠 소개 조회 */
 		detailUrl = URL + serviceName + param;
-		
+
 		Document detailView = null;
 		Document introView = null;
 		try {
@@ -226,11 +281,11 @@ public class AreaController {
 			introView = Jsoup.connect(infoUrl).get();
 			map.put("detailView", detailView.toString());
 			map.put("introView", introView.toString());
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return map;
 	}
 }

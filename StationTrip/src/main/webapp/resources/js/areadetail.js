@@ -20,7 +20,7 @@ $(function(){
 	});
 
 	function getCommomData(obj) {
-
+		
 		var img = $(obj['detailView']).find('firstimage');
 		var title = $(obj['detailView']).find('title');
 		var addr = $(obj['detailView']).find('addr1');
@@ -37,8 +37,8 @@ $(function(){
 	}
 
 	function getServiceData12(obj) {
-
-		var parking = $(obj['introView']).find('parking').text();
+		var map = $(obj['introView']);
+		var parking = map.find('parking').text();
 		var chkbabycarriage = $(obj['introView']).find('chkbabycarriage').text();
 		var chkpet = $(obj['introView']).find('chkpet').text();
 		var chkcreditcard = $(obj['introView']).find('chkcreditcard').text();
@@ -69,11 +69,7 @@ $(function(){
 		var chkbabycarriageleports = $(obj['introView']).find('chkbabycarriageleports').text();
 		var chkpetleports = $(obj['introView']).find('chkpetleports').text();
 		var chkcreditcardleports = $(obj['introView']).find('chkcreditcardleports').text();
-		var openperiod = $(obj['introView']).find('openperiod').text();
-		var usetimeleports = $(obj['introView']).find('usetimeleports').text();
-		var expagerangeleports = $(obj['introView']).find('expagerangeleports').text();
 		var usefeeleports = $(obj['introView']).find('usefeeleports').text();
-		var reservation = $(obj['introView']).find('reservation').text();
 		var infocenterleports = $(obj['introView']).find('infocenterleports').text();
 		
 		$('#area-detail-introtext').append("<p>주차장 : " + parkingleports + "</p>");
@@ -104,22 +100,19 @@ $(function(){
 		var parkingshopping = $(obj['introView']).find('parkingshopping').text();
 		var chkbabycarriageshopping = $(obj['introView']).find('chkbabycarriageshopping').text();
 		var chkpetshopping = $(obj['introView']).find('chkpetshopping').text();
-		var chkcreditcard = $(obj['introView']).find('chkcreditcard').text();
-		
 		var saleitem = $(obj['introView']).find('saleitem').text();
+		
 		var opentime = $(obj['introView']).find('opentime').text();
 		var restdateshopping = $(obj['introView']).find('restdateshopping').text();
-		var shopguide = $(obj['introView']).find('shopguide').text();
 		var infocentershopping = $(obj['introView']).find('infocentershopping').text();
-		
+
 		$('#area-detail-introtext').append("<p>주차장 : " + parkingshopping + "</p>");
 		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriageshopping + "</p>");
 		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpetshopping + "</p>");
-		$('#area-detail-introtext').append("<p>카드여부 : " + chkcreditcard + "</p>");
 		$('#area-detail-introtext').append("<p>판매 품목 : " + saleitem + "</p>");
+		
 		$('#area-detail-introtext').append("<p>영업시간 : " + opentime + "</p>");
 		$('#area-detail-introtext').append("<p>쉬는날 : " + restdateshopping + "</p>");
-		$('#area-detail-introtext').append("<p>매장안내 : " + shopguide + "</p>");
 		$('#area-detail-introtext').append("<p>문의 : " + infocentershopping + "</p>");
 	}
 	
@@ -129,7 +122,6 @@ $(function(){
 		var kidsfacility = $(obj['introView']).find('kidsfacility').text();
 		var chkcreditcardfood = $(obj['introView']).find('chkcreditcardfood').text();
 		var opentimefood = $(obj['introView']).find('opentimefood').text();
-		var firstmenu = $(obj['introView']).find('firstmenu').text();
 		var treatmenu = $(obj['introView']).find('treatmenu').text();
 		var reservationfood = $(obj['introView']).find('reservationfood').text();
 		var infocenterfood = $(obj['introView']).find('infocenterfood').text();
