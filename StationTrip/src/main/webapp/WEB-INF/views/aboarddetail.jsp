@@ -70,7 +70,40 @@ $('#btnLike').click(function ()  {
     })
 });
 
+$(function(){
+	$("#reply_submit").click(function(){
+		var replycontent = $("#reply_content").val();
+		
+		
+		alert(replycontent);
+		if(replycontent.length < 3 || replycontent.length > 100 ){
+			event.preventDefault();
+			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+			document.getElementById("reply_content").focus();
+			return false;
+		}
+	})
+})
+
+
+$(function(){
+	$("#comment_submit").click(function(){
+		var commentcontent = $("#comment_content").val();
+		
+		
+		alert(commentcontent);
+		if(commentcontent.length < 3 || commentcontent.length > 100 ){
+			event.preventDefault();
+			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+			document.getElementById("comment_content").focus();
+			return false;
+		}
+	})
+})
+
 });	
+
+
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -130,9 +163,9 @@ id="like_img" height="50px" width="50px">
 <p style="text-align:left; margin-left:15px;margin-top:15px;">
 <strong>${login_userId}</strong>
 </p>
-<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
+<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px;
  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
-<input type="submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
+<input type="submit" id="reply_submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
 
 </div>
 <%-- <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> --%>
@@ -188,13 +221,13 @@ id="like_img" height="50px" width="50px">
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
 													</td>
 												</tr>
 												<tr>
 													<td></td>
 													<td>
-														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
+														<input type="submit" id="comment_submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
 													</td>
 												</tr>
 											</table>

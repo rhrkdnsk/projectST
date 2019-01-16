@@ -26,12 +26,29 @@ $(function(){
 		alert("submit");
 		var title = $("#title").val();
 		var content = CKEDITOR.instances['areaboard_content'].getData();
-		if(title.length < 5 || title.length > 20){
+		var select = $("#opvaluea option:selected").val();
+		var area = $("#areavalue option:selected").val();
+		alert("select = " + select);
+		if(title.length < 3 || title.length > 20){
 			event.preventDefault();
-			alert("제목은 5글자 이상, 20글자 이하로 입력하여 주십시오.")
+			alert("제목은 3글자 이상, 20글자 이하로 입력하여 주십시오.")
+			document.getElementById("title").focus();
+			return false;
 		} else if(content.length < 5 ){
 			event.preventDefault();
 			alert("내용은 5글자 이상 입력하여야 합니다.")
+			document.getElementById("areaboard_content").focus();
+			return false;
+		} if(select == "분류") {
+			event.preventDefault();
+			alert("글 분류를 설정하여 주십시오.");
+			document.getElementById("opvaluea").focus();
+			return false;
+		} if(area == "지역") {
+			event.preventDefault();
+			alert("지역을 설정하여 주십시오.");
+			document.getElementById("areavalue").focus();
+			return false;		
 		}
 	})
 })
@@ -44,6 +61,12 @@ function goList() {
 
 
 </script>
+
+<style type="text/css">
+#areavalue:focus, #opvaluea:focus, #title:focus {
+	border-color:red;
+}
+</style>
 <title></title>
 </head>
 <body>
@@ -64,7 +87,7 @@ function goList() {
 <td><input type="text" id="title" name="areaboard_title" value="${fdto.areaboard_title}" class="form-control">
 </td>
 
-<td><select id="opvalue" name="areaboard_category" class="form-control">
+<td><select id="opvaluea" name="areaboard_category" class="form-control">
 <option value="분류" id="opvalue">분류</option>
 <option value="정보" id="opvalue">정보</option>
 <option value="잡담" id="opvalue">잡담</option>

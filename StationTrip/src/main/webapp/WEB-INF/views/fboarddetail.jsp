@@ -64,7 +64,57 @@ $(document).ready(function() {
 		}
 	})
 });
+	
+	$(function(){
+		$(".comment_submit").click(function(){
+			
+			alert("대댓글 클릭은 됨");
+			var commentcontent = $(this).prevAll($(".comment_content")).val();
+			
+			
+			alert(commentcontent);
+			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+				document.getElementById("comment_content").focus();
+				return false;
+			}
+		})
+	})
+	
+	$(function(){
+		$("#reply_submit").click(function(){
+			var replycontent = $("#reply_content").val();
+			
+			
+			alert(replycontent);
+			if(replycontent.length < 3 || replycontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+				document.getElementById("reply_content").focus();
+				return false;
+			}
+		})
+	});
+	
+	
+	
 });
+
+// $(function(){
+// 	$("#comment_submit").click(function(){
+// 		var commentcontent = $(".comment_content").val();
+		
+		
+// 		alert(commentcontent);
+// 		if(commentcontent.length < 3 || commentcontent.length > 100 ){
+// 			event.preventDefault();
+// 			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+// 			document.getElementById("comment_content").focus();
+// 			return false;
+// 		}
+// 	})
+// });
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -119,12 +169,9 @@ $(document).ready(function() {
 				<p style="text-align: left; margin-left:15px;margin-top:15px; ">
 					<strong>${login_userId}</strong>
 				</p>
-				<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
-				 		  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="  주제와 무관한 댓글,악플은 삭제될 수 있습니다">
-				</textarea>
-				<input type="submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
-	
-			</div>
+				<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px; height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" minlength="3" maxlength="100"></textarea>
+				<input type="submit" id="reply_submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
+				</div>
 		</form>
 		<p>
 		<!-- list는 따로 아래처럼 뽑아줘야 한다. -->
@@ -173,13 +220,13 @@ $(document).ready(function() {
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" ></textarea>
 													</td>
 												</tr>
 												<tr>
 													<td></td>
 													<td>
-														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
+														<input type="submit" value="대댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary comment_submit">
 													</td>
 												</tr>
 											</table>
