@@ -542,7 +542,9 @@ public class BoardController {
 		}
 		@RequestMapping(value = "aboardinsertform.do")
 		public String aboardinsertform(HttpServletRequest request, Locale locale, Model model) {
-			logger.info("글쓰기 폼 이동", locale);		
+			logger.info("글쓰기 폼 이동", locale);
+			
+			
 			return "aboardinsert";
 			
 		}
