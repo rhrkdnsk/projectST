@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,21 +90,21 @@ function goList() {
 </td>
 
 <td><select id="opvaluea" name="areaboard_category" class="form-control">
-<option value="분류" id="opvalue">분류</option>
-<option value="정보" id="opvalue">정보</option>
-<option value="잡담" id="opvalue">잡담</option>
-<option value="팁" id="opvalue">팁</option>
+<option value="분류" <c:if test="${'분류' eq fdto.areaboard_category}">selected</c:if> id="opvalue">분류</option>
+<option value="정보" <c:if test="${'정보' eq fdto.areaboard_category}">selected</c:if> id="opvalue">정보</option>
+<option value="잡담" <c:if test="${'잡담' eq fdto.areaboard_category}">selected</c:if> id="opvalue">잡담</option>
+<option value="팁" <c:if test="${'팁' eq fdto.areaboard_category}">selected</c:if> id="opvalue">팁</option>
 </select></td>
 
 <td><select id="areavalue" name="areaboard_code" class="form-control" >
 <option value="지역" id="opvalue">지역</option>
-<option value="1" id="opvalue">서울</option>
-<option value="2" id="opvalue">경기</option>
-<option value="3" id="opvalue">강원</option>
-<option value="4" id="opvalue">대구</option>
-<option value="5" id="opvalue">부산</option>
-<option value="6" id="opvalue">전라</option>
-<option value="7" id="opvalue">경상</option>
+<option value="1"  <c:if test="${fdto.areaboard_code == 1}">selected</c:if> id="opvalue">서울</option>
+<option value="2" <c:if test="${fdto.areaboard_code == 2}">selected</c:if> id="opvalue">경기</option>
+<option value="3" <c:if test="${fdto.areaboard_code == 3}">selected</c:if> id="opvalue">강원</option>
+<option value="4" <c:if test="${fdto.areaboard_code == 4}">selected</c:if> id="opvalue">대구</option>
+<option value="5" <c:if test="${fdto.areaboard_code == 5}">selected</c:if> id="opvalue">부산</option>
+<option value="6" <c:if test="${fdto.areaboard_code == 6}">selected</c:if> id="opvalue">전라</option>
+<option value="7" <c:if test="${fdto.areaboard_code == 7}">selected</c:if> id="opvalue">경상</option>
 </select>
 </td>
 </tr>
@@ -132,6 +134,7 @@ function goList() {
 </div>
 </form>
 </div>
+<h1>${fdto.areaboard_code }</h1>
 <jsp:include page="footer.jsp" />
 
 </body>

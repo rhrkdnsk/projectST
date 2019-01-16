@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,14 +94,14 @@ $(function(){
 </select></td>
 
 <td><select id="areavalue" name="areaboard_code" class="form-control" >
-<option value="지역" id="opvalue">지역</option>
-<option value="1" id="opvalue">서울</option>
-<option value="2" id="opvalue">경기</option>
-<option value="3" id="opvalue">강원</option>
-<option value="4" id="opvalue">대구</option>
-<option value="5" id="opvalue">부산</option>
-<option value="6" id="opvalue">전라</option>
-<option value="7" id="opvalue">경상</option>
+<option value="지역"  id="opvalue">지역</option>
+<option value="1" <c:if test="${sareaboard_code == 1}">selected</c:if> id="opvalue">서울</option>
+<option value="2" <c:if test="${sareaboard_code == 2}">selected</c:if> id="opvalue">경기</option>
+<option value="3" <c:if test="${sareaboard_code == 3}">selected</c:if> id="opvalue">강원</option>
+<option value="4" <c:if test="${sareaboard_code == 4}">selected</c:if> id="opvalue">대구</option>
+<option value="5" <c:if test="${sareaboard_code == 5}">selected</c:if> id="opvalue">부산</option>
+<option value="6" <c:if test="${sareaboard_code == 6}">selected</c:if> id="opvalue">전라</option>
+<option value="7" <c:if test="${sareaboard_code == 7}">selected</c:if> id="opvalue">경상</option>
 </select>
 </td>
 </tr>

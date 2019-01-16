@@ -74,9 +74,9 @@ function codeBoard() {
 
 <table class="table table-hover">
 	<col width="50px">
+	<col width="200px">
+	<col width="80px">
 	<col width="100px">
-	<col width="100px">
-	<col width="150px">
 	<col width="50px">
 	<col width="50px">
 	<col width="50px">
@@ -164,45 +164,56 @@ function codeBoard() {
   <a href="#">▶</a> -->
   <c:if test="${page+1 <= totalPage}">
   <a href="aboardPage.do?apageNum=${page+1}&areaboard_code=${sareaboard_code}">다음</a>						
-  </c:if>
+  </c:if>  	
+  <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left;">목록으로</button>
 </p>
 </td><td>
 <%
   		if(session.getAttribute("login_userId") != null) {
   			%>
-  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			 <button type="button" id="writebt" class="btn btn-success" onclick="locainsert()">글쓰기</button>
   			<%
   		} 	
-  	%></td>
+  	%> </td>
 </table>
+<table>
 
-
+<tr>
+<td colspan="6">
 <form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" name="search" method="post">
-
-<select name="akeyField" size="1">
+<select name="akeyField" size="1" class="form-control" style="width:200px">
 	<option value="user_nickname">아이디</option>
 	<option value="areaboard_title">제목</option>
-	<option value="제목+내용">제목+내용</option>
 	<option value="areaboard_category">분류</option>
 </select>
+</td>
 
-<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${akeyWord}" />
-<input type="button" value="검색" onclick="check()" />
+<td>
+<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${akeyWord}" class="form-control" style="width:200px" />
+<input type="button" value="검색" onclick="check()" class="btn btn-default"/>
 <input type="hidden" name="page" value="0" />
 </form>
+</td>
+</tr>
 
+<tr>
+<td>
 <form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
-<select name="settingnum" onchange="lookBoard()">
+<select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px"> 
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
 <option value="5" onclick="lookBoard()">5개씩보기</option>
 <option value="10" onclick="lookBoard()">10개씩보기</option>
 <option value="15" onclick="lookBoard()">15개씩보기</option>
 </select>
 </form>
+</td>
 
+
+<tr>
+<td>
 <form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
-지역 <select name="areaboard_code" onchange="codeBoard()" >
-<option value="지역" selected="selected">분류</option>
+<select name="areaboard_code" onchange="codeBoard()" class="form-control" style="width:200px" >
+<option value="지역" selected="selected">지역</option>
 <option value="1" onclick="codeBoard()">서울</option>
 <option value="2" onclick="codeBoard()">경기</option>
 <option value="3" onclick="codeBoard()">강원</option>
@@ -213,9 +224,9 @@ function codeBoard() {
 <option value="8" onclick="codeBoard()" >기타</option>
 </select>
 </form>
+</td>
+</table>
 </div>
-<button onclick="setnull()">목록으로</button>
-
 <jsp:include page="footer.jsp" />
 
 </body>

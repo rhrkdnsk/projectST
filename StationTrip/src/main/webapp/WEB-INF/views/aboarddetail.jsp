@@ -87,19 +87,21 @@ $(function(){
 
 
 $(function(){
-	$("#comment_submit").click(function(){
-		var commentcontent = $("#comment_content").val();
-		
-		
-		alert(commentcontent);
-		if(commentcontent.length < 3 || commentcontent.length > 100 ){
-			event.preventDefault();
-			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
-			document.getElementById("comment_content").focus();
-			return false;
-		}
+		$(".comment_submit").click(function(){
+			
+			alert("대댓글 클릭은 됨");
+			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
+
+			alert(commentcontent);
+			
+			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
+				document.getElementById("comment_content").focus();
+				return false;
+			}
+		})
 	})
-})
 
 });	
 
@@ -227,7 +229,7 @@ id="like_img" height="50px" width="50px">
 												<tr>
 													<td></td>
 													<td>
-														<input type="submit" id="comment_submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
+														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary comment_submit">
 													</td>
 												</tr>
 											</table>
