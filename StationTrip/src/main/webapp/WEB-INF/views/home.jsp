@@ -7,6 +7,12 @@
 <%@ page session="false" %>
 <html lang="en">
 <head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" type="text/css" media="screen" href="/trip/resources/css/main1.css" /> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -32,7 +38,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     width: 760px; height: 450px;
 
 }
+
 </style>
+
+
 </head>
 
 
@@ -66,19 +75,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <span class="w3-display-bottomleft w3-padding"></span> 
       </div>
        <div class="w3-container w3-white">
+     
       	<h3>다른사이트</h3>
        <h6>서울시 <strong>공식</strong> 관광정보 사이트~ </h6>
-       <a href="http://korean.visitseoul.net/index" class="w3-button w3-margin-bottom w3-right">자세히..</a>
        </div>
        <img class="max-small" src="/trip/resources/images/visitseoul_sns.png" alt="boat" style="height: 450px">
+       <a href="http://korean.visitseoul.net/index" class="w3-button w3-margin-bottom">자세히..</a>
     </div>
       </div>
     </div>
-     <div class="w3-half w3-margin-bottom">
-      <img class='max-small' src="/trip/resources/images/bbb.jpg" alt="Austria" style="width: 760px; height: 1000px;">
-      
-    </div>
+<!--      <div class="w3-half w3-margin-bottom"> -->
+<!--       <img class='max-small' src="/trip/resources/images/bbb.jpg" alt="Austria" style="width: 760px; height: 1000px;"> -->
+<!--     </div> -->
+<div class=" w3-half w3-margin-bottom"> 
+       <div class="target" data-scale="2" data-image="/trip/resources/images/bbb.jpg" style="width: 760px; height: 1000px;"></div> 
+    </div> 
+
       </div>
+       <script src="/trip/resources/js/main1.js"></script>
 <script>
 var myIndex = 0;
 carousel();
