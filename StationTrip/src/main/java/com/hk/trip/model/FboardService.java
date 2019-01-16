@@ -146,4 +146,29 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		ifboarddao.deleteStep(cdto);
 	}
+
+	@Override
+	public void updateNickname(Map<String, String> map) {
+		 ifboarddao.updateNickname(map);
+	}
+	@Override
+	public void pointUp(String user_nickname) {
+		// TODO Auto-generated method stub
+		ifboarddao.pointUp(user_nickname);
+	}
+	@Override
+	public void pointDown(String user_nickname) {
+		// TODO Auto-generated method stub
+		ifboarddao.pointDown(user_nickname);
+	}
+	@Override
+	public void upGrade(String user_nickname) {
+		// TODO Auto-generated method stub
+		ifboarddao.upGrade(user_nickname);
+	}
+	@Override
+	public void pointUp10(String user_nickname) {
+		// TODO Auto-generated method stub
+		ifboarddao.pointUp10(user_nickname);
+	}
 }

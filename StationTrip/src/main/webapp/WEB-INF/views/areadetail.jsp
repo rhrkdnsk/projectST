@@ -12,7 +12,7 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="/trip/resources/js/areadetail.js"></script>
-<script type="text/javascript" src="/trip/resources/js/area.js"></script>
+<!-- <script type="text/javascript" src="/trip/resources/js/area.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관광지 정보</title>
 </head>
@@ -37,8 +37,9 @@
 		<div id='area-detail-homepage'>
 		<!-- 홈페이지 url -->
 		</div>
-		<div id='area-detail-infotext'>
-		
+		<br />
+		<div id='area-detail-introtext'>
+		<!-- 입 장 료 / 화장실 / 주차요금 / -->
 		</div>
 	</div>
 	<div>

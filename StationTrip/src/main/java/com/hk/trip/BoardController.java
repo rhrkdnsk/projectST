@@ -78,8 +78,11 @@ public class BoardController {
 		logger.info("글쓰기 실행", locale);
 
 		boolean isS = fboardService.insertBoard(fdto);
+		String user_nickname = fdto.getUser_nickname();	
 		System.out.println(isS);
 		if (isS) {
+			fboardService.pointUp10(user_nickname);
+			fboardService.upGrade(user_nickname);
 			return "redirect:fsessiondel.do";
 		} else {
 			model.addAttribute("msg", "글 삭제하기 실패");
@@ -166,6 +169,7 @@ public class BoardController {
 		
 		
 		if (isS) {
+//			fboardService.pointDown(user_nickname);
 			fboardService.bcDelete(freeboard_num);
 			System.out.println("글삭제시 댓글도 같이 삭제 됩니다.");
 			fboardService.deleteLike(freeboard_num);
@@ -183,9 +187,11 @@ public class BoardController {
 
 		boolean isS = fboardService.replyInsert(cdto);
 		int freeboard_num = cdto.getFreeboard_num();
-		
+		String user_nickname = cdto.getUser_nickname();
 		
 		if (isS) {
+			fboardService.pointUp(user_nickname);
+			fboardService.upGrade(user_nickname);
 			fboardService.upComment(freeboard_num);
 			return "redirect:fboarddetail.do?freeboard_num=" + cdto.getFreeboard_num();
 		} else {
@@ -332,7 +338,11 @@ public class BoardController {
 			boolean isS = fboardService.Commentreply(dto);
 			int freeboard_num = dto.getFreeboard_num();
 			System.out.println("repre : " + dto);
+			String user_nickname = dto.getUser_nickname();
+					
 			if(isS) {
+				fboardService.pointUp(user_nickname);
+				fboardService.upGrade(user_nickname);
 				fboardService.upComment(freeboard_num);
 
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
@@ -498,7 +508,36 @@ public class BoardController {
 			model.addAttribute("page", apageNum);
 //			model.addAttribute("keyWord", keyWord);
 //			model.addAttribute("keyField", keyField);
-	
+			String myArea = null;
+			
+			switch(areaboard_code) {
+			case 1:
+				myArea = "서울";
+				break;
+			case 2:
+				myArea = "경기";
+				break;
+			case 3:
+				myArea = "강원";
+				break;
+			case 4:
+				myArea = "대구";
+				break;
+			case 5:
+				myArea = "부산";
+				break;
+			case 6:
+				myArea = "전라";
+				break;
+			case 7:
+				myArea = "경상";
+				break;
+			case 8:
+				myArea = "기타";
+				break;
+			}
+			
+			model.addAttribute("myArea", myArea);
 			return "aboardlist";
 		}
 		@RequestMapping(value = "aboardinsertform.do")
@@ -514,8 +553,11 @@ public class BoardController {
 			
 			boolean isS = aboardService.insertBoard(dto);
 			int areaboard_code = dto.getAreaboard_code();
-
+			String user_nickname = dto.getUser_nickname();
+					
 			if(isS) {
+				fboardService.pointUp10(user_nickname);
+				fboardService.upGrade(user_nickname);
 				return "redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
@@ -548,9 +590,8 @@ public class BoardController {
 			List<CommentDto> dto = aboardService.getReply(areaboard_num);
 			AboardDto bdto = aboardService.goBack(areaboard_num, areaboard_code);
 			AboardDto ndto = aboardService.goNext(areaboard_num, areaboard_code);
-					
-			
-			System.out.println("adto : " + adto);
+			System.out.println("bdto : " + bdto);
+			System.out.println("ndto : " + ndto);
 			model.addAttribute("fdto", adto);
 			model.addAttribute("list", dto);
 			model.addAttribute("bdto", bdto);
@@ -623,8 +664,10 @@ public class BoardController {
 			
 			boolean isS = aboardService.insReply(dto);
 			int areaboard_num = dto.getAreaboard_num();
-			
+			String user_nickname = dto.getUser_nickname();
 			if(isS) {
+				fboardService.pointUp(user_nickname);
+				fboardService.upGrade(user_nickname);
 				aboardService.upComment(areaboard_num);
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
@@ -639,6 +682,7 @@ public class BoardController {
 			int areaboard_num = dto.getAreaboard_num();
 			
 			if(isS) {
+				
 				aboardService.downComment(areaboard_num);
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
@@ -687,7 +731,11 @@ public class BoardController {
 			
 			boolean isS = aboardService.Commentreply(dto);
 			int areaboard_num = dto.getAreaboard_num();
+			String user_nickname = dto.getUser_nickname();
+			
 			if(isS) {
+				fboardService.pointUp(user_nickname);
+				fboardService.upGrade(user_nickname);
 				aboardService.upComment(areaboard_num);
 
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
@@ -702,6 +750,7 @@ public class BoardController {
 			logger.info("자유게시판 페이징 처리", locale);
 			System.out.println("arnum = "+areaboard_num);
 			System.out.println("refer = "+comment_refer);
+			System.out.println("replyList에서 areaboard_code : " + areaboard_code);
 			Map<String, Integer>map = new HashMap<String, Integer>();
 			map.put("areaboard_num", areaboard_num);
 			map.put("comment_refer", comment_refer);

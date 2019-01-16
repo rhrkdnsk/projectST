@@ -36,5 +36,10 @@ public interface IFboardDao {
 	public void downComment(int freeboard_num);
 	public List<CommentDto> aReplyList(Map<String,Integer>map);
 	public void deleteStep(CommentDto cdto);
+	public void updateNickname(Map<String, String> map);
+	public void pointUp(String user_nickname);
+	public void pointDown(String user_nickname);
+	public void upGrade(String user_nickname);
+	public void pointUp10(String user_nickname);
 
 }

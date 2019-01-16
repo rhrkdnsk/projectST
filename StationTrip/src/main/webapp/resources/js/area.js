@@ -132,7 +132,7 @@ $(function(){
 		contentList();
 	});
 
-	$("#titles").on("click", ".img-side", function(){  // 너 왜 안 되니..
+	$("#titles").on("click", ".img-side", function(){
 		var con = $(this).parent().attr('id');
 		if(case3_Code == null){
 			case3_Code = "12";
