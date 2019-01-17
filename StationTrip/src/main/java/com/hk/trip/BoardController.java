@@ -630,18 +630,18 @@ public class BoardController {
 		
 		@RequestMapping(value = "aboarddelsession.do")
 		public String aboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
-			//logger.info("새로 검색시 검색값 없애기", locale);
+			logger.info("aboarddelsession", locale);
 
-			HttpSession session = request.getSession();
 			System.out.println("aboardsessiondel 호출");
 			request.getSession().removeAttribute("askeyWord");
 			request.getSession().removeAttribute("askeyField");
 			request.getSession().removeAttribute("asetnum");
-			int back = (Integer) session.getAttribute("sareaboard_code");
+			
 		
 			System.out.println("aboardsessiondel 에서 세션 삭제 ");
 			
-			return "redirect:aboardPage.do?apageNum=1&areaboard_code="+back;
+			return "redirect:aboardPage.do?apageNum=1&areaboard_code="+1;
+		
 		}
 		
 		@RequestMapping(value = "aboarddel.do")
@@ -808,6 +808,19 @@ public class BoardController {
 			} else {
 				return "error";
 			}
+		}
+		
+		@RequestMapping(value = "abacklist.do")
+		public String abacklist(HttpServletRequest request, Locale locale, Model model) {
+			//logger.info("새로 검색시 검색값 없애기", locale);
+			HttpSession session = request.getSession();
+			int code = (Integer) session.getAttribute("sareaboard_code");
+			request.getSession().removeAttribute("askeyWord");
+			request.getSession().removeAttribute("askeyField");
+			request.getSession().removeAttribute("asetnum");
+			
+			return"redirect:aboardPage.do?apageNum="+1+"&areaboard_code="+code;
+			
 		}
 		
 } // 끝

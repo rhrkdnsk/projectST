@@ -41,7 +41,7 @@ function lookBoard() {
 }
 
 function setnull() {
-	location.href="aboarddelsession.do";
+	location.href="abacklist.do";
 }
 
 function codeBoard() {
@@ -85,9 +85,9 @@ function codeBoard() {
 <form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px;"> 
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
-<option value="5" onclick="lookBoard()">5개씩보기</option>
-<option value="10" onclick="lookBoard()">10개씩보기</option>
-<option value="15" onclick="lookBoard()">15개씩보기</option>
+<option value="5" <c:if test="${asetnum == 5}">selected</c:if> onclick="lookBoard()">5개씩보기</option>
+<option value="10" <c:if test="${asetnum == 10}">selected</c:if> onclick="lookBoard()">10개씩보기</option>
+<option value="15" <c:if test="${asetnum == 15}">selected</c:if> onclick="lookBoard()">15개씩보기</option>
 </select>
 </form>
 </td>
@@ -95,15 +95,14 @@ function codeBoard() {
 <td colspan="4">
 <form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
 <select name="areaboard_code" onchange="codeBoard()" class="form-control" style="width:150px; float:right;" >
-<option value="지역">지역</option>
-<option value="1" onclick="codeBoard()">서울</option>
-<option value="2" onclick="codeBoard()">경기</option>
-<option value="3" onclick="codeBoard()">강원</option>
-<option value="4" onclick="codeBoard()" >대구</option>
-<option value="5" onclick="codeBoard()">부산</option>
-<option value="6" onclick="codeBoard()">전라</option>
-<option value="7" onclick="codeBoard()">경상</option>
-<option value="8" onclick="codeBoard()">기타</option>
+<option value="1" <c:if test="${sareaboard_code == 1}">selected</c:if> onclick="codeBoard()">서울</option>
+<option value="2" <c:if test="${sareaboard_code == 2}">selected</c:if>  onclick="codeBoard()">경기</option>
+<option value="3" <c:if test="${sareaboard_code == 3}">selected</c:if> onclick="codeBoard()">강원</option>
+<option value="4" <c:if test="${sareaboard_code == 4}">selected</c:if> onclick="codeBoard()" >대구</option>
+<option value="5" <c:if test="${sareaboard_code == 5}">selected</c:if> onclick="codeBoard()">부산</option>
+<option value="6" <c:if test="${sareaboard_code == 6}">selected</c:if> onclick="codeBoard()">전라</option>
+<option value="7" <c:if test="${sareaboard_code == 7}">selected</c:if> onclick="codeBoard()">경상</option>
+<option value="8" <c:if test="${sareaboard_code == 8}">selected</c:if> onclick="codeBoard()">기타</option>
 </select>
 </form>
 </td>
@@ -197,13 +196,13 @@ function codeBoard() {
 <form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" name="search" method="post" class="form-inline">
 <div class="form-group">
 <select name="akeyField" size="1" style="width:100px" class="form-control">
-	<option value="user_nickname">아이디</option>
-	<option value="areaboard_title">제목</option>
-	<option value="areaboard_category">분류</option>
+	<option value="user_nickname" <c:if test="${askeyField eq 'user_nickname'}">selected</c:if> >아이디</option>
+	<option value="areaboard_title" <c:if test="${askeyField eq 'areaboard_title'}">selected</c:if> >제목</option>
+	<option value="areaboard_category" <c:if test="${askeyField eq 'areaboard_category'}">selected</c:if> >분류</option>
 </select>
 
 
-<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${akeyWord}" class="form-control"  style="width:200px" />
+<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${askeyWord}" class="form-control"  style="width:200px" />
 <input type="button" value="검색" onclick="check()" class="btn btn-default"/>
 <input type="hidden" name="page" value="0" />
 </div>
