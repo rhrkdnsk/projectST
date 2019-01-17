@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+
 .lookbt{
     position: relative;
     left: -47.5%;
@@ -123,22 +126,23 @@ $(function(){
   <jsp:include page="header.jsp" />
   <div id="container" class="container w3-center" style="width:900px;">
  <h1>지역게시판 상세보기</h1>
- <table id="fboard_table" border="1" class="table table-hover" style="margin-bottom:0;border-bottom:none;">
- <col width="80px">
- <col width="150px">
- <col width="80px">
- <tr>
-<td>작성자 : ${fdto.user_nickname}</td>		
-				<td>날짜 : ${fdto.areaboard_time}</td> 
-				<td>조회수 :${fdto.areaboard_view}</td>
-			</tr>
-	<tr >
-			<td colspan="3">제목 : ${fdto.areaboard_title}</td>
+ <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
+	<tr style="background-color:#c3bbbb;">
+			<td style="text-align:left; font-size:20px;">제목 : ${fdto.areaboard_title}</td>
 		</tr>
+ 
+ <tr>
+<td>	<span style="float:left;">작성자 :${fdto.user_nickname}</span>		
+			<span style="float:right;">	날짜 : ${fdto.areaboard_time}
+				조회수 :${fdto.areaboard_view}</span></td>
+			</tr>
+		
 			<tr>
-			<td colspan="3">${fdto.areaboard_content}
-			
-<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:100px;">
+			<td style="text-align:left; border-bottom:none; font-family:Jeju Hallasan; padding-top:30px;">${fdto.areaboard_content}
+			</td>
+			<tr>
+			<td style="border-top:none">
+<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:50px;">
     <button type="button" id="btnLike">
         <img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" 
 id="like_img" height="50px" width="50px">
@@ -263,11 +267,8 @@ id="like_img" height="50px" width="50px">
 				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
 			</p>
 		</c:if>
-<%--      	▲ 다음글 보기<a class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a> --%>
-<!--   	<p/> -->
-<%--   		▼ 이전글 보기<a class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a> --%>
-</div>
 
+</div>
   <script type="text/javascript">
   $(function(){
 		$("iframe.reList").load(function(){ //iframe 컨텐츠가 로드 된 후에 호출됩니다.

@@ -11,9 +11,7 @@
 <title>자유게시판 리스트</title>
 <script type="text/javascript">
 function locainsert() {
-	alert("locainsert");
 	location.href = "insertform.do";
-	
 }
 
 function check() {
@@ -60,7 +58,7 @@ function setnull() {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<div id="container" class="container w3-center" >
+<div id="container" class="container w3-center" style="min-height:800px">
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>자 유 게 시 판</h1></div>
 <table class="table table-hover">
 	<col width="50px">
@@ -129,11 +127,14 @@ function setnull() {
   	
 
 	<tr>
-	<td colspan="6">
-<p style="margin-top:10px">
- &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<td>
+	  <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left; margin-top:5px">목록으로</button>	
+	</td>
+	<td colspan="5">
+<div style="margin-top:10px;">
 
 <c:if test="${page-1 != 0 }">
+
 						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
 
 </c:if>
@@ -149,6 +150,7 @@ function setnull() {
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
+			
 						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>						
 			<%			
 		}
@@ -157,9 +159,8 @@ function setnull() {
   <c:if test="${page+1 <= totalPage}">
   <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
   </c:if>
-  <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left;">목록으로</button>
   
-</p>
+</div>
 </td><td>
 <%
   		if(session.getAttribute("login_userId") != null) {
@@ -189,7 +190,7 @@ function setnull() {
 
 
 </div>
-<jsp:include page="footer.jsp" />
 
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

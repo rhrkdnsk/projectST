@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
 .lookbt{
     position: relative;
     left: -47.5%;
@@ -124,43 +126,46 @@ $(document).ready(function() {
 	<div id="container" class="container w3-center" style="width:900px;" >
 		<h1>자유게시판 상세보기</h1>
 	
-		<table id="fboard_table" border="1" class="table table-hover" style="margin-bottom:0;border-bottom:none;">
-			<col width="80px">
-			<col width="150px">
-			<col width="80px">
-	
-			<tr>
-				<td>작성자 : ${fdto.user_nickname}</td>		
-				<td>날짜 : ${fdto.freeboard_time}</td> 
-				<td>조회수 :${fdto.freeboard_view}</td>
-			</tr>
+		<table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
 			
-			<tr >
-			<td colspan="3">제목 : ${fdto.freeboard_title}</td>
+			
+			<tr style="background-color:#c3bbbb;">
+			<td style="text-align:left; font-size:20px;">제목 : ${fdto.freeboard_title}</td>
 		
 			</tr>
-			<tr>
-				<td  colspan="3">${fdto.freeboard_content}
 	
-					<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:100px;">
+			<tr>
+				<td><span style="float:left;">작성자 : ${fdto.user_nickname}</span>		
+				<span style="float:right;">날짜 : ${fdto.freeboard_time}
+				조회수 :${fdto.freeboard_view}</span>
+				</td>
+			</tr>
+			
+			
+
+			<tr>
+			
+				<td style="text-align:left; border-bottom:none; font-family:Jeju Hallasan; padding-top:30px; ">${fdto.freeboard_content}
+				</td>
+				<tr >
+				<td style="border-top:none">
+					<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:50px;">
 						<button type="button" id="btnLike" style="text-align:center;">
 							<img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" id="like_img" height="50px" width="50px">
 						</button>
 						<p class="like_count">좋아요 : ${fdto.freeboard_like}</p>
-							
+						
 						<c:if test="${fdto.user_nickname  == login_userId}">
 							<span style="float:right;">
-							<button class="btn btn-primary" onclick="goUpdate()">수정</button>
-							<button class="btn btn-primary" onclick="goDelete()">삭제</button>
+							<button class="btn btn-primary" onclick="goUpdate()" style="font-family:Sans-serif;">수정</button>
+							<button class="btn btn-primary" onclick="goDelete()" style="font-family:Sans-serif;">삭제</button>
 							</span>
 						</c:if>
 					</div>
-				
-				</td>
-			</tr>
-			
+						</td>
+						</tr>
+					
 		</table>
-	
 	
 		<form action="writereply.do" method="post">
 			<div style="width: 888px; border: 1px solid black; height: 200px;">
@@ -188,7 +193,7 @@ $(document).ready(function() {
 							<strong style="text-align:left;float:left; margin-left:10px;">${cdto.user_nickname}</strong>
 							<c:if test="${cdto.user_nickname == login_userId}">
 								<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}">
-									<button class="fbdel" style="margin-top: 10px;">삭제</button>
+									<button class="fbdel btn btn-default btn-xs" style="margin-top: 10px;">삭제</button>
 								</a>
 							</c:if>
 							<br>
@@ -201,7 +206,7 @@ $(document).ready(function() {
 						
 						<!-- 댓글 -->
 						<div style="width:888px;">
-							<button style="margin-left:15px;" class="lookbt">답글</button>
+							<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
 							<div class="lookreply" id="replyDiv" style="display: none">
 								<iframe class="reList" id="replyIframe" style="width: 888px;"></iframe>
 								<form action="fboardrepre.do" method="post">

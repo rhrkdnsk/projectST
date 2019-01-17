@@ -36,6 +36,8 @@ function getlist() {
 }
 
 $(function(){
+	$("#title").focus();
+	
 	$("#insert_submit").click(function(){
 		alert("submit");
 		var title = $("#title").val();

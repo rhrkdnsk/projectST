@@ -11,7 +11,6 @@
 <title>지역게시판</title>
 <script type="text/javascript">
 function locainsert() {
-	alert("locainsert");
 	location.href = "aboardinsertform.do";
 	
 }
@@ -68,7 +67,7 @@ function codeBoard() {
 </head>
 <body>
 
-<div id="container" class="container w3-center">
+<div id="container" class="container w3-center" style="min-height:800px">
 
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>지 역 게 시 판(${myArea})</h1></div>
 
@@ -152,9 +151,13 @@ function codeBoard() {
   	</c:choose>
 
    <tr>
-   <td colspan="6">
- <p style="margin-top:10px">
- &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <td>
+     <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left; margin-top:5px;">목록으로</button>
+   
+   </td>
+   
+   <td colspan="5">
+ <div style="margin-top:10px">
 <c:if test="${page-1 != 0 }">
 						<a href="aboardPage.do?apageNum=${page-1}&areaboard_code=${sareaboard_code}">이전</a>						
 
@@ -179,8 +182,7 @@ function codeBoard() {
   <c:if test="${page+1 <= totalPage}">
   <a href="aboardPage.do?apageNum=${page+1}&areaboard_code=${sareaboard_code}">다음</a>						
   </c:if>  	
-  <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left;">목록으로</button>
-</p> 
+</div> 
 </td><td>
 <%
   		if(session.getAttribute("login_userId") != null) {
