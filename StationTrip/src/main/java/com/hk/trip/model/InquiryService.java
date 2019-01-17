@@ -63,4 +63,10 @@ public class InquiryService implements IInquiryService{
 		// TODO Auto-generated method stub
 		return iDao.admin_getCount();
 	}
+
+	@Override
+	public void inquiry_nickname(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		iDao.inquiry_nickname(map);
+	}
 }

@@ -15,4 +15,5 @@ public interface IInquiryService {
 	public boolean admin_insert(InquiryDto idto);
 	public int getCount(Map<String, String>map);
 	public int admin_getCount();
+	public void inquiry_nickname(Map<String, String> map);
 }

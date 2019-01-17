@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hk.trip.dto.LoginDto;
 import com.hk.trip.model.IAboardService;
 import com.hk.trip.model.IFboardService;
+import com.hk.trip.model.IInquiryService;
 import com.hk.trip.model.IMembershipService;
 
 @Controller
@@ -37,6 +38,9 @@ public class MembershipController {
 	
 	@Autowired
 	IAboardService iAboard;
+	
+	@Autowired
+	IInquiryService iInquiry;
 
 	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
 	public String mypage(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -82,6 +86,7 @@ public class MembershipController {
 			ifboard.updateNickname(map);
 			iAboard.AupdateNickname(map);
 			iAboard.CupdateNickname(map);
+			iInquiry.inquiry_nickname(map);
 			session.setAttribute("login_userId", dto.getUser_nickname());
 			return "redirect:mypage.do";
 		} else {
