@@ -632,16 +632,16 @@ public class BoardController {
 		public String aboardsessiondel(HttpServletRequest request, Locale locale, Model model) {
 			//logger.info("새로 검색시 검색값 없애기", locale);
 
-			
+			HttpSession session = request.getSession();
 			System.out.println("aboardsessiondel 호출");
 			request.getSession().removeAttribute("askeyWord");
 			request.getSession().removeAttribute("askeyField");
 			request.getSession().removeAttribute("asetnum");
-
+			int back = (Integer) session.getAttribute("sareaboard_code");
 		
 			System.out.println("aboardsessiondel 에서 세션 삭제 ");
 			
-			return "redirect:aboardPage.do?apageNum=1&areaboard_code=1";
+			return "redirect:aboardPage.do?apageNum=1&areaboard_code="+back;
 		}
 		
 		@RequestMapping(value = "aboarddel.do")
@@ -809,4 +809,5 @@ public class BoardController {
 				return "error";
 			}
 		}
+		
 } // 끝

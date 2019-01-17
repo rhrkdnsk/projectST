@@ -156,7 +156,7 @@ function setnull() {
 </table>
 <form action="fboardPage.do?pageNum=1" name="search" method="post">
 
-<select name="keyField" size="1">
+<select name="keyField" size="1" style="width:100px">
 	<option value="user_nickname">아이디</option>
 	<option value="freeboard_title">제목</option>
 	<option value="제목+내용">제목+내용</option>
