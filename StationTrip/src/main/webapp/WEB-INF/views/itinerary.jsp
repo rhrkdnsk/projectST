@@ -20,6 +20,7 @@
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
+
 function sch_Layer(){
 	var sch_Layer = $("#sch_Layer");
     var sch_Link = $(".sch_Link");
