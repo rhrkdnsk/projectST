@@ -11,14 +11,57 @@
 %>
 <!DOCTYPE html>
 <html>
+	<jsp:include page="header.jsp" />
+
 <head>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
+h1 {
+  font-family: Nanum Pen Script;
+  display: inline-block;
+  margin: 0 auto;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+/*   font-size: 9vw; */
+  line-height: 120%;
+/*   padding: 300px 0; */
+  animation: background 20s linear infinite;
+  
+  background: linear-gradient(90deg, rgba(150,48,30,1) 0%,rgba(199,201,88,1) 10%,rgba(28,147,46,1) 20%,rgba(74,165,168,1) 30%,rgba(89,90,165,1) 40%,rgba(84,16,67,1) 50%,rgba(28,58,63,1) 60%,rgba(82,175,183,1) 70%,rgba(78,170,76,1) 80%,rgba(150,48,30,1) 90%,rgba(199,201,88,1) 100%);
+  background-size: 1000% 100%;
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 50%; */
+/*   transform: translate(-50%, -50%); */
+}
+span {
+/*   display: block; */
+}
+span:nth-child(1) {
+  font-size: 214%;
+  line-height: 85%;
+  text-indent: -0.33em;
+}
+span:nth-child(2) {
+  font-size: 214%;
+  line-height: 69%;
+  word-spacing: -0.2em;
+  text-indent: -0.07em;
+}
+
+@keyframes background {
+  0%{background-position:0% 50%}
+  100%{background-position:100% 50%}
+}
 .lookbt{
     position: relative;
     left: -47.5%;
@@ -122,11 +165,9 @@ $(document).ready(function() {
 <title></title>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
 	<div id="container" class="container w3-center" style="width:900px;" >
-		<h1>자유게시판 상세보기</h1>
-	
-		<table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
+<h1><span>자유</span><span>게시판</span><span>상세보기</span></h1>	
+		<table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; margin-top:10px; font-family: 'Nanum Pen Script', cursive;">
 			
 			
 			<tr style="background-color:#c3bbbb;">
@@ -251,22 +292,23 @@ $(document).ready(function() {
 		
 		<c:if test="${ndto.freeboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.freeboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">다음글 보기</a>
+				<a style="font-size:14px; color:#000;"class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.freeboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
 			</c:if>
 			
 		<c:if test="${bdto.freeboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">이전글 보기</a>
-				<a style="font-size:14px" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.freeboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">이전글 보기</a>
+				<a style="font-size:14px; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.freeboard_time}</span>
 			</p>
 		</c:if>
 	</div>
 	<script type="text/javascript">
+
 	$(function(){
 		$("iframe.reList").load(function(){ //iframe 컨텐츠가 로드 된 후에 호출됩니다.
 			var frame = $(this).get(0);
@@ -290,6 +332,6 @@ $(document).ready(function() {
 	}
 	</script>
 	<br />
-	<jsp:include page="footer.jsp" />
 </body>
+	<jsp:include page="footer.jsp" />
 </html>
