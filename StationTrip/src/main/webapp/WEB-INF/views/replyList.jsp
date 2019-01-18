@@ -14,6 +14,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
+.mar5 {
+margin-bottom:5px;
+width:888px;
+}
+.step1p {
+	background-color: #a5a9d3a1;
+	border-bottom: 4px dotted white;
+	height: 40px;
+	width: 888px;
+}
+
+
+
 hr {
 background-color:#fafafa;
 }
@@ -28,18 +41,18 @@ background-color:#fafafa;
 	</c:if>
 	<c:if test="${!empty relist}">
 		<c:forEach items="${relist}" var="rdto">
-			<div class="lookreply">
-				 <strong >ㄴ  ${rdto.user_nickname}</strong>
+			<div class="step1p">
+				 <strong style="font-family:gulim;">ㄴ  ${rdto.user_nickname}<span style="font-weight:normal; font-size:11px; margin-left:20px;">${rdto.comment_time}</span></strong>
 				<c:if test="${login_userId == rdto.user_nickname}">
-
-					<a
-						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button class="fbdel btn btn-default btn-xs">삭제</button></a>
+					<a href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=
+					${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}">
+					<button style="float:right;" class="fbdel btn btn-default btn-xs">삭제</button></a>
 				</c:if>
-				   <p style="margin-left:20px">${rdto.comment_content}</p>
-    				<p style="margin-left:20px">${rdto.comment_time}</p>
-
-				<hr />
+				<hr class="mar5"/>
 			</div>
+				   <p style="margin-left:20px; margin-top:10px; margin-bottom:30px;">${rdto.comment_content}</p>
+
+				<hr class="mar5"/>
 		</c:forEach>
 	</c:if>
 

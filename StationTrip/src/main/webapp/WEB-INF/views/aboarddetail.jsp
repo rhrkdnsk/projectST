@@ -7,14 +7,69 @@
 <%response.setContentType("text/html; charset=utf-8"); %>
 <!DOCTYPE html>
 <html>
+  <jsp:include page="header.jsp" />
+
 <head>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+.mar5 {
+margin-bottom:5px;
+width:888px;
+}
 
+
+#step1p {
+	background-color: #efefef;
+	border-bottom: 4px dotted white;
+	height: 40px;
+	width: 888px;
+}
+
+h1 {
+  font-family: Nanum Pen Script;
+  display: inline-block;
+  margin: 0 auto;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+/*   font-size: 9vw; */
+  line-height: 120%;
+/*   padding: 300px 0; */
+  animation: background 20s linear infinite;
+  
+  background: linear-gradient(90deg, rgba(150,48,30,1) 0%,rgba(199,201,88,1) 10%,rgba(28,147,46,1) 20%,rgba(74,165,168,1) 30%,rgba(89,90,165,1) 40%,rgba(84,16,67,1) 50%,rgba(28,58,63,1) 60%,rgba(82,175,183,1) 70%,rgba(78,170,76,1) 80%,rgba(150,48,30,1) 90%,rgba(199,201,88,1) 100%);
+  background-size: 1000% 100%;
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 50%; */
+/*   transform: translate(-50%, -50%); */
+}
+span {
+/*   display: block; */
+}
+span:nth-child(1) {
+  font-size: 214%;
+  line-height: 85%;
+  text-indent: -0.33em;
+}
+span:nth-child(2) {
+  font-size: 214%;
+  line-height: 69%;
+  word-spacing: -0.2em;
+  text-indent: -0.07em;
+}
+
+@keyframes background {
+  0%{background-position:0% 50%}
+  100%{background-position:100% 50%}
+}
 
 .lookbt{
     position: relative;
@@ -36,8 +91,6 @@ $(document).ready(function() {
 		var areaboard_num = $(".areaboard_num").val();
 		var comment_refer = $(this).next().next().val();
 		var areaboard_code = $("#areaboard_code").val();
-		alert(comment_refer)
-		alert($(this).next().css("display"))
 		if ($(this).next().css("display") == "none") {
 			jQuery(this).next().find("iframe").attr(
 				"src","replyList.do?areaboard_num="
@@ -78,10 +131,9 @@ $(function(){
 		var replycontent = $("#reply_content").val();
 		
 		
-		alert(replycontent);
-		if(replycontent.length < 3 || replycontent.length > 100 ){
+		if(replycontent.length < 3 || replycontent.length > 300 ){
 			event.preventDefault();
-			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+			alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다. ");
 			document.getElementById("reply_content").focus();
 			return false;
 		}
@@ -92,14 +144,12 @@ $(function(){
 $(function(){
 		$(".comment_submit").click(function(){
 			
-			alert("대댓글 클릭은 됨");
 			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
 
-			alert(commentcontent);
 			
-			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+			if(commentcontent.length < 3 || commentcontent.length > 300 ){
 				event.preventDefault();
-				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
+				alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다.");
 				document.getElementById("comment_content").focus();
 				return false;
 			}
@@ -123,17 +173,15 @@ $(function(){
 %>
 
   <body>  
-  <jsp:include page="header.jsp" />
   <div id="container" class="container w3-center" style="width:900px;">
- <h1>지역게시판 상세보기</h1>
- <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
+<h1><span>지역</span><span>게시판</span><span>상세보기</span></h1> <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; margin-top:10px; font-family: 'Nanum Pen Script', cursive;">
 	<tr style="background-color:#c3bbbb;">
-			<td style="text-align:left; font-size:20px;">제목 : ${fdto.areaboard_title}</td>
+			<td style="text-align:left; font-size:24px;">제목 : ${fdto.areaboard_title}</td>
 		</tr>
  
  <tr>
-<td>	<span style="float:left;">작성자 :${fdto.user_nickname}</span>		
-			<span style="float:right;">	날짜 : ${fdto.areaboard_time}
+<td>	<span style="float:left; font-size:18px;">작성자 :${fdto.user_nickname}</span>		
+			<span style="float:right; font-size:18px;">	날짜 : ${fdto.areaboard_time}
 				조회수 :${fdto.areaboard_view}</span></td>
 			</tr>
 		
@@ -152,8 +200,8 @@ id="like_img" height="50px" width="50px">
 
 <c:if test="${fdto.user_nickname  == login_userId}">
 		<span style="float:right;">
-		<button class="btn btn-primary" onclick="goUpdate()">수정</button> 
-		<button class="btn btn-primary" onclick="goDelete()">삭제</button>
+		<button class="btn btn-primary" style="font-family:Sans-serif;" onclick="goUpdate()">수정</button> 
+		<button class="btn btn-primary" style="font-family:Sans-serif;" onclick="goDelete()">삭제</button>
 		</span>
 </c:if>
 </div>
@@ -170,15 +218,14 @@ id="like_img" height="50px" width="50px">
 <strong>${login_userId}</strong>
 </p>
 <textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px;
- height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+ height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 <input type="submit" id="reply_submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
 
 </div>
-<%-- <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> --%>
-<%-- <input type="text" name="user_nickname" value="${login_user.user_nickname}" readonly> --%>
-<!-- <input type="text" name="comment_content" size="50"> -->
-<!-- <input type="submit" value="댓글작성"> -->
 </form>
+
+<br />
+<hr class="mar5"/>
 <p />
 <!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 <c:choose>
@@ -188,25 +235,27 @@ id="like_img" height="50px" width="50px">
   
   <c:otherwise>
   <c:forEach items="${list}" var="cdto">
- 	
+ 	<!-- 댓글 본문 -->
  	<c:if test="${cdto.comment_step == 0}">
-   	<div class="step1p">
-	<strong style="text-align:left;float:left; margin-left:10px;">${cdto.user_nickname}</strong>
+   	<div id="step1p"><div style="background-color:#fafafa;">
+	<strong style="text-align:left;float:left; margin-left:10px; font-family:gulim;">${cdto.user_nickname}
+	<span style="font-size:11px; font-weight:normal; margin-left:20px">${cdto.comment_time}</span>
+	</strong>
    	
    <c:if test="${login_userId == cdto.user_nickname}">
- <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button class="fbdel" style="margin-top: 10px;">삭제</button>
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button class="fbdel btn btn-default btn-xs" style="margin-top: 10px;">삭제</button>
 </a>
 	</c:if>
+	</div>
    <br>
-   <p style="text-align:left; margin-top:10px; margin-left:10px;">${cdto.comment_content}</p>
-							<h6 style="text-align:left; font-size:13px; margin-left:10px;">${cdto.comment_time}</h6>
    </div>
+   <p style="text-align:left; width:500px; margin-top:10px; margin-left:10px; margin-bottom:30px;">${cdto.comment_content}</p>
 	
 	<input type="hidden" value="${cdto.areaboard_num}" class="areaboard_num">
    	
    	
    	<div style="width:888px;">
-   	<button style="margin-left:15px;" class="lookbt">답글</button>
+   	<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
    	<div class="lookreply" id="replyDiv" style="display:none" style="width: 888px;">
 	 <iframe class="reList" id="replyIframe" style="width:888px;"></iframe>
    	<form action="aboardrepre.do" method="post">
@@ -227,7 +276,7 @@ id="like_img" height="50px" width="50px">
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 													</td>
 												</tr>
 												<tr>
@@ -243,7 +292,7 @@ id="like_img" height="50px" width="50px">
 	</div>
 	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
 	
-	<hr />
+	<hr class="mar5"/>
 	</div>
 	</c:if>
 
@@ -253,20 +302,23 @@ id="like_img" height="50px" width="50px">
   	      	
   	      <c:if test="${ndto.areaboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
+				<a style="font-size:14px; color:#000; "class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
 			</c:if>
 			
 		<c:if test="${bdto.areaboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
-				<a style="font-size:14px" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
+				<a style="font-size:14px; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
 			</p>
 		</c:if>
+</div>
+<div style="position: fixed; bottom: 5px; right: 22%;">
+<a href="#"><img src="/trip/resources/images/up.png" title="위로 가기" style="width:70px; height:70px;"></a>
 
 </div>
   <script type="text/javascript">

@@ -36,12 +36,10 @@ function getlist() {
 
 $(function(){
 	$("#insert_submit").click(function(){
-		alert("submit");
 		var title = $("#title").val();
 		var content = CKEDITOR.instances['areaboard_content'].getData();
 		var select = $("#opvaluea option:selected").val();
 		var area = $("#areavalue option:selected").val();
-		alert("select = " + select);
 		if(title.length < 3 || title.length > 20){
 			event.preventDefault();
 			alert("제목은 3글자 이상, 20글자 이하로 입력하여 주십시오.")
