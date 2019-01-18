@@ -22,7 +22,7 @@ width:888px;
 
 
 #step1p {
-	background-color: #fafafa;
+	background-color: #efefef;
 	border-bottom: 4px dotted white;
 	height: 40px;
 	width: 888px;
@@ -91,8 +91,6 @@ $(document).ready(function() {
 		var areaboard_num = $(".areaboard_num").val();
 		var comment_refer = $(this).next().next().val();
 		var areaboard_code = $("#areaboard_code").val();
-		alert(comment_refer)
-		alert($(this).next().css("display"))
 		if ($(this).next().css("display") == "none") {
 			jQuery(this).next().find("iframe").attr(
 				"src","replyList.do?areaboard_num="
@@ -133,7 +131,6 @@ $(function(){
 		var replycontent = $("#reply_content").val();
 		
 		
-		alert(replycontent);
 		if(replycontent.length < 3 || replycontent.length > 300 ){
 			event.preventDefault();
 			alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다. ");
@@ -147,10 +144,8 @@ $(function(){
 $(function(){
 		$(".comment_submit").click(function(){
 			
-			alert("대댓글 클릭은 됨");
 			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
 
-			alert(commentcontent);
 			
 			if(commentcontent.length < 3 || commentcontent.length > 300 ){
 				event.preventDefault();
@@ -179,7 +174,7 @@ $(function(){
 
   <body>  
   <div id="container" class="container w3-center" style="width:900px;">
-<h1><span>지역</span><span>게시판</span><span>상세보기</span></h1> <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
+<h1><span>지역</span><span>게시판</span><span>상세보기</span></h1> <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; margin-top:10px; font-family: 'Nanum Pen Script', cursive;">
 	<tr style="background-color:#c3bbbb;">
 			<td style="text-align:left; font-size:24px;">제목 : ${fdto.areaboard_title}</td>
 		</tr>
@@ -307,20 +302,23 @@ id="like_img" height="50px" width="50px">
   	      	
   	      <c:if test="${ndto.areaboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
+				<a style="font-size:14px; color:#000; "class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
 			</c:if>
 			
 		<c:if test="${bdto.areaboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
-				<a style="font-size:14px" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
+				<a style="font-size:14px; color:#000;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
 			</p>
 		</c:if>
+</div>
+<div style="position: fixed; bottom: 5px; right: 22%;">
+<a href="#"><img src="/trip/resources/images/up.png" title="위로 가기" style="width:70px; height:70px;"></a>
 
 </div>
   <script type="text/javascript">

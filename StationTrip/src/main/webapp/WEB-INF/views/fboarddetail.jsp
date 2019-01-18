@@ -26,7 +26,7 @@ width:888px;
 
 
 #step1p {
-	background-color: #fafafa;
+	background-color: #efefef;
 	border-bottom: 4px dotted white;
 	height: 40px;
 	width: 888px;
@@ -93,8 +93,6 @@ $(document).ready(function() {
 	$('.lookbt').click(function() {
 		var freeboard_num = $(".freeboard_num").val();
 		var comment_refer = $(this).next().next().val()
-		alert(comment_refer)
-		alert($(this).next().css("display"))
 		if ($(this).next().css("display") == "none") {
 			jQuery(this).next().find("iframe").attr(
 				"src","freplyList.do?freeboard_num="
@@ -126,10 +124,8 @@ $(document).ready(function() {
 	$(function(){
 		$(".comment_submit").click(function(){
 			
-			alert("대댓글 클릭은 됨");
 			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
 
-			alert(commentcontent);
 			
 			if(commentcontent.length < 3 || commentcontent.length > 300 ){
 				event.preventDefault();
@@ -145,7 +141,6 @@ $(document).ready(function() {
 			var replycontent = $("#reply_content").val();
 			
 			
-			alert(replycontent);
 			if(replycontent.length < 3 || replycontent.length > 300 ){
 				event.preventDefault();
 				alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다. ");
