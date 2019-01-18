@@ -19,6 +19,19 @@
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
 @import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+.mar5 {
+margin-bottom:5px;
+width:888px;
+}
+
+
+#step1p {
+	background-color: #fafafa;
+	border-bottom: 4px dotted white;
+	height: 40px;
+	width: 888px;
+}
+
 
 h1 {
   font-family: Nanum Pen Script;
@@ -118,9 +131,9 @@ $(document).ready(function() {
 
 			alert(commentcontent);
 			
-			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+			if(commentcontent.length < 3 || commentcontent.length > 300 ){
 				event.preventDefault();
-				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
+				alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다.");
 				document.getElementById("comment_content").focus();
 				return false;
 			}
@@ -133,9 +146,9 @@ $(document).ready(function() {
 			
 			
 			alert(replycontent);
-			if(replycontent.length < 3 || replycontent.length > 100 ){
+			if(replycontent.length < 3 || replycontent.length > 300 ){
 				event.preventDefault();
-				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+				alert("댓글은 3글자 이상,300글자 이하로 작성해주셔야 합니다. ");
 				document.getElementById("reply_content").focus();
 				return false;
 			}
@@ -171,13 +184,13 @@ $(document).ready(function() {
 			
 			
 			<tr style="background-color:#c3bbbb;">
-			<td style="text-align:left; font-size:20px;">제목 : ${fdto.freeboard_title}</td>
+			<td style="text-align:left; font-size:24px;">제목 : ${fdto.freeboard_title}</td>
 		
 			</tr>
 	
 			<tr>
-				<td><span style="float:left;">작성자 : ${fdto.user_nickname}</span>		
-				<span style="float:right;">날짜 : ${fdto.freeboard_time}
+				<td><span style="float:left; font-size:18px;">작성자 : ${fdto.user_nickname}</span>		
+				<span style="float:right; font-size:18px;">날짜 : ${fdto.freeboard_time}
 				조회수 :${fdto.freeboard_view}</span>
 				</td>
 			</tr>
@@ -215,11 +228,13 @@ $(document).ready(function() {
 				<p style="text-align: left; margin-left:15px;margin-top:15px; ">
 					<strong>${login_userId}</strong>
 				</p>
-				<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px; height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" minlength="3" maxlength="100"></textarea>
+				<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px; height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 				<input type="submit" id="reply_submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
 				</div>
 		</form>
-		<p>
+<!-- 		<p /> -->
+		<br/>
+		<hr class="mar5"/>
 		<!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 		<c:choose>
 			<c:when test="${empty list}">
@@ -230,17 +245,18 @@ $(document).ready(function() {
 	
 					<c:if test="${cdto.comment_step==0 }">
 						<!-- 본문 -->
-						<div id="step1p">
-							<strong style="text-align:left;float:left; margin-left:10px;">${cdto.user_nickname}</strong>
+						<div id="step1p"><div style="background-color:#fafafa;">
+							<strong style="text-align:left;float:left; margin-left:10px; font-family:gulim;">${cdto.user_nickname} <span style="font-size:11px; font-weight:normal; margin-left:20px">${cdto.comment_time}</span></strong>
 							<c:if test="${cdto.user_nickname == login_userId}">
 								<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}">
 									<button class="fbdel btn btn-default btn-xs" style="margin-top: 10px;">삭제</button>
 								</a>
 							</c:if>
+							</div>
 							<br>
-							<p style="text-align:left; margin-top:10px; margin-left:10px;">${cdto.comment_content}</p>
-							<h6 style="text-align:left; font-size:13px; margin-left:10px;">${cdto.comment_time}</h6>
+							
 						</div>
+							<p style="text-align:left; width:500px; margin-top:10px; margin-left:10px; margin-bottom:30px;">${cdto.comment_content}</p>
 						
 						<input type="hidden" value="${cdto.freeboard_num}" class="freeboard_num" />
 						<!-- 맨위에 Jquery 클래스 값 보내기용 -->
@@ -266,7 +282,7 @@ $(document).ready(function() {
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" id="comment_content" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" ></textarea>
+														<textarea rows="5" cols="55" id="comment_content" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 													</td>
 												</tr>
 												<tr>
@@ -281,7 +297,7 @@ $(document).ready(function() {
 								</form>
 							</div>
 							<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
-							<hr />
+							<hr class="mar5" />
 						</div>
 						
 					</c:if>
@@ -289,7 +305,9 @@ $(document).ready(function() {
 			</c:otherwise>
 		</c:choose>
 		
+		<br/>
 		
+		<br />
 		<c:if test="${ndto.freeboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
 				<a style="font-weight:bold; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">다음글 보기</a>
@@ -307,6 +325,12 @@ $(document).ready(function() {
 			</p>
 		</c:if>
 	</div>
+	<div style="position: fixed; bottom: 5px; right: 22%;">
+<a href="#"><img src="/trip/resources/images/up.png" title="위로 가기" style="width:70px; height:70px;"></a>
+
+</div>
+
+
 	<script type="text/javascript">
 
 	$(function(){

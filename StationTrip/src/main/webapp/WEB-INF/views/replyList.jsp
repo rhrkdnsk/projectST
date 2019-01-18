@@ -33,7 +33,7 @@ background-color:#fafafa;
 				<c:if test="${login_userId == rdto.user_nickname}">
 
 					<a
-						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button class="fbdel btn btn-default btn-xs">삭제</button></a>
+						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button style="float:right;" class="fbdel btn btn-default btn-xs">삭제</button></a>
 				</c:if>
 				   <p style="margin-left:20px">${rdto.comment_content}</p>
     				<p style="margin-left:20px">${rdto.comment_time}</p>
