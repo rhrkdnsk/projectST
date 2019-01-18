@@ -223,7 +223,7 @@ public class BoardController {
 		//System.out.println("settingnum 값 : " + request.getParameter("settingnum"));
 		
 		String settingnum = request.getParameter("settingnum");
-		int countList = 2;
+		int countList = 10;
 
 		if(settingnum != null && settingnum != "") {
 			int sum = Integer.parseInt(settingnum);
@@ -430,7 +430,7 @@ public class BoardController {
 			session.setAttribute("sareaboard_code", areaboard_code);
 			
 			String settingnum = request.getParameter("settingnum");
-			int countList = 2;
+			int countList = 10;
 
 			if(settingnum != null && settingnum != "") {
 				int sum = Integer.parseInt(settingnum);

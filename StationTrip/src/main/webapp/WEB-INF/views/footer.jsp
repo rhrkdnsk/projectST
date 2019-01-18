@@ -19,9 +19,9 @@
     <i class="fa fa-snapchat w3-hover-opacity"></i>
     <i class="fa fa-pinterest-p w3-hover-opacity"></i>
     <i class="fa fa-twitter w3-hover-opacity"></i>
-     <a href="admin_loginForm.do"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+     <a href="admin_loginForm.do" style="color:white;"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
   </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green" style="color:white;">w3.css</a></p>
 </footer>
 </body>
 </html>

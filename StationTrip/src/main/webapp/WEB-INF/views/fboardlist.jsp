@@ -10,6 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자유게시판 리스트</title>
 <script type="text/javascript">
+
+
+
 function locainsert() {
 	location.href = "insertform.do";
 }
@@ -22,6 +25,8 @@ function check() {
 	check1();
 	
 }
+
+
 function check1() {
 
     if (document.search.keyWord.value == "") {
@@ -34,7 +39,6 @@ function check1() {
 }
 
 function lookBoard() {
-	alert(document.looksetting.settingnum.value);
     document.looksetting.submit();
 }
 
@@ -73,9 +77,9 @@ function setnull() {
 	<form action="fboardPage.do?pageNum=1" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px">
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
-<option value="5" <c:if test="${setnum == 5}">selected</c:if> onclick="lookBoard()">5개씩보기</option>
 <option value="10" <c:if test="${setnum == 10}">selected</c:if> onclick="lookBoard()">10개씩보기</option>
 <option value="15" <c:if test="${setnum == 15}">selected</c:if> onclick="lookBoard()">15개씩보기</option>
+<option value="20" <c:if test="${setnum == 20}">selected</c:if> onclick="lookBoard()">20개씩보기</option>
 </select>
 </form>
 </td>
@@ -139,22 +143,31 @@ function setnull() {
 
 </c:if>
 
-<%
-// String aaa = (String)request.getAttribute("totalPage");
-// 	System.out.println("list에서 aaa의 값 : " + aaa);
-	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
 
-	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
-//int totalPage = Integer.parseInt(aaa);
-		for(int i=startPage; i<=endPage; i++) {
-			%>			
-			
-						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>						
-			<%			
-		}
-%>
+                              <c:choose>
+
+                               
+
+                                      <c:when test="${ i == nowPage }">
+<a href="fboardPage.do?pageNum=${i}" style="color:red;">${i}
+						</a>
+                                             
+
+                                      </c:when>
+							
+								<c:otherwise>
+								<a href="fboardPage.do?pageNum=${i}">${i}
+						</a>
+								</c:otherwise>
+                                     
+
+                              </c:choose>
+
+                       </c:forEach>
+
+
+
 
   <c:if test="${page+1 <= totalPage}">
   <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
