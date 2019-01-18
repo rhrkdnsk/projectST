@@ -8,131 +8,136 @@ $(function(){
 		data : {"con":contentId, "type":contentTypeId},
 		async : false,
 		success : function(obj){
+			var dView = $(obj['detailView']);
+			var iView = $(obj['introView']);
 
-			getCommomData(obj);
+			getCommomData(dView);
 
 			var getService = "getServiceData" + contentTypeId;
-			eval(getService)(obj);
+			eval(getService)(iView);
 		},
 		error : function(){
 			alert("에러");
 		}
 	});
 
-	function getCommomData(obj) {
-		
-		var img = $(obj['detailView']).find('firstimage');
-		var title = $(obj['detailView']).find('title');
-		var addr = $(obj['detailView']).find('addr1');
-		var content = $(obj['detailView']).find('overview');
-		var homepage = $(obj['detailView']).find('homepage');
+	function getCommomData(dView) {
 
-		$('#area-detail-img').append("<img id='area-img' src='" + img.text()
+		var img = dView.find('firstimage').text();
+		var title = dView.find('title').text();
+		var addr = dView.find('addr1').text();
+		var content = dView.find('overview').text();
+		var homepage = dView.find('homepage').text();
+
+		$('#area-detail-img').append("<img id='area-img' src='" + img
 				+ "' onerror='" + 'this.src="/trip/resources/images/no-image-icon-23494.png"' 
 				+ "' alt='썸네일' />");
-		$('#area-detail-title').append("<p>" + title.text() + "</p>");
-		$('#area-detail-addr').append("<p>" + addr.text() + "</p>");
-		$('#area-detail-content').append("<p>" + content.text() + "</p>");
-		$('#area-detail-homepage').append("<p>" + homepage.text() + "</p>");
+		$('#area-detail-title').append("<p>" + title + "</p>");
+		$('#area-detail-addr').append("<p>" + addr + "</p>");
+		$('#area-detail-content').append("<p>" + content + "</p>");
+		$('#area-detail-homepage').append("<p>" + homepage + "</p>");
 	}
 
-	function getServiceData12(obj) {
-		var map = $(obj['introView']);
-		var parking = map.find('parking').text();
-		var chkbabycarriage = $(obj['introView']).find('chkbabycarriage').text();
-		var chkpet = $(obj['introView']).find('chkpet').text();
-		var chkcreditcard = $(obj['introView']).find('chkcreditcard').text();
+	function getServiceData12(iView) {
 
-		$('#area-detail-introtext').append("<p>주차장 : " + parking + "</p>");
-		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriage + "</p>");
-		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpet + "</p>");
-		$('#area-detail-introtext').append("<p>카드사용 : " + chkcreditcard + "</p>");
-		
+		var parking =  iView.find('parking').text();
+		var chkbabycarriage =  iView.find('chkbabycarriage').text();
+		var chkpet =  iView.find('chkpet').text();
+		var chkcreditcard =  iView.find('chkcreditcard').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parking + "</p>")
+			.append("<p>유모차 대여 : " + chkbabycarriage + "</p>")
+			.append("<p>애완동물 동반 : " + chkpet + "</p>")
+			.append("<p>카드사용 : " + chkcreditcard + "</p>")
 	}
 
-	function getServiceData14(obj) {
-		
-		var parkingculture = $(obj['introView']).find('parkingculture').text();
-		var chkbabycarriage = $(obj['introView']).find('chkbabycarriage').text();
-		var chkpetculture = $(obj['introView']).find('chkpetculture').text();
-		var chkcreditcardculture = $(obj['introView']).find('chkcreditcardculture').text();
-		
-		$('#area-detail-introtext').append("<p>주차장 : " + parkingculture + "</p>");
-		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriage + "</p>");
-		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpetculture + "</p>");
-		$('#area-detail-introtext').append("<p>카드사용 : " + chkcreditcardculture + "</p>");
-	}
-	
-	function getServiceData28(obj) {
-		
-		var parkingleports = $(obj['introView']).find('parkingleports').text();
-		var chkbabycarriageleports = $(obj['introView']).find('chkbabycarriageleports').text();
-		var chkpetleports = $(obj['introView']).find('chkpetleports').text();
-		var chkcreditcardleports = $(obj['introView']).find('chkcreditcardleports').text();
-		var usefeeleports = $(obj['introView']).find('usefeeleports').text();
-		var infocenterleports = $(obj['introView']).find('infocenterleports').text();
-		
-		$('#area-detail-introtext').append("<p>주차장 : " + parkingleports + "</p>");
-		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriageleports + "</p>");
-		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpetleports + "</p>");
-		$('#area-detail-introtext').append("<p>카드사용 : " + chkcreditcardleports + "</p>");
-		$('#area-detail-introtext').append("<p>이용시간 : " + usetimeleports + "</p>");
-		$('#area-detail-introtext').append("<p>문의 : " + infocenterleports + "</p>");
-	}
-	
-	function getServiceData32(obj) {
+	function getServiceData14(iView) {
 
-		var parkinglodging = $(obj['introView']).find('parkinglodging').text();
-		var checkintime = $(obj['introView']).find('checkintime').text();
-		var checkouttime = $(obj['introView']).find('checkouttime').text();
-		var infocenterlodging = $(obj['introView']).find('infocenterlodging').text();
-		var reservationurl = $(obj['introView']).find('reservationurl').text();
-		
-		$('#area-detail-introtext').append("<p>주차장 : " + parkinglodging + "</p>");
-		$('#area-detail-introtext').append("<p>입실 : " + checkintime + "</p>");
-		$('#area-detail-introtext').append("<p>퇴실 : " + checkouttime + "</p>");
-		$('#area-detail-introtext').append("<p>문의 : " + infocenterlodging + "</p>");
-		$('#area-detail-introtext').append("<p>홈페이지 : " + reservationurl + "</p>");
-	}
-	
-	function getServiceData38(obj) {
-		
-		var parkingshopping = $(obj['introView']).find('parkingshopping').text();
-		var chkbabycarriageshopping = $(obj['introView']).find('chkbabycarriageshopping').text();
-		var chkpetshopping = $(obj['introView']).find('chkpetshopping').text();
-		var saleitem = $(obj['introView']).find('saleitem').text();
-		
-		var opentime = $(obj['introView']).find('opentime').text();
-		var restdateshopping = $(obj['introView']).find('restdateshopping').text();
-		var infocentershopping = $(obj['introView']).find('infocentershopping').text();
+		var parkingculture = iView.find('parkingculture').text();
+		var chkbabycarriage = iView.find('chkbabycarriage').text();
+		var chkpetculture = iView.find('chkpetculture').text();
+		var chkcreditcardculture = iView.find('chkcreditcardculture').text();
 
-		$('#area-detail-introtext').append("<p>주차장 : " + parkingshopping + "</p>");
-		$('#area-detail-introtext').append("<p>유모차 대여 : " + chkbabycarriageshopping + "</p>");
-		$('#area-detail-introtext').append("<p>애완동물 동반 : " + chkpetshopping + "</p>");
-		$('#area-detail-introtext').append("<p>판매 품목 : " + saleitem + "</p>");
-		
-		$('#area-detail-introtext').append("<p>영업시간 : " + opentime + "</p>");
-		$('#area-detail-introtext').append("<p>쉬는날 : " + restdateshopping + "</p>");
-		$('#area-detail-introtext').append("<p>문의 : " + infocentershopping + "</p>");
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parkingculture + "</p>")
+			.append("<p>유모차 대여 : " + chkbabycarriage + "</p>")
+			.append("<p>애완동물 동반 : " + chkpetculture + "</p>")
+			.append("<p>카드사용 : " + chkcreditcardculture + "</p>");
 	}
-	
-	function getServiceData39(obj) {
-		
-		var parkingfood = $(obj['introView']).find('parkingfood').text();
-		var kidsfacility = $(obj['introView']).find('kidsfacility').text();
-		var chkcreditcardfood = $(obj['introView']).find('chkcreditcardfood').text();
-		var opentimefood = $(obj['introView']).find('opentimefood').text();
-		var treatmenu = $(obj['introView']).find('treatmenu').text();
-		var reservationfood = $(obj['introView']).find('reservationfood').text();
-		var infocenterfood = $(obj['introView']).find('infocenterfood').text();
-		
-		$('#area-detail-introtext').append("<p>주차장 : " + parkingfood + "</p>");
-		$('#area-detail-introtext').append("<p>키즈존 : " + kidsfacility + "</p>");
-		$('#area-detail-introtext').append("<p>카드여부 : " + chkcreditcardfood + "</p>");
-		$('#area-detail-introtext').append("<p>영업시간 : " + opentimefood + "</p>");
-		$('#area-detail-introtext').append("<p>매뉴 : " + treatmenu + "</p>");
-		$('#area-detail-introtext').append("<p>예약안내 : " + reservationfood + "</p>");
-		$('#area-detail-introtext').append("<p>문의 : " + infocenterfood + "</p>");
+
+	function getServiceData28(iView) {
+
+		var parkingleports = iView.find('parkingleports').text();
+		var chkbabycarriageleports = iView.find('chkbabycarriageleports').text();
+		var chkpetleports = iView.find('chkpetleports').text();
+		var chkcreditcardleports = iView.find('chkcreditcardleports').text();
+		var usefeeleports = iView.find('usefeeleports').text();
+		var infocenterleports = iView.find('infocenterleports').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parkingleports + "</p>")
+			.append("<p>유모차 대여 : " + chkbabycarriageleports + "</p>")
+			.append("<p>애완동물 동반 : " + chkpetleports + "</p>")
+			.append("<p>카드사용 : " + chkcreditcardleports + "</p>")
+			.append("<p>이용시간 : " + usetimeleports + "</p>")
+			.append("<p>문의 : " + infocenterleports + "</p>");
+	}
+
+	function getServiceData32(iView) {
+
+		var parkinglodging = iView.find('parkinglodging').text();
+		var checkintime = iView.find('checkintime').text();
+		var checkouttime = iView.find('checkouttime').text();
+		var infocenterlodging = iView.find('infocenterlodging').text();
+		var reservationurl = iView.find('reservationurl').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parkinglodging + "</p>")
+			.append("<p>입실 : " + checkintime + "</p>")
+			.append("<p>퇴실 : " + checkouttime + "</p>")
+			.append("<p>문의 : " + infocenterlodging + "</p>")
+			.append("<p>홈페이지 : " + reservationurl + "</p>");
+	}
+
+	function getServiceData38(iView) {
+
+		var parkingshopping = iView.find('parkingshopping').text();
+		var chkbabycarriageshopping = iView.find('chkbabycarriageshopping').text();
+		var chkpetshopping = iView.find('chkpetshopping').text();
+		var saleitem = iView.find('saleitem').text();
+		var opentime = iView.find('opentime').text();
+		var restdateshopping = iView.find('restdateshopping').text();
+		var infocentershopping =  iView.find('infocentershopping').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parkingshopping + "</p>")
+			.append("<p>유모차 대여 : " + chkbabycarriageshopping + "</p>")
+			.append("<p>애완동물 동반 : " + chkpetshopping + "</p>")
+			.append("<p>판매 품목 : " + saleitem + "</p>")
+			.append("<p>영업시간 : " + opentime + "</p>")
+			.append("<p>쉬는날 : " + restdateshopping + "</p>")
+			.append("<p>문의 : " + infocentershopping + "</p>");
+	}
+
+	function getServiceData39(iView) {
+
+		var parkingfood = iView.find('parkingfood').text();
+		var kidsfacility = iView.find('kidsfacility').text();
+		var chkcreditcardfood = iView.find('chkcreditcardfood').text();
+		var opentimefood = iView.find('opentimefood').text();
+		var treatmenu = iView.find('treatmenu').text();
+		var reservationfood = iView.find('reservationfood').text();
+		var infocenterfood = iView.find('infocenterfood').text();
+
+		$('#area-detail-introtext')
+			.append("<p>주차장 : " + parkingfood + "</p>")
+			.append("<p>키즈존 : " + kidsfacility + "</p>")
+			.append("<p>카드여부 : " + chkcreditcardfood + "</p>")
+			.append("<p>영업시간 : " + opentimefood + "</p>")
+			.append("<p>매뉴 : " + treatmenu + "</p>")
+			.append("<p>예약안내 : " + reservationfood + "</p>")
+			.append("<p>문의 : " + infocenterfood + "</p>");
 	}
 
 });

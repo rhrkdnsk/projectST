@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,35 @@ function getlist() {
 	location.href="fboardPage.do?pageNum=${nowPage}"
 }
 
+$(function(){
+	$("#title").focus();
+	
+	$("#insert_submit").click(function(){
+		alert("submit");
+		var title = $("#title").val();
+		var content = CKEDITOR.instances['freeboard_content'].getData();
+		var select = $("#opvaluea option:selected").val();
+		alert("select = " + select);
+		if(title.length < 3 || title.length > 20){
+			event.preventDefault();
+			alert("제목은 3글자 이상, 20글자 이하로 입력하여 주십시오.")
+			document.getElementById("title").focus();
+			return false;
+		} else if(content.length < 5 ){
+			event.preventDefault();
+			alert("내용은 5글자 이상 입력하여야 합니다.")
+			document.getElementById("freeboard_content").focus();
+			return false;
+		} if(select == "분류") {
+			event.preventDefault();
+			alert("글 분류를 설정하여 주십시오.");
+			document.getElementById("opvaluea").focus();
+			return false;
+		}
+		});
+});
+
+
 </script>
 </head>
 <body>
@@ -60,10 +90,10 @@ function getlist() {
 
 <tr>
 
-<td><input type="text" placeholder="제목을 작성하십시오" size="30" name="freeboard_title" class="form-control"/>
+<td><input type="text" id="title" placeholder="제목을 작성하십시오" size="30" name="freeboard_title" class="form-control"/>
 <input type="hidden" id="id" name="user_nickname" value="${login_userId}">
  </td>
- <td><select id="opvalue" name="freeboard_category" class="form-control">
+ <td><select id="opvaluea" name="freeboard_category" class="form-control">
 <option value="분류" id="opvalue">분류</option>
 <option value="정보" id="opvalue">정보</option>
 <option value="잡담" id="opvalue">잡담</option>
@@ -90,7 +120,7 @@ function getlist() {
 <!-- </tr> -->
 <tr>
 <td colspan="2"> <input type="button" value="취소" id="submit" class="btn btn-danger" style="float:right; margin-left:5px;  margin-top:10px" onclick="getlist()"/>
-<input type="submit" value="글쓰기" id="submit" style="float:right; margin-top:10px;" class="btn btn-primary"/>
+<input type="submit" value="글쓰기" id="insert_submit" style="float:right; margin-top:10px;" class="btn btn-primary"/>
 </td>
 </tr>
 </table>

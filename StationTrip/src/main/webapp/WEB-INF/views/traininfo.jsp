@@ -21,7 +21,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!-- jQuery UI 라이브러리 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.m	in.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(function() {
 
@@ -31,8 +31,8 @@ $(function() {
         nextText: '다음 달',
         prevText: '이전 달',
         dateFormat: "yymmdd",
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+        dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
         
     });

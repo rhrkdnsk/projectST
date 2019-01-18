@@ -84,7 +84,7 @@ body {
 $(document).ready(function(){
 	$(".panel").eq(0).show();
 	  $(".flip").click(function(){
-		  $(this).next().slideToggle("slow");
+		  $(this).next().slideToggle("fast");
 	    $(this).parent().parent().siblings().find(".panel").slideUp()
 	  });
 	});	

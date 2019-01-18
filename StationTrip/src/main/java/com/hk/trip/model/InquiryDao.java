@@ -77,4 +77,12 @@ public class InquiryDao implements IInquiryDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"admin_inquiry_getCount");
 	}
+
+
+	@Override
+	public void inquiry_nickname(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"inquiry_nickname", map);
+		
+	}
 }

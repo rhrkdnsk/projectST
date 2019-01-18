@@ -32,42 +32,56 @@
 		left: 100px;
 		top:150px;
 	}
+	#footer {
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:70px;   
+
+    background:#ccc;
+
+}
+.jb-large { font-size: large; }
 </style>
 	
 </head>
 <body>
-<div id="container">
+<div id="container" class="container w3-center jb-large">
 <h1>회원 정보</h1>
-<table>
+<table class="table table-hover">
 		<tr>
-		<th>닉네임</th>
-		<td class="form-control">${fdto.user_nickname}</td>
+		<th class="w3-center">닉네임</th>
+		<td class="form-control jb-large">${fdto.user_nickname}</td>
 	</tr>
 	<tr>
-		<th>이름</th>
-		<td class="form-control">${fdto.user_name}</td>
+		<th class="w3-center">이름</th>
+		<td class="form-control jb-large">${fdto.user_name}</td>
 	</tr>
 	<tr>
-		<th>이메일</th>
-		<td class="form-control">${fdto.user_email}</td>
+		<th class="w3-center">이메일</th>
+		<td class="form-control jb-large">${fdto.user_email}</td>
 	</tr>
 	<tr>
-		<th>전화번호</th>
-		<td class="form-control">${fdto.user_phone}</td>
+		<th class="w3-center">전화번호</th>
+		<td class="form-control jb-large">${fdto.user_phone}</td>
 	</tr>
 	<tr>
-		<th>포인트</th>
-		<td class="form-control">${fdto.user_point}</td>
+		<th class="w3-center">포인트</th>
+		<td class="form-control jb-large">${fdto.user_point}</td>
 	</tr>
 	<tr>
-		<th>등급</th>
-		<td class="form-control">${fdto.tier}</td>
+		<th class="w3-center">등급</th>
+		<td class="form-control jb-large">${fdto.tier}</td>
 	</tr>
 	<tr>
 		<td colspan="2">
 			<button onclick="supdateForm('${fdto.user_nickname}')">수정</button>
 			<button onclick="sdelDelete('${fdto.user_nickname}')">삭제</button>
-			<button onclick="location.href='glist.do'">회원목록</button>
+			<button onclick="location.href='glist.do?pageNum=1'">회원목록</button>
 		</td>
 	</tr>
 </table>
@@ -83,8 +97,9 @@
 	}
 	 
 </script>
-<%@include file="footer.jsp" %>
+<div id="footer"><%@include file="footer.jsp" %></div>
 </body>
+
 </html>
 
 

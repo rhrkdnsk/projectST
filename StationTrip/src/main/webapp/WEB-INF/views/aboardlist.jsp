@@ -11,7 +11,6 @@
 <title>지역게시판</title>
 <script type="text/javascript">
 function locainsert() {
-	alert("locainsert");
 	location.href = "aboardinsertform.do";
 	
 }
@@ -41,7 +40,7 @@ function lookBoard() {
 }
 
 function setnull() {
-	location.href="aboarddelsession.do";
+	location.href="abacklist.do";
 }
 
 function codeBoard() {
@@ -68,20 +67,44 @@ function codeBoard() {
 </head>
 <body>
 
-<div id="container" class="container w3-center">
+<div id="container" class="container w3-center" style="min-height:800px">
 
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>지 역 게 시 판(${myArea})</h1></div>
 
 <table class="table table-hover">
 	<col width="50px">
+	<col width="200px">
+	<col width="80px">
 	<col width="100px">
-	<col width="100px">
-	<col width="150px">
 	<col width="50px">
 	<col width="50px">
 	<col width="50px">
+	<tr>
+	<td colspan="4">
+<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
+<select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px;"> 
+<option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
+<option value="5" <c:if test="${asetnum == 5}">selected</c:if> onclick="lookBoard()">5개씩보기</option>
+<option value="10" <c:if test="${asetnum == 10}">selected</c:if> onclick="lookBoard()">10개씩보기</option>
+<option value="15" <c:if test="${asetnum == 15}">selected</c:if> onclick="lookBoard()">15개씩보기</option>
+</select>
+</form>
+</td>
 
-
+<td colspan="4">
+<form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
+<select name="areaboard_code" onchange="codeBoard()" class="form-control" style="width:150px; float:right;" >
+<option value="1" <c:if test="${sareaboard_code == 1}">selected</c:if> onclick="codeBoard()">서울</option>
+<option value="2" <c:if test="${sareaboard_code == 2}">selected</c:if>  onclick="codeBoard()">경기</option>
+<option value="3" <c:if test="${sareaboard_code == 3}">selected</c:if> onclick="codeBoard()">강원</option>
+<option value="4" <c:if test="${sareaboard_code == 4}">selected</c:if> onclick="codeBoard()" >대구</option>
+<option value="5" <c:if test="${sareaboard_code == 5}">selected</c:if> onclick="codeBoard()">부산</option>
+<option value="6" <c:if test="${sareaboard_code == 6}">selected</c:if> onclick="codeBoard()">전라</option>
+<option value="7" <c:if test="${sareaboard_code == 7}">selected</c:if> onclick="codeBoard()">경상</option>
+<option value="8" <c:if test="${sareaboard_code == 8}">selected</c:if> onclick="codeBoard()">기타</option>
+</select>
+</form>
+</td>
   <tr>
    <td class="w3-center">번호</td>
    <td class="w3-center">제목</td>
@@ -126,10 +149,15 @@ function codeBoard() {
   	</c:forEach>
   	</c:otherwise>
   	</c:choose>
-	
+
    <tr>
-   <td colspan="6">
- <p>
+   <td>
+     <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left; margin-top:5px;">목록으로</button>
+   
+   </td>
+   
+   <td colspan="5">
+ <div style="margin-top:10px">
 <c:if test="${page-1 != 0 }">
 						<a href="aboardPage.do?apageNum=${page-1}&areaboard_code=${sareaboard_code}">이전</a>						
 
@@ -151,71 +179,40 @@ function codeBoard() {
 		}
 %>
 
-
-
- <!--  <a href="#">◀</a>
-  <a href="#">◁</a>
-  <a href="#">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a> 
-  <a href="#">▷</a>
-  <a href="#">▶</a> -->
   <c:if test="${page+1 <= totalPage}">
   <a href="aboardPage.do?apageNum=${page+1}&areaboard_code=${sareaboard_code}">다음</a>						
-  </c:if>
-</p>
+  </c:if>  	
+</div> 
 </td><td>
 <%
   		if(session.getAttribute("login_userId") != null) {
   			%>
-  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			 <button type="button" id="writebt" class="btn btn-success" onclick="locainsert()">글쓰기</button>
   			<%
   		} 	
-  	%></td>
+  	%> </td>
 </table>
 
+<div>
 
-<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" name="search" method="post">
-
-<select name="akeyField" size="1">
-	<option value="user_nickname">아이디</option>
-	<option value="areaboard_title">제목</option>
-	<option value="제목+내용">제목+내용</option>
-	<option value="areaboard_category">분류</option>
+<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" name="search" method="post" class="form-inline">
+<div class="form-group">
+<select name="akeyField" size="1" style="width:100px" class="form-control">
+	<option value="user_nickname" <c:if test="${askeyField eq 'user_nickname'}">selected</c:if> >아이디</option>
+	<option value="areaboard_title" <c:if test="${askeyField eq 'areaboard_title'}">selected</c:if> >제목</option>
+	<option value="areaboard_category" <c:if test="${askeyField eq 'areaboard_category'}">selected</c:if> >분류</option>
 </select>
 
-<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${akeyWord}" />
-<input type="button" value="검색" onclick="check()" />
+
+<input type="text" size="20" placeholder="검색어 입력" name="akeyWord" value="${askeyWord}" class="form-control"  style="width:200px" />
+<input type="button" value="검색" onclick="check()" class="btn btn-default"/>
 <input type="hidden" name="page" value="0" />
-</form>
-
-<form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
-<select name="settingnum" onchange="lookBoard()">
-<option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
-<option value="5" onclick="lookBoard()">5개씩보기</option>
-<option value="10" onclick="lookBoard()">10개씩보기</option>
-<option value="15" onclick="lookBoard()">15개씩보기</option>
-</select>
-</form>
-
-<form action="aboardPage.do?apageNum=1" method="post" name="boardcode">
-지역 <select name="areaboard_code" onchange="codeBoard()" >
-<option value="지역" selected="selected">분류</option>
-<option value="1" onclick="codeBoard()">서울</option>
-<option value="2" onclick="codeBoard()">경기</option>
-<option value="3" onclick="codeBoard()">강원</option>
-<option value="4" onclick="codeBoard()" >대구</option>
-<option value="5" onclick="codeBoard()">부산</option>
-<option value="6" onclick="codeBoard()">전라</option>
-<option value="7" onclick="codeBoard()" >경상</option>
-<option value="8" onclick="codeBoard()" >기타</option>
-</select>
+</div>
 </form>
 </div>
-<button onclick="setnull()">목록으로</button>
 
+
+</div>
 <jsp:include page="footer.jsp" />
 
 </body>

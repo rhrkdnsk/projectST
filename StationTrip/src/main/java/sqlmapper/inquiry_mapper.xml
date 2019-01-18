@@ -70,4 +70,10 @@
 						  WHERE ROWNUM <= #{endNum} ) X
 			 WHERE X.RNUM >= #{startNum} ]]>
 	</select>
+	
+	<update id="inquiry_nickname" parameterType="Map">
+      UPDATE INQUIRY
+      SET USER_NICKNAME = #{user_nickname}
+      WHERE USER_NICKNAME = #{ori_nickname}
+    </update>
 </mapper>	

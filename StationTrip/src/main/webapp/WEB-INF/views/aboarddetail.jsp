@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+
 .lookbt{
     position: relative;
     left: -47.5%;
@@ -70,7 +73,42 @@ $('#btnLike').click(function ()  {
     })
 });
 
+$(function(){
+	$("#reply_submit").click(function(){
+		var replycontent = $("#reply_content").val();
+		
+		
+		alert(replycontent);
+		if(replycontent.length < 3 || replycontent.length > 100 ){
+			event.preventDefault();
+			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+			document.getElementById("reply_content").focus();
+			return false;
+		}
+	})
+})
+
+
+$(function(){
+		$(".comment_submit").click(function(){
+			
+			alert("대댓글 클릭은 됨");
+			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
+
+			alert(commentcontent);
+			
+			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
+				document.getElementById("comment_content").focus();
+				return false;
+			}
+		})
+	})
+
 });	
+
+
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -88,22 +126,23 @@ $('#btnLike').click(function ()  {
   <jsp:include page="header.jsp" />
   <div id="container" class="container w3-center" style="width:900px;">
  <h1>지역게시판 상세보기</h1>
- <table id="fboard_table" border="1" class="table table-hover" style="margin-bottom:0;border-bottom:none;">
- <col width="80px">
- <col width="150px">
- <col width="80px">
- <tr>
-<td>작성자 : ${fdto.user_nickname}</td>		
-				<td>날짜 : ${fdto.areaboard_time}</td> 
-				<td>조회수 :${fdto.areaboard_view}</td>
-			</tr>
-	<tr >
-			<td colspan="3">제목 : ${fdto.areaboard_title}</td>
+ <table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; font-family: 'Nanum Pen Script', cursive;">
+	<tr style="background-color:#c3bbbb;">
+			<td style="text-align:left; font-size:20px;">제목 : ${fdto.areaboard_title}</td>
 		</tr>
+ 
+ <tr>
+<td>	<span style="float:left;">작성자 :${fdto.user_nickname}</span>		
+			<span style="float:right;">	날짜 : ${fdto.areaboard_time}
+				조회수 :${fdto.areaboard_view}</span></td>
+			</tr>
+		
 			<tr>
-			<td colspan="3">${fdto.areaboard_content}
-			
-<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:100px;">
+			<td style="text-align:left; border-bottom:none; font-family:Jeju Hallasan; padding-top:30px;">${fdto.areaboard_content}
+			</td>
+			<tr>
+			<td style="border-top:none">
+<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:50px;">
     <button type="button" id="btnLike">
         <img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" 
 id="like_img" height="50px" width="50px">
@@ -113,8 +152,8 @@ id="like_img" height="50px" width="50px">
 
 <c:if test="${fdto.user_nickname  == login_userId}">
 		<span style="float:right;">
-		<button value="수정" onclick="goUpdate()">수정</button> 
-		<button onclick="goDelete()">삭제</button>
+		<button class="btn btn-primary" onclick="goUpdate()">수정</button> 
+		<button class="btn btn-primary" onclick="goDelete()">삭제</button>
 		</span>
 </c:if>
 </div>
@@ -130,9 +169,9 @@ id="like_img" height="50px" width="50px">
 <p style="text-align:left; margin-left:15px;margin-top:15px;">
 <strong>${login_userId}</strong>
 </p>
-<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
+<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px;
  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
-<input type="submit" value="댓글작성" style="float:right">
+<input type="submit" id="reply_submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
 
 </div>
 <%-- <input type="hidden" name="freeboard_num" value="${fdto.freeboard_num}"> --%>
@@ -144,9 +183,7 @@ id="like_img" height="50px" width="50px">
 <!-- list는 따로 아래처럼 뽑아줘야 한다. -->
 <c:choose>
 	<c:when test="${empty list}">
-	<dl>	
-		<dd>-------작성된 댓글이 없습니다.----</dd>
-	</dl>
+
   </c:when>
   
   <c:otherwise>
@@ -190,13 +227,13 @@ id="like_img" height="50px" width="50px">
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
 													</td>
 												</tr>
 												<tr>
 													<td></td>
 													<td>
-														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
+														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary comment_submit">
 													</td>
 												</tr>
 											</table>
@@ -216,8 +253,8 @@ id="like_img" height="50px" width="50px">
   	      	
   	      <c:if test="${ndto.areaboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${areaboard_code}">${ndto.areaboard_title}</a>
+				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">다음글 보기</a>
+				<a style="font-size:14px"class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a>
 				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.areaboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
@@ -225,16 +262,13 @@ id="like_img" height="50px" width="50px">
 			
 		<c:if test="${bdto.areaboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}">이전글 보기</a>
+				<a style="font-weight:bold;" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">이전글 보기</a>
 				<a style="font-size:14px" class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a>
 				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.areaboard_time}</span>
 			</p>
 		</c:if>
-<%--      	▲ 다음글 보기<a class="title" href="aboarddetail.do?areaboard_num=${ndto.areaboard_num}&areaboard_code=${ndto.areaboard_code}">${ndto.areaboard_title}</a> --%>
-<!--   	<p/> -->
-<%--   		▼ 이전글 보기<a class="title" href="aboarddetail.do?areaboard_num=${bdto.areaboard_num}&areaboard_code=${bdto.areaboard_code}">${bdto.areaboard_title}</a> --%>
-</div>
 
+</div>
   <script type="text/javascript">
   $(function(){
 		$("iframe.reList").load(function(){ //iframe 컨텐츠가 로드 된 후에 호출됩니다.

@@ -82,6 +82,13 @@ INSERT INTO T_COMMENT
     DELETE FROM T_COMMENT WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer} AND COMMENT_STEP > 0
 </delete>
 
+
+ <update id="CupdateNickname" parameterType="Map">
+      UPDATE T_COMMENT
+      SET USER_NICKNAME = #{user_nickname}
+      WHERE USER_NICKNAME = #{ori_nickname}
+    </update>
+
 </mapper>
 
 

@@ -68,7 +68,7 @@ public class RhkflDao implements IRhkflDao{
 	@Override
 	public int rgetCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return  sqlSession.selectOne(namespace + "rgetCount");	
 	}
 
 	@Override

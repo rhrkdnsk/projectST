@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hk.trip.dto.LoginDto;
+import com.hk.trip.model.IAboardService;
+import com.hk.trip.model.IFboardService;
+import com.hk.trip.model.IInquiryService;
 import com.hk.trip.model.IMembershipService;
 
 @Controller
@@ -29,6 +32,15 @@ public class MembershipController {
 
 	@Autowired
 	IMembershipService mService;
+	
+	@Autowired
+	IFboardService ifboard;
+	
+	@Autowired
+	IAboardService iAboard;
+	
+	@Autowired
+	IInquiryService iInquiry;
 
 	@RequestMapping(value = "mypage.do", method = RequestMethod.GET)
 	public String mypage(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -61,11 +73,20 @@ public class MembershipController {
 		HttpSession session = request.getSession();
 		String nickname = request.getParameter("nickput");
 		String user_email = request.getParameter("n_email");
+		String ori_Nickname = request.getParameter("ori_Nickname");
+		Map<String, String>map = new HashMap<String, String>();
+		map.put("user_nickname", nickname);
+		map.put("ori_nickname", ori_Nickname);
 		LoginDto dto = new LoginDto(nickname,user_email,null);
 		boolean isS = mService.nickChange(dto);
 		System.out.println("dto = "+dto);
 		System.out.println("nickname = "+dto.getUser_nickname());
+		System.out.println(ori_Nickname);
 		if(isS) {
+			ifboard.updateNickname(map);
+			iAboard.AupdateNickname(map);
+			iAboard.CupdateNickname(map);
+			iInquiry.inquiry_nickname(map);
 			session.setAttribute("login_userId", dto.getUser_nickname());
 			return "redirect:mypage.do";
 		} else {

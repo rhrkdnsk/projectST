@@ -20,7 +20,7 @@
     </update>
      <update id="qupdateBoard" parameterType="QADto">
       UPDATE FAQ
-      SET TITLE = #{faq_title}, CONTENT = #{faq_content}
+      SET faq_TITLE = #{faq_title}, faq_CONTENT = #{faq_content}
       WHERE FAQ_NUM = #{faq_num}
     </update> 
     

@@ -63,7 +63,7 @@ public class ManagerController {
 		logger.info("글수정하기 {}.", locale);
 		boolean isS=managerService.supdateBoard(fdto);
 		if(isS) {
-			return "redirect:managerdetail.do?user_nickname=" + fdto.getUser_nickname();
+			return "redirect:glist.do?pageNum=1";
 		}else {
 			model.addAttribute("msg", "수정하기실패");
 			return "error";

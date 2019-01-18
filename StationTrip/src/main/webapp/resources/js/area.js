@@ -11,10 +11,14 @@ $(function(){
 	function getAreaSearchData(obj, num){
 		var name = $(obj["areaCase" + num]).find("name");
 		var code = $(obj["areaCase" + num]).find("code");
-
+		
 		$("#case" + num).empty();
 
 		for(var i = 0; i < name.length; i++){
+			
+			if(name.eq(i).text().trim() == "세종특별자치시") {
+				name.eq(i).text("세종시");
+			}
 			$("#case" + num).append("<li value='"+ code.eq(i).text() +"'>" + name.eq(i).text() + "</li>");
 		}
 	}
@@ -101,7 +105,6 @@ $(function(){
 				case1_Code = obj.case1;
 				case2_Code = obj.case2;
 				case3_Code = obj.case3;
-				alert(case1_Code + " / " + case2_Code + " / " + case3_Code)
 			},
 			error:function(){
 				alert("에러");

@@ -11,12 +11,57 @@
 %>
 <!DOCTYPE html>
 <html>
+	<jsp:include page="header.jsp" />
+
 <head>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/trip/resources/css/reply.css">
 <style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+h1 {
+  font-family: Nanum Pen Script;
+  display: inline-block;
+  margin: 0 auto;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+/*   font-size: 9vw; */
+  line-height: 120%;
+/*   padding: 300px 0; */
+  animation: background 20s linear infinite;
+  
+  background: linear-gradient(90deg, rgba(150,48,30,1) 0%,rgba(199,201,88,1) 10%,rgba(28,147,46,1) 20%,rgba(74,165,168,1) 30%,rgba(89,90,165,1) 40%,rgba(84,16,67,1) 50%,rgba(28,58,63,1) 60%,rgba(82,175,183,1) 70%,rgba(78,170,76,1) 80%,rgba(150,48,30,1) 90%,rgba(199,201,88,1) 100%);
+  background-size: 1000% 100%;
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+/*   position: absolute; */
+/*   top: 50%; */
+/*   left: 50%; */
+/*   transform: translate(-50%, -50%); */
+}
+span {
+/*   display: block; */
+}
+span:nth-child(1) {
+  font-size: 214%;
+  line-height: 85%;
+  text-indent: -0.33em;
+}
+span:nth-child(2) {
+  font-size: 214%;
+  line-height: 69%;
+  word-spacing: -0.2em;
+  text-indent: -0.07em;
+}
+
+@keyframes background {
+  0%{background-position:0% 50%}
+  100%{background-position:100% 50%}
+}
 .lookbt{
     position: relative;
     left: -47.5%;
@@ -64,53 +109,104 @@ $(document).ready(function() {
 		}
 	})
 });
+	
+	$(function(){
+		$(".comment_submit").click(function(){
+			
+			alert("대댓글 클릭은 됨");
+			var commentcontent = $(this).closest("table").find("td").children("textarea").val();
+
+			alert(commentcontent);
+			
+			if(commentcontent.length < 3 || commentcontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다.");
+				document.getElementById("comment_content").focus();
+				return false;
+			}
+		})
+	})
+	
+	$(function(){
+		$("#reply_submit").click(function(){
+			var replycontent = $("#reply_content").val();
+			
+			
+			alert(replycontent);
+			if(replycontent.length < 3 || replycontent.length > 100 ){
+				event.preventDefault();
+				alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+				document.getElementById("reply_content").focus();
+				return false;
+			}
+		})
+	});
+	
+	
+	
 });
+
+// $(function(){
+// 	$("#comment_submit").click(function(){
+// 		var commentcontent = $(".comment_content").val();
+		
+		
+// 		alert(commentcontent);
+// 		if(commentcontent.length < 3 || commentcontent.length > 100 ){
+// 			event.preventDefault();
+// 			alert("댓글은 3글자 이상,100글자 이하로 작성해주셔야 합니다. ");
+// 			document.getElementById("comment_content").focus();
+// 			return false;
+// 		}
+// 	})
+// });
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
 	<div id="container" class="container w3-center" style="width:900px;" >
-		<h1>자유게시판 상세보기</h1>
-	
-		<table id="fboard_table" border="1" class="table table-hover" style="margin-bottom:0;border-bottom:none;">
-			<col width="80px">
-			<col width="150px">
-			<col width="80px">
-	
-			<tr>
-				<td>작성자 : ${fdto.user_nickname}</td>		
-				<td>날짜 : ${fdto.freeboard_time}</td> 
-				<td>조회수 :${fdto.freeboard_view}</td>
-			</tr>
+<h1><span>자유</span><span>게시판</span><span>상세보기</span></h1>	
+		<table id="fboard_table" border="1" class="table" style="margin-bottom:0;border-bottom:none; margin-top:10px; font-family: 'Nanum Pen Script', cursive;">
 			
-			<tr >
-			<td colspan="3">제목 : ${fdto.freeboard_title}</td>
+			
+			<tr style="background-color:#c3bbbb;">
+			<td style="text-align:left; font-size:20px;">제목 : ${fdto.freeboard_title}</td>
 		
 			</tr>
-			<tr>
-				<td  colspan="3">${fdto.freeboard_content}
 	
-					<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:100px;">
+			<tr>
+				<td><span style="float:left;">작성자 : ${fdto.user_nickname}</span>		
+				<span style="float:right;">날짜 : ${fdto.freeboard_time}
+				조회수 :${fdto.freeboard_view}</span>
+				</td>
+			</tr>
+			
+			
+
+			<tr>
+			
+				<td style="text-align:left; border-bottom:none; font-family:Jeju Hallasan; padding-top:30px; ">${fdto.freeboard_content}
+				</td>
+				<tr >
+				<td style="border-top:none">
+					<div class="col-md-4" id="likeArea" style="width:870px;padding:0;margin-top:50px;">
 						<button type="button" id="btnLike" style="text-align:center;">
 							<img src="${ isLiked == true ? '/trip/resources/images/heart.png' : '/trip/resources/images/empty heart.jpg' }" id="like_img" height="50px" width="50px">
 						</button>
 						<p class="like_count">좋아요 : ${fdto.freeboard_like}</p>
-							
+						
 						<c:if test="${fdto.user_nickname  == login_userId}">
 							<span style="float:right;">
-							<button class="btn btn-primary" onclick="goUpdate()">수정</button>
-							<button class="btn btn-primary" onclick="goDelete()">삭제</button>
+							<button class="btn btn-primary" onclick="goUpdate()" style="font-family:Sans-serif;">수정</button>
+							<button class="btn btn-primary" onclick="goDelete()" style="font-family:Sans-serif;">삭제</button>
 							</span>
 						</c:if>
 					</div>
-				
-				</td>
-			</tr>
-			
+						</td>
+						</tr>
+					
 		</table>
-	
 	
 		<form action="writereply.do" method="post">
 			<div style="width: 888px; border: 1px solid black; height: 200px;">
@@ -119,12 +215,9 @@ $(document).ready(function() {
 				<p style="text-align: left; margin-left:15px;margin-top:15px; ">
 					<strong>${login_userId}</strong>
 				</p>
-				<textarea rows="5" cols="55" name="comment_content" style="margin: 0px;
-				 		  height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="  주제와 무관한 댓글,악플은 삭제될 수 있습니다">
-				</textarea>
-				<input type="submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
-	
-			</div>
+				<textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px; height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" minlength="3" maxlength="100"></textarea>
+				<input type="submit" id="reply_submit" value="댓글작성" style="float: right; margin:10px;" class="btn btn-primary">
+				</div>
 		</form>
 		<p>
 		<!-- list는 따로 아래처럼 뽑아줘야 한다. -->
@@ -141,7 +234,7 @@ $(document).ready(function() {
 							<strong style="text-align:left;float:left; margin-left:10px;">${cdto.user_nickname}</strong>
 							<c:if test="${cdto.user_nickname == login_userId}">
 								<a href="fdelcomment.do?freeboard_num=${cdto.freeboard_num}&comment_num=${cdto.comment_num}">
-									<button class="fbdel" style="margin-top: 10px;">삭제</button>
+									<button class="fbdel btn btn-default btn-xs" style="margin-top: 10px;">삭제</button>
 								</a>
 							</c:if>
 							<br>
@@ -154,7 +247,7 @@ $(document).ready(function() {
 						
 						<!-- 댓글 -->
 						<div style="width:888px;">
-							<button style="margin-left:15px;" class="lookbt">답글</button>
+							<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
 							<div class="lookreply" id="replyDiv" style="display: none">
 								<iframe class="reList" id="replyIframe" style="width: 888px;"></iframe>
 								<form action="fboardrepre.do" method="post">
@@ -173,13 +266,13 @@ $(document).ready(function() {
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" id="comment_content" class="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" ></textarea>
 													</td>
 												</tr>
 												<tr>
 													<td></td>
 													<td>
-														<input type="submit" value="댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary">
+														<input type="submit" value="대댓글작성" style="width:100%;border-radius:0px;" class="btn btn-primary comment_submit">
 													</td>
 												</tr>
 											</table>
@@ -199,22 +292,23 @@ $(document).ready(function() {
 		
 		<c:if test="${ndto.freeboard_num != null }">
 			<p style="text-align:left; margin:3px;"> ▲ 
-				<a style="font-weight:bold;" class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">다음글 보기</a>
-				<a style="font-size:14px"class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.freeboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">다음글 보기</a>
+				<a style="font-size:14px; color:#000;"class="title" href="fboarddetail.do?freeboard_num=${ndto.freeboard_num}">${ndto.freeboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${ndto.user_nickname} &nbsp; &nbsp; &nbsp; ${ndto.freeboard_time}</span>
 			</p>
 			<hr style="margin:0;"/>
 			</c:if>
 			
 		<c:if test="${bdto.freeboard_num != null}">
 			<p style="text-align:left; margin:3px;"> ▼
-				<a style="font-weight:bold;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">이전글 보기</a>
-				<a style="font-size:14px" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
-				<span style="float:right; font-size:13px;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.freeboard_time}</span>
+				<a style="font-weight:bold; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">이전글 보기</a>
+				<a style="font-size:14px; color:#000;" class="title" href="fboarddetail.do?freeboard_num=${bdto.freeboard_num}">${bdto.freeboard_title}</a>
+				<span style="float:right; font-size:13px; font-family: Verdana,sans-serif;"> ${bdto.user_nickname} &nbsp; &nbsp; &nbsp; ${bdto.freeboard_time}</span>
 			</p>
 		</c:if>
 	</div>
 	<script type="text/javascript">
+
 	$(function(){
 		$("iframe.reList").load(function(){ //iframe 컨텐츠가 로드 된 후에 호출됩니다.
 			var frame = $(this).get(0);
@@ -238,6 +332,6 @@ $(document).ready(function() {
 	}
 	</script>
 	<br />
-	<jsp:include page="footer.jsp" />
 </body>
+	<jsp:include page="footer.jsp" />
 </html>

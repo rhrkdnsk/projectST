@@ -11,9 +11,7 @@
 <title>자유게시판 리스트</title>
 <script type="text/javascript">
 function locainsert() {
-	alert("locainsert");
 	location.href = "insertform.do";
-	
 }
 
 function check() {
@@ -60,16 +58,30 @@ function setnull() {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<div id="container" class="container w3-center" >
+<div id="container" class="container w3-center" style="min-height:800px">
 <div class="w3-panel w3-border w3-round-xxlarge w3-border-black"><h1>자 유 게 시 판</h1></div>
 <table class="table table-hover">
 	<col width="50px">
+	<col width="200px">
+	<col width="80px">
 	<col width="100px">
-	<col width="100px">
-	<col width="150px">
 	<col width="50px">
 	<col width="50px">
 	<col width="50px">
+	<tr>
+	<td colspan="4">
+	<form action="fboardPage.do?pageNum=1" method = "post" name="looksetting">
+<select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px">
+<option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
+<option value="5" <c:if test="${setnum == 5}">selected</c:if> onclick="lookBoard()">5개씩보기</option>
+<option value="10" <c:if test="${setnum == 10}">selected</c:if> onclick="lookBoard()">10개씩보기</option>
+<option value="15" <c:if test="${setnum == 15}">selected</c:if> onclick="lookBoard()">15개씩보기</option>
+</select>
+</form>
+</td>
+<td colspan="4">
+</td>
+</tr>
   <tr>
    <td class="w3-center">번호</td>
    <td class="w3-center">제목</td>
@@ -115,9 +127,14 @@ function setnull() {
   	
 
 	<tr>
-	<td colspan="6">
-<p>
+	<td>
+	  <button onclick="setnull()" class="btn btn-primary btn-xs" style="float:left; margin-top:5px">목록으로</button>	
+	</td>
+	<td colspan="5">
+<div style="margin-top:10px;">
+
 <c:if test="${page-1 != 0 }">
+
 						<a href="fboardPage.do?pageNum=${page-1}">이전</a>						
 
 </c:if>
@@ -133,6 +150,7 @@ function setnull() {
 //int totalPage = Integer.parseInt(aaa);
 		for(int i=startPage; i<=endPage; i++) {
 			%>			
+			
 						<a href="fboardPage.do?pageNum=<%=i%>"><%=i%></a>						
 			<%			
 		}
@@ -141,45 +159,38 @@ function setnull() {
   <c:if test="${page+1 <= totalPage}">
   <a href="fboardPage.do?pageNum=${page+1}">다음</a>						
   </c:if>
-</p>
+  
+</div>
 </td><td>
 <%
   		if(session.getAttribute("login_userId") != null) {
   			%>
   			
-  			 <button type="button" id="writebt" onclick="locainsert()">글쓰기</button>
+  			 <button type="button" id="writebt" onclick="locainsert()" class="btn btn-success">글쓰기</button>
   			 
   			<%
   		} 	
   	%></td>
 </tr>
 </table>
-<form action="fboardPage.do?pageNum=1" name="search" method="post">
+<form action="fboardPage.do?pageNum=1" name="search" method="post" class="form-inline">
 
-<select name="keyField" size="1">
-	<option value="user_nickname">아이디</option>
-	<option value="freeboard_title">제목</option>
-	<option value="제목+내용">제목+내용</option>
-	<option value="freeboard_category">분류</option>
+<div class="form-group">
+<select name="keyField" size="1" style="width:100px" class="form-control">
+	<option value="user_nickname" <c:if test="${skeyField eq 'user_nickname'}">selected</c:if> >아이디</option>
+	<option value="freeboard_title" <c:if test="${skeyField eq 'freeboard_title' }">selected</c:if> >제목</option>
+	<option value="freeboard_category" <c:if test="${skeyField eq 'freeboard_category' }">selected</c:if> >분류</option>
 </select>
 
-<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${keyWord}" />
-<input type="button" value="검색" onclick="check()" />
+<input type="text" size="20" placeholder="검색어 입력" name="keyWord" value="${skeyWord}" class="form-control" style="width:200px" />
+<input type="button" value="검색" onclick="check()" class="btn btn-default" />
 <input type="hidden" name="page" value="0" />
-</form>
-
-<form action="fboardPage.do?pageNum=1" method = "post" name="looksetting">
-<select name="settingnum" onchange="lookBoard()">
-<option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
-<option value="5" onclick="lookBoard()">5개씩보기</option>
-<option value="10" onclick="lookBoard()">10개씩보기</option>
-<option value="15" onclick="lookBoard()">15개씩보기</option>
-</select>
-</form>
 </div>
-<button onclick="setnull()">목록으로</button>
+</form>
 
-<jsp:include page="footer.jsp" />
 
+</div>
+
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -55,7 +55,19 @@ public class ScheduleController {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+		int day_info = Integer.parseInt(request.getParameter("day_info"));
+		String sch_name = request.getParameter("sch_name");
+		String start_date = request.getParameter("sch_date");
+		int plus_date = Integer.parseInt(start_date)+day_info;
+		String end_date = Integer.toString(plus_date);
+		System.out.println("day_info = "+day_info);
+		System.out.println("start_date = "+start_date);
+		System.out.println("end_date = "+end_date);
+
+		model.addAttribute("day_info", day_info);
+		model.addAttribute("sch_name", sch_name);
+		model.addAttribute("start_date", start_date);	
+		model.addAttribute("end_date", end_date);	
 		
 		return "schedulemake";
 	}

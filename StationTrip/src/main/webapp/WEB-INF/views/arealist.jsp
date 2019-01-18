@@ -19,7 +19,7 @@
 <body>
 	<form id="areaBoard">
 		<h1>지역정보</h1>
-		<div>
+		<div id="area-list">
 			<ul id="case1" class="area-options">
 				<!-- 시 단위 options -->
 			</ul>

@@ -23,19 +23,21 @@ background-color:#fafafa;
 <title>Insert title here</title>
 </head>
 <body style="background-color:#fafafa;font-family:Verdana,sans-serif;width:880px;">
-
+	<c:if test="${empty relist}">
+		<p style="color:gray;text-align:center;">등록된 댓글이 없습니다</p>
+	</c:if>
 	<c:if test="${!empty relist}">
 		<c:forEach items="${relist}" var="rdto">
 			<div class="lookreply">
 				 <strong >ㄴ  ${rdto.user_nickname}</strong>
-				   <p style="margin-left:20px">${rdto.comment_content}</p>
-    				<p style="margin-left:20px">${rdto.comment_time}</p>
-
 				<c:if test="${login_userId == rdto.user_nickname}">
 
 					<a
-						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button>삭제</button></a>
+						href="adelreplyList.do?areaboard_num=${rdto.areaboard_num}&comment_num=${rdto.comment_num}&areaboard_code=${areaboard_code}&comment_refer=${oriRefer}"><button class="fbdel btn btn-default btn-xs">삭제</button></a>
 				</c:if>
+				   <p style="margin-left:20px">${rdto.comment_content}</p>
+    				<p style="margin-left:20px">${rdto.comment_time}</p>
+
 				<hr />
 			</div>
 		</c:forEach>
