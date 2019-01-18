@@ -223,7 +223,7 @@ id="like_img" height="50px" width="50px">
 <strong>${login_userId}</strong>
 </p>
 <textarea rows="5" cols="55" id="reply_content" name="comment_content" style="margin: 0px;
- height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+ height: 88px; width: 885px; border: 1px solid lightgray; resize:none" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 <input type="submit" id="reply_submit" value="댓글작성" style="float:right; margin:10px;" class="btn btn-primary">
 
 </div>
@@ -248,7 +248,7 @@ id="like_img" height="50px" width="50px">
 	</strong>
    	
    <c:if test="${login_userId == cdto.user_nickname}">
- <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button class="fbdel" style="margin-top: 10px;">삭제</button>
+ <a href="adelreply.do?areaboard_num=${cdto.areaboard_num}&comment_num=${cdto.comment_num}&areaboard_code=${fdto.areaboard_code}"><button class="fbdel btn btn-default btn-xs" style="margin-top: 10px;">삭제</button>
 </a>
 	</c:if>
 	</div>
@@ -260,7 +260,7 @@ id="like_img" height="50px" width="50px">
    	
    	
    	<div style="width:888px;">
-   	<button style="margin-left:15px;" class="lookbt">답글</button>
+   	<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
    	<div class="lookreply" id="replyDiv" style="display:none" style="width: 888px;">
 	 <iframe class="reList" id="replyIframe" style="width:888px;"></iframe>
    	<form action="aboardrepre.do" method="post">
@@ -281,7 +281,7 @@ id="like_img" height="50px" width="50px">
 												</colgroup>
 												<tr>
 													<td colspan="2">
-														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다"></textarea>
+														<textarea rows="5" cols="55" id="comment_content" name="comment_content" placeholder="주제와 무관한 댓글,악플은 삭제될 수 있습니다" maxlength="300"></textarea>
 													</td>
 												</tr>
 												<tr>
@@ -297,7 +297,7 @@ id="like_img" height="50px" width="50px">
 	</div>
 	<input type="hidden" value="${cdto.comment_refer}" class="comment_refer">
 	
-	<hr />
+	<hr class="mar5"/>
 	</div>
 	</c:if>
 
