@@ -13,7 +13,7 @@ public class CommentDto {
 	private int comment_refer;
 	private String comment_content;
 	private int comment_like;
-	private int comment_hate;
+	private int comment_count;
 	
 	
 	public CommentDto() {
@@ -21,7 +21,7 @@ public class CommentDto {
 	}
 	public CommentDto(int comment_num, int freeboard_num, int areaboard_num, String user_nickname, Date comment_time,
 			int comment_depth, int comment_step, int comment_refer, String comment_content, int comment_like,
-			int comment_hate) {
+			int comment_count) {
 		super();
 		this.comment_num = comment_num;
 		this.freeboard_num = freeboard_num;
@@ -33,7 +33,7 @@ public class CommentDto {
 		this.comment_refer = comment_refer;
 		this.comment_content = comment_content;
 		this.comment_like = comment_like;
-		this.comment_hate = comment_hate;
+		this.comment_count = comment_count;
 	}
 	@Override
 	public String toString() {
@@ -41,7 +41,7 @@ public class CommentDto {
 				+ areaboard_num + ", user_nickname=" + user_nickname + ", comment_time=" + comment_time
 				+ ", comment_depth=" + comment_depth + ", comment_step=" + comment_step + ", comment_refer="
 				+ comment_refer + ", comment_content=" + comment_content + ", comment_like=" + comment_like
-				+ ", comment_hate=" + comment_hate + "]";
+				+ ", comment_count=" + comment_count + "]";
 	}
 	public int getComment_num() {
 		return comment_num;
@@ -103,11 +103,11 @@ public class CommentDto {
 	public void setComment_like(int comment_like) {
 		this.comment_like = comment_like;
 	}
-	public int getComment_hate() {
-		return comment_hate;
+	public int getComment_count() {
+		return comment_count;
 	}
-	public void setComment_hate(int comment_hate) {
-		this.comment_hate = comment_hate;
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
 	}
 	
 	

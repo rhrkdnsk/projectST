@@ -149,4 +149,14 @@ public class AboardService implements IAboardService {
 		iaboarddao.CupdateNickname(map);
 		
 	}
+	@Override
+	public void CCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		iaboarddao.CCount(dto);
+	}
+	@Override
+	public void DCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		iaboarddao.DCount(dto);
+	}
 }

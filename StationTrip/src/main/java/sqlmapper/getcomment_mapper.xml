@@ -89,6 +89,27 @@ INSERT INTO T_COMMENT
       WHERE USER_NICKNAME = #{ori_nickname}
     </update>
 
+
+<update id="CCount" parameterType="CommentDto">
+UPDATE T_COMMENT SET COMMENT_COUNT = COMMENT_COUNT + 1 WHERE AREABOARD_NUM = #{areaboard_num} AND COMMENT_REFER = #{comment_refer}
+
+</update>
+
+<update id="DCount" parameterType="CommentDto">
+UPDATE T_COMMENT SET COMMENT_COUNT = COMMENT_COUNT - 1 WHERE AREABOARD_NUM = #{areaboard_num} AND COMMENT_REFER = #{comment_refer}
+
+</update>
+
+
+<update id="FCCount" parameterType="CommentDto">
+UPDATE T_COMMENT SET COMMENT_COUNT = COMMENT_COUNT + 1 WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}
+
+</update>
+
+<update id="FDCount" parameterType="CommentDto">
+UPDATE T_COMMENT SET COMMENT_COUNT = COMMENT_COUNT - 1 WHERE FREEBOARD_NUM = #{freeboard_num} AND COMMENT_REFER = #{comment_refer}
+
+</update>
 </mapper>
 
 

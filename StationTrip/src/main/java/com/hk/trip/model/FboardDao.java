@@ -272,4 +272,14 @@ public class FboardDao implements IFboardDao {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace + "point10Up" ,user_nickname);
 	}
+	@Override
+	public void FCCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "FCCount",dto);
+	}
+	@Override
+	public void DCCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "FDCount",dto);
+	}
 }

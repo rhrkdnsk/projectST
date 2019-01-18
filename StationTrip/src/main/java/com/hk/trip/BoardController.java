@@ -344,7 +344,7 @@ public class BoardController {
 				fboardService.pointUp(user_nickname);
 				fboardService.upGrade(user_nickname);
 				fboardService.upComment(freeboard_num);
-
+				fboardService.FCCount(dto);
 				return "redirect:fboarddetail.do?freeboard_num="+dto.getFreeboard_num();
 			} else {
 				System.out.println("커밋오류처리");
@@ -739,7 +739,7 @@ public class BoardController {
 				fboardService.pointUp(user_nickname);
 				fboardService.upGrade(user_nickname);
 				aboardService.upComment(areaboard_num);
-
+				aboardService.CCount(dto);
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				System.out.println("커밋오류처리");
@@ -773,7 +773,7 @@ public class BoardController {
 			
 			if(isS) {
 				aboardService.downComment(areaboard_num);
-				
+				aboardService.DCount(dto);
 				return "redirect:replyList.do?areaboard_num="+areaboard_num+"&comment_refer="+comment_refer+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
@@ -800,8 +800,11 @@ public class BoardController {
 			System.out.println(cdto);
 			boolean isS = fboardService.delComment(cdto);
 			int freeboard_num = cdto.getFreeboard_num();
+			CommentDto dto = new CommentDto();
+			dto = cdto;
 			
 			if(isS) {
+				fboardService.DCCount(dto);
 				fboardService.downComment(freeboard_num);
 				
 				return "redirect:freplyList.do?freeboard_num="+freeboard_num+"&comment_refer="+comment_refer;
