@@ -1,23 +1,32 @@
 #area-list {
-	border: 1px solid #bcbcbc;
 	padding: 0 20%;
 }
 
-.area-options {
-	/*   	text-align: left; */
-	/* 	text-align: center; */
-	border: 1px solid #bcbcbc;
+#case1, #case2 {
 	display: inline-block;
 	margin: 0 auto;
-	padding: 0 15px;;
+	padding-left: 75px;
+	padding-right: auto;
 	width: 100%;
+}
+
+#case3 {
+	padding: 0 20%;
+	margin: 50px 0px;
 	text-align: center;
 }
 
+#case3>li {
+	margin: 6px;
+	width: 150px;
+	height: 120px;
+	line-height: 120px;
+	vertical-align: middle;
+	
+}
+
 .area-options>li {
-	 border: 1px solid #bcbcbc;
 	list-style: none;
-	/* 	float: left; */
 	display: inline-block;
 	background-color: #eee;
 	border-radius: 20%;
@@ -30,6 +39,22 @@
 
 .area-options>li:hover {
 	background-color: gray;
+	
+}
+#tree {
+	color: transparent;
+	background-repeat: no-repeat;
+	background-image: url("/trip/resources/images/tree.png");
+	background-position: center;
+}
+
+#tree:hover {
+	color: white;
+	background-color: gray;
+	
+}
+#content-list {
+	
 }
 
 .area-content {
