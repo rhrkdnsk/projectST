@@ -29,7 +29,7 @@ $(function(){
 		var content = dView.find('overview').text();
 		var homepage = dView.find('homepage').text();
 
-		$('#area-detail-img').append("<img id='area-img' src='" + img
+		$('#area-detail-img').append("<img id='detail-img' src='" + img
 				+ "' onerror='" + 'this.src="/trip/resources/images/no-image-icon-23494.png"' 
 				+ "' alt='썸네일' />");
 		$('#area-detail-title').append("<p>" + title + "</p>");

@@ -77,7 +77,8 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "areaCode";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&numOfRows=25";
@@ -119,13 +120,6 @@ public class AreaController {
 			pageNo = (String)session.getAttribute("pageNo");
 		}
 		
-		System.out.println("********************************************************");
-		System.out.println("case1 = " + case1);
-		System.out.println("case2 = " + case2);
-		System.out.println("case3 = " + case3);
-		System.out.println("pageNo = " + pageNo);
-		System.out.println("********************************************************");
-		
 		if(case1 == null || case1 == "") {
 			case1 = "1";
 		} if(case2 == null || case2 == "") {
@@ -136,22 +130,15 @@ public class AreaController {
 			pageNo = "1";
 		}
 		
-		System.out.println("********************************************************");
-		System.out.println("no. 2");
-		System.out.println("case1 = " + case1);
-		System.out.println("case2 = " + case2);
-		System.out.println("case3 = " + case3);
-		System.out.println("pageNo = " + pageNo);
-		System.out.println("********************************************************");
-		
 		String urlCase3 = null;
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "areaBasedList";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
-		param += "&numOfRows=2";
+		param += "&numOfRows=15";
 		param += "&areaCode=" + case1;
 		param += "&sigunguCode=" + case2;
 		param += "&contentTypeId=" + case3;
@@ -193,8 +180,8 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		//지역조회
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-//		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + x;
@@ -224,13 +211,7 @@ public class AreaController {
 
 		model.addAttribute("type", type3);
 		model.addAttribute("con", con);
-		System.out.println("********************************************************");
-		System.out.println("no. 3");
-		System.out.println("case1 = " + type1);
-		System.out.println("case2 = " + type2);
-		System.out.println("case3 = " + type3);
-		System.out.println("pageNo = " + page);
-		System.out.println("********************************************************");
+		
 		session.setAttribute("case1", type1);
 		session.setAttribute("case2", type2);
 		session.setAttribute("case3", type3);
@@ -257,8 +238,8 @@ public class AreaController {
 		String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/";
 		String serviceName = "detailCommon";
 		String param = "?"; 		
-		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
-//		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
+//		param += "serviceKey=WcZIXW%2FEjTD1n08i5CAZmsyW0pohd0p2MfMdI81qBIGQWLkSwe5Ijw4TRbbt%2FeIW5HBgOBf08uz074%2BfPFBDYQ%3D%3D";
+		param += "serviceKey=U7pliHqRjUCAas%2F0uogGjmpgE3fljYMVcE8p7JOEtkcIRKCERKMtGziSQZ2zcDczOr2WADArVrqQnZzjy7CYnA%3D%3D";
 		param += "&MobileOS=ETC";		
 		param += "&MobileApp=Test";
 		param += "&contentId=" + con;
