@@ -99,6 +99,8 @@ $(function(){
 <option value="5" <c:if test="${sareaboard_code == 5}">selected</c:if> id="opvalue">부산</option>
 <option value="6" <c:if test="${sareaboard_code == 6}">selected</c:if> id="opvalue">전라</option>
 <option value="7" <c:if test="${sareaboard_code == 7}">selected</c:if> id="opvalue">경상</option>
+<option value="8" <c:if test="${sareaboard_code == 8}">selected</c:if> id="opvalue">기타</option>
+
 </select>
 </td>
 </tr>

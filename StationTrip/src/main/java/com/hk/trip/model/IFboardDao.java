@@ -41,5 +41,6 @@ public interface IFboardDao {
 	public void pointDown(String user_nickname);
 	public void upGrade(String user_nickname);
 	public void pointUp10(String user_nickname);
-
+	public void FCCount(CommentDto dto);
+	public void DCCount(CommentDto dto);
 }

@@ -247,5 +247,15 @@ public class AboardDao implements IAboardDao {
 		sqlSession.update(namespace1+"CupdateNickname", map);
 		
 	}
+	@Override
+	public void CCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "CCount", dto);
+	}
+	@Override
+	public void DCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace1 + "DCount", dto);
+	}
 	
 	} //끝
