@@ -35,7 +35,6 @@ function check1() {
 }
 
 function lookBoard() {
-	alert(document.looksetting.settingnum.value);
     document.looksetting.submit();
 }
 
@@ -44,7 +43,6 @@ function setnull() {
 }
 
 function codeBoard() {
-	alert(document.boardcode.areaboard_code.value);
     document.boardcode.submit();
     
 }
@@ -84,9 +82,9 @@ function codeBoard() {
 <form action="aboardPage.do?apageNum=1&areaboard_code=${sareaboard_code}" method = "post" name="looksetting">
 <select name="settingnum" onchange="lookBoard()" class="form-control" style="width:200px;"> 
 <option value="">게시글 개수 조절</option> <!-- 개발 당시에만 남겨두고 나중에 10개씩 글보기할때 삭제하면 됨 10,30,50 -->
-<option value="5" <c:if test="${asetnum == 5}">selected</c:if> onclick="lookBoard()">5개씩보기</option>
 <option value="10" <c:if test="${asetnum == 10}">selected</c:if> onclick="lookBoard()">10개씩보기</option>
 <option value="15" <c:if test="${asetnum == 15}">selected</c:if> onclick="lookBoard()">15개씩보기</option>
+<option value="20" <c:if test="${asetnum == 20}">selected</c:if> onclick="lookBoard()">20개씩보기</option>
 </select>
 </form>
 </td>
@@ -163,21 +161,26 @@ function codeBoard() {
 
 </c:if>
 
-<%
-// String aaa = (String)request.getAttribute("totalPage");
-// 	System.out.println("list에서 aaa의 값 : " + aaa);
-	int totalPage = ((Integer)request.getAttribute("totalPage")).intValue(); // 목록뽑을 개수 나누기 총개수
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
 
-	System.out.println("jsp list의 totalPage의 값 : " + totalPage);
-//int totalPage = Integer.parseInt(aaa);
-		for(int i=startPage; i<=endPage; i++) {
-			%>			
-						<a href="aboardPage.do?apageNum=<%=i%>&areaboard_code=${sareaboard_code}"><%=i%></a>						
-			<%			
-		}
-%>
+                              <c:choose>
+
+
+
+                                      <c:when test="${ i == anowPage }">
+<a href="aboardPage.do?apageNum=${i}&areaboard_code=${sareaboard_code}" style="color:red;">${i}</a>
+
+
+                                      </c:when>
+
+								<c:otherwise>
+								<a href="aboardPage.do?apageNum=${i}&areaboard_code=${sareaboard_code}">${i}</a>
+								</c:otherwise>
+
+
+                              </c:choose>
+
+                       </c:forEach>
 
   <c:if test="${page+1 <= totalPage}">
   <a href="aboardPage.do?apageNum=${page+1}&areaboard_code=${sareaboard_code}">다음</a>						
