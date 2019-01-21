@@ -19,8 +19,8 @@
 </head>
 <body>
 	<form id="areaBoard">
-	<h1> 관광지 검색 </h1>
-	<hr/>
+		<h1>관광지 검색</h1>
+		<hr />
 		<div id="area-list">
 			<div id="area-list-border">
 				<p class='area-search-text'>지역별</p>
