@@ -258,7 +258,7 @@ $(document).ready(function() {
 						
 						<!-- 댓글 -->
 						<div style="width:888px;">
-							<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
+							<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글 ${cdto.comment_count}</button>
 							<div class="lookreply" id="replyDiv" style="display: none">
 								<iframe class="reList" id="replyIframe" style="width: 888px;"></iframe>
 								<form action="fboardrepre.do" method="post">

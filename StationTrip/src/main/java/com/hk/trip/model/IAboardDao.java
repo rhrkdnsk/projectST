@@ -36,5 +36,6 @@ public interface IAboardDao {
 	public boolean Commentreply(CommentDto dto);
 	public void AupdateNickname(Map<String, String> map);
 	public void CupdateNickname(Map<String, String> map);
-
+	public void CCount(CommentDto dto);
+	public void DCount(CommentDto dto);
 }

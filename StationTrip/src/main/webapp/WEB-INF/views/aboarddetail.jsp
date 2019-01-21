@@ -255,7 +255,7 @@ id="like_img" height="50px" width="50px">
    	
    	
    	<div style="width:888px;">
-   	<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글</button>
+   	<button style="margin-left:15px;" class="lookbt btn btn-default btn-sm">답글 ${cdto.comment_count}</button>
    	<div class="lookreply" id="replyDiv" style="display:none" style="width: 888px;">
 	 <iframe class="reList" id="replyIframe" style="width:888px;"></iframe>
    	<form action="aboardrepre.do" method="post">

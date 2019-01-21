@@ -171,4 +171,14 @@ public class FboardService implements IFboardService {
 		// TODO Auto-generated method stub
 		ifboarddao.pointUp10(user_nickname);
 	}
+	@Override
+	public void FCCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		ifboarddao.FCCount(dto);
+	}
+	@Override
+	public void DCCount(CommentDto dto) {
+		// TODO Auto-generated method stub
+		ifboarddao.DCCount(dto);
+	}
 }
