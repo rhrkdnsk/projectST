@@ -56,9 +56,7 @@ public class MembershipController {
 		String nickname = (String) session.getAttribute("login_userId");
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("user_nickname", nickname);
-		//System.out.println("ctrl nickname = "+map.get("user_nickname"));
 		LoginDto dto = mService.myInfo(map);
-		//System.out.println("dto = "+dto);
  		model.addAttribute("dto", dto);
 		
 		return "mypage";
@@ -79,9 +77,6 @@ public class MembershipController {
 		map.put("ori_nickname", ori_Nickname);
 		LoginDto dto = new LoginDto(nickname,user_email,null);
 		boolean isS = mService.nickChange(dto);
-		System.out.println("dto = "+dto);
-		System.out.println("nickname = "+dto.getUser_nickname());
-		System.out.println(ori_Nickname);
 		if(isS) {
 			ifboard.updateNickname(map);
 			iAboard.AupdateNickname(map);
@@ -104,11 +99,9 @@ public class MembershipController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String phone = request.getParameter("phoneput");
-		System.out.println(phone);
 		String user_email = request.getParameter("p_email");
 		LoginDto dto = new LoginDto(null,user_email,phone);
 		boolean isS = mService.phoneChange(dto);
-		System.out.println("phone = "+dto.getUser_phone());
 		if(isS) {
 			return "redirect:mypage.do";
 		} else {
@@ -131,9 +124,7 @@ public class MembershipController {
 		String nickname = (String) session.getAttribute("login_userId");
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("user_nickname", nickname);
-		//System.out.println("ctrl nickname = "+map.get("user_nickname"));
 		LoginDto dto = mService.myInfo(map);
-		//System.out.println("dto = "+dto);
  		model.addAttribute("dto", dto);
 		
 		return "pwchange";
@@ -151,13 +142,9 @@ public class MembershipController {
 		String user_email = request.getParameter("user_email");
 		Map<String, String>map  = new HashMap<String, String>();
 		map.put("now_password", nowpw);
-		System.out.println("nowpw="+map.get("now_password"));
 		map.put("new_password", newpw);
-		System.out.println("newpw="+map.get("new_password"));
 		map.put("user_email", user_email);
-		System.out.println("user_email="+map.get("user_email"));
 		boolean isS = mService.pwChange(map);
-		System.out.println(isS);
 		if(isS) {
 			pw.print("true");
 		} else {
@@ -192,11 +179,8 @@ public class MembershipController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		String user_email = request.getParameter("user_email");
-		System.out.println("user_email=" + user_email);
 		String user_password = request.getParameter("user_password");
-		System.out.println("user_password=" + user_password);
 		boolean isS = mService.withdrawal(new LoginDto(user_email,user_password));
-		System.out.println(isS);
 		if(isS) {
 			pw.print("true");
 		} else {

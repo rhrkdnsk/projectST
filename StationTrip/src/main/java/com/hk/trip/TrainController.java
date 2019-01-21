@@ -78,15 +78,15 @@ public class TrainController {
  
             event_type = xpp.next();
         }
-//        printList(list);
         String city = citylist.toString();
         city = city.replaceAll("[\\[\\]]", "");
         city = city	.replaceAll(" ", "");
         model.addAttribute("citylist", city);
-    
+        System.out.println(city);
         return "traininfo";
 	}
-//	http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList
+	
+	
 	@RequestMapping(value = "/towninfo.do", method = RequestMethod.GET)
 	public void towninfo(Locale locale, Model model,String[] citycode, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("역정보 {}.", locale);
@@ -135,12 +135,9 @@ public class TrainController {
  
             event_type = xpp.next();
         }
-//        printList(list);
-       // model.addAttribute("townlist", townlist);
         String town = townlist.toString();
         town = town.replaceAll("[\\[\\]]", "");
         town = town	.replaceAll(" ", "");
-        //System.out.println(town);
         
         
         pw.print(town);
@@ -227,8 +224,6 @@ public class TrainController {
  
             event_type = xpp.next();
         }
-//        printList(list);
-       // model.addAttribute("townlist", townlist);
         String trainlist = traininfo.toString();
         trainlist = trainlist.replaceAll("[\\[\\]]", "");
         trainlist = trainlist	.replaceAll(" ", "");
@@ -294,9 +289,7 @@ public class TrainController {
 		
         int size =traininfo.size();
        
-//		System.out.println("KeyField 값 : Controller " + keyField + "keyWord의 값 : "+ keyWord   );
 		int totalCount =   (size + 9) / 10 * 10; //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
-		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
 		int totalPage = totalCount / 10; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
 		if (totalCount % 10 > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
 		if (totalPage < pageNo) {pageNo = totalPage;}	// 

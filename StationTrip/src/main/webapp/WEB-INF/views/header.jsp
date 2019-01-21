@@ -72,12 +72,7 @@
     </div>
   </div>
   <%
-  		if(session.getAttribute("login_admin") == null) {
-  			%>
-  						
-	
-	<%
-  		} else {
+  		if(session.getAttribute("login_admin") != null) {
   			%>
  		<div class="w3-dropdown-hover w3-hide-small">
     	<button class="w3-button w3-hide-small w3-padding-large w3-hover-white" title="Notifications">관리자 고객 센터<i class="fa fa-caret-down"></i></button>     
@@ -143,21 +138,7 @@
 							  ">
 							  Login with Facebook
 							</button>
-							
-<!-- 							<button class="uibutton" id="authBtn" value="checking..." scope="public_profile,email" onlogin="checkFacebookStatus();"  onclick=" -->
-<!-- 							  	if(this.value === 'Login'){ -->
-<!-- 							  		//now logout -->
-<!-- 							  		FB.login(function(response){ -->
-<!-- 							  			console.log('login =>', response); -->
-							  			
-<!-- 							  			checkFacebookStatus(response); -->
-<!-- 							  		}); -->
-<!-- 							  	} -->
-<!-- 							  ">Button</button> -->
-							
-<!-- 							<fb:login-button scope="public_profile,email" onlogin="checkFacebookStatus();" > -->
-<!-- 							</fb:login-button> -->
-								
+
 							</li>
 							<li>
 								<button class="loginBtn loginBtn--google" id="loginBtn" value="checking..." onclick="
@@ -169,16 +150,7 @@
 							 		}">
 								  Login with Google
 								</button>
-								
-								
-								<%-- <div class="g-signin2" <%if(session.getAttribute("login_userId") == null) {
-									%>
-										data-onsuccess="onSignIn" 
-									<%
-								}
-								%>
-								data-theme="dark"></div> --%>
-							</li>
+
 							<li>
 							</li>
 						</ul>
@@ -307,7 +279,6 @@
 				</div>
 			</div>
 	</div>
-<!--    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right">회원가입</a> -->
   </div>
 <script type="text/javascript">
 

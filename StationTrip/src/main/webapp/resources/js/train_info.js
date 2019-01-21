@@ -2,7 +2,6 @@ $(function() {
 	/* 출발역 */
 	
 	$("#startcitycode").change(
-			
 			function() {
 				var citycode = $("#startcitycode").val();
 				if (citycode == 'scity') {
@@ -36,8 +35,6 @@ $(function() {
 						}
 					});
 				}
-//				document.getElementById('trainframe').contentWindow.location.reload(true)
-				
 			});
 
 					
@@ -76,8 +73,6 @@ $(function() {
 						}
 					});
 				}
-//				document.getElementById('trainframe').contentWindow.location.reload(true)
-				
 			});
 					
 });
@@ -111,13 +106,9 @@ function traingoti(no){
 
 	
 function traingo(no){
-	//traingoti(no)
 	var startcode = $("#starttowncode").val();
-	console.log(startcode)
 	var endcode = $("#endtowncode").val();
-	console.log(endcode)
 	var traintime = $("#Datepicker").val();
-	console.log(traintime)
 	
 	var data = { "startcode": startcode, "endcode": endcode, "traintime": traintime, "pageNo" : no };
 	console.log("no = "+no)

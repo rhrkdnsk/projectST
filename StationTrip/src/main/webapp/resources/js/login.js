@@ -29,7 +29,12 @@ $(document).ready(function(){
 	    return false;
 	  });
 	  
-      $('.can').click(function (e) {  
+      $('.can').click(function (e) { 
+    	  $("#Semail").val("");
+    	  $("#Spassword").val("");
+    	  $("#Snickname").val("");
+    	  $("#Sname").val("");
+    	  $("#Sphone").val("");
           e.preventDefault();  
           modalLayer2.hide();  
       }); 
@@ -48,21 +53,20 @@ $(document).ready(function(){
 	    return false;
 	  });
 	  
-      $('.can').click(function (e) {  
+      $('.can').click(function (e) { 
+    	  $("#femail").val("");
+    	  $("#femailNumber").val("");
           e.preventDefault();  
           modalLayer3.hide();  
       }); 
       
       // 비밀번호 재설정 모달
-      
       var modalLayer4 = $("#resetModalLayer");
       var modalLink4 = $(".resetModalLink");
       var modalCont4 = $(".resetModalContent"); 
       
       modalLink4.click(function(){
 		  var femailNumber = $("#femailNumber").val();
-		 // alert("resetNum = " + resetNum);
-		  // alert("femailNumber = " + femailNumber)
 		  if(femailNumber == resetNum) {
 			  modalLayer4.fadeIn("slow");
 			  modalCont4.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
@@ -116,12 +120,8 @@ $(document).ready(function(){
 
 // -------- 로그인 Ajax ---------- //
 function ajaxLogin(){
-	// alert('click');
 	var email = decodeURIComponent($("#email").val());
-	console.log(email)
-	// alert(email)
  	var password = $("#password").val();
-	// alert(password)
 
 
 	
@@ -134,7 +134,6 @@ function ajaxLogin(){
 		success:function(data){
 			console.log(data)
 			if(data != "fail"){
-				// username = null;
 				$("#loginModalLayer").hide();
 				$('#mask').hide();
 				$('.window').hide(); 
@@ -151,13 +150,11 @@ function ajaxLogin(){
 	var cookiecheck = $("#idCheck").prop("checked");
 	if(cookiecheck == true){
 		var saveId = $.cookie("saveId");
-		// alert(saveId);
 		if(saveId == null || saveId == undefined){
 			createCookie();
 		}
 		if(saveId != email){
 			var demail = decodeURI(email);
-			// alert("demail = "+demail);
 			$.removeCookie("saveId");
 			createCookie();
 		}
@@ -171,13 +168,10 @@ function sessionCheck(data){
 	
 	var username = data
 	alert(username)
-	// alert(username);
 	if(username != "fail"){
-		// username = null;
 		$("#loginModalLayer").hide();
 		$('#mask').hide();
 		$('.window').hide(); 
-		// window.location.reload()
 		
 	} else {
 		username = null;
@@ -209,17 +203,11 @@ function createCookie(){
 // ------- 회원가입 Ajax --------- //
 
 function ajaxSign(){
-	// alert('click');
 	var Semail = $("#Semail").val();
-	// alert("email = "+Semail);
  	var Spassword = $("#Spassword").val();
- 	// alert("password = "+Spassword);
  	var Snickname = $("#Snickname").val();
- 	// alert("nickname = "+Snickname);
  	var Sname = $("#Sname").val();
- 	// alert("name = "+Sname);
  	var Sphone = $("#Sphone").val();
- 	// alert("phone = "+Sphone);
 	
 	var data = { "email": Semail, "password": Spassword, "nickname": Snickname, "name": Sname, "phone": Sphone };
      
@@ -239,9 +227,6 @@ function ajaxSign(){
 	        $("#resetModalLayer").hide();
 			$("#loginModalLayer").fadeIn("slow");
 			$(".loginModalContent").css({"margin-top" : -$(".loginModalContent").outerHeight()/2, "margin-left" : -$(".loginModalContent").outerWidth()/2});
-			/*
-			 * $('#mask').hide(); $('.window').hide();
-			 */ 
 		},
 		error:function(){
 			alert("가입 실패ㅜㅜ") ;
@@ -254,12 +239,12 @@ function ajaxSign(){
 
 
 // ------- 이메일인증 Ajax --------- //
+
+
 var resetNum;
 var femail;
 function ajaxEmail(){
-	// alert('click');
 	femail = $("#femail").val();
-	
 	var data = { "email": femail };
   
 	$.ajax({
@@ -267,7 +252,6 @@ function ajaxEmail(){
 		type:'GET',
 		data: data,
 		success:function(data){
-			// alert(data);
 			if(data != ""){
 				alert("인증번호 전송 완료")
 				resetNum = data;
@@ -280,6 +264,8 @@ function ajaxEmail(){
 		}
 	}); 
 }
+
+
 // ---------------------------- //
 
 
@@ -290,7 +276,6 @@ function pwChange(){
 	if(remail != remailchk){
 		alert("비밀번호가 다릅니다")
 	} else {
-		// alert(password)
 		var data = { "email": femail, "password": remail };
 		$.ajax({
 			url:"resetpw.do",

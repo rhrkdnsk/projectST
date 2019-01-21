@@ -81,33 +81,28 @@ public class InquiryController {
 	public String myinquiry(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int pageNum) throws IOException {
 		
 		logger.info("myinquiry.do {}.", locale);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
 		
 		if(request.getParameter("pageNum") == null || request.getParameter("pageNum") == "") {
 			pageNum = 1;
 		}
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 
-		HttpSession session = request.getSession();
 		String settingnum = request.getParameter("settingnum");
 		int countList = 10;
 
 		if(settingnum != null && settingnum != "") {
 			int sum = Integer.parseInt(settingnum);
 			session.setAttribute("inquiry_setnum", sum);
-			
 			countList = sum;
 			}
 		
-
 		if(request.getSession().getAttribute("inquiry_setnum") != null) {
 			int inquiry_setNum = (Integer) request.getSession().getAttribute("inquiry_setnum");
 			countList = inquiry_setNum;
 		}		 	
 		
-		request.getSession().removeAttribute("readcount");
-
 		String user_nickname = (String) session.getAttribute("login_userId");
 		Map<String, String>map = new HashMap<String, String>();
 		map.put("user_nickname", user_nickname);
@@ -115,39 +110,30 @@ public class InquiryController {
 		int endNum = pageNum * countList - 1; //Sql문 돌릴곳에서 Row값을 설정해준다 (startNum = ~(번호)에서부터 endNum = ~번호까지)
 		startNum++;
 		endNum++;
-		int totalCount = inqService.getCount(map); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
-		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
+		int totalCount = inqService.getCount(map);
 		int countPage = 5;	 //하단에 출력해줄 페이지의 개수
 		int totalPage = totalCount / countList; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
 		if (totalCount % countList > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
-		if (totalPage < pageNum) {pageNum = totalPage;}	// 
+		if (totalPage < pageNum) {pageNum = totalPage;}	
 		int startPage = ((pageNum - 1) / countPage) * countPage + 1; // 여기서 countPage는 페이지 하단에 페이지 개수 설정할 숫자 ex) 1 2 3 4 5
-		int endPage = startPage + countPage - 1; 	//start,endPage를 설정해줘야 
+		int endPage = startPage + countPage - 1; 	//start,endPage를 설정
 		if (endPage > totalPage) {endPage = totalPage;}
 		if(pageNum == 0) {pageNum++;}
 		
-		
-		System.out.println("user_nickname = "+user_nickname);
-		System.out.println("startNum = "+startNum);
-		System.out.println("endNum = "+endNum);
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
 		List<InquiryDto> list = inqService.inquiry_list(map);
-		System.out.println("list = "+list);
-		
 		
 		session.setAttribute("nowPage", pageNum);
 		model.addAttribute("inquiry_list", list);
-		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", pageNum);
 		
-		
 		return "myinquiry";
-
 	}
+	
 	
 	@RequestMapping(value = "inquiry_detail.do", method = RequestMethod.GET)
 	public String inquiry_detail(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response,int inquiry_num) throws IOException {
@@ -225,7 +211,6 @@ public class InquiryController {
 			countList = admin_inquiry_setnum;
 		}		 	
 		
-		request.getSession().removeAttribute("readcount");
 
 		
 		int startNum = (pageNum - 1) * countList; //Sql문 돌릴곳에서 Row 값을 설정해준다
@@ -233,7 +218,6 @@ public class InquiryController {
 		startNum++;
 		endNum++;
 		int totalCount = inqService.admin_getCount(); //이걸 두개로 만들어서 검색어별, 그냥별로 만들어본다
-		// int countList = settingnum;// 매개변수 int settingnum 지정하고 여기에 = settingnum; 써준다
 		int countPage = 5;	 //하단에 출력해줄 페이지의 개수
 		int totalPage = totalCount / countList; // 총 페이지의 개수를 설정해준다 -> jsp로 전달하여 하단 페이지 개수 생성
 		if (totalCount % countList > 0) {totalPage++;}	//총 페이지의 개수가 없으면 1을 더해준다.
@@ -244,13 +228,9 @@ public class InquiryController {
 		if(pageNum == 0) {pageNum++;}
 		
 		Map<String, String>map = new HashMap<String, String>();
-		System.out.println("startNum = "+startNum);
-		System.out.println("endNum = "+endNum);
 		map.put("startNum", startNum+"");
 		map.put("endNum", endNum+"");
 		List<InquiryDto> admin_inquiry_list = inqService.admin_inquiry_list(map);
-		System.out.println("list = "+admin_inquiry_list);
-		
 		
 		session.setAttribute("nowPage", pageNum);
 		model.addAttribute("admin_inquiry_list", admin_inquiry_list);
@@ -259,7 +239,6 @@ public class InquiryController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", pageNum);
-		
 		
 		return "admin_inquiry";
 

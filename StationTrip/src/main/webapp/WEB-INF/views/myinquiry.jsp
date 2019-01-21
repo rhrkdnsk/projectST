@@ -48,7 +48,7 @@ table.type04 td {
 		<a href="mypage.do" class="mp_menu" >내정보 관리</a>
 		<a href="pwchange.do" class="mp_menu" >비밀번호 변경</a>
 		<a href="myinquiry_sdel.do" class="mp_menu" style="color:blue;">나의 문의글</a>
-		<a href="itinerary.do" class="mp_menu" >여행 일정</a>
+<!-- 		<a href="itinerary.do" class="mp_menu" >여행 일정</a> -->
 		<a href="withdrawalgo.do" class="mp_menu" >회원 탈퇴</a>
 		<hr style="border-color:black;">
 	</div>

@@ -1,0 +1,171 @@
+@charset "UTF-8";
+#startcitycode, #starttowncode, #endcitycode, #endtowncode{
+	width: 140px;
+	height:30px;
+	border:none;
+    color: #153d73;
+}
+#startcitycode:hover, #starttowncode:hover, #endcitycode:hover, #endtowncode:hover{
+	width: 140px;
+	height:30px;
+	border:none;
+    background-color:#34495e;
+	border:none;
+	color: #fff;	
+}
+#train_btn{
+	width:140px;
+	background-color:white;
+	border:none;
+	color: #153d73;	
+}
+#train_btn:hover{
+	width:140px;
+	height:30px;
+	background-color:#34495e;
+	border:none;
+	color: #fff;	
+}
+
+.ui-datepicker-calendar > tbody td.ui-datepicker-week-end:first-child a { color: red; }
+.ui-datepicker-calendar > tbody td.ui-datepicker-week-end:last-child a { color: blue; } 
+
+#Datepicker{
+	padding-left:10px;
+	width:130px;
+	height:29px;
+	border:none;
+	color: #153d73;	
+}
+#Datepicker:hover{
+	padding-left:10px;
+	width:130px;
+	height:29px;
+	background-color:#34495e;
+	border:none;
+	color: #fff;	
+}
+#hr_train{
+	border-color:#153d73;
+}
+#trainframe{
+	width:900px;
+	height:700px;
+	display:none;
+	border:none;
+}
+table#infoTable {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+}
+table#infoTable th {
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+table#infoTable td {
+	color: #153d73;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-top: 3px solid #369;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+table.type04 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+  	margin : 20px 10px;
+  	
+}
+table.type04 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type04 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.type03 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+  	margin : 20px 10px;
+  	
+}
+table.type03 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: none;
+    color: #153d73;	
+}
+table.type03 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: none;
+}
+
+.list-bot{
+    text-align: center;
+    float: right;
+    position: relative;
+    left: -50%;}
+
+
+.button-7{
+  width:60px;
+  height:30px;
+  border:2px solid #34495e;
+  float:left;
+  left: 50%;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:5px;
+}
+.button-7 a{
+  font-family:arial;
+  font-size:16px;
+  color:#34495e;
+  text-decoration:none;
+  line-height:30px;
+  transition:all .5s ease;
+  z-index:2;
+  position:relative;
+}
+.eff-7{
+  width:60px;
+  height:30px;
+  border:0px solid #34495e;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+  box-sizing:border-box;
+}
+.button-7:hover .eff-7{
+  border:30px solid #34495e;
+}
+.button-7:hover a{
+  color:#fff;
+}
