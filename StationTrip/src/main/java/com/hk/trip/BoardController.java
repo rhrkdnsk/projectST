@@ -590,6 +590,8 @@ public class BoardController {
 			
 			AboardDto adto = aboardService.getDetailview(areaboard_num, areaboard_code);
 			List<CommentDto> dto = aboardService.getReply(areaboard_num);
+			
+			
 			AboardDto bdto = aboardService.goBack(areaboard_num, areaboard_code);
 			AboardDto ndto = aboardService.goNext(areaboard_num, areaboard_code);
 			System.out.println("bdto : " + bdto);
