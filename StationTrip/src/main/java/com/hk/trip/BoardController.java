@@ -32,6 +32,8 @@ import com.hk.trip.dto.FboardDto;
 import com.hk.trip.model.AboardService;
 import com.hk.trip.model.FboardService;
 import com.hk.trip.model.IAboardDao;
+import com.hk.trip.model.IAboardService;
+import com.hk.trip.model.IFboardService;
 
 /**
  * Handles requests for the application home page.
@@ -45,9 +47,9 @@ public class BoardController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@Autowired
-	private FboardService fboardService;
+	private IFboardService fboardService;
 	@Autowired
-	private AboardService aboardService;
+	private IAboardService aboardService;
 	
 //	@RequestMapping(value = "fboardlist.do")
 //	public String getBoard(HttpServletRequest request, Locale locale, Model model, String keyWord, String keyField) {
