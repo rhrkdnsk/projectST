@@ -673,7 +673,7 @@ public class BoardController {
 				fboardService.pointUp(user_nickname);
 				fboardService.upGrade(user_nickname);
 				aboardService.upComment(areaboard_num);
-				aboardService.CCount(dto);
+				
 				return "redirect:aboarddetail.do?areaboard_num="+areaboard_num+"&areaboard_code="+areaboard_code;
 			} else {
 				return "error";
