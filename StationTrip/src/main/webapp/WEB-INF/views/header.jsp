@@ -61,7 +61,7 @@
     	href="#"
     	  <%} else { %>
       	href="inquiry.do"
-      <%} %> class="w3-bar-item w3-button">1:1문의</a>
+      <%} %> class="w3-bar-item w3-button" onclick="alert('로그인해야 문의할수 있습니다')">1:1문의</a>
     </div>
   </div>
   <%
